@@ -93,7 +93,6 @@ class Progress {
         this.update();
     }
     update() {
-        console.log(this.value);
         this.bar.style.width = this.stats + '%';
     }
     getStats() {
