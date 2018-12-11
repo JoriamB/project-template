@@ -98,7 +98,6 @@ class Progress {
     countUp() {
         if ((this.current + this.increment) < 100) {
             this.current += this.increment;
-            this.update();
         }
         else {
             this.current = 100;
