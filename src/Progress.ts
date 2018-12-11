@@ -15,6 +15,7 @@ class Progress {
         return this.stats;
     }
     countUp(){
+        console.log('test');
         if(this.progress < 100) {
             this.stats += this.progress;
             this.update();
