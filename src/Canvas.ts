@@ -14,14 +14,46 @@ class Canvas {
         this.width = window.innerWidth;
     };
 
-    public drawTextToCanvas () {
-
+    /**
+     * @param fontsize 
+     * @param color 
+     * @param text 
+     * @param x 
+     * @param y 
+     * @access public
+     * method for writing text to canvas
+     */
+    public drawTextToCanvas (fontsize : number,
+                            color : string,
+                            text : string,
+                            x : number,
+                            y : number
+                            ) : void {
+        this.ctx.font = `Arial ${fontsize}px`
+        this.ctx.fillStyle = color;
+        this.ctx.fillText(text, x, y);
     };
 
-    public drawImageToCanvas () {
-
+    /**
+     * @param src 
+     * @param x 
+     * @param y 
+     * @param width 
+     * @param height
+     * method for drawing an image to canvass
+     */
+    public drawImageToCanvas (  src : CanvasImageSource,
+                                x : number,
+                                y : number,
+                                width : number,
+                                height : number
+                            ) : void {
+        this.ctx.drawImage(src, x, y, width, height);
     };
 
+    /**
+     * method for returning the center of the canvas
+     */
     public getCenter () : { X: number, Y: number } {
         return {X: this.getWidth() / 2, Y: this.getHeight() / 2};
 
