@@ -1,21 +1,187 @@
-class Animal {
-    constructor(name, legs, sound) {
-        this.name = name;
-        this.legs = legs;
-        this.sound = sound;
+class BaseView {
+    constructor() {
     }
-    getName() {
-        return this.name;
+    ;
+}
+;
+class Canvas {
+    constructor(canvas, src) {
+        this.canvas = canvas;
+        this.src = src;
+        this.ctx = this.canvas.getContext("2d");
+        this.height = window.innerHeight;
+        this.width = window.innerWidth;
     }
-    getLegs() {
-        return this.legs;
+    ;
+    drawTextToCanvas() {
     }
-    getSound() {
-        return this.sound;
+    ;
+    drawImageToCanvas() {
+    }
+    ;
+    getCenter() {
+        return { X: this.getWidth() / 2, Y: this.getHeight() / 2 };
+    }
+    ;
+    getHeight() {
+        return this.height;
+    }
+    ;
+    getWidth() {
+        return this.width;
+    }
+    ;
+    clear() {
+        this.ctx.clearRect(0, 0, this.getWidth(), this.getHeight());
+    }
+    ;
+}
+;
+class Game {
+    constructor() {
+        this.canvas = new Canvas(document.getElementById("canvas"), "./assets/images/background.png");
+        this.player = new Player(5, 100, 100, 100, 100);
+    }
+    ;
+    draw() {
+    }
+    ;
+}
+;
+class Player {
+    constructor(speed, health, hunger, energy, mood) {
+        this.keyboardListener = new KeyboardHelper(false, false, false, false);
+        this.speed = speed;
+        this.health = health;
+        this.hunger = hunger;
+        this.energy = energy;
+        this.mood = mood;
+    }
+    ;
+    move() {
+    }
+    ;
+    isColliding() {
+    }
+    ;
+    getHealth() {
+        return this.health;
+    }
+    ;
+    getHunger() {
+        return this.hunger;
+    }
+    ;
+    getEnergy() {
+        return this.energy;
+    }
+    ;
+    getMood() {
+        return this.mood;
+    }
+    ;
+}
+;
+class Progress {
+    constructor(progress) {
+        this.bar = document.querySelectorAll('#prog-bar > .progress-bar')[0];
+        this.progress = progress;
+        this.update();
+    }
+    update() {
+        this.bar.style.width = this.progress + '%';
+    }
+    getStats() {
+        this.stats = 50;
+        return this.stats;
+    }
+    countUp() {
+        if (this.progress < 100) {
+            this.stats += this.progress;
+            this.update();
+        }
+    }
+    countDown() {
+        if (0 < this.progress) {
+            this.stats -= this.progress;
+            this.update();
+        }
     }
 }
-const animals = [
-    new Animal('dog', 4, 'woof'),
-    new Animal('cat', 4, 'meow')
-];
-animals.forEach((animal) => console.log('A %s has %s legs and goes %s!', animal.getName(), animal.getLegs(), animal.getSound()));
+let progress = new Progress(0);
+class KeyboardHelper {
+    constructor(leftPressed, rightPressed, upPressed, downPressed) {
+        this.leftPressed = leftPressed;
+        this.rightPressed = rightPressed;
+        this.upPressed = upPressed;
+        this.downPressed = downPressed;
+    }
+    ;
+    keydownHandler(event) {
+        switch (event.keyCode) {
+            case 37:
+            case 65:
+            case 74:
+                this.leftPressed = true;
+                break;
+            case 38:
+            case 87:
+            case 73:
+                this.upPressed = true;
+                break;
+            case 40:
+            case 83:
+            case 75:
+                this.downPressed = true;
+                break;
+            case 39:
+            case 68:
+            case 76:
+                this.rightPressed = true;
+                break;
+        }
+        ;
+    }
+    ;
+    keyUpHandler(event) {
+        switch (event.keyCode) {
+            case 37:
+            case 65:
+            case 74:
+                this.leftPressed = false;
+                break;
+            case 38:
+            case 87:
+            case 73:
+                this.upPressed = false;
+                break;
+            case 40:
+            case 83:
+            case 75:
+                this.downPressed = false;
+                break;
+            case 39:
+            case 68:
+            case 76:
+                this.rightPressed = false;
+                break;
+        }
+        ;
+    }
+    ;
+}
+;
+class MathHelper {
+    randomNumber(min, max) {
+        return Math.round(Math.random() * (max - min) + min);
+    }
+    ;
+}
+;
+class MouseHelper {
+    constructor() {
+    }
+    ;
+}
+;
+//# sourceMappingURL=app.js.map

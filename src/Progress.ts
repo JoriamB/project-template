@@ -1,6 +1,6 @@
 class Progress {
     private progress: number;
-    private bar = document.querySelectorAll('#prog-bar> .progress-bar')[0];
+    private bar = <HTMLElement>document.querySelectorAll('#prog-bar > .progress-bar')[0];
     public stats: number;
 
     constructor (progress: number) {
