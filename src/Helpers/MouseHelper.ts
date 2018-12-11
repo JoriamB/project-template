@@ -1,0 +1,6 @@
+class MouseHelper {
+
+    public constructor() {
+        
+    };
+};
