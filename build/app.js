@@ -13,12 +13,6 @@ class Canvas {
         this.width = window.innerWidth;
     }
     ;
-<<<<<<< HEAD
-    drawTextToCanvas() {
-    }
-    ;
-    drawImageToCanvas() {
-=======
     drawTextToCanvas(fontsize, color, text, x, y) {
         this.ctx.font = `Arial ${fontsize}px`;
         this.ctx.fillStyle = color;
@@ -27,7 +21,6 @@ class Canvas {
     ;
     drawImageToCanvas(src, x, y, width, height) {
         this.ctx.drawImage(src, x, y, width, height);
->>>>>>> faecf4ea3f90afb49cbb6e60fd53b6fff2383b19
     }
     ;
     getCenter() {
@@ -67,7 +60,6 @@ class Player {
         this.hunger = hunger;
         this.energy = energy;
         this.mood = mood;
-<<<<<<< HEAD
     }
     ;
     move() {
@@ -84,24 +76,6 @@ class Player {
         return this.hunger;
     }
     ;
-=======
-    }
-    ;
-    move() {
-    }
-    ;
-    isColliding() {
-    }
-    ;
-    getHealth() {
-        return this.health;
-    }
-    ;
-    getHunger() {
-        return this.hunger;
-    }
-    ;
->>>>>>> faecf4ea3f90afb49cbb6e60fd53b6fff2383b19
     getEnergy() {
         return this.energy;
     }
@@ -112,36 +86,36 @@ class Player {
     ;
 }
 ;
-<<<<<<< HEAD
 class Progress {
     constructor(progress) {
         this.bar = document.querySelectorAll('#prog-bar > .progress-bar')[0];
-        this.progress = progress;
+        this.value = progress;
         this.update();
     }
     update() {
-        this.bar.style.width = this.progress + '%';
+        console.log(this.value);
+        this.bar.style.width = this.stats + '%';
     }
     getStats() {
         this.stats = 50;
         return this.stats;
     }
     countUp() {
-        if (this.progress < 100) {
-            this.stats += this.progress;
+        if (this.value < 100) {
+            this.stats += this.value;
             this.update();
         }
     }
     countDown() {
-        if (0 < this.progress) {
-            this.stats -= this.progress;
+        if (0 < this.value) {
+            this.stats -= this.value;
             this.update();
         }
     }
 }
 let progress = new Progress(0);
-=======
->>>>>>> faecf4ea3f90afb49cbb6e60fd53b6fff2383b19
+progress.getStats();
+progress.countUp();
 class KeyboardHelper {
     constructor(leftPressed, rightPressed, upPressed, downPressed) {
         this.leftPressed = leftPressed;
