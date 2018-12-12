@@ -9,12 +9,12 @@ class Canvas {
         this.canvas = canvas;
         this.src = src;
         this.ctx = this.canvas.getContext("2d");
-        this.height = window.innerHeight;
-        this.width = window.innerWidth;
+        this.canvas.height = window.innerHeight;
+        this.canvas.width = window.innerWidth;
     }
     ;
     drawTextToCanvas(fontsize, color, text, x, y) {
-        this.ctx.font = `Arial ${fontsize}px`;
+        this.ctx.font = `${fontsize}px Arial`;
         this.ctx.fillStyle = color;
         this.ctx.fillText(text, x, y);
     }
@@ -23,16 +23,23 @@ class Canvas {
         this.ctx.drawImage(src, x, y, width, height);
     }
     ;
+    drawBarToCanvas(X, Y, maxWidth, minWidth, height, maxColor, minColor) {
+        this.ctx.fillStyle = maxColor;
+        this.ctx.fillRect(X, Y, maxWidth, height);
+        this.ctx.fillStyle = minColor;
+        this.ctx.fillRect(X, Y, minWidth, height);
+    }
+    ;
     getCenter() {
         return { X: this.getWidth() / 2, Y: this.getHeight() / 2 };
     }
     ;
     getHeight() {
-        return this.height;
+        return this.canvas.height;
     }
     ;
     getWidth() {
-        return this.width;
+        return this.canvas.width;
     }
     ;
     clear() {
@@ -42,16 +49,26 @@ class Canvas {
 }
 ;
 class Game {
-    constructor() {
-        this.canvas = new Canvas(document.getElementById("canvas"), "./assets/images/background.png");
-        this.player = new Player(5, 100, 100, 100, 100);
-    }
-    ;
-    draw() {
+    constructor(canvas, player) {
+        this.draw = () => {
+            this.canvas.clear();
+            this.canvas.drawBarToCanvas(this.canvas.getWidth() * 0.05, this.canvas.getHeight() * 0.05, 100, this.player.getHealth(), 20, "black", "red");
+            this.canvas.drawBarToCanvas(this.canvas.getWidth() * 0.05, this.canvas.getHeight() * 0.1, 100, this.player.getHealth(), 20, "black", "red");
+            this.canvas.drawBarToCanvas(this.canvas.getWidth() * 0.05, this.canvas.getHeight() * 0.15, 100, this.player.getHealth(), 20, "black", "red");
+            this.canvas.drawBarToCanvas(this.canvas.getWidth() * 0.05, this.canvas.getHeight() * 0.2, 100, this.player.getHealth(), 20, "black", "red");
+            window.requestAnimationFrame(this.draw);
+        };
+        this.canvas = canvas;
+        this.player = player;
     }
     ;
 }
 ;
+window.addEventListener("load", init);
+function init() {
+    const LudosMundi = new Game(new Canvas(document.getElementById("canvas"), "./assets/images/background.png"), new Player(5, 100, 100, 100, 100));
+    window.requestAnimationFrame(LudosMundi.draw);
+}
 class Player {
     constructor(speed, health, hunger, energy, mood) {
         this.keyboardListener = new KeyboardHelper(false, false, false, false);
@@ -88,12 +105,10 @@ class Player {
 ;
 class Progress {
     constructor(current, increment) {
-        this.bar = document.querySelectorAll('#prog-bar > .progress-bar')[0];
         this.current = current;
         this.increment = increment;
     }
     update() {
-        this.bar.style.width = this.current + '%';
     }
     countUp() {
         if ((this.current + this.increment) < 100) {
@@ -116,8 +131,10 @@ class Progress {
         }
     }
 }
-let progress = new Progress(0, 10);
-progress.countDown();
+let healthbar = new Progress(30, 10);
+let hungerbar = new Progress(30, 10);
+let energybar = new Progress(30, 10);
+let moodbar = new Progress(30, 10);
 class KeyboardHelper {
     constructor(leftPressed, rightPressed, upPressed, downPressed) {
         this.leftPressed = leftPressed;

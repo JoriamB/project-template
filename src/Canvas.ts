@@ -10,8 +10,8 @@ class Canvas {
         this.canvas = canvas;
         this.src = src;
         this.ctx = this.canvas.getContext("2d");
-        this.height = window.innerHeight;
-        this.width = window.innerWidth;
+        this.canvas.height = window.innerHeight
+        this.canvas.width = window.innerWidth;
     };
 
     /**
@@ -29,7 +29,7 @@ class Canvas {
                             x : number,
                             y : number
                             ) : void {
-        this.ctx.font = `Arial ${fontsize}px`
+        this.ctx.font = `${fontsize}px Arial`
         this.ctx.fillStyle = color;
         this.ctx.fillText(text, x, y);
     };
@@ -51,6 +51,25 @@ class Canvas {
         this.ctx.drawImage(src, x, y, width, height);
     };
 
+    public drawBarToCanvas (X : number,
+                            Y : number,
+                            maxWidth : number,
+                            minWidth : number,
+                            height : number,
+                            maxColor : string,
+                            minColor : string) {
+        this.ctx.fillStyle = maxColor;
+        this.ctx.fillRect(  X,
+                            Y,
+                            maxWidth,
+                            height)
+        this.ctx.fillStyle = minColor;
+        this.ctx.fillRect(  X,
+                            Y,
+                            minWidth,
+                            height)
+    };
+
     /**
      * method for returning the center of the canvas
      */
@@ -64,7 +83,7 @@ class Canvas {
      * Method for returning height
      */
     public getHeight () : number {
-        return this.height;
+        return this.canvas.height;
     };
 
     /**
@@ -72,7 +91,7 @@ class Canvas {
      * Method for returning width
      */
     public getWidth () : number {
-        return this.width;
+        return this.canvas.width;
     };
 
     /**

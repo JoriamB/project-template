@@ -1,6 +1,6 @@
 class Progress {
     private current: number;
-    private bar = <HTMLElement>document.querySelectorAll('#prog-bar > .progress-bar')[0];
+    private bar : HTMLElement;//<HTMLElement>document.querySelectorAll('#prog-bar > .progress-bar')[0];
     private increment: number;
 
     constructor (current: number, increment : number) {
@@ -8,7 +8,7 @@ class Progress {
         this.increment = increment;
     }
     private update() {
-        this.bar.style.width = this.current + '%';
+        //this.bar.style.width = this.current + '%';
     }
     countUp(){
         if((this.current + this.increment) < 100) {
@@ -31,7 +31,10 @@ class Progress {
     }
 }
 
-let progress = new Progress(0, 10);
+let healthbar = new Progress(30, 10,);
+let hungerbar = new Progress(30, 10);
+let energybar = new Progress(30, 10);
+let moodbar = new Progress(30, 10);
 
-progress.countDown();
+//progress.countDown();
 
