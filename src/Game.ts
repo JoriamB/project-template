@@ -1,14 +1,15 @@
 class Game {
     private canvas : Canvas;
     private player : Player;
+    private park : Park;
 
-    public constructor () {
-        this.canvas = new Canvas(<HTMLCanvasElement>document.getElementById("canvas"), "./assets/images/background.png");
-        this.player = new Player(5,
-                                100,
-                                100,
-                                100,
-                                100);
+    public constructor (canvas : Canvas,
+                        player : Player) {
+        this.canvas = canvas;
+        this.player = player;
+        this.park = new Park("./assets/images/park.png",
+                            this.canvas,
+                            this.player);
     };
 
     public draw = () => {
@@ -16,8 +17,22 @@ class Game {
                                         this.canvas.getWidth()-10,
                                         this.canvas.getHeight()-10,
                                         10,10);
+
+        this.canvas.clear()
+        this.park.draw()
         window.requestAnimationFrame(this.draw)
     };
 };
-let game = new Game()
-window.requestAnimationFrame(game.draw);
+
+
+window.addEventListener("load", init);
+function init () : void {
+    const LudosMundi = new Game(new Canvas(<HTMLCanvasElement>document.getElementById("canvas")),
+                                new Player( 5,
+                                            100,
+                                            100,
+                                            100,
+                                            100));
+                                
+    window.requestAnimationFrame(LudosMundi.draw)
+}
