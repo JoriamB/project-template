@@ -1,3 +1,5 @@
+/// <reference path="../src/Helpers/KeyboardHelper.ts"/>
+
 class Player {
     private keyboardListener : KeyboardHelper;
     private speed : number;
@@ -5,25 +7,57 @@ class Player {
     private hunger : number;
     private energy : number;
     private mood : number;
+    private coins : number;
+    private xPos : number;
+    private yPos : number;
 
     public constructor (speed : number,
                         health : number,
                         hunger : number,
                         energy : number,
-                        mood : number) {
+                        mood : number,
+                        coins :number,
+                        xPos : number,
+                        yPos : number) {
         this.keyboardListener = new KeyboardHelper(false,
-                                                    false,
-                                                    false,
-                                                    false);
+                                                   false,
+                                                   false,
+                                                   false);
+
+        window.addEventListener("keydown", this.keyboardListener.keyDownHandler);
+        window.addEventListener("keyup", this.keyboardListener.keyUpHandler);
+
         this.speed = speed;
         this.health = health;
         this.hunger = hunger;
         this.energy = energy;
         this.mood = mood;
+        this.coins = coins;
+        
     };
 
-    public move () {
+    protected updateCoins () {
+        // Change current value of coins
+        //if worked in store --> ++
+        //if spend in store --> --
+    }
 
+    public move () {
+        if (this.keyboardListener.leftPressed || 
+            this.keyboardListener.rightPressed || 
+            this.keyboardListener.rightPressed || 
+            this.keyboardListener.downPressed)
+            {
+            if (this.keyboardListener.leftPressed)
+                this.xPos -= this.speed;
+            else if (this.keyboardListener.rightPressed)
+                this.yPos += this.speed;
+
+            if (this.keyboardListener.upPressed)
+                this.yPos -= this.speed;
+            else if (this.keyboardListener.downPressed)
+                this.yPos += this.speed;
+        }
     };
 
     public isColliding () {

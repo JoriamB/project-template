@@ -33,5 +33,3 @@ class Progress {
 
 let progress = new Progress(0, 10);
 
-progress.countDown();
-
