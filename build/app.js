@@ -57,6 +57,60 @@ class Game {
 ;
 let game = new Game();
 window.requestAnimationFrame(game.draw);
+class Progress {
+    constructor(current, increment) {
+        this.bar = document.querySelectorAll('#prog-bar > .progress-bar')[0];
+        this.current = current;
+        this.increment = increment;
+    }
+    update() {
+        this.bar.style.width = this.current + '%';
+    }
+    countUp() {
+        if ((this.current + this.increment) < 100) {
+            this.current += this.increment;
+        }
+        else {
+            this.current = 100;
+            this.update();
+        }
+        ;
+    }
+    countDown() {
+        if (0 < (this.current - this.increment)) {
+            this.current -= this.increment;
+            this.update();
+        }
+        else {
+            this.current = 0;
+            this.update();
+        }
+    }
+}
+let progress = new Progress(0, 10);
+progress.countDown();
+class LocationEntity extends Progress {
+    constructor(current, increment) {
+        super(current, increment);
+    }
+    draw() {
+    }
+}
+class Hospital extends LocationEntity {
+    constructor(current, increment) {
+        super(current, increment);
+    }
+}
+class House extends LocationEntity {
+    constructor(current, increment) {
+        super(current, increment);
+    }
+}
+class Parc extends LocationEntity {
+    constructor(current, increment) {
+        super(current, increment);
+    }
+}
 class Player {
     constructor(speed, health, hunger, energy, mood) {
         this.keyboardListener = new KeyboardHelper(false, false, false, false);
@@ -91,38 +145,16 @@ class Player {
     ;
 }
 ;
-class Progress {
+class School extends LocationEntity {
     constructor(current, increment) {
-        this.bar = document.querySelectorAll('#prog-bar > .progress-bar')[0];
-        this.current = current;
-        this.increment = increment;
-    }
-    update() {
-        this.bar.style.width = this.current + '%';
-    }
-    countUp() {
-        if ((this.current + this.increment) < 100) {
-            this.current += this.increment;
-        }
-        else {
-            this.current = 100;
-            this.update();
-        }
-        ;
-    }
-    countDown() {
-        if (0 < (this.current - this.increment)) {
-            this.current -= this.increment;
-            this.update();
-        }
-        else {
-            this.current = 0;
-            this.update();
-        }
+        super(current, increment);
     }
 }
-let progress = new Progress(0, 10);
-progress.countDown();
+class Store extends LocationEntity {
+    constructor(current, increment) {
+        super(current, increment);
+    }
+}
 class KeyboardHelper {
     constructor(leftPressed, rightPressed, upPressed, downPressed) {
         this.leftPressed = leftPressed;
