@@ -1,14 +1,9 @@
 class Canvas {
     private canvas : HTMLCanvasElement;
-    private src : string;
     private ctx : CanvasRenderingContext2D;
-    private height : number;
-    private width : number;
 
-    public constructor (canvas : HTMLCanvasElement,
-                        src : string) {
+    public constructor (canvas : HTMLCanvasElement) {
         this.canvas = canvas;
-        this.src = src;
         this.ctx = this.canvas.getContext("2d");
         this.canvas.height = window.innerHeight
         this.canvas.width = window.innerWidth;

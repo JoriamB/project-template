@@ -1,13 +1,6 @@
-class BaseView {
-    constructor() {
-    }
-    ;
-}
-;
 class Canvas {
-    constructor(canvas, src) {
+    constructor(canvas) {
         this.canvas = canvas;
-        this.src = src;
         this.ctx = this.canvas.getContext("2d");
         this.canvas.height = window.innerHeight;
         this.canvas.width = window.innerWidth;
@@ -52,21 +45,23 @@ class Game {
     constructor(canvas, player) {
         this.draw = () => {
             this.canvas.clear();
-            this.canvas.drawBarToCanvas(this.canvas.getWidth() * 0.05, this.canvas.getHeight() * 0.05, 100, this.player.getHealth(), 20, "black", "red");
-            this.canvas.drawBarToCanvas(this.canvas.getWidth() * 0.05, this.canvas.getHeight() * 0.1, 100, this.player.getHealth(), 20, "black", "red");
-            this.canvas.drawBarToCanvas(this.canvas.getWidth() * 0.05, this.canvas.getHeight() * 0.15, 100, this.player.getHealth(), 20, "black", "red");
-            this.canvas.drawBarToCanvas(this.canvas.getWidth() * 0.05, this.canvas.getHeight() * 0.2, 100, this.player.getHealth(), 20, "black", "red");
+            this.park.draw();
             window.requestAnimationFrame(this.draw);
         };
         this.canvas = canvas;
         this.player = player;
+        this.park = new Park("./assets/images/park.png", this.canvas, this.player);
+    }
+    ;
+    getCanvas() {
+        return this.canvas;
     }
     ;
 }
 ;
 window.addEventListener("load", init);
 function init() {
-    const LudosMundi = new Game(new Canvas(document.getElementById("canvas"), "./assets/images/background.png"), new Player(5, 100, 100, 100, 100));
+    const LudosMundi = new Game(new Canvas(document.getElementById("canvas")), new Player(5, 100, 100, 100, 100));
     window.requestAnimationFrame(LudosMundi.draw);
 }
 class Player {
@@ -206,6 +201,28 @@ class MathHelper {
 ;
 class MouseHelper {
     constructor() {
+    }
+    ;
+}
+;
+class BaseView {
+    constructor(src, canvas, player) {
+        this.src = src;
+        this.canvas = canvas;
+        this.player = player;
+    }
+    ;
+}
+;
+class Park extends BaseView {
+    constructor(src, canvas, player) {
+        super(src, canvas, player);
+        this.draw = () => {
+            this.canvas.drawBarToCanvas(this.canvas.getWidth() * 0.05, this.canvas.getHeight() * 0.05, 100, this.player.getHealth(), 20, "black", "red");
+            this.canvas.drawBarToCanvas(this.canvas.getWidth() * 0.05, this.canvas.getHeight() * 0.1, 100, this.player.getHealth(), 20, "black", "red");
+            this.canvas.drawBarToCanvas(this.canvas.getWidth() * 0.05, this.canvas.getHeight() * 0.15, 100, this.player.getHealth(), 20, "black", "red");
+            this.canvas.drawBarToCanvas(this.canvas.getWidth() * 0.05, this.canvas.getHeight() * 0.2, 100, this.player.getHealth(), 20, "black", "red");
+        };
     }
     ;
 }
