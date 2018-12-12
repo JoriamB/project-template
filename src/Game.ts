@@ -11,7 +11,13 @@ class Game {
                                 100);
     };
 
-    public draw () {
-
+    public draw = () => {
+        this.canvas.drawImageToCanvas(  "./Assets/Icons/ButtonsFREE/Setting.png",
+                                        this.canvas.getWidth()-10,
+                                        this.canvas.getHeight()-10,
+                                        10,10);
+        window.requestAnimationFrame(this.draw)
     };
 };
+let game = new Game()
+window.requestAnimationFrame(game.draw);

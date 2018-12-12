@@ -20,7 +20,9 @@ class Canvas {
     }
     ;
     drawImageToCanvas(src, x, y, width, height) {
-        this.ctx.drawImage(src, x, y, width, height);
+        let image = new Image();
+        image.src = src;
+        this.ctx.drawImage(image, x, y, width, height);
     }
     ;
     getCenter() {
@@ -43,15 +45,18 @@ class Canvas {
 ;
 class Game {
     constructor() {
+        this.draw = () => {
+            this.canvas.drawImageToCanvas("./Assets/Icons/ButtonsFREE/Setting.png", this.canvas.getWidth() - 10, this.canvas.getHeight() - 10, 10, 10);
+            window.requestAnimationFrame(this.draw);
+        };
         this.canvas = new Canvas(document.getElementById("canvas"), "./assets/images/background.png");
         this.player = new Player(5, 100, 100, 100, 100);
     }
     ;
-    draw() {
-    }
-    ;
 }
 ;
+let game = new Game();
+window.requestAnimationFrame(game.draw);
 class Player {
     constructor(speed, health, hunger, energy, mood) {
         this.keyboardListener = new KeyboardHelper(false, false, false, false);

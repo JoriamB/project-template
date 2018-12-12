@@ -42,13 +42,15 @@ class Canvas {
      * @param height
      * method for drawing an image to canvass
      */
-    public drawImageToCanvas (  src : CanvasImageSource,
+    public drawImageToCanvas (  src : string,
                                 x : number,
                                 y : number,
                                 width : number,
                                 height : number
                             ) : void {
-        this.ctx.drawImage(src, x, y, width, height);
+        let image = new Image();
+        image.src = src
+        this.ctx.drawImage(image, x, y, width, height);
     };
 
     /**
