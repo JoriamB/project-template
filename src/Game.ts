@@ -7,17 +7,12 @@ class Game {
                         player : Player) {
         this.canvas = canvas;
         this.player = player;
-        this.park = new Park("./assets/images/park.png",
+        this.park = new Park("./assets/Backgrounds/park.jpg",
                             this.canvas,
                             this.player);
     };
 
     public draw = () => {
-        this.canvas.drawImageToCanvas(  "./Assets/Icons/ButtonsFREE/Setting.png",
-                                        this.canvas.getWidth()-10,
-                                        this.canvas.getHeight()-10,
-                                        10,10);
-
         this.canvas.clear()
         this.park.draw()
         window.requestAnimationFrame(this.draw)

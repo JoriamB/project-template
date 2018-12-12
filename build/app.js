@@ -46,14 +46,13 @@ class Canvas {
 class Game {
     constructor(canvas, player) {
         this.draw = () => {
-            this.canvas.drawImageToCanvas("./Assets/Icons/ButtonsFREE/Setting.png", this.canvas.getWidth() - 10, this.canvas.getHeight() - 10, 10, 10);
             this.canvas.clear();
             this.park.draw();
             window.requestAnimationFrame(this.draw);
         };
         this.canvas = canvas;
         this.player = player;
-        this.park = new Park("./assets/images/park.png", this.canvas, this.player);
+        this.park = new Park("./assets/Backgrounds/park.jpg", this.canvas, this.player);
     }
     ;
 }
@@ -62,60 +61,6 @@ window.addEventListener("load", init);
 function init() {
     const LudosMundi = new Game(new Canvas(document.getElementById("canvas")), new Player(5, 100, 100, 100, 100));
     window.requestAnimationFrame(LudosMundi.draw);
-}
-class Progress {
-    constructor(current, increment) {
-        this.current = current;
-        this.increment = increment;
-    }
-    update() {
-    }
-    countUp() {
-        if ((this.current + this.increment) < 100) {
-            this.current += this.increment;
-        }
-        else {
-            this.current = 100;
-            this.update();
-        }
-        ;
-    }
-    countDown() {
-        if (0 < (this.current - this.increment)) {
-            this.current -= this.increment;
-            this.update();
-        }
-        else {
-            this.current = 0;
-            this.update();
-        }
-    }
-}
-let healthbar = new Progress(30, 10);
-let hungerbar = new Progress(30, 10);
-let energybar = new Progress(30, 10);
-let moodbar = new Progress(30, 10);
-class LocationEntity extends Progress {
-    constructor(current, increment) {
-        super(current, increment);
-    }
-    draw() {
-    }
-}
-class Hospital extends LocationEntity {
-    constructor(current, increment) {
-        super(current, increment);
-    }
-}
-class House extends LocationEntity {
-    constructor(current, increment) {
-        super(current, increment);
-    }
-}
-class Parc extends LocationEntity {
-    constructor(current, increment) {
-        super(current, increment);
-    }
 }
 class Player {
     constructor(speed, health, hunger, energy, mood) {
@@ -151,16 +96,6 @@ class Player {
     ;
 }
 ;
-class School extends LocationEntity {
-    constructor(current, increment) {
-        super(current, increment);
-    }
-}
-class Store extends LocationEntity {
-    constructor(current, increment) {
-        super(current, increment);
-    }
-}
 class KeyboardHelper {
     constructor(leftPressed, rightPressed, upPressed, downPressed) {
         this.leftPressed = leftPressed;
@@ -249,6 +184,8 @@ class Park extends BaseView {
     constructor(src, canvas, player) {
         super(src, canvas, player);
         this.draw = () => {
+            this.canvas.drawImageToCanvas(this.src, 0, 0, this.canvas.getWidth(), this.canvas.getHeight());
+            this.canvas.drawImageToCanvas("./assets/Icons/ButtonsFREE/Home.png", this.canvas.getWidth() * 0.9, this.canvas.getHeight() * 0.05, 50, 50);
             this.canvas.drawBarToCanvas(this.canvas.getWidth() * 0.05, this.canvas.getHeight() * 0.05, 100, this.player.getHealth(), 20, "black", "red");
             this.canvas.drawBarToCanvas(this.canvas.getWidth() * 0.05, this.canvas.getHeight() * 0.1, 100, this.player.getHealth(), 20, "black", "red");
             this.canvas.drawBarToCanvas(this.canvas.getWidth() * 0.05, this.canvas.getHeight() * 0.15, 100, this.player.getHealth(), 20, "black", "red");

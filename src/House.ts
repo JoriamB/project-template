@@ -1,6 +1,5 @@
-/// <reference path="./LocationEntity.ts"/>
-class House extends LocationEntity{
+/*class House extends BaseView{
     constructor(current:number, increment:number){
         super(current,increment)
     }
-}
+}*/

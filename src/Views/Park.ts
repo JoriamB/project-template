@@ -1,4 +1,3 @@
-/// <reference path="./../Game.ts"/>
 class Park extends BaseView {
 
     public constructor (src : string,
@@ -8,6 +7,15 @@ class Park extends BaseView {
     };
 
     public draw = () => {
+        this.canvas.drawImageToCanvas(  this.src,
+                                        0,
+                                        0,
+                                        this.canvas.getWidth(),
+                                        this.canvas.getHeight());
+        this.canvas.drawImageToCanvas(  "./assets/Icons/ButtonsFREE/Home.png",
+                                        this.canvas.getWidth() * 0.9,
+                                        this.canvas.getHeight() * 0.05,
+                                        50,50);
         this.canvas.drawBarToCanvas(this.canvas.getWidth()*0.05,
                                     this.canvas.getHeight()*0.05,
                                     100,
