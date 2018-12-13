@@ -47,15 +47,15 @@ class Game {
     constructor(canvas, player) {
         this.draw = () => {
             this.canvas.clear();
-            this.park.draw();
+            this.house.draw();
             window.requestAnimationFrame(this.draw);
         };
         this.canvas = canvas;
         this.player = player;
         this.park = new Park("./assets/Backgrounds/park.jpg", this.canvas, this.player);
         this.hospital = new Hospital("./assets/Backgrounds/hospital.jpg", this.canvas, this.player);
-        this.house = new House("./assets/Backgrounds/house.jpg", this.canvas, this.player);
-        this.school = new School("./assets/Backgrounds/school.jpg", this.canvas, this.player);
+        this.house = new House("./assets/Backgrounds/house.png", this.canvas, this.player);
+        this.school = new School("./assets/Backgrounds/classroom.jpg", this.canvas, this.player);
         this.store = new Store("./assets/Backgrounds/store.jpg", this.canvas, this.player);
     }
     ;
@@ -74,9 +74,6 @@ class Player {
         this.hunger = hunger;
         this.energy = energy;
         this.mood = mood;
-    }
-    ;
-    move() {
     }
     ;
     isColliding() {

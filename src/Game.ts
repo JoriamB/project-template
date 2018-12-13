@@ -17,10 +17,10 @@ class Game {
         this.hospital = new Hospital("./assets/Backgrounds/hospital.jpg",
                             this.canvas,
                             this.player);
-        this.house = new House("./assets/Backgrounds/house.jpg",
+        this.house = new House("./assets/Backgrounds/house.png",
                             this.canvas,
                             this.player);
-        this.school = new School("./assets/Backgrounds/school.jpg",
+        this.school = new School("./assets/Backgrounds/classroom.jpg",
                             this.canvas,
                             this.player);
         this.store = new Store("./assets/Backgrounds/store.jpg",
@@ -30,7 +30,7 @@ class Game {
 
     public draw = () => {
         this.canvas.clear()
-        this.park.draw()
+        this.house.draw()
         window.requestAnimationFrame(this.draw)
     };
 };
