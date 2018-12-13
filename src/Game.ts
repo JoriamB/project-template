@@ -6,6 +6,7 @@ class Game {
     private house : House;
     private school : School;
     private store : Store;
+    private restaurant : Restaurant;
 
     public constructor (canvas : Canvas,
                         player : Player) {
@@ -24,6 +25,9 @@ class Game {
                             this.canvas,
                             this.player);
         this.store = new Store("./assets/Backgrounds/store.jpg",
+                            this.canvas,
+                            this.player);
+        this.restaurant = new Restaurant("./assets/Backgrounds/restaurant.jpg",
                             this.canvas,
                             this.player);
     };
