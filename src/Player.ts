@@ -5,6 +5,8 @@ class Player {
     private hunger : number;
     private energy : number;
     private mood : number;
+    private xPos : number;
+    private yPos : number;
 
     public constructor (speed : number,
                         health : number,
@@ -23,7 +25,20 @@ class Player {
     };
 
     public move () {
-
+        if (this.keyboardListener.leftPressed ||
+            this.keyboardListener.rightPressed ||
+            this.keyboardListener.upPressed ||
+            this.keyboardListener.downPressed)
+            {
+                if (this.keyboardListener.leftPressed)
+                    this.xPos -= this.speed;
+                else if (this.keyboardListener.rightPressed)
+                    this.xPos += this.speed;
+                else if (this.keyboardListener.upPressed)
+                    this.yPos -= this.speed;
+                else if (this.keyboardListener.downPressed)
+                    this.yPos += this.speed;
+            }
     };
 
     public isColliding () {
