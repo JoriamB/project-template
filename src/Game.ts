@@ -35,6 +35,7 @@ class Game {
     public draw = () => {
         this.canvas.clear()
         this.house.draw()
+        
         window.requestAnimationFrame(this.draw)
     };
 };
@@ -43,7 +44,8 @@ class Game {
 window.addEventListener("load", init);
 function init () : void {
     const LudosMundi = new Game(new Canvas(<HTMLCanvasElement>document.getElementById("canvas")),
-                                new Player( 5,
+                                new Player("./Assets/Female/Poses/female_slide.png",
+                                            5,
                                             100,
                                             100,
                                             100,

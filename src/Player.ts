@@ -1,4 +1,5 @@
 class Player {
+    src : string;
     private keyboardListener : KeyboardHelper;
     private speed : number;
     private health : number;
@@ -8,7 +9,8 @@ class Player {
     private xPos : number;
     private yPos : number;
 
-    public constructor (speed : number,
+    public constructor (src : string,
+                        speed : number,
                         health : number,
                         hunger : number,
                         energy : number,
@@ -17,6 +19,7 @@ class Player {
                                                     false,
                                                     false,
                                                     false);
+        this.src = src;
         this.speed = speed;
         this.health = health;
         this.hunger = hunger;

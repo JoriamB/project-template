@@ -64,12 +64,13 @@ class Game {
 ;
 window.addEventListener("load", init);
 function init() {
-    const LudosMundi = new Game(new Canvas(document.getElementById("canvas")), new Player(5, 100, 100, 100, 100));
+    const LudosMundi = new Game(new Canvas(document.getElementById("canvas")), new Player("./Assets/Female/Poses/female_slide.png", 5, 100, 100, 100, 100));
     window.requestAnimationFrame(LudosMundi.draw);
 }
 class Player {
-    constructor(speed, health, hunger, energy, mood) {
+    constructor(src, speed, health, hunger, energy, mood) {
         this.keyboardListener = new KeyboardHelper(false, false, false, false);
+        this.src = src;
         this.speed = speed;
         this.health = health;
         this.hunger = hunger;
