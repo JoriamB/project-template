@@ -57,6 +57,7 @@ class Game {
         this.house = new House("./assets/Backgrounds/house.jpg", this.canvas, this.player);
         this.school = new School("./assets/Backgrounds/school.jpg", this.canvas, this.player);
         this.store = new Store("./assets/Backgrounds/store.jpg", this.canvas, this.player);
+        this.restaurant = new Restaurant("./assets/Backgrounds/restaurant.jpg", this.canvas, this.player);
     }
     ;
 }
@@ -228,6 +229,21 @@ class House extends BaseView {
 }
 ;
 class Park extends BaseView {
+    constructor(src, canvas, player) {
+        super(src, canvas, player);
+        this.draw = () => {
+            this.canvas.drawImageToCanvas(this.src, 0, 0, this.canvas.getWidth(), this.canvas.getHeight());
+            this.canvas.drawImageToCanvas("./assets/Icons/ButtonsFREE/Home.png", this.canvas.getWidth() * 0.9, this.canvas.getHeight() * 0.05, 50, 50);
+            this.canvas.drawBarToCanvas(this.canvas.getWidth() * 0.05, this.canvas.getHeight() * 0.05, 100, this.player.getHealth(), 20, "black", "red");
+            this.canvas.drawBarToCanvas(this.canvas.getWidth() * 0.05, this.canvas.getHeight() * 0.1, 100, this.player.getHealth(), 20, "black", "red");
+            this.canvas.drawBarToCanvas(this.canvas.getWidth() * 0.05, this.canvas.getHeight() * 0.15, 100, this.player.getHealth(), 20, "black", "red");
+            this.canvas.drawBarToCanvas(this.canvas.getWidth() * 0.05, this.canvas.getHeight() * 0.2, 100, this.player.getHealth(), 20, "black", "red");
+        };
+    }
+    ;
+}
+;
+class Restaurant extends BaseView {
     constructor(src, canvas, player) {
         super(src, canvas, player);
         this.draw = () => {
