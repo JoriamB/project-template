@@ -54,7 +54,10 @@ class Canvas {
                             minWidth : number,
                             height : number,
                             maxColor : string,
-                            minColor : string) {
+                            minColor : string,
+                            textColor : string,
+                            text : string,
+                            fontSize : number) {
         this.ctx.fillStyle = maxColor;
         this.ctx.fillRect(  X,
                             Y,
@@ -65,6 +68,9 @@ class Canvas {
                             Y,
                             minWidth,
                             height)
+        this.ctx.fillStyle = textColor
+        this.ctx.font = `${fontSize}px Arial`;
+        this.ctx.fillText(text, X + maxWidth * 0.15, Y - 5)
     };
 
     /**

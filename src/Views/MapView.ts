@@ -1,4 +1,4 @@
-class House extends BaseView {
+class MapView extends BaseView {
 
     public constructor (src : string,
                         canvas : Canvas,
@@ -20,23 +20,43 @@ class House extends BaseView {
         this.canvas.drawBarToCanvas(this.canvas.getWidth()*0.05,
                                     this.canvas.getHeight()*0.05,
                                     100,
-                                    this.player.getHealth(),
-                                    20, "black", "green");
+                                    this.player.getHunger(),
+                                    20,
+                                    "black",
+                                    "green",
+                                    "black",
+                                    "Hunger:",
+                                    20);
         this.canvas.drawBarToCanvas(this.canvas.getWidth()*0.05,
                                     this.canvas.getHeight()*0.1,
                                     100,
-                                    this.player.getHealth(),
-                                    20, "black", "red");
+                                    this.player.getEnergy(),
+                                    20,
+                                    "black",
+                                    "red",
+                                    "black",
+                                    "Energy:",
+                                    20);
         this.canvas.drawBarToCanvas(this.canvas.getWidth()*0.05,
                                     this.canvas.getHeight()*0.15,
                                     100,
-                                    this.player.getHealth(),
-                                    20, "black", "orange");
+                                    this.player.getMood(),
+                                    20,
+                                    "black",
+                                    "orange",
+                                    "black",
+                                    "Mood:",
+                                    20);
         this.canvas.drawBarToCanvas(this.canvas.getWidth()*0.05,
                                     this.canvas.getHeight()*0.2,
                                     100,
                                     this.player.getHealth(),
-                                    20, "black", "red");
+                                    20,
+                                    "black",
+                                    "red",
+                                    "black",
+                                    "Health:",
+                                    20);
         this.player.move();
         this.canvas.drawImageToCanvas("./Assets/Female/Poses/female_walk1.png",
                                         this.player.getX(),
