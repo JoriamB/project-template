@@ -18,16 +18,16 @@ class Game {
         this.hospital = new Hospital("./assets/Backgrounds/hospital.jpg",
                             this.canvas,
                             this.player);
-        this.house = new House("./assets/Backgrounds/house.png",
+        this.house = new House("./assets/Backgrounds/House.png",
                             this.canvas,
                             this.player);
         this.school = new School("./assets/Backgrounds/classroom.jpg",
                             this.canvas,
                             this.player);
-        this.store = new Store("./assets/Backgrounds/store.jpg",
+        this.store = new Store("./assets/Backgrounds/Store.jpg",
                             this.canvas,
                             this.player);
-        this.restaurant = new Restaurant("./assets/Backgrounds/restaurant.jpg",
+        this.restaurant = new Restaurant("./assets/Backgrounds/Restaurant.jpg",
                             this.canvas,
                             this.player);
     };
@@ -35,7 +35,6 @@ class Game {
     public draw = () => {
         this.canvas.clear()
         this.house.draw()
-        
         window.requestAnimationFrame(this.draw)
     };
 };
