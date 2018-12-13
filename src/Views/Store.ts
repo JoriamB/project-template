@@ -20,7 +20,7 @@ class Store extends BaseView {
                                     this.canvas.getHeight()*0.05,
                                     100,
                                     this.player.getHealth(),
-                                    20, "black", "red");
+                                    20, "black", "green");
         this.canvas.drawBarToCanvas(this.canvas.getWidth()*0.05,
                                     this.canvas.getHeight()*0.1,
                                     100,
@@ -30,7 +30,7 @@ class Store extends BaseView {
                                     this.canvas.getHeight()*0.15,
                                     100,
                                     this.player.getHealth(),
-                                    20, "black", "red");
+                                    20, "black", "orange");
         this.canvas.drawBarToCanvas(this.canvas.getWidth()*0.05,
                                     this.canvas.getHeight()*0.2,
                                     100,
