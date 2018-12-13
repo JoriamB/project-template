@@ -44,14 +44,14 @@ class Canvas {
 }
 ;
 class Game {
-    constructor(canvas, player) {
+    constructor(canvas) {
         this.draw = () => {
             this.canvas.clear();
             this.house.draw();
             window.requestAnimationFrame(this.draw);
         };
         this.canvas = canvas;
-        this.player = player;
+        this.player = new Player("./Assets/Female/Poses/female_slide.png", this.canvas, 5, 100, 100, 100, 100, this.canvas.getCenter().X, this.canvas.getCenter().Y, 200, 200);
         this.park = new Park("./assets/Backgrounds/park.jpg", this.canvas, this.player);
         this.hospital = new Hospital("./assets/Backgrounds/hospital.jpg", this.canvas, this.player);
         this.house = new House("./assets/Backgrounds/House.png", this.canvas, this.player);
@@ -64,18 +64,25 @@ class Game {
 ;
 window.addEventListener("load", init);
 function init() {
-    const LudosMundi = new Game(new Canvas(document.getElementById("canvas")), new Player("./Assets/Female/Poses/female_slide.png", 5, 100, 100, 100, 100));
+    const LudosMundi = new Game(new Canvas(document.getElementById("canvas")));
     window.requestAnimationFrame(LudosMundi.draw);
 }
 class Player {
-    constructor(src, speed, health, hunger, energy, mood) {
+    constructor(src, canvas, speed, health, hunger, energy, mood, xPos, yPos, width, height) {
         this.keyboardListener = new KeyboardHelper(false, false, false, false);
+        window.addEventListener("keydown", (event) => this.keyboardListener.keyDownHandler(event));
+        window.addEventListener("keyup", (event) => this.keyboardListener.keyUpHandler(event));
         this.src = src;
+        this.canvas = canvas;
         this.speed = speed;
         this.health = health;
         this.hunger = hunger;
         this.energy = energy;
         this.mood = mood;
+        this.xPos = xPos;
+        this.yPos = yPos;
+        this.width = width;
+        this.height = height;
     }
     ;
     move() {
@@ -91,6 +98,18 @@ class Player {
                 this.yPos -= this.speed;
             else if (this.keyboardListener.downPressed)
                 this.yPos += this.speed;
+            if (this.xPos < 0) {
+                this.xPos = 0;
+            }
+            if (this.xPos + this.width > this.canvas.getWidth()) {
+                this.xPos = this.canvas.getWidth() - this.width;
+            }
+            if (this.yPos + this.height > this.canvas.getHeight()) {
+                this.yPos = this.canvas.getHeight() - this.height;
+            }
+            if (this.yPos < 0) {
+                this.yPos = 0;
+            }
         }
     }
     ;
@@ -113,6 +132,18 @@ class Player {
         return this.mood;
     }
     ;
+    getX() {
+        return this.xPos;
+    }
+    getY() {
+        return this.yPos;
+    }
+    getWidth() {
+        return this.width;
+    }
+    getHeight() {
+        return this.height;
+    }
 }
 ;
 class KeyboardHelper {
@@ -123,7 +154,7 @@ class KeyboardHelper {
         this.downPressed = downPressed;
     }
     ;
-    keydownHandler(event) {
+    keyDownHandler(event) {
         switch (event.keyCode) {
             case 37:
             case 65:
@@ -224,6 +255,8 @@ class House extends BaseView {
             this.canvas.drawBarToCanvas(this.canvas.getWidth() * 0.05, this.canvas.getHeight() * 0.1, 100, this.player.getHealth(), 20, "black", "red");
             this.canvas.drawBarToCanvas(this.canvas.getWidth() * 0.05, this.canvas.getHeight() * 0.15, 100, this.player.getHealth(), 20, "black", "orange");
             this.canvas.drawBarToCanvas(this.canvas.getWidth() * 0.05, this.canvas.getHeight() * 0.2, 100, this.player.getHealth(), 20, "black", "red");
+            this.player.move();
+            this.canvas.drawImageToCanvas("./Assets/Female/Poses/female_walk1.png", this.player.getX(), this.player.getY(), this.player.getWidth(), this.player.getHeight());
         };
     }
     ;

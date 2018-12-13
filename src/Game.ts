@@ -8,10 +8,19 @@ class Game {
     private store : Store;
     private restaurant : Restaurant;
 
-    public constructor (canvas : Canvas,
-                        player : Player) {
+    public constructor (canvas : Canvas) {
         this.canvas = canvas;
-        this.player = player;
+        this.player = new Player(   "./Assets/Female/Poses/female_slide.png",
+                                    this.canvas,
+                                    5,
+                                    100,
+                                    100,
+                                    100,
+                                    100,
+                                    this.canvas.getCenter().X,
+                                    this.canvas.getCenter().Y,
+                                    200,
+                                    200);
         this.park = new Park("./assets/Backgrounds/park.jpg",
                             this.canvas,
                             this.player);
@@ -42,13 +51,6 @@ class Game {
 
 window.addEventListener("load", init);
 function init () : void {
-    const LudosMundi = new Game(new Canvas(<HTMLCanvasElement>document.getElementById("canvas")),
-                                new Player("./Assets/Female/Poses/female_slide.png",
-                                            5,
-                                            100,
-                                            100,
-                                            100,
-                                            100));
-                                
-    window.requestAnimationFrame(LudosMundi.draw)
+    const LudosMundi = new Game(new Canvas(<HTMLCanvasElement>document.getElementById("canvas")));                                                            
+    window.requestAnimationFrame(LudosMundi.draw);
 }

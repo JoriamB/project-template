@@ -15,7 +15,7 @@ class KeyboardHelper {
     };
 
     //Handlers for the keyboard input
-    public keydownHandler (event: KeyboardEvent) : void {
+    public keyDownHandler (event: KeyboardEvent) : void {
         switch (event.keyCode) {
             // Left arrow
             case 37:

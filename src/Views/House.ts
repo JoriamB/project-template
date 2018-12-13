@@ -7,6 +7,7 @@ class House extends BaseView {
     };
 
     public draw = () => {
+        
         this.canvas.drawImageToCanvas(  this.src,
                                         0,
                                         0,
@@ -36,5 +37,12 @@ class House extends BaseView {
                                     100,
                                     this.player.getHealth(),
                                     20, "black", "red");
+        this.player.move();
+        this.canvas.drawImageToCanvas("./Assets/Female/Poses/female_walk1.png",
+                                        this.player.getX(),
+                                        this.player.getY(),
+                                        this.player.getWidth(),
+                                        this.player.getHeight());
+                                                                
     };
 };
