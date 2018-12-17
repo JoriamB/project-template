@@ -47,28 +47,9 @@ class Canvas {
         image.src = src
         this.ctx.drawImage(image, x, y, width, height);
     };
-    public writeButtonToCanvas() {
-        const horizontalCenter = this.canvas.width / 2;
-        const verticalCenter = this.canvas.height / 2;
-        let buttonElement = document.createElement("img");
-        buttonElement.src = "./Assets/Icons/ButtonsFREE/Home.png";
-        buttonElement.addEventListener("load", () => {
-            this.ctx.drawImage(buttonElement, horizontalCenter - 111, verticalCenter + 219);
-           
-        });
-    }
-    public drawButtonToCanvas(){
-        let buttonElement = document.createElement("img");
-        buttonElement.src = "./assets/Icons/ButtonsFREE/Home.png"
-
-        buttonElement.addEventListener("load", () => {
-            this.drawImageToCanvas(buttonElement.src,
-                                    this.getWidth() / 2 - 111,
-                                    this.getHeight() / 2 + 219,
-                                    100,
-                                    50)
-                                    console.log()
-    })};
+   
+    
+    
     public drawCoinToCanvas (X : number,
                             Y : number,
                             amount : number) {

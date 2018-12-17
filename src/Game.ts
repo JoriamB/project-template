@@ -42,7 +42,7 @@ class Game {
         this.restaurant = new RestaurantView("./assets/Backgrounds/Restaurant.jpg",
                             this.canvas,
                             this.player);
-        this.map = new MapView("./assets/Backgrounds/map.png",
+        this.map = new MapView("./assets/map/map.png",
                             this.canvas,
                             this.player);
 

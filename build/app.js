@@ -18,24 +18,6 @@ class Canvas {
         this.ctx.drawImage(image, x, y, width, height);
     }
     ;
-    writeButtonToCanvas() {
-        const horizontalCenter = this.canvas.width / 2;
-        const verticalCenter = this.canvas.height / 2;
-        let buttonElement = document.createElement("img");
-        buttonElement.src = "./Assets/Icons/ButtonsFREE/Home.png";
-        buttonElement.addEventListener("load", () => {
-            this.ctx.drawImage(buttonElement, horizontalCenter - 111, verticalCenter + 219);
-        });
-    }
-    drawButtonToCanvas() {
-        let buttonElement = document.createElement("img");
-        buttonElement.src = "./assets/Icons/ButtonsFREE/Home.png";
-        buttonElement.addEventListener("load", () => {
-            this.drawImageToCanvas(buttonElement.src, this.getWidth() / 2 - 111, this.getHeight() / 2 + 219, 100, 50);
-            console.log();
-        });
-    }
-    ;
     drawCoinToCanvas(X, Y, amount) {
         this.drawImageToCanvas("./Assets/Icons/ButtonsFREE/Coin.png", X, Y, 40, 40);
         this.drawTextToCanvas(20, "black", `: ${amount}`, X + 45, Y + 25);
@@ -108,7 +90,7 @@ class Game {
         this.school = new SchoolView("./assets/Backgrounds/classroom.jpg", this.canvas, this.player);
         this.store = new StoreView("./assets/Backgrounds/Store.jpg", this.canvas, this.player);
         this.restaurant = new RestaurantView("./assets/Backgrounds/Restaurant.jpg", this.canvas, this.player);
-        this.map = new MapView("./assets/Backgrounds/map.png", this.canvas, this.player);
+        this.map = new MapView("./assets/map/map.png", this.canvas, this.player);
     }
     ;
 }
