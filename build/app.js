@@ -18,6 +18,15 @@ class Canvas {
         this.ctx.drawImage(image, x, y, width, height);
     }
     ;
+    drawButtonToCanvas() {
+        let buttonElement = document.createElement("img");
+        buttonElement.src = "./assets/Icons/ButtonsFREE/Home.png";
+        buttonElement.addEventListener("load", () => {
+            this.drawImageToCanvas(buttonElement.src, this.getWidth() / 2 - 111, this.getHeight() / 2 + 219, 100, 50);
+            console.log();
+        });
+    }
+    ;
     drawCoinToCanvas(X, Y, amount) {
         this.drawImageToCanvas("./Assets/Icons/ButtonsFREE/Coin.png", X, Y, 40, 40);
         this.drawTextToCanvas(20, "black", `: ${amount}`, X + 45, Y + 25);
@@ -83,7 +92,7 @@ class Game {
             window.requestAnimationFrame(this.draw);
         };
         this.canvas = canvas;
-        this.player = new Player("./Assets/Female/Poses/female_slide.png", this.canvas, 5, 100, 100, 100, 100, this.canvas.getCenter().X, this.canvas.getCenter().Y, 50, 50, "Store", 420);
+        this.player = new Player("./Assets/Female/Poses/female_slide.png", this.canvas, 5, 100, 100, 100, 100, this.canvas.getCenter().X, this.canvas.getCenter().Y, 50, 50, "Map", 420);
         this.park = new ParkView("./assets/Backgrounds/park.jpg", this.canvas, this.player);
         this.hospital = new HospitalView("./assets/Backgrounds/hospital.jpg", this.canvas, this.player);
         this.house = new HouseView("./assets/Backgrounds/House.png", this.canvas, this.player);
