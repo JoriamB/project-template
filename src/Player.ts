@@ -12,6 +12,7 @@ class Player {
     private width : number;
     private height : number;
     private location : string;
+    private coin : number;
 
     public constructor (src : string,
                         canvas : Canvas,
@@ -24,7 +25,8 @@ class Player {
                         yPos : number,
                         width : number,
                         height : number,
-                        location : string) {
+                        location : string,
+                        coin : number) {
         this.keyboardListener = new KeyboardHelper(false,
                                                     false,
                                                     false,
@@ -43,6 +45,7 @@ class Player {
         this.width = width;
         this.height = height;
         this.location = location;
+        this.coin = coin;
     };
 
     public move () {
@@ -132,5 +135,9 @@ class Player {
 
     public getLocation () : string {
         return this.location;
+    }
+
+    public getCoin () : number {
+        return this.coin
     }
 };
