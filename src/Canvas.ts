@@ -47,7 +47,17 @@ class Canvas {
         image.src = src
         this.ctx.drawImage(image, x, y, width, height);
     };
-    public drawCoinToCanvas(X : number,
+    public writeButtonToCanvas() {
+        const horizontalCenter = this.canvas.width / 2;
+        const verticalCenter = this.canvas.height / 2;
+        let buttonElement = document.createElement("img");
+        buttonElement.src = "./Assets/Icons/ButtonsFREE/Home.png";
+        buttonElement.addEventListener("load", () => {
+            this.ctx.drawImage(buttonElement, horizontalCenter - 111, verticalCenter + 219);
+           
+        });
+    }
+    public drawCoinToCanvas (X : number,
                             Y : number,
                             amount : number) {
         this.drawImageToCanvas("./Assets/Icons/ButtonsFREE/Coin.png",
