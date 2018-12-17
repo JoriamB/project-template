@@ -9,17 +9,11 @@ class Player {
     private hunger : number;
     private energy : number;
     private mood : number;
-<<<<<<< HEAD
-    private coins : number;
-    private xPos : number;
-    private yPos : number;
-=======
     private xPos : number;
     private yPos : number;
     private width : number;
     private height : number;
     private location : string;
->>>>>>> dd1dbf4f2fddbd3c586cfd6a4f5634c2d3aeecfd
 
     public constructor (src : string,
                         canvas : Canvas,
@@ -28,19 +22,6 @@ class Player {
                         hunger : number,
                         energy : number,
                         mood : number,
-<<<<<<< HEAD
-                        coins :number,
-                        xPos : number,
-                        yPos : number) {
-        this.keyboardListener = new KeyboardHelper(false,
-                                                   false,
-                                                   false,
-                                                   false);
-
-        window.addEventListener("keydown", this.keyboardListener.keyDownHandler);
-        window.addEventListener("keyup", this.keyboardListener.keyUpHandler);
-
-=======
                         xPos : number,
                         yPos : number,
                         width : number,
@@ -54,22 +35,17 @@ class Player {
         window.addEventListener("keyup", (event) => this.keyboardListener.keyUpHandler(event));
         this.src = src;
         this.canvas = canvas;
->>>>>>> dd1dbf4f2fddbd3c586cfd6a4f5634c2d3aeecfd
         this.speed = speed;
         this.health = health;
         this.hunger = hunger;
         this.energy = energy;
         this.mood = mood;
-<<<<<<< HEAD
-        this.coins = coins;
         
-=======
         this.xPos = xPos;
         this.yPos = yPos;
         this.width = width;
         this.height = height;
         this.location = location;
->>>>>>> dd1dbf4f2fddbd3c586cfd6a4f5634c2d3aeecfd
     };
 
     protected updateCoins () {
@@ -79,23 +55,6 @@ class Player {
     }
 
     public move () {
-<<<<<<< HEAD
-        if (this.keyboardListener.leftPressed || 
-            this.keyboardListener.rightPressed || 
-            this.keyboardListener.rightPressed || 
-            this.keyboardListener.downPressed)
-            {
-            if (this.keyboardListener.leftPressed)
-                this.xPos -= this.speed;
-            else if (this.keyboardListener.rightPressed)
-                this.yPos += this.speed;
-
-            if (this.keyboardListener.upPressed)
-                this.yPos -= this.speed;
-            else if (this.keyboardListener.downPressed)
-                this.yPos += this.speed;
-        }
-=======
         if (this.keyboardListener.leftPressed ||
             this.keyboardListener.rightPressed ||
             this.keyboardListener.upPressed ||
@@ -126,7 +85,6 @@ class Player {
                     this.yPos = 0
                 }
             }
->>>>>>> dd1dbf4f2fddbd3c586cfd6a4f5634c2d3aeecfd
     };
 
     public isColliding () {

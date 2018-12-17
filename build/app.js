@@ -96,6 +96,60 @@ function init() {
     const LudosMundi = new Game(new Canvas(document.getElementById("canvas")));
     window.requestAnimationFrame(LudosMundi.draw);
 }
+class KeyboardHelper {
+    constructor(leftPressed, rightPressed, upPressed, downPressed) {
+        this.leftPressed = leftPressed;
+        this.rightPressed = rightPressed;
+        this.upPressed = upPressed;
+        this.downPressed = downPressed;
+    }
+    ;
+    keyDownHandler(event) {
+        switch (event.keyCode) {
+            case 37:
+            case 65:
+                this.leftPressed = true;
+                break;
+            case 38:
+            case 73:
+                this.upPressed = true;
+                break;
+            case 40:
+            case 75:
+                this.downPressed = true;
+                break;
+            case 39:
+            case 76:
+                this.rightPressed = true;
+                break;
+        }
+        ;
+    }
+    ;
+    keyUpHandler(event) {
+        switch (event.keyCode) {
+            case 37:
+            case 74:
+                this.leftPressed = false;
+                break;
+            case 38:
+            case 73:
+                this.upPressed = false;
+                break;
+            case 40:
+            case 75:
+                this.downPressed = false;
+                break;
+            case 39:
+            case 76:
+                this.rightPressed = false;
+                break;
+        }
+        ;
+    }
+    ;
+}
+;
 class Player {
     constructor(src, canvas, speed, health, hunger, energy, mood, xPos, yPos, width, height, location) {
         this.keyboardListener = new KeyboardHelper(false, false, false, false);
@@ -115,6 +169,8 @@ class Player {
         this.location = location;
     }
     ;
+    updateCoins() {
+    }
     move() {
         if (this.keyboardListener.leftPressed ||
             this.keyboardListener.rightPressed ||
@@ -178,73 +234,45 @@ class Player {
         return this.location;
     }
 }
-<<<<<<< HEAD
-let progress = new Progress(0, 10);
-=======
 ;
->>>>>>> dd1dbf4f2fddbd3c586cfd6a4f5634c2d3aeecfd
-class KeyboardHelper {
-    constructor(leftPressed, rightPressed, upPressed, downPressed) {
-        this.leftPressed = leftPressed;
-        this.rightPressed = rightPressed;
-        this.upPressed = upPressed;
-        this.downPressed = downPressed;
+class Progress {
+    constructor(current, increment) {
+        this.bar = document.querySelectorAll('#prog-bar > .progress-bar')[0];
+        this.current = current;
+        this.increment = increment;
     }
-    ;
-    keyDownHandler(event) {
-        switch (event.keyCode) {
-            case 37:
-            case 65:
-            case 74:
-                this.leftPressed = true;
-                break;
-            case 38:
-            case 87:
-            case 73:
-                this.upPressed = true;
-                break;
-            case 40:
-            case 83:
-            case 75:
-                this.downPressed = true;
-                break;
-            case 39:
-            case 68:
-            case 76:
-                this.rightPressed = true;
-                break;
+    update() {
+        this.bar.style.width = this.current + '%';
+    }
+    countUp() {
+        if ((this.current + this.increment) < 100) {
+            this.current += this.increment;
+        }
+        else {
+            this.current = 100;
+            this.update();
         }
         ;
     }
-    ;
-    keyUpHandler(event) {
-        switch (event.keyCode) {
-            case 37:
-            case 65:
-            case 74:
-                this.leftPressed = false;
-                break;
-            case 38:
-            case 87:
-            case 73:
-                this.upPressed = false;
-                break;
-            case 40:
-            case 83:
-            case 75:
-                this.downPressed = false;
-                break;
-            case 39:
-            case 68:
-            case 76:
-                this.rightPressed = false;
-                break;
+    countDown() {
+        if (0 < (this.current - this.increment)) {
+            this.current -= this.increment;
+            this.update();
         }
-        ;
+        else {
+            this.current = 0;
+            this.update();
+        }
     }
-    ;
 }
-;
+let progress = new Progress(0, 10);
+class Voetbal {
+    constructor(score, xPos, Ypos) {
+    }
+    scoredGoal() {
+        this.score++;
+    }
+}
 class MathHelper {
     randomNumber(min, max) {
         return Math.round(Math.random() * (max - min) + min);
