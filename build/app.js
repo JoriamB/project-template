@@ -27,6 +27,15 @@ class Canvas {
             this.ctx.drawImage(buttonElement, horizontalCenter - 111, verticalCenter + 219);
         });
     }
+    drawButtonToCanvas() {
+        let buttonElement = document.createElement("img");
+        buttonElement.src = "./assets/Icons/ButtonsFREE/Home.png";
+        buttonElement.addEventListener("load", () => {
+            this.drawImageToCanvas(buttonElement.src, this.getWidth() / 2 - 111, this.getHeight() / 2 + 219, 100, 50);
+            console.log();
+        });
+    }
+    ;
     drawCoinToCanvas(X, Y, amount) {
         this.drawImageToCanvas("./Assets/Icons/ButtonsFREE/Coin.png", X, Y, 40, 40);
         this.drawTextToCanvas(20, "black", `: ${amount}`, X + 45, Y + 25);
