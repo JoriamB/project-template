@@ -14,7 +14,12 @@ class KeyboardHelper {
         this.downPressed = downPressed;
     };
 
-    //Handlers for the keyboard input
+    /**
+     * @param event
+     * @access public
+     * @method
+     * Method to handle the keydown event
+     */
     public keyDownHandler (event: KeyboardEvent) : void {
         switch (event.keyCode) {
             // Left arrow
@@ -51,6 +56,12 @@ class KeyboardHelper {
             break;
         };
     };
+    /**
+     * @param event 
+     * @access public
+     * @method
+     * Method to handle the key up event
+     */
     public keyUpHandler (event: KeyboardEvent) : void {
         switch (event.keyCode) {
             // Left arrow

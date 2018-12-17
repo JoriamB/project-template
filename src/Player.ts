@@ -48,6 +48,11 @@ class Player {
         this.coin = coin;
     };
 
+    /**
+     * @access public
+     * @method
+     * method to change the player position
+     */
     public move () {
         if (this.keyboardListener.leftPressed ||
             this.keyboardListener.rightPressed ||
@@ -81,12 +86,9 @@ class Player {
             }
     };
 
-    public isColliding () {
-
-    };
-
     /**
      * @access public
+     * @method
      * Method for returning health
      */
     public getHealth () : number {
@@ -95,6 +97,7 @@ class Player {
 
     /**
      * @access public
+     * @method
      * Method for returning hunger
      */
     public getHunger () : number {
@@ -103,6 +106,7 @@ class Player {
 
     /**
      * @access public
+     * @method
      * Method for returning energy
      */
     public getEnergy () : number {
@@ -111,32 +115,63 @@ class Player {
 
     /**
      * @access public
+     * @method
      * Method for returning mood
      */
     public getMood () : number {
         return this.mood;
     };
 
+    /**
+     * @access public
+     * @method
+     * Method for returning x position
+     */
     public getX () : number {
         return this.xPos
     }
 
+    /**
+     * @access public
+     * @method
+     * Method for returning y position
+     */
     public getY () : number {
         return this.yPos
     }
 
+    /**
+     * @access public
+     * @method
+     * Method for returning width
+     */
     public getWidth () : number {
         return this.width;
     }
 
+    /**
+     * @access public
+     * @method
+     * Method for returning height
+     */
     public getHeight () : number {
         return this.height;
     }
 
+    /**
+     * @access public
+     * @method
+     * Method for returning location
+     */
     public getLocation () : string {
         return this.location;
     }
 
+    /**
+     * @access public
+     * @method
+     * Method for returning coin amount
+     */
     public getCoin () : number {
         return this.coin
     }
