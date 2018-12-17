@@ -18,6 +18,16 @@ class Canvas {
         this.ctx.drawImage(image, x, y, width, height);
     }
     ;
+    writeButtonToCanvas() {
+        const horizontalCenter = this.canvas.width / 2;
+        const verticalCenter = this.canvas.height / 2;
+        let buttonElement = document.createElement("img");
+        buttonElement.src = "./Assets/Icons/ButtonsFREE/Home.png";
+        buttonElement.addEventListener("load", () => {
+            this.ctx.drawImage(buttonElement, horizontalCenter - 111, verticalCenter + 219);
+        });
+    }
+    ;
     drawCoinToCanvas(X, Y, amount) {
         this.drawImageToCanvas("./Assets/Icons/ButtonsFREE/Coin.png", X, Y, 40, 40);
         this.drawTextToCanvas(20, "black", `: ${amount}`, X + 45, Y + 25);
@@ -312,7 +322,7 @@ class MapView extends BaseView {
             this.canvas.drawBarToCanvas(this.canvas.getWidth() * 0.9, this.canvas.getHeight() * 0.15, 100, this.player.getMood(), 20, "black", "orange", "black", "Mood:", 20);
             this.canvas.drawBarToCanvas(this.canvas.getWidth() * 0.9, this.canvas.getHeight() * 0.2, 100, this.player.getHealth(), 20, "black", "red", "black", "Health:", 20);
             this.player.move();
-            this.canvas.drawImageToCanvas("./Assets/Female/Poses/female_walk1.png", this.player.getX(), this.player.getY(), this.player.getWidth(), this.player.getHeight());
+            this.canvas.drawImageToCanvas("./Assets/Player/Female/Poses/female_walk1.png", this.player.getX(), this.player.getY(), this.player.getWidth(), this.player.getHeight());
         };
     }
     ;
