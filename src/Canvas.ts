@@ -69,7 +69,7 @@ class Canvas {
      * @method
      * method for drawing the coin image and value to canvas
      */
-    public drawCoinToCanvas(X : number,
+    public drawCoinToCanvas (X : number,
                             Y : number,
                             amount : number
                             ) : void {

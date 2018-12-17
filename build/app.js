@@ -101,7 +101,7 @@ class Game {
         this.school = new SchoolView("./assets/Backgrounds/classroom.jpg", this.canvas, this.player);
         this.store = new StoreView("./assets/Backgrounds/Store.jpg", this.canvas, this.player);
         this.restaurant = new RestaurantView("./assets/Backgrounds/Restaurant.jpg", this.canvas, this.player);
-        this.map = new MapView("./assets/Backgrounds/map.png", this.canvas, this.player);
+        this.map = new MapView("./assets/map/map.png", this.canvas, this.player);
     }
     ;
 }
