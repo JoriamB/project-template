@@ -1,12 +1,13 @@
 class Game {
     private canvas : Canvas;
     private player : Player;
-    private park : Park;
-    private hospital : Hospital;
-    private house : House;
-    private school : School;
-    private store : Store;
-    private restaurant : Restaurant;
+    private park : ParkView;
+    private hospital : HospitalView;
+    private house : HouseView;
+    private school : SchoolView;
+    private store : StoreView;
+    private restaurant : RestaurantView;
+    private map : MapView;
 
     public constructor (canvas : Canvas) {
         this.canvas = canvas;
@@ -19,31 +20,63 @@ class Game {
                                     100,
                                     this.canvas.getCenter().X,
                                     this.canvas.getCenter().Y,
-                                    200,
-                                    200);
-        this.park = new Park("./assets/Backgrounds/park.jpg",
+                                    50,
+                                    50,
+                                    "Map",
+                                    420);
+        this.park = new ParkView("./assets/Backgrounds/park.jpg",
                             this.canvas,
                             this.player);
-        this.hospital = new Hospital("./assets/Backgrounds/hospital.jpg",
+        this.hospital = new HospitalView("./assets/Backgrounds/hospital.jpg",
                             this.canvas,
                             this.player);
-        this.house = new House("./assets/Backgrounds/House.png",
+        this.house = new HouseView("./assets/Backgrounds/House.png",
                             this.canvas,
                             this.player);
-        this.school = new School("./assets/Backgrounds/classroom.jpg",
+        this.school = new SchoolView("./assets/Backgrounds/classroom.jpg",
                             this.canvas,
                             this.player);
-        this.store = new Store("./assets/Backgrounds/Store.jpg",
+        this.store = new StoreView("./assets/Backgrounds/Store.jpg",
                             this.canvas,
                             this.player);
-        this.restaurant = new Restaurant("./assets/Backgrounds/Restaurant.jpg",
+        this.restaurant = new RestaurantView("./assets/Backgrounds/Restaurant.jpg",
                             this.canvas,
                             this.player);
+        this.map = new MapView("./assets/Backgrounds/map.png",
+                            this.canvas,
+                            this.player);
+
+                           
     };
 
     public draw = () => {
         this.canvas.clear()
-        this.house.draw()
+        switch (this.player.getLocation()) {
+            case "Park":
+                this.park.draw();
+                break;
+            case "Park":
+                this.park.draw();
+                break;
+            case "Hospital":
+                this.hospital.draw();
+                break;
+            case "House":
+                this.house.draw()
+                break;
+            case "School":
+                this.school.draw();
+                break;
+            case "Store":
+                this.store.draw();
+                break;
+            case "Restaurant":
+                this.restaurant.draw();
+                break;
+            default:
+                this.map.draw();
+                break;
+        }
         window.requestAnimationFrame(this.draw)
     };
 };
