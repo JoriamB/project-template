@@ -22,6 +22,7 @@ class Canvas {
         this.drawImageToCanvas("./Assets/Icons/ButtonsFREE/Coin.png", X, Y, 40, 40);
         this.drawTextToCanvas(20, "black", `: ${amount}`, X + 45, Y + 25);
     }
+    ;
     drawBarToCanvas(X, Y, maxWidth, minWidth, height, maxColor, minColor, textColor, text, fontSize) {
         this.ctx.fillStyle = maxColor;
         this.ctx.fillRect(X, Y, maxWidth, height);
@@ -83,7 +84,7 @@ class Game {
             window.requestAnimationFrame(this.draw);
         };
         this.canvas = canvas;
-        this.player = new Player("./Assets/Female/Poses/female_slide.png", this.canvas, 5, 100, 100, 100, 100, this.canvas.getCenter().X, this.canvas.getCenter().Y, 50, 50, "Store", 420);
+        this.player = new Player("./Assets/Female/Poses/female_slide.png", this.canvas, 5, 100, 100, 100, 100, this.canvas.getCenter().X, this.canvas.getCenter().Y, 50, 50, "Map", 420);
         this.park = new ParkView("./assets/Backgrounds/park.jpg", this.canvas, this.player);
         this.hospital = new HospitalView("./assets/Backgrounds/hospital.jpg", this.canvas, this.player);
         this.house = new HouseView("./assets/Backgrounds/House.png", this.canvas, this.player);
@@ -146,9 +147,6 @@ class Player {
                 this.yPos = 0;
             }
         }
-    }
-    ;
-    isColliding() {
     }
     ;
     getHealth() {
