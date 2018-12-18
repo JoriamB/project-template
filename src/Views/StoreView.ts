@@ -18,8 +18,8 @@ class StoreView extends BaseView {
                                         this.canvas.getWidth(),
                                         this.canvas.getHeight());
         this.canvas.drawButtonToCanvas(  "./assets/Icons/ButtonsFREE/Home.png",
-                                        this.canvas.getWidth() * 0.05,
-                                        this.canvas.getHeight() * 0.04,
+                                        this.canvas.getWidth() * 0.03,
+                                        this.canvas.getHeight() * 0.02,
                                         50,
                                         50,
                                         (event: MouseEvent) => {
