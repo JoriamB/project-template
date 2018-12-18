@@ -17,14 +17,18 @@ class HospitalView extends BaseView {
                                         0,
                                         this.canvas.getWidth(),
                                         this.canvas.getHeight());
-        this.canvas.drawImageToCanvas(  "./assets/Icons/ButtonsFREE/Home.png",
+        this.canvas.drawButtonToCanvas(  "./assets/Icons/ButtonsFREE/Home.png",
                                         this.canvas.getWidth() * 0.03,
                                         this.canvas.getHeight() * 0.02,
-                                        50,50);
-                                        this.canvas.drawBarToCanvas(this.canvas.getWidth()*0.9,
-                                        this.canvas.getHeight()*0.05,
-                                        100,
-                                        this.player.getHunger(),
+                                        50,
+                                        50,
+                                        (event: MouseEvent) => {
+                                            this.player.setLocation("Map");
+                                        });
+        this.canvas.drawBarToCanvas(this.canvas.getWidth()*0.9,
+                                    this.canvas.getHeight()*0.05,
+                                    100,
+                                    this.player.getHunger(),
                                         20,
                                         "black",
                                         "green",
