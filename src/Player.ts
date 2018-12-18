@@ -167,6 +167,10 @@ class Player {
         return this.location;
     }
 
+    public setLocation (location : string) : void {
+        this.location = location;
+    }
+
     /**
      * @access public
      * @method
@@ -174,5 +178,9 @@ class Player {
      */
     public getCoin () : number {
         return this.coin
-    }
+    };
+
+    public setCoin (coin : number) : void {
+        this.coin = coin;
+    };
 };

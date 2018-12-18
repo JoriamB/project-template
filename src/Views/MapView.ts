@@ -18,10 +18,17 @@ class MapView extends BaseView {
                                         0,
                                         this.canvas.getWidth(),
                                         this.canvas.getHeight());
-        this.canvas.drawImageToCanvas(  "./assets/Icons/ButtonsFREE/Home.png",
+        this.canvas.drawButtonToCanvas(  "./assets/Icons/ButtonsFREE/Home.png",
                                         this.canvas.getWidth() *0.05,
                                         this.canvas.getHeight() * 0.04,
-                                        50,50);
+                                        50,
+                                        50,
+                                        (event: MouseEvent) => {
+                                            this.player.setLocation("Store");
+                                        });
+        this.canvas.drawCoinToCanvas(   this.canvas.getWidth() / 2,
+                                        this.canvas.getHeight() * 0.02,
+                                        this.player.getCoin());
         this.canvas.drawBarToCanvas(this.canvas.getWidth()*0.9,
                                     this.canvas.getHeight()*0.05,
                                     100,

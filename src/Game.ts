@@ -14,16 +14,16 @@ class Game {
         this.player = new Player(   "./Assets/Female/Poses/female_slide.png",
                                     this.canvas,
                                     5,
+                                    40,
+                                    80,
                                     100,
-                                    100,
-                                    100,
-                                    100,
+                                    60,
                                     this.canvas.getCenter().X,
                                     this.canvas.getCenter().Y,
                                     50,
                                     50,
                                     "Map",
-                                    420);
+                                    0);
         this.park = new ParkView("./assets/Backgrounds/park.jpg",
                                 this.canvas,
                                 this.player);

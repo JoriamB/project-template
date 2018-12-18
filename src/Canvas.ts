@@ -38,7 +38,7 @@ class Canvas {
      * @param height
      * @access public
      * @method
-     * method for drawing an image to canvass
+     * method for drawing an image to canvas
      */
     public drawImageToCanvas(src: string,
                             x: number,
@@ -50,15 +50,37 @@ class Canvas {
         image.src = src
         this.ctx.drawImage(image, x, y, width, height);
     };
-    public writeButtonToCanvas() {
-        const horizontalCenter = this.canvas.width / 2;
-        const verticalCenter = this.canvas.height / 2;
-        let buttonElement = document.createElement("img");
-        buttonElement.src = "./Assets/Icons/ButtonsFREE/Home.png";
-        buttonElement.addEventListener("load", () => {
-            this.ctx.drawImage(buttonElement, horizontalCenter - 111, verticalCenter + 219);
-           
-        });
+
+    /**
+     * @param src 
+     * @param x 
+     * @param y 
+     * @param width 
+     * @param height 
+     * @param callback
+     * @access public
+     * @method
+     * method for drawing a button to cnavas
+     */
+    public drawButtonToCanvas(  src: string,
+                                x: number,
+                                y: number,
+                                width: number,
+                                height: number,
+                                callback: (event: MouseEvent) => void = null) {
+        this.drawImageToCanvas(src, x, y, width, height);
+        if (!callback) return;
+            let _listener = (event : MouseEvent) => {
+                if (event.x > x &&
+                    event.x < x + width &&
+                    event.y > y &&
+                    event.y < y + height) {
+                        callback(event);
+                        window.removeEventListener("click", _listener); 
+                };
+            };
+            console.log('klikkerdeklik')
+        window.addEventListener("click", _listener)
     };
 
     /**

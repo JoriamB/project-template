@@ -18,14 +18,22 @@ class Canvas {
         this.ctx.drawImage(image, x, y, width, height);
     }
     ;
-    writeButtonToCanvas() {
-        const horizontalCenter = this.canvas.width / 2;
-        const verticalCenter = this.canvas.height / 2;
-        let buttonElement = document.createElement("img");
-        buttonElement.src = "./Assets/Icons/ButtonsFREE/Home.png";
-        buttonElement.addEventListener("load", () => {
-            this.ctx.drawImage(buttonElement, horizontalCenter - 111, verticalCenter + 219);
-        });
+    drawButtonToCanvas(src, x, y, width, height, callback = null) {
+        this.drawImageToCanvas(src, x, y, width, height);
+        if (!callback)
+            return;
+        let _listener = (event) => {
+            if (event.x > x &&
+                event.x < x + width &&
+                event.y > y &&
+                event.y < y + height) {
+                callback(event);
+                window.removeEventListener("click", _listener);
+            }
+            ;
+        };
+        console.log('klikkerdeklik');
+        window.addEventListener("click", _listener);
     }
     ;
     drawCoinToCanvas(X, Y, amount) {
@@ -94,7 +102,7 @@ class Game {
             window.requestAnimationFrame(this.draw);
         };
         this.canvas = canvas;
-        this.player = new Player("./Assets/Female/Poses/female_slide.png", this.canvas, 5, 100, 100, 100, 100, this.canvas.getCenter().X, this.canvas.getCenter().Y, 50, 50, "Map", 420);
+        this.player = new Player("./Assets/Female/Poses/female_slide.png", this.canvas, 5, 40, 80, 100, 60, this.canvas.getCenter().X, this.canvas.getCenter().Y, 50, 50, "Map", 0);
         this.park = new ParkView("./assets/Backgrounds/park.jpg", this.canvas, this.player);
         this.hospital = new HospitalView("./assets/Backgrounds/hospital.jpg", this.canvas, this.player);
         this.house = new HouseView("./assets/Backgrounds/House.png", this.canvas, this.player);
@@ -190,9 +198,17 @@ class Player {
     getLocation() {
         return this.location;
     }
+    setLocation(location) {
+        this.location = location;
+    }
     getCoin() {
         return this.coin;
     }
+    ;
+    setCoin(coin) {
+        this.coin = coin;
+    }
+    ;
 }
 ;
 class KeyboardHelper {
@@ -316,7 +332,10 @@ class MapView extends BaseView {
         super(src, canvas, player);
         this.draw = () => {
             this.canvas.drawImageToCanvas(this.src, 0, 0, this.canvas.getWidth(), this.canvas.getHeight());
-            this.canvas.drawImageToCanvas("./assets/Icons/ButtonsFREE/Home.png", this.canvas.getWidth() * 0.05, this.canvas.getHeight() * 0.04, 50, 50);
+            this.canvas.drawButtonToCanvas("./assets/Icons/ButtonsFREE/Home.png", this.canvas.getWidth() * 0.05, this.canvas.getHeight() * 0.04, 50, 50, (event) => {
+                this.player.setLocation("Store");
+            });
+            this.canvas.drawCoinToCanvas(this.canvas.getWidth() / 2, this.canvas.getHeight() * 0.02, this.player.getCoin());
             this.canvas.drawBarToCanvas(this.canvas.getWidth() * 0.9, this.canvas.getHeight() * 0.05, 100, this.player.getHunger(), 20, "black", "green", "black", "Hunger:", 20);
             this.canvas.drawBarToCanvas(this.canvas.getWidth() * 0.9, this.canvas.getHeight() * 0.1, 100, this.player.getEnergy(), 20, "black", "red", "black", "Energy:", 20);
             this.canvas.drawBarToCanvas(this.canvas.getWidth() * 0.9, this.canvas.getHeight() * 0.15, 100, this.player.getMood(), 20, "black", "orange", "black", "Mood:", 20);
@@ -378,12 +397,17 @@ class StoreView extends BaseView {
         super(src, canvas, player);
         this.draw = () => {
             this.canvas.drawImageToCanvas(this.src, 0, 0, this.canvas.getWidth(), this.canvas.getHeight());
-            this.canvas.drawImageToCanvas("./assets/Icons/ButtonsFREE/Home.png", this.canvas.getWidth() * 0.9, this.canvas.getHeight() * 0.05, 50, 50);
-            this.canvas.drawBarToCanvas(this.canvas.getWidth() * 0.05, this.canvas.getHeight() * 0.05, 100, this.player.getHunger(), 20, "black", "green", "black", "Hunger:", 20);
+            this.canvas.drawButtonToCanvas("./assets/Icons/ButtonsFREE/Home.png", this.canvas.getWidth() * 0.05, this.canvas.getHeight() * 0.04, 50, 50, (event) => {
+                this.player.setLocation("Map");
+            });
             this.canvas.drawCoinToCanvas(this.canvas.getWidth() / 2, this.canvas.getHeight() * 0.02, this.player.getCoin());
-            this.canvas.drawBarToCanvas(this.canvas.getWidth() * 0.05, this.canvas.getHeight() * 0.1, 100, this.player.getEnergy(), 20, "black", "red", "black", "Energy:", 20);
-            this.canvas.drawBarToCanvas(this.canvas.getWidth() * 0.05, this.canvas.getHeight() * 0.15, 100, this.player.getMood(), 20, "black", "orange", "black", "Mood:", 20);
-            this.canvas.drawBarToCanvas(this.canvas.getWidth() * 0.05, this.canvas.getHeight() * 0.2, 100, this.player.getHealth(), 20, "black", "red", "black", "Health:", 20);
+            this.canvas.drawBarToCanvas(this.canvas.getWidth() * 0.9, this.canvas.getHeight() * 0.05, 100, this.player.getHunger(), 20, "black", "green", "black", "Hunger:", 20);
+            this.canvas.drawBarToCanvas(this.canvas.getWidth() * 0.9, this.canvas.getHeight() * 0.1, 100, this.player.getEnergy(), 20, "black", "red", "black", "Energy:", 20);
+            this.canvas.drawBarToCanvas(this.canvas.getWidth() * 0.9, this.canvas.getHeight() * 0.15, 100, this.player.getMood(), 20, "black", "orange", "black", "Mood:", 20);
+            this.canvas.drawBarToCanvas(this.canvas.getWidth() * 0.9, this.canvas.getHeight() * 0.2, 100, this.player.getHealth(), 20, "black", "red", "black", "Health:", 20);
+            this.canvas.drawButtonToCanvas("./assets/Icons/ButtonsFREE/Play.png", this.canvas.getWidth() * 0.5, this.canvas.getHeight() * 0.9, 200, 100, (event) => {
+                this.player.setCoin(this.player.getCoin() + 5);
+            });
         };
     }
     ;
