@@ -14,31 +14,31 @@ class Game {
         this.player = new Player(   "./Assets/Female/Poses/female_slide.png",
                                     this.canvas,
                                     5,
-                                    40,
-                                    80,
                                     100,
-                                    60,
+                                    100,
+                                    100,
+                                    100,
                                     this.canvas.getCenter().X,
                                     this.canvas.getCenter().Y,
                                     50,
                                     50,
                                     "Hospital",
-                                    0);
+                                    420);
         this.park = new ParkView("./assets/Backgrounds/park.jpg",
-                                this.canvas,
-                                this.player);
+                            this.canvas,
+                            this.player);
         this.hospital = new HospitalView("./assets/Backgrounds/hospital.jpg",
-                                        this.canvas,
-                                        this.player);
+                            this.canvas,
+                            this.player);
         this.house = new HouseView("./assets/Backgrounds/House.png",
-                                    this.canvas,
-                                    this.player);
+                            this.canvas,
+                            this.player);
         this.school = new SchoolView("./assets/Backgrounds/classroom.jpg",
-                                    this.canvas,
-                                    this.player);
+                            this.canvas,
+                            this.player);
         this.store = new StoreView("./assets/Backgrounds/Store.jpg",
-                                    this.canvas,
-                                    this.player);
+                            this.canvas,
+                            this.player);
         this.restaurant = new RestaurantView("./assets/Backgrounds/Restaurant.jpg",
                             this.canvas,
                             this.player);
@@ -49,11 +49,6 @@ class Game {
                            
     };
 
-    /**
-     * @access public
-     * @method
-     * main draw method for the game
-     */
     public draw = () => {
         this.canvas.clear()
         switch (this.player.getLocation()) {
@@ -86,13 +81,8 @@ class Game {
     };
 };
 
-window.addEventListener("load", init);
 
-/**
- * @access public
- * @function
- * Function to initialise the game
- */
+window.addEventListener("load", init);
 function init () : void {
     const LudosMundi = new Game(new Canvas(<HTMLCanvasElement>document.getElementById("canvas")));                                                            
     window.requestAnimationFrame(LudosMundi.draw);

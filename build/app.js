@@ -102,7 +102,7 @@ class Game {
             window.requestAnimationFrame(this.draw);
         };
         this.canvas = canvas;
-        this.player = new Player("./Assets/Female/Poses/female_slide.png", this.canvas, 5, 40, 80, 100, 60, this.canvas.getCenter().X, this.canvas.getCenter().Y, 50, 50, "Hospital", 0);
+        this.player = new Player("./Assets/Female/Poses/female_slide.png", this.canvas, 5, 100, 100, 100, 100, this.canvas.getCenter().X, this.canvas.getCenter().Y, 50, 50, "Hospital", 420);
         this.park = new ParkView("./assets/Backgrounds/park.jpg", this.canvas, this.player);
         this.hospital = new HospitalView("./assets/Backgrounds/hospital.jpg", this.canvas, this.player);
         this.house = new HouseView("./assets/Backgrounds/House.png", this.canvas, this.player);

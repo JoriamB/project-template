@@ -51,20 +51,17 @@ class Player {
         this.coin = coin;
     };
 
-<<<<<<< HEAD
     protected updateCoins () {
         // Change current value of coins
         //if worked in store --> ++
         //if spend in store --> --
     }
 
-=======
     /**
      * @access public
      * @method
      * method to change the player position
      */
->>>>>>> 7f71918bffdd707f7cb034e22a6390362f2f9a2b
     public move () {
         if (this.keyboardListener.leftPressed ||
             this.keyboardListener.rightPressed ||
