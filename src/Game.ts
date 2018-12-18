@@ -22,7 +22,8 @@ class Game {
                                     this.canvas.getCenter().Y,
                                     50,
                                     50,
-                                    "Map");
+                                    "Map",
+                                    420);
         this.park = new ParkView("./assets/Backgrounds/park.jpg",
                             this.canvas,
                             this.player);
@@ -44,6 +45,8 @@ class Game {
         this.map = new MapView("./assets/Backgrounds/map.png",
                             this.canvas,
                             this.player);
+
+                           
     };
 
     public draw = () => {

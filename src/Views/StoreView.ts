@@ -26,6 +26,9 @@ class StoreView extends BaseView {
                                         "black",
                                         "Hunger:",
                                         20);
+            this.canvas.drawCoinToCanvas(this.canvas.getWidth() / 2,
+                                        this.canvas.getHeight() * 0.02,
+                                        this.player.getCoin());
             this.canvas.drawBarToCanvas(this.canvas.getWidth()*0.05,
                                         this.canvas.getHeight()*0.1,
                                         100,
