@@ -11,5 +11,10 @@ abstract class BaseView {
         this.player = player;
     };
 
+    /**
+     * @access public
+     * @method
+     * Required method to draw canvas
+     */
     protected abstract draw () : void;
 };

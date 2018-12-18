@@ -51,12 +51,20 @@ class Player {
         this.coin = coin;
     };
 
+<<<<<<< HEAD
     protected updateCoins () {
         // Change current value of coins
         //if worked in store --> ++
         //if spend in store --> --
     }
 
+=======
+    /**
+     * @access public
+     * @method
+     * method to change the player position
+     */
+>>>>>>> 7f71918bffdd707f7cb034e22a6390362f2f9a2b
     public move () {
         if (this.keyboardListener.leftPressed ||
             this.keyboardListener.rightPressed ||
@@ -90,12 +98,9 @@ class Player {
             }
     };
 
-    public isColliding () {
-
-    };
-
     /**
      * @access public
+     * @method
      * Method for returning health
      */
     public getHealth () : number {
@@ -104,6 +109,7 @@ class Player {
 
     /**
      * @access public
+     * @method
      * Method for returning hunger
      */
     public getHunger () : number {
@@ -112,6 +118,7 @@ class Player {
 
     /**
      * @access public
+     * @method
      * Method for returning energy
      */
     public getEnergy () : number {
@@ -120,33 +127,72 @@ class Player {
 
     /**
      * @access public
+     * @method
      * Method for returning mood
      */
     public getMood () : number {
         return this.mood;
     };
 
+    /**
+     * @access public
+     * @method
+     * Method for returning x position
+     */
     public getX () : number {
         return this.xPos
     }
 
+    /**
+     * @access public
+     * @method
+     * Method for returning y position
+     */
     public getY () : number {
         return this.yPos
     }
 
+    /**
+     * @access public
+     * @method
+     * Method for returning width
+     */
     public getWidth () : number {
         return this.width;
     }
 
+    /**
+     * @access public
+     * @method
+     * Method for returning height
+     */
     public getHeight () : number {
         return this.height;
     }
 
+    /**
+     * @access public
+     * @method
+     * Method for returning location
+     */
     public getLocation () : string {
         return this.location;
     }
 
+    public setLocation (location : string) : void {
+        this.location = location;
+    }
+
+    /**
+     * @access public
+     * @method
+     * Method for returning coin amount
+     */
     public getCoin () : number {
         return this.coin
-    }
+    };
+
+    public setCoin (coin : number) : void {
+        this.coin = coin;
+    };
 };

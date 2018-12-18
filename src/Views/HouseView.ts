@@ -6,6 +6,11 @@ class HouseView extends BaseView {
         super(src, canvas, player);
     };
 
+    /**
+     * @access public
+     * @method
+     * Required method to draw canvas
+     */
     public draw = () => {
         
         this.canvas.drawImageToCanvas(  this.src,

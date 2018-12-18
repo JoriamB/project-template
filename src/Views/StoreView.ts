@@ -6,17 +6,29 @@ class StoreView extends BaseView {
         super(src, canvas, player);
     };
 
+    /**
+     * @access public
+     * @method
+     * Required method to draw canvas
+     */
     public draw = () => {
         this.canvas.drawImageToCanvas(  this.src,
                                         0,
                                         0,
                                         this.canvas.getWidth(),
                                         this.canvas.getHeight());
-        this.canvas.drawImageToCanvas(  "./assets/Icons/ButtonsFREE/Home.png",
-                                        this.canvas.getWidth() * 0.9,
-                                        this.canvas.getHeight() * 0.05,
-                                        50,50);
-                                        this.canvas.drawBarToCanvas(this.canvas.getWidth()*0.05,
+        this.canvas.drawButtonToCanvas(  "./assets/Icons/ButtonsFREE/Home.png",
+                                        this.canvas.getWidth() * 0.03,
+                                        this.canvas.getHeight() * 0.02,
+                                        50,
+                                        50,
+                                        (event: MouseEvent) => {
+                                            this.player.setLocation("Map");
+                                        });
+        this.canvas.drawCoinToCanvas(   this.canvas.getWidth() / 2,
+                                        this.canvas.getHeight() * 0.02,
+                                        this.player.getCoin());
+        this.canvas.drawBarToCanvas(this.canvas.getWidth()*0.9,
                                         this.canvas.getHeight()*0.05,
                                         100,
                                         this.player.getHunger(),
@@ -26,10 +38,7 @@ class StoreView extends BaseView {
                                         "black",
                                         "Hunger:",
                                         20);
-            this.canvas.drawCoinToCanvas(this.canvas.getWidth() / 2,
-                                        this.canvas.getHeight() * 0.02,
-                                        this.player.getCoin());
-            this.canvas.drawBarToCanvas(this.canvas.getWidth()*0.05,
+            this.canvas.drawBarToCanvas(this.canvas.getWidth()*0.9,
                                         this.canvas.getHeight()*0.1,
                                         100,
                                         this.player.getEnergy(),
@@ -39,7 +48,7 @@ class StoreView extends BaseView {
                                         "black",
                                         "Energy:",
                                         20);
-            this.canvas.drawBarToCanvas(this.canvas.getWidth()*0.05,
+            this.canvas.drawBarToCanvas(this.canvas.getWidth()*0.9,
                                         this.canvas.getHeight()*0.15,
                                         100,
                                         this.player.getMood(),
@@ -49,7 +58,7 @@ class StoreView extends BaseView {
                                         "black",
                                         "Mood:",
                                         20);
-            this.canvas.drawBarToCanvas(this.canvas.getWidth()*0.05,
+            this.canvas.drawBarToCanvas(this.canvas.getWidth()*0.9,
                                         this.canvas.getHeight()*0.2,
                                         100,
                                         this.player.getHealth(),
@@ -59,5 +68,13 @@ class StoreView extends BaseView {
                                         "black",
                                         "Health:",
                                         20);
+            this.canvas.drawButtonToCanvas( "./assets/Icons/ButtonsFREE/Play.png",
+                                            this.canvas.getWidth()*0.5,
+                                            this.canvas.getHeight()*0.9,
+                                            200,
+                                            100,
+                                            (event: MouseEvent) => {
+                                                this.player.setCoin(this.player.getCoin() + 5)
+                                            });
+        };
     };
-};
