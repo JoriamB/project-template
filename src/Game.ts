@@ -22,7 +22,7 @@ class Game {
                                     this.canvas.getCenter().Y,
                                     50,
                                     50,
-                                    "Park",
+                                    "School",
                                     0);
         this.park = new ParkView("./assets/Backgrounds/park.jpg",
                                 this.canvas,
@@ -33,13 +33,13 @@ class Game {
         this.house = new HouseView("./assets/Backgrounds/House.png",
                                     this.canvas,
                                     this.player);
-        this.school = new SchoolView("./assets/Backgrounds/classroom.jpg",
+        this.school = new SchoolView("./assets/Backgrounds/classroom2.jpg",
                                     this.canvas,
                                     this.player);
         this.store = new StoreView("./assets/Backgrounds/Store.jpg",
                                     this.canvas,
                                     this.player);
-        this.restaurant = new RestaurantView("./assets/Backgrounds/Restaurant.jpg",
+        this.restaurant = new RestaurantView("./assets/Backgrounds/Restaurant2.jpg",
                             this.canvas,
                             this.player);
         this.map = new MapView("./assets/map/map.png",

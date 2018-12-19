@@ -25,6 +25,9 @@ class RestaurantView extends BaseView {
                                         (event: MouseEvent) => {
                                             this.player.setLocation("Map");
                                         });
+        this.canvas.drawCoinToCanvas(   this.canvas.getWidth()/2,
+                                        this.canvas.getHeight() * 0.04,
+                                        this.player.getCoin());
         this.canvas.drawBarToCanvas(this.canvas.getWidth()*0.9,
                                         this.canvas.getHeight()*0.05,
                                         100,
