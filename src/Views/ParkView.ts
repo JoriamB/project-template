@@ -2,8 +2,9 @@ class ParkView extends BaseView {
 
     public constructor (src : string,
                         canvas : Canvas,
-                        player : Player) {
-        super(src, canvas, player);
+                        player : Player,
+                        mouseListener : MouseHelper) {
+        super(src, canvas, player, mouseListener);
     };
 
     /**
@@ -21,7 +22,7 @@ class ParkView extends BaseView {
                                         this.canvas.getWidth() * 0.9,
                                         this.canvas.getHeight() * 0.05,
                                         50,50);
-                                        this.canvas.drawBarToCanvas(this.canvas.getWidth()*0.05,
+        this.canvas.drawBarToCanvas(    this.canvas.getWidth()*0.05,
                                         this.canvas.getHeight()*0.05,
                                         100,
                                         this.player.getHunger(),
@@ -31,7 +32,7 @@ class ParkView extends BaseView {
                                         "black",
                                         "Hunger:",
                                         20);
-            this.canvas.drawBarToCanvas(this.canvas.getWidth()*0.05,
+        this.canvas.drawBarToCanvas(    this.canvas.getWidth()*0.05,
                                         this.canvas.getHeight()*0.1,
                                         100,
                                         this.player.getEnergy(),
@@ -41,7 +42,7 @@ class ParkView extends BaseView {
                                         "black",
                                         "Energy:",
                                         20);
-            this.canvas.drawBarToCanvas(this.canvas.getWidth()*0.05,
+        this.canvas.drawBarToCanvas(    this.canvas.getWidth()*0.05,
                                         this.canvas.getHeight()*0.15,
                                         100,
                                         this.player.getMood(),
@@ -51,7 +52,7 @@ class ParkView extends BaseView {
                                         "black",
                                         "Mood:",
                                         20);
-            this.canvas.drawBarToCanvas(this.canvas.getWidth()*0.05,
+        this.canvas.drawBarToCanvas(    this.canvas.getWidth()*0.05,
                                         this.canvas.getHeight()*0.2,
                                         100,
                                         this.player.getHealth(),

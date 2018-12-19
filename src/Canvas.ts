@@ -1,12 +1,17 @@
 class Canvas {
     private canvas: HTMLCanvasElement;
     private ctx: CanvasRenderingContext2D;
+    private mouseListener : MouseHelper;
 
-    public constructor(canvas: HTMLCanvasElement) {
+    public constructor(canvas: HTMLCanvasElement,
+                        mouseListener : MouseHelper) {
         this.canvas = canvas;
         this.ctx = this.canvas.getContext("2d");
         this.canvas.height = window.innerHeight
         this.canvas.width = window.innerWidth;
+        this.mouseListener = mouseListener;
+       
+        //window.addEventListener("click", (event) => this.mouseListener.getEvent(event));
     };
 
     /**
@@ -67,20 +72,16 @@ class Canvas {
                                 y: number,
                                 width: number,
                                 height: number,
-                                callback: (event: MouseEvent) => void = null) {
+                                callback: () => void) {
         this.drawImageToCanvas(src, x, y, width, height);
-        if (!callback) return;
-            let _listener = (event : MouseEvent) => {
-                if (event.x > x &&
-                    event.x < x + width &&
-                    event.y > y &&
-                    event.y < y + height) {
-                        callback(event);
-                        window.removeEventListener("click", _listener); 
-                };
-            };
-            console.log('klikkerdeklik')
-        window.addEventListener("click", _listener)
+        if (this.mouseListener.getMouseStatus() == true &&
+            this.mouseListener.getHasBeenClicked() != true &&
+            this.mouseListener.getEventX() > x &&
+            this.mouseListener.getEventX() < x + width &&
+            this.mouseListener.getEventY() > y &&
+            this.mouseListener.getEventY() < y + height) {
+                callback()
+        };
     };
 
     /**

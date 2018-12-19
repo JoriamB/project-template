@@ -1,6 +1,7 @@
 class Game {
     private canvas : Canvas;
     private player : Player;
+    private mouseListener : MouseHelper;
     private park : ParkView;
     private hospital : HospitalView;
     private house : HouseView;
@@ -9,8 +10,9 @@ class Game {
     private restaurant : RestaurantView;
     private map : MapView;
 
-    public constructor (canvas : Canvas) {
-        this.canvas = canvas;
+    public constructor () {
+        this.mouseListener = new MouseHelper(false, false);
+        this.canvas = new Canvas(<HTMLCanvasElement>document.getElementById("canvas"), this.mouseListener)
         this.player = new Player(   "./Assets/Female/Poses/female_slide.png",
                                     this.canvas,
                                     5,
@@ -26,27 +28,32 @@ class Game {
                                     0);
         this.park = new ParkView("./assets/Backgrounds/park.jpg",
                                 this.canvas,
-                                this.player);
+                                this.player,
+                                this.mouseListener);
         this.hospital = new HospitalView("./assets/Backgrounds/hospital.jpg",
                                         this.canvas,
-                                        this.player);
+                                        this.player,
+                                        this.mouseListener);
         this.house = new HouseView("./assets/Backgrounds/House.png",
                                     this.canvas,
-                                    this.player);
+                                    this.player,
+                                    this.mouseListener);
         this.school = new SchoolView("./assets/Backgrounds/classroom.jpg",
                                     this.canvas,
-                                    this.player);
+                                    this.player,
+                                    this.mouseListener);
         this.store = new StoreView("./assets/Backgrounds/Store.jpg",
                                     this.canvas,
-                                    this.player);
+                                    this.player,
+                                    this.mouseListener);
         this.restaurant = new RestaurantView("./assets/Backgrounds/Restaurant.jpg",
                             this.canvas,
-                            this.player);
+                            this.player,
+                            this.mouseListener);
         this.map = new MapView("./assets/map/map.png",
                             this.canvas,
-                            this.player);
-
-                           
+                            this.player,
+                            this.mouseListener);
     };
 
     /**
@@ -94,6 +101,6 @@ window.addEventListener("load", init);
  * Function to initialise the game
  */
 function init () : void {
-    const LudosMundi = new Game(new Canvas(<HTMLCanvasElement>document.getElementById("canvas")));                                                            
+    const LudosMundi = new Game();                                                            
     window.requestAnimationFrame(LudosMundi.draw);
 }

@@ -2,8 +2,12 @@ class StoreView extends BaseView {
 
     public constructor (src : string,
                         canvas : Canvas,
-                        player : Player) {
-        super(src, canvas, player);
+                        player : Player,
+                        mouseListener : MouseHelper) {
+        super(  src,
+                canvas,
+                player,
+                mouseListener);
     };
 
     /**
@@ -22,8 +26,9 @@ class StoreView extends BaseView {
                                         this.canvas.getHeight() * 0.04,
                                         50,
                                         50,
-                                        (event: MouseEvent) => {
+                                        () => {
                                             this.player.setLocation("Map");
+                                            this.mouseListener.setHasBeenClicked()
                                         });
         this.canvas.drawCoinToCanvas(   this.canvas.getWidth() / 2,
                                         this.canvas.getHeight() * 0.02,
@@ -38,7 +43,7 @@ class StoreView extends BaseView {
                                         "black",
                                         "Hunger:",
                                         20);
-            this.canvas.drawBarToCanvas(this.canvas.getWidth()*0.9,
+        this.canvas.drawBarToCanvas(    this.canvas.getWidth()*0.9,
                                         this.canvas.getHeight()*0.1,
                                         100,
                                         this.player.getEnergy(),
@@ -48,7 +53,7 @@ class StoreView extends BaseView {
                                         "black",
                                         "Energy:",
                                         20);
-            this.canvas.drawBarToCanvas(this.canvas.getWidth()*0.9,
+        this.canvas.drawBarToCanvas(    this.canvas.getWidth()*0.9,
                                         this.canvas.getHeight()*0.15,
                                         100,
                                         this.player.getMood(),
@@ -58,7 +63,7 @@ class StoreView extends BaseView {
                                         "black",
                                         "Mood:",
                                         20);
-            this.canvas.drawBarToCanvas(this.canvas.getWidth()*0.9,
+        this.canvas.drawBarToCanvas(    this.canvas.getWidth()*0.9,
                                         this.canvas.getHeight()*0.2,
                                         100,
                                         this.player.getHealth(),
@@ -68,13 +73,14 @@ class StoreView extends BaseView {
                                         "black",
                                         "Health:",
                                         20);
-            this.canvas.drawButtonToCanvas( "./assets/Icons/ButtonsFREE/Play.png",
-                                            this.canvas.getWidth()*0.5,
-                                            this.canvas.getHeight()*0.9,
-                                            200,
-                                            100,
-                                            (event: MouseEvent) => {
-                                                this.player.setCoin(this.player.getCoin() + 5)
-                                            });
+        this.canvas.drawButtonToCanvas( "./assets/Icons/ButtonsFREE/Play.png",
+                                        this.canvas.getWidth()*0.5,
+                                        this.canvas.getHeight()*0.9,
+                                        200,
+                                        100,
+                                        () => {
+                                            this.player.setCoin(this.player.getCoin() + 5)
+                                            this.mouseListener.setHasBeenClicked()
+                                        });
         };
     };
