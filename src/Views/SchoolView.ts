@@ -27,7 +27,10 @@ class SchoolView extends BaseView {
                                             this.player.setLocation("Map");
                                             this.mouseListener.setHasBeenClicked()
                                         });
-        this.canvas.drawBarToCanvas(    this.canvas.getWidth()*0.05,
+        this.canvas.drawCoinToCanvas(   this.canvas.getWidth()/2,
+                                        this.canvas.getHeight() * 0.04,
+                                        this.player.getCoin());
+        this.canvas.drawBarToCanvas(    this.canvas.getWidth()*0.9,
                                         this.canvas.getHeight()*0.05,
                                         100,
                                         this.player.getHunger(),
@@ -37,7 +40,7 @@ class SchoolView extends BaseView {
                                         "black",
                                         "Hunger:",
                                         20);
-        this.canvas.drawBarToCanvas(    this.canvas.getWidth()*0.05,
+        this.canvas.drawBarToCanvas(    this.canvas.getWidth()*0.9,
                                         this.canvas.getHeight()*0.1,
                                         100,
                                         this.player.getEnergy(),
@@ -47,7 +50,7 @@ class SchoolView extends BaseView {
                                         "black",
                                         "Energy:",
                                         20);
-        this.canvas.drawBarToCanvas(    this.canvas.getWidth()*0.05,
+        this.canvas.drawBarToCanvas(    this.canvas.getWidth()*0.9,
                                         this.canvas.getHeight()*0.15,
                                         100,
                                         this.player.getMood(),
@@ -57,7 +60,7 @@ class SchoolView extends BaseView {
                                         "black",
                                         "Mood:",
                                         20);
-        this.canvas.drawBarToCanvas(    this.canvas.getWidth()*0.05,
+        this.canvas.drawBarToCanvas(    this.canvas.getWidth()*0.9,
                                         this.canvas.getHeight()*0.2,
                                         100,
                                         this.player.getHealth(),

@@ -25,7 +25,7 @@ class Game {
                                     this.canvas.getCenter().Y,
                                     50,
                                     50,
-                                    "Park",
+                                    "Restaurant",
                                     0);
         this.park = new ParkView("./assets/Backgrounds/park.jpg",
                                 this.canvas,

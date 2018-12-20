@@ -30,7 +30,7 @@ class StoreView extends BaseView {
                                             this.player.setLocation("Map");
                                             this.mouseListener.setHasBeenClicked()
                                         });
-        this.canvas.drawCoinToCanvas(   this.canvas.getWidth()*0.09,
+        this.canvas.drawCoinToCanvas(   this.canvas.getWidth()/2,
                                         this.canvas.getHeight() * 0.04,
                                         this.player.getCoin());
         this.canvas.drawBarstoCanvas(   this.player.getHunger(),
