@@ -1,5 +1,5 @@
 class Player {
-    src : string;
+    private src : string;
     private canvas : Canvas;
     private keyboardListener : KeyboardHelper;
     private speed : number;
@@ -96,12 +96,32 @@ class Player {
     };
 
     /**
+     * @param amount
+     * @access public
+     * @method
+     * Method for setting health
+     */
+    public setHealth (amount : number) : void {
+        this.health = amount;
+    };
+
+    /**
      * @access public
      * @method
      * Method for returning hunger
      */
     public getHunger () : number {
         return this.hunger;
+    };
+
+    /**
+     * @param amount
+     * @access public
+     * @method
+     * Method for setting hunger
+     */
+    public setHunger (amount : number) : void {
+        this.hunger = amount;
     };
 
     /**
@@ -114,12 +134,32 @@ class Player {
     };
 
     /**
+     * @param amount
+     * @access public
+     * @method
+     * Method for setting energy
+     */
+    public setEnergy (amount : number) : void {
+        this.energy = amount;
+    };
+
+    /**
      * @access public
      * @method
      * Method for returning mood
      */
     public getMood () : number {
         return this.mood;
+    };
+
+    /**
+     * @param amount
+     * @access public
+     * @method
+     * Method for setting mood
+     */
+    public setMood (amount : number) : void {
+        this.mood = amount;
     };
 
     /**
@@ -167,6 +207,12 @@ class Player {
         return this.location;
     }
 
+    /**
+     * @param amount
+     * @access public
+     * @method
+     * Method for setting location
+     */
     public setLocation (location : string) : void {
         this.location = location;
     }
@@ -180,6 +226,12 @@ class Player {
         return this.coin
     };
 
+    /**
+     * @param amount
+     * @access public
+     * @method
+     * Method for setting coin amount
+     */
     public setCoin (coin : number) : void {
         this.coin = coin;
     };

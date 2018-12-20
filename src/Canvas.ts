@@ -1,12 +1,17 @@
 class Canvas {
     private canvas: HTMLCanvasElement;
     private ctx: CanvasRenderingContext2D;
+    private mouseListener : MouseHelper;
 
-    public constructor(canvas: HTMLCanvasElement) {
+    public constructor(canvas: HTMLCanvasElement,
+                        mouseListener : MouseHelper) {
         this.canvas = canvas;
         this.ctx = this.canvas.getContext("2d");
         this.canvas.height = window.innerHeight
         this.canvas.width = window.innerWidth;
+        this.mouseListener = mouseListener;
+       
+        //window.addEventListener("click", (event) => this.mouseListener.getEvent(event));
     };
 
     /**
@@ -67,20 +72,16 @@ class Canvas {
                                 y: number,
                                 width: number,
                                 height: number,
-                                callback: (event: MouseEvent) => void = null) {
+                                callback: () => void) {
         this.drawImageToCanvas(src, x, y, width, height);
-        if (!callback) return;
-            let _listener = (event : MouseEvent) => {
-                if (event.x > x &&
-                    event.x < x + width &&
-                    event.y > y &&
-                    event.y < y + height) {
-                        callback(event);
-                        window.removeEventListener("click", _listener); 
-                };
-            };
-            console.log('klikkerdeklik')
-        window.addEventListener("click", _listener)
+        if (this.mouseListener.getMouseStatus() == true &&
+            this.mouseListener.getHasBeenClicked() != true &&
+            this.mouseListener.getEventX() > x &&
+            this.mouseListener.getEventX() < x + width &&
+            this.mouseListener.getEventY() > y &&
+            this.mouseListener.getEventY() < y + height) {
+                callback()
+        };
     };
 
     /**
@@ -146,6 +147,55 @@ class Canvas {
         this.ctx.fillStyle = textColor
         this.ctx.font = `${fontSize}px Arial`;
         this.ctx.fillText(text, X + maxWidth * 0.15, Y - 5)
+    };
+
+    /**
+     * Method for drawing all the bars to canvas
+     */
+    public drawBarstoCanvas (   currentHunger : number,
+                                currentEnergy : number,
+                                currentMood : number,
+                                currentHealth : number) {
+        this.drawBarToCanvas(   this.getWidth()*0.9,
+                                this.getHeight()*0.05,
+                                100,
+                                (100/100) * currentHunger,
+                                20,
+                                "black",
+                                "green",
+                                "black",
+                                "Hunger:",
+                                20);
+        this.drawBarToCanvas(   this.getWidth()*0.9,
+                                this.getHeight()*0.1,
+                                100,
+                                (100/100) * currentEnergy,
+                                20,
+                                "black",
+                                "red",
+                                "black",
+                                "Energy:",
+                                20);
+        this.drawBarToCanvas(   this.getWidth()*0.9,
+                                this.getHeight()*0.15,
+                                100,
+                                (100/100) * currentMood,
+                                20,
+                                "black",
+                                "orange",
+                                "black",
+                                "Mood:",
+                                20);
+        this.drawBarToCanvas(   this.getWidth()*0.9,
+                                this.getHeight()*0.2,
+                                100,
+                                (100/100) * currentHealth,
+                                20,
+                                "black",
+                                "red",
+                                "black",
+                                "Health:",
+                                20);
     };
 
     /**
