@@ -19,11 +19,20 @@ class MapView extends BaseView {
                                         0,
                                         this.canvas.getWidth(),
                                         this.canvas.getHeight());
-        this.canvas.drawButtonToCanvas( "./assets/Icons/ButtonsFREE/Home.png",
+        this.canvas.drawButtonToCanvas( "./assets/map/park.png",
                                         this.canvas.getWidth() *0.05,
                                         this.canvas.getHeight() * 0.04,
                                         50,
                                         50,
+                                        () => {
+                                            this.player.setLocation("Park");
+                                            this.mouseListener.setHasBeenClicked()
+                                        });
+        this.canvas.drawButtonToCanvas( "./assets/map/winkel.png",
+                                        this.canvas.getWidth() *0.715,
+                                        this.canvas.getHeight() * 0.48,
+                                        190,
+                                        150,
                                         () => {
                                             this.player.setLocation("Store");
                                             this.mouseListener.setHasBeenClicked()

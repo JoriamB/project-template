@@ -18,10 +18,22 @@ class ParkView extends BaseView {
                                         0,
                                         this.canvas.getWidth(),
                                         this.canvas.getHeight());
-        this.canvas.drawImageToCanvas(  "./assets/Icons/ButtonsFREE/Home.png",
+        this.canvas.drawButtonToCanvas(  "./assets/Icons/ButtonsFree/Home.png",
                                         this.canvas.getWidth() * 0.05,
                                         this.canvas.getHeight() * 0.05,
-                                        50,50);
+                                        50,
+                                        50, 
+                                        () => {
+                                            this.player.setLocation("Park");
+                                            this.mouseListener.setHasBeenClicked()});
+        this.canvas.drawButtonToCanvas(  "./assets/FootballGame/Goal.png",
+                                        this.canvas.getWidth() * 0.7,
+                                        this.canvas.getHeight() * 0.22,
+                                        500,
+                                        350, 
+                                        () => {
+                                            this.player.setLocation("Soccer");
+                                            this.mouseListener.setHasBeenClicked()});
         this.canvas.drawCoinToCanvas(   this.canvas.getWidth()/2,
                                         this.canvas.getHeight() * 0.04,
                                         this.player.getCoin());

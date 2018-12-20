@@ -9,6 +9,7 @@ class Game {
     private store : StoreView;
     private restaurant : RestaurantView;
     private map : MapView;
+    private soccer:SoccerView;
 
     public constructor () {
         this.mouseListener = new MouseHelper(false, false);
@@ -25,7 +26,7 @@ class Game {
                                     this.canvas.getCenter().Y,
                                     50,
                                     50,
-                                    "Restaurant",
+                                    "Map",
                                     0);
         this.park = new ParkView("./assets/Backgrounds/park.jpg",
                                 this.canvas,
@@ -55,6 +56,10 @@ class Game {
                             this.canvas,
                             this.player,
                             this.mouseListener);
+        this.soccer = new SoccerView(   "./assets/map/park.png",
+                                        this.canvas,
+                                        this.player,
+                                        this.mouseListener);            
     };
 
     /**
@@ -83,6 +88,8 @@ class Game {
             case "Restaurant":
                 this.restaurant.draw();
                 break;
+            case "Soccer":
+                this.soccer.draw();
             default:
                 this.map.draw();
                 break;
