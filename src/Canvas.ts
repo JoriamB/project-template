@@ -150,6 +150,55 @@ class Canvas {
     };
 
     /**
+     * Method for drawing all the bars to canvas
+     */
+    public drawBarstoCanvas (   currentHunger : number,
+                                currentEnergy : number,
+                                currentMood : number,
+                                currentHealth : number) {
+        this.drawBarToCanvas(   this.getWidth()*0.9,
+                                this.getHeight()*0.05,
+                                100,
+                                (100/100) * currentHunger,
+                                20,
+                                "black",
+                                "green",
+                                "black",
+                                "Hunger:",
+                                20);
+        this.drawBarToCanvas(   this.getWidth()*0.9,
+                                this.getHeight()*0.1,
+                                100,
+                                (100/100) * currentEnergy,
+                                20,
+                                "black",
+                                "red",
+                                "black",
+                                "Energy:",
+                                20);
+        this.drawBarToCanvas(   this.getWidth()*0.9,
+                                this.getHeight()*0.15,
+                                100,
+                                (100/100) * currentMood,
+                                20,
+                                "black",
+                                "orange",
+                                "black",
+                                "Mood:",
+                                20);
+        this.drawBarToCanvas(   this.getWidth()*0.9,
+                                this.getHeight()*0.2,
+                                100,
+                                (100/100) * currentHealth,
+                                20,
+                                "black",
+                                "red",
+                                "black",
+                                "Health:",
+                                20);
+    };
+
+    /**
      * @access public
      * @method
      * method for returning the center of the canvas

@@ -47,6 +47,13 @@ class Canvas {
         this.ctx.fillText(text, X + maxWidth * 0.15, Y - 5);
     }
     ;
+    drawBarstoCanvas(currentHunger, currentEnergy, currentMood, currentHealth) {
+        this.drawBarToCanvas(this.getWidth() * 0.9, this.getHeight() * 0.05, 100, (100 / 100) * currentHunger, 20, "black", "green", "black", "Hunger:", 20);
+        this.drawBarToCanvas(this.getWidth() * 0.9, this.getHeight() * 0.1, 100, (100 / 100) * currentEnergy, 20, "black", "red", "black", "Energy:", 20);
+        this.drawBarToCanvas(this.getWidth() * 0.9, this.getHeight() * 0.15, 100, (100 / 100) * currentMood, 20, "black", "orange", "black", "Mood:", 20);
+        this.drawBarToCanvas(this.getWidth() * 0.9, this.getHeight() * 0.2, 100, (100 / 100) * currentHealth, 20, "black", "red", "black", "Health:", 20);
+    }
+    ;
     getCenter() {
         return { X: this.getWidth() / 2, Y: this.getHeight() / 2 };
     }
@@ -70,9 +77,6 @@ class Game {
         this.draw = () => {
             this.canvas.clear();
             switch (this.player.getLocation()) {
-                case "Park":
-                    this.park.draw();
-                    break;
                 case "Park":
                     this.park.draw();
                     break;
@@ -168,16 +172,32 @@ class Player {
         return this.health;
     }
     ;
+    setHealth(amount) {
+        this.health = amount;
+    }
+    ;
     getHunger() {
         return this.hunger;
+    }
+    ;
+    setHunger(amount) {
+        this.hunger = amount;
     }
     ;
     getEnergy() {
         return this.energy;
     }
     ;
+    setEnergy(amount) {
+        this.energy = amount;
+    }
+    ;
     getMood() {
         return this.mood;
+    }
+    ;
+    setMood(amount) {
+        this.mood = amount;
     }
     ;
     getX() {
@@ -379,10 +399,7 @@ class MapView extends BaseView {
                 this.mouseListener.setHasBeenClicked();
             });
             this.canvas.drawCoinToCanvas(this.canvas.getWidth() / 2, this.canvas.getHeight() * 0.02, this.player.getCoin());
-            this.canvas.drawBarToCanvas(this.canvas.getWidth() * 0.9, this.canvas.getHeight() * 0.05, 100, this.player.getHunger(), 20, "black", "green", "black", "Hunger:", 20);
-            this.canvas.drawBarToCanvas(this.canvas.getWidth() * 0.9, this.canvas.getHeight() * 0.1, 100, this.player.getEnergy(), 20, "black", "red", "black", "Energy:", 20);
-            this.canvas.drawBarToCanvas(this.canvas.getWidth() * 0.9, this.canvas.getHeight() * 0.15, 100, this.player.getMood(), 20, "black", "orange", "black", "Mood:", 20);
-            this.canvas.drawBarToCanvas(this.canvas.getWidth() * 0.9, this.canvas.getHeight() * 0.2, 100, this.player.getHealth(), 20, "black", "red", "black", "Health:", 20);
+            this.canvas.drawBarstoCanvas(this.player.getHunger(), this.player.getEnergy(), this.player.getMood(), this.player.getHealth());
             this.player.move();
             this.canvas.drawImageToCanvas("./Assets/Player/Female/Poses/female_walk1.png", this.player.getX(), this.player.getY(), this.player.getWidth(), this.player.getHeight());
         };
@@ -451,12 +468,13 @@ class StoreView extends BaseView {
                 this.mouseListener.setHasBeenClicked();
             });
             this.canvas.drawCoinToCanvas(this.canvas.getWidth() / 2, this.canvas.getHeight() * 0.02, this.player.getCoin());
-            this.canvas.drawBarToCanvas(this.canvas.getWidth() * 0.9, this.canvas.getHeight() * 0.05, 100, this.player.getHunger(), 20, "black", "green", "black", "Hunger:", 20);
-            this.canvas.drawBarToCanvas(this.canvas.getWidth() * 0.9, this.canvas.getHeight() * 0.1, 100, this.player.getEnergy(), 20, "black", "red", "black", "Energy:", 20);
-            this.canvas.drawBarToCanvas(this.canvas.getWidth() * 0.9, this.canvas.getHeight() * 0.15, 100, this.player.getMood(), 20, "black", "orange", "black", "Mood:", 20);
-            this.canvas.drawBarToCanvas(this.canvas.getWidth() * 0.9, this.canvas.getHeight() * 0.2, 100, this.player.getHealth(), 20, "black", "red", "black", "Health:", 20);
-            this.canvas.drawButtonToCanvas("./assets/Icons/ButtonsFREE/Play.png", this.canvas.getWidth() * 0.5, this.canvas.getHeight() * 0.9, 200, 100, () => {
-                this.player.setCoin(this.player.getCoin() + 5);
+            this.canvas.drawBarstoCanvas(this.player.getHunger(), this.player.getEnergy(), this.player.getMood(), this.player.getHealth());
+            this.canvas.drawButtonToCanvas("./assets/Icons/ButtonsFREE/Play.png", this.canvas.getWidth() * 0.5 - 100, this.canvas.getHeight() * 0.9 - 50, 200, 100, () => {
+                if (this.player.getEnergy() >= 5) {
+                    this.player.setCoin(this.player.getCoin() + 5);
+                    this.player.setEnergy(this.player.getEnergy() - 5);
+                }
+                ;
                 this.mouseListener.setHasBeenClicked();
             });
         };

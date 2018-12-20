@@ -12,7 +12,8 @@ class Game {
 
     public constructor () {
         this.mouseListener = new MouseHelper(false, false);
-        this.canvas = new Canvas(<HTMLCanvasElement>document.getElementById("canvas"), this.mouseListener)
+        this.canvas = new Canvas(   <HTMLCanvasElement>document.getElementById("canvas"),
+                                    this.mouseListener)
         this.player = new Player(   "./Assets/Female/Poses/female_slide.png",
                                     this.canvas,
                                     5,
@@ -64,9 +65,6 @@ class Game {
     public draw = () => {
         this.canvas.clear()
         switch (this.player.getLocation()) {
-            case "Park":
-                this.park.draw();
-                break;
             case "Park":
                 this.park.draw();
                 break;
