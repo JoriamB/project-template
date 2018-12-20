@@ -24,7 +24,7 @@ class ParkView extends BaseView {
                                         50,
                                         50, 
                                         () => {
-                                            this.player.setLocation("Park");
+                                            this.player.setLocation("Map");
                                             this.mouseListener.setHasBeenClicked()});
         this.canvas.drawButtonToCanvas(  "./assets/FootballGame/Goal.png",
                                         this.canvas.getWidth() * 0.7,

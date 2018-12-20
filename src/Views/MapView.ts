@@ -22,19 +22,56 @@ class MapView extends BaseView {
         this.canvas.drawButtonToCanvas( "./assets/map/park.png",
                                         this.canvas.getWidth() *0.05,
                                         this.canvas.getHeight() * 0.04,
-                                        50,
-                                        50,
+                                        this.canvas.getWidth()*0.23,
+                                        this.canvas.getHeight()*0.27,
                                         () => {
                                             this.player.setLocation("Park");
                                             this.mouseListener.setHasBeenClicked()
                                         });
+                                        console.log(this.canvas.getWidth(), this.canvas.getHeight())
         this.canvas.drawButtonToCanvas( "./assets/map/winkel.png",
                                         this.canvas.getWidth() *0.715,
                                         this.canvas.getHeight() * 0.48,
-                                        190,
-                                        150,
+                                        this.canvas.getWidth()*0.1,
+                                        this.canvas.getHeight()*0.16,
                                         () => {
                                             this.player.setLocation("Store");
+                                            this.mouseListener.setHasBeenClicked()
+                                        });
+        this.canvas.drawButtonToCanvas( "./assets/map/school.png",
+                                        this.canvas.getWidth() *0.673,
+                                        this.canvas.getHeight() * 0.263,
+                                        this.canvas.getWidth()*0.14,
+                                        this.canvas.getHeight()*0.16,
+                                        () => {
+                                            this.player.setLocation("School");
+                                            this.mouseListener.setHasBeenClicked()
+                                        });
+        this.canvas.drawButtonToCanvas( "./assets/map/ziekenuus.png",
+                                        this.canvas.getWidth() *0.36,
+                                        this.canvas.getHeight() * 0.0,
+                                        this.canvas.getWidth()*0.16,
+                                        this.canvas.getHeight()*0.215,
+                                        () => {
+                                            this.player.setLocation("Hospital");
+                                            this.mouseListener.setHasBeenClicked()
+                                        });
+        this.canvas.drawButtonToCanvas( "./assets/map/restaurant.png",
+                                        this.canvas.getWidth() *0.475,
+                                        this.canvas.getHeight() * 0.685,
+                                        this.canvas.getWidth()*0.058,
+                                        this.canvas.getHeight()*0.095,
+                                        () => {
+                                            this.player.setLocation("Restaurant");
+                                            this.mouseListener.setHasBeenClicked()
+                                        });
+       this.canvas.drawButtonToCanvas( "./assets/map/house.png",
+                                        this.canvas.getWidth() *0.151,
+                                        this.canvas.getHeight() * 0.765,
+                                        this.canvas.getWidth()*0.043,
+                                        this.canvas.getHeight()*0.093,
+                                        () => {
+                                            this.player.setLocation("House");
                                             this.mouseListener.setHasBeenClicked()
                                         });
         this.canvas.drawCoinToCanvas(   this.canvas.getWidth()*0.09,

@@ -382,10 +382,11 @@ class HouseView extends BaseView {
                 this.player.setLocation("Map");
                 this.mouseListener.setHasBeenClicked();
             });
-            this.canvas.drawBarToCanvas(this.canvas.getWidth() * 0.05, this.canvas.getHeight() * 0.05, 100, this.player.getHunger(), 20, "black", "green", "black", "Hunger:", 20);
-            this.canvas.drawBarToCanvas(this.canvas.getWidth() * 0.05, this.canvas.getHeight() * 0.1, 100, this.player.getEnergy(), 20, "black", "red", "black", "Energy:", 20);
-            this.canvas.drawBarToCanvas(this.canvas.getWidth() * 0.05, this.canvas.getHeight() * 0.15, 100, this.player.getMood(), 20, "black", "orange", "black", "Mood:", 20);
-            this.canvas.drawBarToCanvas(this.canvas.getWidth() * 0.05, this.canvas.getHeight() * 0.2, 100, this.player.getHealth(), 20, "black", "red", "black", "Health:", 20);
+            this.canvas.drawCoinToCanvas(this.canvas.getWidth() / 2, this.canvas.getHeight() * 0.04, this.player.getCoin());
+            this.canvas.drawBarToCanvas(this.canvas.getWidth() * 0.9, this.canvas.getHeight() * 0.05, 100, this.player.getHunger(), 20, "black", "green", "black", "Hunger:", 20);
+            this.canvas.drawBarToCanvas(this.canvas.getWidth() * 0.9, this.canvas.getHeight() * 0.1, 100, this.player.getEnergy(), 20, "black", "red", "black", "Energy:", 20);
+            this.canvas.drawBarToCanvas(this.canvas.getWidth() * 0.9, this.canvas.getHeight() * 0.15, 100, this.player.getMood(), 20, "black", "orange", "black", "Mood:", 20);
+            this.canvas.drawBarToCanvas(this.canvas.getWidth() * 0.9, this.canvas.getHeight() * 0.2, 100, this.player.getHealth(), 20, "black", "red", "black", "Health:", 20);
             this.player.move();
             this.canvas.drawImageToCanvas("./Assets/Female/Poses/female_walk1.png", this.player.getX(), this.player.getY(), this.player.getWidth(), this.player.getHeight());
         };
@@ -398,12 +399,29 @@ class MapView extends BaseView {
         super(src, canvas, player, mouseListener);
         this.draw = () => {
             this.canvas.drawImageToCanvas(this.src, 0, 0, this.canvas.getWidth(), this.canvas.getHeight());
-            this.canvas.drawButtonToCanvas("./assets/map/park.png", this.canvas.getWidth() * 0.05, this.canvas.getHeight() * 0.04, 50, 50, () => {
+            this.canvas.drawButtonToCanvas("./assets/map/park.png", this.canvas.getWidth() * 0.05, this.canvas.getHeight() * 0.04, this.canvas.getWidth() * 0.23, this.canvas.getHeight() * 0.27, () => {
                 this.player.setLocation("Park");
                 this.mouseListener.setHasBeenClicked();
             });
-            this.canvas.drawButtonToCanvas("./assets/map/winkel.png", this.canvas.getWidth() * 0.715, this.canvas.getHeight() * 0.48, 190, 150, () => {
+            console.log(this.canvas.getWidth(), this.canvas.getHeight());
+            this.canvas.drawButtonToCanvas("./assets/map/winkel.png", this.canvas.getWidth() * 0.715, this.canvas.getHeight() * 0.48, this.canvas.getWidth() * 0.1, this.canvas.getHeight() * 0.16, () => {
                 this.player.setLocation("Store");
+                this.mouseListener.setHasBeenClicked();
+            });
+            this.canvas.drawButtonToCanvas("./assets/map/school.png", this.canvas.getWidth() * 0.673, this.canvas.getHeight() * 0.263, this.canvas.getWidth() * 0.14, this.canvas.getHeight() * 0.16, () => {
+                this.player.setLocation("School");
+                this.mouseListener.setHasBeenClicked();
+            });
+            this.canvas.drawButtonToCanvas("./assets/map/ziekenuus.png", this.canvas.getWidth() * 0.36, this.canvas.getHeight() * 0.0, this.canvas.getWidth() * 0.16, this.canvas.getHeight() * 0.215, () => {
+                this.player.setLocation("Hospital");
+                this.mouseListener.setHasBeenClicked();
+            });
+            this.canvas.drawButtonToCanvas("./assets/map/restaurant.png", this.canvas.getWidth() * 0.475, this.canvas.getHeight() * 0.685, this.canvas.getWidth() * 0.058, this.canvas.getHeight() * 0.095, () => {
+                this.player.setLocation("Restaurant");
+                this.mouseListener.setHasBeenClicked();
+            });
+            this.canvas.drawButtonToCanvas("./assets/map/house.png", this.canvas.getWidth() * 0.151, this.canvas.getHeight() * 0.765, this.canvas.getWidth() * 0.043, this.canvas.getHeight() * 0.093, () => {
+                this.player.setLocation("House");
                 this.mouseListener.setHasBeenClicked();
             });
             this.canvas.drawCoinToCanvas(this.canvas.getWidth() * 0.09, this.canvas.getHeight() * 0.04, this.player.getCoin());
@@ -421,7 +439,7 @@ class ParkView extends BaseView {
         this.draw = () => {
             this.canvas.drawImageToCanvas(this.src, 0, 0, this.canvas.getWidth(), this.canvas.getHeight());
             this.canvas.drawButtonToCanvas("./assets/Icons/ButtonsFree/Home.png", this.canvas.getWidth() * 0.05, this.canvas.getHeight() * 0.05, 50, 50, () => {
-                this.player.setLocation("Park");
+                this.player.setLocation("Map");
                 this.mouseListener.setHasBeenClicked();
             });
             this.canvas.drawButtonToCanvas("./assets/FootballGame/Goal.png", this.canvas.getWidth() * 0.7, this.canvas.getHeight() * 0.22, 500, 350, () => {
