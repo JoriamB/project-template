@@ -26,14 +26,15 @@ class ParkView extends BaseView {
                                         () => {
                                             this.player.setLocation("Map");
                                             this.mouseListener.setHasBeenClicked()});
-        this.canvas.drawButtonToCanvas(  "./assets/FootballGame/Goal.png",
-                                        this.canvas.getWidth() * 0.7,
-                                        this.canvas.getHeight() * 0.22,
-                                        500,
-                                        350, 
+        this.canvas.drawButtonToCanvas(  "./assets/FootballGame/goal1.png",
+                                        this.canvas.getWidth() * 0.739,
+                                        this.canvas.getHeight() * 0.2555,
+                                        this.canvas.getWidth()*0.24,
+                                        this.canvas.getHeight()*0.32, 
                                         () => {
                                             this.player.setLocation("Soccer");
                                             this.mouseListener.setHasBeenClicked()});
+                                            console.log(this.canvas.getWidth(),this.canvas.getHeight())
         this.canvas.drawCoinToCanvas(   this.canvas.getWidth()/2,
                                         this.canvas.getHeight() * 0.04,
                                         this.player.getCoin());
