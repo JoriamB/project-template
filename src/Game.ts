@@ -26,7 +26,7 @@ class Game {
                                     this.canvas.getCenter().Y,
                                     50,
                                     50,
-                                    "Hospital",
+                                    "Soccer",
                                     10000);
         this.park = new ParkView("./assets/Backgrounds/park.jpg",
                                 this.canvas,
@@ -56,7 +56,7 @@ class Game {
                             this.canvas,
                             this.player,
                             this.mouseListener);
-        this.soccer = new SoccerView(   "./assets/FootballGame/soccer_goal.jpg",
+        this.soccer = new SoccerView(   "./assets/FootballGame/background.jpg",
                                         this.canvas,
                                         this.player,
                                         this.mouseListener);            

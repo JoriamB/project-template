@@ -19,10 +19,16 @@ this.canvas.drawImageToCanvas(  this.src,
                         0,
                         this.canvas.getWidth(),
                         this.canvas.getHeight());
-this.canvas.drawImageToCanvas(  "./assets/Icons/ButtonsFREE/Home.png",
+this.canvas.drawButtonToCanvas(  "./assets/Icons/ButtonsFREE/Home.png",
                         this.canvas.getWidth() * 0.05,
                         this.canvas.getHeight() * 0.05,
-                        50,50);
+                        50,
+                        50,
+                        () => {
+                            this.player.setEnergy(this.player.getEnergy()-15),
+                            this.player.setHunger(this.player.getHunger()-30)
+                            this.player.setLocation("Park");
+                            this.mouseListener.setHasBeenClicked()});
 this.canvas.drawCoinToCanvas(   this.canvas.getWidth()/2,
                         this.canvas.getHeight() * 0.04,
                         this.player.getCoin());
@@ -67,12 +73,12 @@ this.canvas.drawBarToCanvas(    this.canvas.getWidth()*0.9,
                         "Health:",
                         20);
  this.canvas.drawImageToCanvas("./assets/FootballGame/goalkeeper.png",
-                            this.canvas.getWidth()*0.5-100,
-                            this.canvas.getHeight()*0.5 -150,
-                            200,
-                            300,)
+                            this.canvas.getWidth()*0.5-75,
+                            this.canvas.getHeight()*0.6 -75,
+                            150,
+                            150,)
                             console.log(this.mouseListener.getEventX(),this.mouseListener.getEventY())
-this.canvas.drawImageToCanvas( "./assets/FootballGame/goalkeeper.png",
+this.canvas.drawImageToCanvas( "./assets/FootballGame/football.png",
                                 this.mouseListener.getEventX()-25,
                                 this.mouseListener.getEventY()-25,
                                 50,
