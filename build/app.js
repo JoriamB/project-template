@@ -97,6 +97,7 @@ class Game {
                     break;
                 case "Soccer":
                     this.soccer.draw();
+                    break;
                 default:
                     this.map.draw();
                     break;
@@ -105,7 +106,7 @@ class Game {
         };
         this.mouseListener = new MouseHelper(false, false);
         this.canvas = new Canvas(document.getElementById("canvas"), this.mouseListener);
-        this.player = new Player("./Assets/Female/Poses/female_slide.png", this.canvas, 5, 40, 80, 100, 60, this.canvas.getCenter().X, this.canvas.getCenter().Y, 50, 50, "Park", 0);
+        this.player = new Player("./Assets/Female/Poses/female_slide.png", this.canvas, 5, 40, 80, 100, 60, this.canvas.getCenter().X, this.canvas.getCenter().Y, 50, 50, "Hospital", 10000);
         this.park = new ParkView("./assets/Backgrounds/park.jpg", this.canvas, this.player, this.mouseListener);
         this.hospital = new HospitalView("./assets/Backgrounds/hospital.jpg", this.canvas, this.player, this.mouseListener);
         this.house = new HouseView("./assets/Backgrounds/House.png", this.canvas, this.player, this.mouseListener);
@@ -113,7 +114,7 @@ class Game {
         this.store = new StoreView("./assets/Backgrounds/Store.jpg", this.canvas, this.player, this.mouseListener);
         this.restaurant = new RestaurantView("./assets/Backgrounds/Restaurant2.jpg", this.canvas, this.player, this.mouseListener);
         this.map = new MapView("./assets/map/map.png", this.canvas, this.player, this.mouseListener);
-        this.soccer = new SoccerView("./assets/map/park.png", this.canvas, this.player, this.mouseListener);
+        this.soccer = new SoccerView("./assets/FootballGame/soccer_goal.jpg", this.canvas, this.player, this.mouseListener);
     }
     ;
 }
@@ -368,6 +369,19 @@ class HospitalView extends BaseView {
             this.canvas.drawBarToCanvas(this.canvas.getWidth() * 0.9, this.canvas.getHeight() * 0.15, 100, this.player.getMood(), 20, "black", "orange", "black", "Mood:", 20);
             this.canvas.drawBarToCanvas(this.canvas.getWidth() * 0.9, this.canvas.getHeight() * 0.2, 100, this.player.getHealth(), 20, "black", "red", "black", "Health:", 20);
             this.canvas.drawCoinToCanvas(this.canvas.getWidth() / 2, this.canvas.getHeight() * 0.02, this.player.getCoin());
+            this.canvas.drawButtonToCanvas("./assets/Icons/ButtonsFREE/Play.png", this.canvas.getWidth() * 0.5 - 100, this.canvas.getHeight() * 0.9 - 50, 200, 100, () => {
+                if (this.player.getCoin() >= 15 &&
+                    this.player.getHealth() < 80) {
+                    this.player.setCoin(this.player.getCoin() - 15);
+                    this.player.setHealth(this.player.getHealth() + 20);
+                }
+                else if (this.player.getCoin() >= 15 &&
+                    this.player.getHealth() < 100) {
+                    this.player.setCoin(this.player.getCoin() - 15);
+                    this.player.setHealth(100);
+                }
+                this.mouseListener.setHasBeenClicked();
+            });
         };
     }
     ;
@@ -499,6 +513,7 @@ class SoccerView extends BaseView {
     constructor(src, canvas, player, mouseListener) {
         super(src, canvas, player, mouseListener);
         this.draw = () => {
+            console.log(this.src);
             this.canvas.drawImageToCanvas(this.src, 0, 0, this.canvas.getWidth(), this.canvas.getHeight());
             this.canvas.drawImageToCanvas("./assets/Icons/ButtonsFREE/Home.png", this.canvas.getWidth() * 0.05, this.canvas.getHeight() * 0.05, 50, 50);
             this.canvas.drawCoinToCanvas(this.canvas.getWidth() / 2, this.canvas.getHeight() * 0.04, this.player.getCoin());
@@ -506,6 +521,9 @@ class SoccerView extends BaseView {
             this.canvas.drawBarToCanvas(this.canvas.getWidth() * 0.9, this.canvas.getHeight() * 0.1, 100, this.player.getEnergy(), 20, "black", "red", "black", "Energy:", 20);
             this.canvas.drawBarToCanvas(this.canvas.getWidth() * 0.9, this.canvas.getHeight() * 0.15, 100, this.player.getMood(), 20, "black", "orange", "black", "Mood:", 20);
             this.canvas.drawBarToCanvas(this.canvas.getWidth() * 0.9, this.canvas.getHeight() * 0.2, 100, this.player.getHealth(), 20, "black", "red", "black", "Health:", 20);
+            this.canvas.drawImageToCanvas("./assets/FootballGame/goalkeeper.png", this.canvas.getWidth() * 0.5 - 100, this.canvas.getHeight() * 0.5 - 150, 200, 300);
+            console.log(this.mouseListener.getEventX(), this.mouseListener.getEventY());
+            this.canvas.drawImageToCanvas("./assets/FootballGame/goalkeeper.png", this.mouseListener.getEventX() - 25, this.mouseListener.getEventY() - 25, 50, 50);
         };
     }
     ;

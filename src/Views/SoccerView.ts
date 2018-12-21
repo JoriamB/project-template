@@ -13,6 +13,7 @@ super(src, canvas, player, mouseListener);
 * Required method to draw canvas
 */
 public draw = () => {
+    console.log(this.src)
 this.canvas.drawImageToCanvas(  this.src,
                         0,
                         0,
@@ -65,5 +66,16 @@ this.canvas.drawBarToCanvas(    this.canvas.getWidth()*0.9,
                         "black",
                         "Health:",
                         20);
+ this.canvas.drawImageToCanvas("./assets/FootballGame/goalkeeper.png",
+                            this.canvas.getWidth()*0.5-100,
+                            this.canvas.getHeight()*0.5 -150,
+                            200,
+                            300,)
+                            console.log(this.mouseListener.getEventX(),this.mouseListener.getEventY())
+this.canvas.drawImageToCanvas( "./assets/FootballGame/goalkeeper.png",
+                                this.mouseListener.getEventX()-25,
+                                this.mouseListener.getEventY()-25,
+                                50,
+                                50);
 };
 };

@@ -26,8 +26,8 @@ class Game {
                                     this.canvas.getCenter().Y,
                                     50,
                                     50,
-                                    "Park",
-                                    0);
+                                    "Hospital",
+                                    10000);
         this.park = new ParkView("./assets/Backgrounds/park.jpg",
                                 this.canvas,
                                 this.player,
@@ -56,7 +56,7 @@ class Game {
                             this.canvas,
                             this.player,
                             this.mouseListener);
-        this.soccer = new SoccerView(   "./assets/map/park.png",
+        this.soccer = new SoccerView(   "./assets/FootballGame/soccer_goal.jpg",
                                         this.canvas,
                                         this.player,
                                         this.mouseListener);            
@@ -90,6 +90,7 @@ class Game {
                 break;
             case "Soccer":
                 this.soccer.draw();
+                break;
             default:
                 this.map.draw();
                 break;
