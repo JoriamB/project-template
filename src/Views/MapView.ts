@@ -13,7 +13,6 @@ class MapView extends BaseView {
      * Required method to draw canvas
      */
     public draw = () => {
-        
         this.canvas.drawImageToCanvas(  this.src,
                                         0,
                                         0,
@@ -28,7 +27,6 @@ class MapView extends BaseView {
                                             this.player.setLocation("Park");
                                             this.mouseListener.setHasBeenClicked()
                                         });
-                                        console.log(this.canvas.getWidth(), this.canvas.getHeight())
         this.canvas.drawButtonToCanvas( "./assets/map/winkel.png",
                                         this.canvas.getWidth() *0.715,
                                         this.canvas.getHeight() * 0.48,
@@ -77,7 +75,9 @@ class MapView extends BaseView {
         this.canvas.drawCoinToCanvas(   this.canvas.getWidth()*0.09,
                                         this.canvas.getHeight() * 0.04,
                                         this.player.getCoin());
-        this.canvas.drawBarstoCanvas(   this.player.getHunger(),
+        this.canvas.drawBarstoCanvas(   this.canvas.getWidth()*0.9,
+                                        this.canvas.getHeight()*0.05,
+                                        this.player.getHunger(),
                                         this.player.getEnergy(),
                                         this.player.getMood(),
                                         this.player.getHealth())

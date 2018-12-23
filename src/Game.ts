@@ -18,7 +18,7 @@ class Game {
         this.player = new Player(   "./Assets/Female/Poses/female_slide.png",
                                     this.canvas,
                                     5,
-                                    40,
+                                    20,
                                     80,
                                     100,
                                     60,
@@ -26,7 +26,7 @@ class Game {
                                     this.canvas.getCenter().Y,
                                     50,
                                     50,
-                                    "Soccer",
+                                    "Map",
                                     10000);
         this.park = new ParkView("./assets/Backgrounds/park.jpg",
                                 this.canvas,

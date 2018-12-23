@@ -21,8 +21,8 @@ class ParkView extends BaseView {
         this.canvas.drawButtonToCanvas(  "./assets/Icons/ButtonsFree/Home.png",
                                         this.canvas.getWidth() * 0.05,
                                         this.canvas.getHeight() * 0.05,
-                                        50,
-                                        50, 
+                                        this.canvas.getWidth() * 0.025,
+                                        this.canvas.getHeight() * 0.05, 
                                         () => {
                                             this.player.setLocation("Map");
                                             this.mouseListener.setHasBeenClicked()});
@@ -37,49 +37,14 @@ class ParkView extends BaseView {
                                             this.player.setLocation("Soccer")
                                         };
                                             this.mouseListener.setHasBeenClicked()});
-                                            console.log(this.canvas.getWidth(),this.canvas.getHeight())
         this.canvas.drawCoinToCanvas(   this.canvas.getWidth()/2,
                                         this.canvas.getHeight() * 0.04,
                                         this.player.getCoin());
-        this.canvas.drawBarToCanvas(    this.canvas.getWidth()*0.9,
+        this.canvas.drawBarstoCanvas(   this.canvas.getWidth()*0.9,
                                         this.canvas.getHeight()*0.05,
-                                        100,
                                         this.player.getHunger(),
-                                        20,
-                                        "black",
-                                        "green",
-                                        "black",
-                                        "Hunger:",
-                                        20);
-        this.canvas.drawBarToCanvas(    this.canvas.getWidth()*0.9,
-                                        this.canvas.getHeight()*0.1,
-                                        100,
                                         this.player.getEnergy(),
-                                        20,
-                                        "black",
-                                        "red",
-                                        "black",
-                                        "Energy:",
-                                        20);
-        this.canvas.drawBarToCanvas(    this.canvas.getWidth()*0.9,
-                                        this.canvas.getHeight()*0.15,
-                                        100,
                                         this.player.getMood(),
-                                        20,
-                                        "black",
-                                        "orange",
-                                        "black",
-                                        "Mood:",
-                                        20);
-        this.canvas.drawBarToCanvas(    this.canvas.getWidth()*0.9,
-                                        this.canvas.getHeight()*0.2,
-                                        100,
-                                        this.player.getHealth(),
-                                        20,
-                                        "black",
-                                        "red",
-                                        "black",
-                                        "Health:",
-                                        20);
+                                        this.player.getHealth());
     };
 };

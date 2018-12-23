@@ -10,8 +10,6 @@ class Canvas {
         this.canvas.height = window.innerHeight
         this.canvas.width = window.innerWidth;
         this.mouseListener = mouseListener;
-       
-        //window.addEventListener("click", (event) => this.mouseListener.getEvent(event));
     };
 
     /**
@@ -113,11 +111,9 @@ class Canvas {
      * @param Y 
      * @param maxWidth 
      * @param minWidth 
-     * @param height 
-     * @param maxColor 
-     * @param minColor 
+     * @param height
      * @param textColor 
-     * @param text 
+     * @param text
      * @param fontSize 
      * @access public
      * @method
@@ -128,71 +124,79 @@ class Canvas {
                             maxWidth: number,
                             minWidth: number,
                             height: number,
-                            maxColor: string,
-                            minColor: string,
                             textColor: string,
                             text: string,
                             fontSize: number
                             ) : void {
-        this.ctx.fillStyle = maxColor;
+        this.ctx.fillStyle = "black";
         this.ctx.fillRect(  X,
                             Y,
                             maxWidth,
                             height)
-        this.ctx.fillStyle = minColor;
+        if (minWidth/maxWidth > 0.75) {
+            this.ctx.fillStyle = "green";
+        }
+        else if (minWidth/maxWidth > 0.25) {
+            this.ctx.fillStyle = "orange";
+        }
+        else {
+            this.ctx.fillStyle = "red";
+        };
         this.ctx.fillRect(  X,
                             Y,
                             minWidth,
                             height)
         this.ctx.fillStyle = textColor
         this.ctx.font = `${fontSize}px Arial`;
-        this.ctx.fillText(text, X + maxWidth * 0.15, Y - 5)
+        this.ctx.fillText(text, X, Y - 5)
     };
 
     /**
+     * @param X
+     * @param Y
+     * @param currentHunger
+     * @param currentEnergy
+     * @param currentMood
+     * @param currentHealth
+     * @access public
+     * @method
      * Method for drawing all the bars to canvas
      */
-    public drawBarstoCanvas (   currentHunger : number,
+    public drawBarstoCanvas (   X : number,
+                                Y : number,
+                                currentHunger : number,
                                 currentEnergy : number,
                                 currentMood : number,
                                 currentHealth : number) {
-        this.drawBarToCanvas(   this.getWidth()*0.9,
-                                this.getHeight()*0.05,
-                                100,
-                                (100/100) * currentHunger,
-                                20,
-                                "black",
-                                "green",
+        this.drawBarToCanvas(   X,
+                                Y,
+                                this.getWidth() * 0.05,
+                                (this.getWidth() * 0.05/100) * currentHunger,
+                                this.getHeight() * 0.02,
                                 "black",
                                 "Hunger:",
                                 20);
-        this.drawBarToCanvas(   this.getWidth()*0.9,
-                                this.getHeight()*0.1,
-                                100,
-                                (100/100) * currentEnergy,
-                                20,
-                                "black",
-                                "red",
+        this.drawBarToCanvas(   X,
+                                Y + this.getHeight() * 0.05,
+                                this.getWidth() * 0.05,
+                                (this.getWidth() * 0.05/100) * currentEnergy,
+                                this.getHeight() * 0.02,
                                 "black",
                                 "Energy:",
                                 20);
-        this.drawBarToCanvas(   this.getWidth()*0.9,
-                                this.getHeight()*0.15,
-                                100,
-                                (100/100) * currentMood,
-                                20,
-                                "black",
-                                "orange",
+        this.drawBarToCanvas(   X,
+                                Y + this.getHeight() * 0.1,
+                                this.getWidth() * 0.05,
+                                (this.getWidth() * 0.05/100) * currentMood,
+                                this.getHeight() * 0.02,
                                 "black",
                                 "Mood:",
                                 20);
-        this.drawBarToCanvas(   this.getWidth()*0.9,
-                                this.getHeight()*0.2,
-                                100,
-                                (100/100) * currentHealth,
-                                20,
-                                "black",
-                                "red",
+        this.drawBarToCanvas(   X,
+                                Y + this.getHeight() * 0.15,
+                                this.getWidth() * 0.05,
+                                (this.getWidth() * 0.05/100) * currentHealth,
+                                this.getHeight() * 0.02,
                                 "black",
                                 "Health:",
                                 20);
