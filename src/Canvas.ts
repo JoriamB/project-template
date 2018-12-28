@@ -7,7 +7,7 @@ class Canvas {
                         mouseListener : MouseHelper) {
         this.canvas = canvas;
         this.ctx = this.canvas.getContext("2d");
-        this.canvas.height = window.innerHeight
+        this.canvas.height = window.innerHeight;
         this.canvas.width = window.innerWidth;
         this.mouseListener = mouseListener;
     };
@@ -27,7 +27,7 @@ class Canvas {
                             text: string,
                             x: number,
                             y: number
-    ): void {
+                            ): void {
         this.ctx.font = `${fontsize}px Arial`
         this.ctx.fillStyle = color;
         this.ctx.fillText(text, x, y);
@@ -48,7 +48,7 @@ class Canvas {
                             y: number,
                             width: number,
                             height: number
-    ): void {
+                            ): void {
         let image = new Image();
         image.src = src
         this.ctx.drawImage(image, x, y, width, height);
@@ -90,19 +90,20 @@ class Canvas {
      * @method
      * method for drawing the coin image and value to canvas
      */
-    public drawCoinToCanvas (X : number,
-                            Y : number,
-                            amount : number
-                            ) : void {
-        this.drawImageToCanvas("./Assets/Icons/ButtonsFREE/Coin.png",
+    public drawCoinToCanvas (   X : number,
+                                Y : number,
+                                amount : number
+                                ) : void {
+        this.drawImageToCanvas( "./Assets/Icons/ButtonsFREE/Coin.png",
                                 X,
                                 Y,
-                                40,
-                                40)
-        this.drawTextToCanvas(20,
-                            "black",`: ${amount}`,
-                            X + 45,
-                            Y + 25);
+                                this.getWidth() * 0.025,
+                                this.getHeight() * 0.05);
+        this.drawTextToCanvas(  20,
+                                "black",
+                                `: ${amount}`,
+                                X + this.getWidth() * 0.03,
+                                Y + this.getHeight() * 0.03);
     };
 
     /**
@@ -167,7 +168,8 @@ class Canvas {
                                 currentHunger : number,
                                 currentEnergy : number,
                                 currentMood : number,
-                                currentHealth : number) {
+                                currentHealth : number
+                                ) : void {
         this.drawBarToCanvas(   X,
                                 Y,
                                 this.getWidth() * 0.05,
@@ -207,7 +209,7 @@ class Canvas {
      * @method
      * method for returning the center of the canvas
      */
-    public getCenter(): { X: number, Y: number } {
+    public getCenter() : { X : number, Y : number } {
         return { X: this.getWidth() / 2, Y: this.getHeight() / 2 };
 
     };
@@ -217,7 +219,7 @@ class Canvas {
      * @method
      * Method for returning height
      */
-    public getHeight(): number {
+    public getHeight() : number {
         return this.canvas.height;
     };
 
@@ -226,7 +228,7 @@ class Canvas {
      * @method
      * Method for returning width
      */
-    public getWidth(): number {
+    public getWidth() : number {
         return this.canvas.width;
     };
 
@@ -235,7 +237,17 @@ class Canvas {
      * @method
      * Method for clearing the canvas
      */
-    public clear(): void {
+    public clear() : void {
         this.ctx.clearRect(0, 0, this.getWidth(), this.getHeight());
+    };
+
+    /**
+     * @access public
+     * @method
+     * Method to update the size of the canvas
+     */
+    public updateScreenSize () : void {
+        this.canvas.height = window.innerHeight;
+        this.canvas.width = window.innerWidth;
     };
 };

@@ -59,31 +59,40 @@ class Player {
             this.keyboardListener.upPressed ||
             this.keyboardListener.downPressed)
             {
-                if (this.keyboardListener.leftPressed)
+                if (this.keyboardListener.leftPressed) {
                     this.xPos -= this.speed;
-                else if (this.keyboardListener.rightPressed)
+                }
+                else if (this.keyboardListener.rightPressed) {
                     this.xPos += this.speed;
-                else if (this.keyboardListener.upPressed)
+                }
+                else if (this.keyboardListener.upPressed) {
                     this.yPos -= this.speed;
-                else if (this.keyboardListener.downPressed)
+                }
+                else if (this.keyboardListener.downPressed) {
                     this.yPos += this.speed;
+                }
                 //Left
                 if (this.xPos < 0) {
                     this.xPos = 0
-                }
+                };
                 //Right
                 if (this.xPos + this.width > this.canvas.getWidth()) {
                     this.xPos = this.canvas.getWidth() - this.width;
-                }
+                };
                 //Down
                 if (this.yPos + this.height > this.canvas.getHeight()) {
                     this.yPos = this.canvas.getHeight() - this.height;
-                }
+                };
                 //Up
                 if (this.yPos < 0) {
                     this.yPos = 0
-                }
-            }
+                };
+            };
+    };
+
+    public updatePlayer () : void {
+        this.width = this.canvas.getWidth() * 0.025;
+        this.height = this.canvas.getHeight() * 0.05;
     };
 
     /**

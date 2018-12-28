@@ -33,8 +33,8 @@ class Canvas {
     }
     ;
     drawCoinToCanvas(X, Y, amount) {
-        this.drawImageToCanvas("./Assets/Icons/ButtonsFREE/Coin.png", X, Y, 40, 40);
-        this.drawTextToCanvas(20, "black", `: ${amount}`, X + 45, Y + 25);
+        this.drawImageToCanvas("./Assets/Icons/ButtonsFREE/Coin.png", X, Y, this.getWidth() * 0.025, this.getHeight() * 0.05);
+        this.drawTextToCanvas(20, "black", `: ${amount}`, X + this.getWidth() * 0.03, Y + this.getHeight() * 0.03);
     }
     ;
     drawBarToCanvas(X, Y, maxWidth, minWidth, height, textColor, text, fontSize) {
@@ -79,12 +79,19 @@ class Canvas {
         this.ctx.clearRect(0, 0, this.getWidth(), this.getHeight());
     }
     ;
+    updateScreenSize() {
+        this.canvas.height = window.innerHeight;
+        this.canvas.width = window.innerWidth;
+    }
+    ;
 }
 ;
 class Game {
     constructor() {
         this.draw = () => {
             this.canvas.clear();
+            this.player.updatePlayer();
+            this.canvas.updateScreenSize();
             switch (this.player.getLocation()) {
                 case "Park":
                     this.park.draw();
@@ -115,7 +122,7 @@ class Game {
         };
         this.mouseListener = new MouseHelper(false, false);
         this.canvas = new Canvas(document.getElementById("canvas"), this.mouseListener);
-        this.player = new Player("./Assets/Female/Poses/female_slide.png", this.canvas, 5, 20, 80, 100, 60, this.canvas.getCenter().X, this.canvas.getCenter().Y, 50, 50, "Map", 10000);
+        this.player = new Player("./Assets/Female/Poses/female_slide.png", this.canvas, 5, 20, 80, 100, 60, this.canvas.getCenter().X, this.canvas.getCenter().Y, this.canvas.getWidth() * 0.025, this.canvas.getHeight() * 0.05, "Map", 10000);
         this.park = new ParkView("./assets/Backgrounds/park.jpg", this.canvas, this.player, this.mouseListener);
         this.hospital = new HospitalView("./assets/Backgrounds/hospital.jpg", this.canvas, this.player, this.mouseListener);
         this.house = new HouseView("./assets/Backgrounds/House.png", this.canvas, this.player, this.mouseListener);
@@ -158,27 +165,41 @@ class Player {
             this.keyboardListener.rightPressed ||
             this.keyboardListener.upPressed ||
             this.keyboardListener.downPressed) {
-            if (this.keyboardListener.leftPressed)
+            if (this.keyboardListener.leftPressed) {
                 this.xPos -= this.speed;
-            else if (this.keyboardListener.rightPressed)
+            }
+            else if (this.keyboardListener.rightPressed) {
                 this.xPos += this.speed;
-            else if (this.keyboardListener.upPressed)
+            }
+            else if (this.keyboardListener.upPressed) {
                 this.yPos -= this.speed;
-            else if (this.keyboardListener.downPressed)
+            }
+            else if (this.keyboardListener.downPressed) {
                 this.yPos += this.speed;
+            }
             if (this.xPos < 0) {
                 this.xPos = 0;
             }
+            ;
             if (this.xPos + this.width > this.canvas.getWidth()) {
                 this.xPos = this.canvas.getWidth() - this.width;
             }
+            ;
             if (this.yPos + this.height > this.canvas.getHeight()) {
                 this.yPos = this.canvas.getHeight() - this.height;
             }
+            ;
             if (this.yPos < 0) {
                 this.yPos = 0;
             }
+            ;
         }
+        ;
+    }
+    ;
+    updatePlayer() {
+        this.width = this.canvas.getWidth() * 0.025;
+        this.height = this.canvas.getHeight() * 0.05;
     }
     ;
     getHealth() {
@@ -414,7 +435,7 @@ class MapView extends BaseView {
         super(src, canvas, player, mouseListener);
         this.draw = () => {
             this.canvas.drawImageToCanvas(this.src, 0, 0, this.canvas.getWidth(), this.canvas.getHeight());
-            this.canvas.drawButtonToCanvas("./assets/map/park.png", this.canvas.getWidth() * 0.05, this.canvas.getHeight() * 0.04, this.canvas.getWidth() * 0.23, this.canvas.getHeight() * 0.27, () => {
+            this.canvas.drawButtonToCanvas("./assets/map/park.png", 0, 0, this.canvas.getWidth() * 0.3, this.canvas.getHeight() * 0.328, () => {
                 this.player.setLocation("Park");
                 this.mouseListener.setHasBeenClicked();
             });

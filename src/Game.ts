@@ -24,8 +24,8 @@ class Game {
                                     60,
                                     this.canvas.getCenter().X,
                                     this.canvas.getCenter().Y,
-                                    50,
-                                    50,
+                                    this.canvas.getWidth() * 0.025,
+                                    this.canvas.getHeight() * 0.05,
                                     "Map",
                                     10000);
         this.park = new ParkView("./assets/Backgrounds/park.jpg",
@@ -68,7 +68,9 @@ class Game {
      * main draw method for the game
      */
     public draw = () => {
-        this.canvas.clear()
+        this.canvas.clear();
+        this.player.updatePlayer();
+        this.canvas.updateScreenSize();
         switch (this.player.getLocation()) {
             case "Park":
                 this.park.draw();
@@ -77,7 +79,7 @@ class Game {
                 this.hospital.draw();
                 break;
             case "House":
-                this.house.draw()
+                this.house.draw();
                 break;
             case "School":
                 this.school.draw();
@@ -95,7 +97,7 @@ class Game {
                 this.map.draw();
                 break;
         }
-        window.requestAnimationFrame(this.draw)
+        window.requestAnimationFrame(this.draw);
     };
 };
 
