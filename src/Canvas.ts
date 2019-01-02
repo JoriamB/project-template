@@ -13,7 +13,9 @@ class Canvas {
     };
 
     /**
-     * @param fontsize 
+     * @param alignment
+     * @param fontsize
+     * @param fontFamily
      * @param color 
      * @param text 
      * @param x 
@@ -22,13 +24,16 @@ class Canvas {
      * @method
      * method for writing text to canvas
      */
-    public drawTextToCanvas(fontsize: number,
+    public drawTextToCanvas(alignment : CanvasTextAlign,
+                            fontsize: number,
+                            fontFamily : string,
                             color: string,
                             text: string,
                             x: number,
                             y: number
                             ): void {
-        this.ctx.font = `${fontsize}px Arial`
+        this.ctx.textAlign = alignment;
+        this.ctx.font = `${fontsize}px ${fontFamily}`;
         this.ctx.fillStyle = color;
         this.ctx.fillText(text, x, y);
     };
@@ -83,6 +88,43 @@ class Canvas {
     };
 
     /**
+     * @param src
+     * @param text
+     * @param x 
+     * @param y 
+     * @param width 
+     * @param height 
+     * @param callback
+     * @access public
+     * @method
+     * method for drawing a button to cnavas
+     */
+    public drawTextButtonToCanvas(  src: string,
+                                    text : string,
+                                    x: number,
+                                    y: number,
+                                    width: number,
+                                    height: number,
+                                    callback: () => void) {
+        this.drawImageToCanvas(src, x, y, width, height);
+        if (this.mouseListener.getMouseStatus() == true &&
+            this.mouseListener.getHasBeenClicked() != true &&
+            this.mouseListener.getEventX() > x &&
+            this.mouseListener.getEventX() < x + width &&
+            this.mouseListener.getEventY() > y &&
+            this.mouseListener.getEventY() < y + height) {
+                callback()
+        };
+        this.drawTextToCanvas(  "center",
+                                25,
+                                "Minecraft",
+                                "white",
+                                text,
+                                x + (width * 0.5),
+                                y + (height * 0.65));
+    };
+
+    /**
      * @param X 
      * @param Y 
      * @param amount 
@@ -99,7 +141,9 @@ class Canvas {
                                 Y,
                                 this.getWidth() * 0.025,
                                 this.getHeight() * 0.05);
-        this.drawTextToCanvas(  20,
+        this.drawTextToCanvas(  "left",
+                                20,
+                                "Minecraft",
                                 "black",
                                 `: ${amount}`,
                                 X + this.getWidth() * 0.03,
@@ -147,9 +191,13 @@ class Canvas {
                             Y,
                             minWidth,
                             height)
-        this.ctx.fillStyle = textColor
-        this.ctx.font = `${fontSize}px Arial`;
-        this.ctx.fillText(text, X, Y - 5)
+        this.drawTextToCanvas(  "center",
+                                fontSize,
+                                "Minecraft",
+                                textColor,
+                                text,
+                                X + maxWidth * 0.5,
+                                Y - this.getHeight() * 0.008)
     };
 
     /**

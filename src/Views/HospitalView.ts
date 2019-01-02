@@ -36,7 +36,8 @@ class HospitalView extends BaseView {
         this.canvas.drawCoinToCanvas(   this.canvas.getWidth() / 2,
                                         this.canvas.getHeight() * 0.02,
                                         this.player.getCoin());
-        this.canvas.drawButtonToCanvas( "./assets/Icons/ButtonsFREE/Play.png",
+        this.canvas.drawTextButtonToCanvas( "./assets/Icons/ButtonsFREE/PlayBlank.png",
+                                        "Visit Doctor",
                                         this.canvas.getWidth()*0.5 - (this.canvas.getWidth() * 0.1)/2,
                                         this.canvas.getHeight()*0.9 - (this.canvas.getHeight() * 0.1)/2,
                                         this.canvas.getWidth() * 0.1,
@@ -47,12 +48,11 @@ class HospitalView extends BaseView {
                                                 this.player.setCoin(this.player.getCoin() - 15)
                                                 this.player.setHealth(this.player.getHealth() + 20)
                                             }
-                                            else if (this.player.getCoin()>=15&&
-                                            this.player.getHealth()< 100)
-                                            {this.player.setCoin(this.player.getCoin() - 15)
-                                             this.player.setHealth(100)
-                                                
-                                            }
+                                            else if (   this.player.getCoin()>=15&&
+                                                        this.player.getHealth()< 100) {
+                                                        this.player.setCoin(this.player.getCoin() - 15)
+                                                        this.player.setHealth(100)
+                                            };
                                             this.mouseListener.setHasBeenClicked()
                                         });
 

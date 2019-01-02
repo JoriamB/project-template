@@ -55,10 +55,10 @@ class MapView extends BaseView {
                                             this.mouseListener.setHasBeenClicked()
                                         });
         this.canvas.drawButtonToCanvas( "./assets/map/restaurant.png",
-                                        this.canvas.getWidth() *0.475,
+                                        this.canvas.getWidth() * 0.475,
                                         this.canvas.getHeight() * 0.685,
-                                        this.canvas.getWidth()*0.058,
-                                        this.canvas.getHeight()*0.095,
+                                        this.canvas.getWidth() * 0.056,
+                                        this.canvas.getHeight() * 0.095,
                                         () => {
                                             this.player.setLocation("Restaurant");
                                             this.mouseListener.setHasBeenClicked()
@@ -70,6 +70,15 @@ class MapView extends BaseView {
                                         this.canvas.getHeight()*0.093,
                                         () => {
                                             this.player.setLocation("House");
+                                            this.mouseListener.setHasBeenClicked()
+                                        });
+        this.canvas.drawButtonToCanvas( "./assets/map/strand.png",
+                                        this.canvas.getWidth() *0.9,
+                                        this.canvas.getHeight() * 0.0,
+                                        this.canvas.getWidth()* 0.1,
+                                        this.canvas.getHeight(),
+                                        () => {
+                                            this.player.setLocation("Beach");
                                             this.mouseListener.setHasBeenClicked()
                                         });
         this.canvas.drawCoinToCanvas(   this.canvas.getWidth()*0.09,

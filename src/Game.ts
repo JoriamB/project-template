@@ -9,7 +9,9 @@ class Game {
     private store : StoreView;
     private restaurant : RestaurantView;
     private map : MapView;
-    private soccer:SoccerView;
+    private soccer: SoccerView;
+    private beach: SoccerView;
+    private fishing: FishingView;
 
     public constructor () {
         this.mouseListener = new MouseHelper(false, false);
@@ -28,38 +30,46 @@ class Game {
                                     this.canvas.getHeight() * 0.05,
                                     "Map",
                                     10000);
-        this.park = new ParkView("./assets/Backgrounds/park.jpg",
-                                this.canvas,
-                                this.player,
-                                this.mouseListener);
-        this.hospital = new HospitalView("./assets/Backgrounds/hospital.jpg",
+        this.park = new ParkView(   "./assets/Backgrounds/park.jpg",
+                                    this.canvas,
+                                    this.player,
+                                    this.mouseListener);
+        this.hospital = new HospitalView(   "./assets/Backgrounds/hospital.jpg",
+                                            this.canvas,
+                                            this.player,
+                                            this.mouseListener);
+        this.house = new HouseView( "./assets/Backgrounds/House.png",
+                                    this.canvas,
+                                    this.player,
+                                    this.mouseListener);
+        this.school = new SchoolView(   "./assets/Backgrounds/classroom2.jpg",
                                         this.canvas,
                                         this.player,
                                         this.mouseListener);
-        this.house = new HouseView("./assets/Backgrounds/House.png",
+        this.store = new StoreView( "./assets/Backgrounds/Store.jpg",
                                     this.canvas,
                                     this.player,
                                     this.mouseListener);
-        this.school = new SchoolView("./assets/Backgrounds/classroom2.jpg",
-                                    this.canvas,
-                                    this.player,
-                                    this.mouseListener);
-        this.store = new StoreView("./assets/Backgrounds/Store.jpg",
-                                    this.canvas,
-                                    this.player,
-                                    this.mouseListener);
-        this.restaurant = new RestaurantView("./assets/Backgrounds/Restaurant2.jpg",
-                            this.canvas,
-                            this.player,
-                            this.mouseListener);
-        this.map = new MapView("./assets/map/map.png",
-                            this.canvas,
-                            this.player,
-                            this.mouseListener);
+        this.restaurant = new RestaurantView(   "./assets/Backgrounds/Restaurant2.jpg",
+                                                this.canvas,
+                                                this.player,
+                                                this.mouseListener);
+        this.map = new MapView( "./assets/map/mapleeg.png",
+                                this.canvas,
+                                this.player,
+                                this.mouseListener);
         this.soccer = new SoccerView(   "./assets/FootballGame/background.jpg",
                                         this.canvas,
                                         this.player,
-                                        this.mouseListener);            
+                                        this.mouseListener);          
+        this.beach = new BeachView( "./assets/Backgrounds/beach.jpg",
+                                    this.canvas,
+                                    this.player,
+                                    this.mouseListener);            
+        this.fishing = new FishingView( "./assets/FishingGame/background1.jpg",
+                                        this.canvas,
+                                        this.player,
+                                        this.mouseListener);   
     };
 
     /**
@@ -92,6 +102,12 @@ class Game {
                 break;
             case "Soccer":
                 this.soccer.draw();
+                break;
+            case "Beach":
+                this.beach.draw();
+                break;
+            case "Fishing":
+                this.fishing.draw();
                 break;
             default:
                 this.map.draw();
