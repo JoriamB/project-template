@@ -1,4 +1,4 @@
-class ParkView extends BaseView {
+class BeachView extends BaseView {
 
     public constructor (src : string,
                         canvas : Canvas,
@@ -26,7 +26,7 @@ class ParkView extends BaseView {
                                         () => {
                                             this.player.setLocation("Map");
                                             this.mouseListener.setHasBeenClicked()});
-        this.canvas.drawButtonToCanvas(  "./assets/FootballGame/goal1.png",
+        this.canvas.drawButtonToCanvas(  "./assets/FishingGame/boat.png",
                                         this.canvas.getWidth() * 0.739,
                                         this.canvas.getHeight() * 0.2555,
                                         this.canvas.getWidth()*0.24,
@@ -34,7 +34,7 @@ class ParkView extends BaseView {
                                         () => {
                                             if(this.player.getEnergy()>=15&&
                                             this.player.getHunger()>=30){
-                                            this.player.setLocation("Soccer")
+                                            this.player.setLocation("Fishing")
                                         };
                                             this.mouseListener.setHasBeenClicked()});
         this.canvas.drawCoinToCanvas(   this.canvas.getWidth()/2,
