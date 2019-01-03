@@ -12,6 +12,7 @@ class Game {
     private soccer: SoccerView;
     private beach: SoccerView;
     private fishing: FishingView;
+    private question: QuestionView;
 
     public constructor () {
         this.mouseListener = new MouseHelper(false, false);
@@ -28,7 +29,7 @@ class Game {
                                     this.canvas.getCenter().Y,
                                     this.canvas.getWidth() * 0.025,
                                     this.canvas.getHeight() * 0.05,
-                                    "Map",
+                                    "School",
                                     10000);
         this.park = new ParkView(   "./assets/Backgrounds/park.jpg",
                                     this.canvas,
@@ -69,7 +70,11 @@ class Game {
         this.fishing = new FishingView( "./assets/FishingGame/background1.jpg",
                                         this.canvas,
                                         this.player,
-                                        this.mouseListener);   
+                                        this.mouseListener);  
+        this.question = new QuestionView("./assets/Backgrounds/Question.png",
+                                          this.canvas,
+                                          this.player,
+                                          this.mouseListener);
     };
 
     /**
@@ -109,6 +114,9 @@ class Game {
             case "Fishing":
                 this.fishing.draw();
                 break;
+            case "Question":
+            this.question.draw();
+            break;  
             default:
                 this.map.draw();
                 break;
