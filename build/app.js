@@ -589,7 +589,6 @@ class QuestionView extends BaseView {
     }
     ;
 }
-;
 class RestaurantView extends BaseView {
     constructor(src, canvas, player, mouseListener) {
         super(src, canvas, player, mouseListener);

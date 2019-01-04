@@ -39,4 +39,5 @@ public draw = () => {
                                     this.player.getHealth())
      
 };
-};
+
+}
