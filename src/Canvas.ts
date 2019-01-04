@@ -117,7 +117,7 @@ class Canvas {
         };
         this.drawTextToCanvas(  "center",
                                 25,
-                                "Minecraft",
+                                "KenneyPixel",
                                 "white",
                                 text,
                                 x + (width * 0.5),
@@ -143,7 +143,7 @@ class Canvas {
                                 this.getHeight() * 0.05);
         this.drawTextToCanvas(  "left",
                                 20,
-                                "KenneyPixel",
+                                "Minecraft",
                                 "black",
                                 `: ${amount}`,
                                 X + this.getWidth() * 0.03,
@@ -299,3 +299,4 @@ class Canvas {
         this.canvas.width = window.innerWidth;
     };
 };
+
