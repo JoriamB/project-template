@@ -6,3 +6,8 @@
     font-family: 'Minecraft';
     src: url('./assets/Fonts/Minecraft.ttf') format('truetype');
 }
+
+@font-face {
+  font-family: 'KenneyPixel';
+  src: url('./assets/Fonts/KenneyPixel.ttf') format('truetype');
+}

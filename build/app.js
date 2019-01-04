@@ -44,7 +44,7 @@ class Canvas {
             callback();
         }
         ;
-        this.drawTextToCanvas("center", 25, "Minecraft", "white", text, x + (width * 0.5), y + (height * 0.65));
+        this.drawTextToCanvas("center", 25, "KenneyPixel", "white", text, x + (width * 0.5), y + (height * 0.65));
     }
     ;
     drawCoinToCanvas(X, Y, amount) {
@@ -66,7 +66,7 @@ class Canvas {
         }
         ;
         this.ctx.fillRect(X, Y, minWidth, height);
-        this.drawTextToCanvas("center", fontSize, "Minecraft", textColor, text, X + maxWidth * 0.5, Y - this.getHeight() * 0.008);
+        this.drawTextToCanvas("center", fontSize, "KenneyPixel", textColor, text, X + maxWidth * 0.5, Y - this.getHeight() * 0.008);
     }
     ;
     drawBarstoCanvas(X, Y, currentHunger, currentEnergy, currentMood, currentHealth) {
