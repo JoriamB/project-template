@@ -49,7 +49,7 @@ class Canvas {
     ;
     drawCoinToCanvas(X, Y, amount) {
         this.drawImageToCanvas("./Assets/Icons/ButtonsFREE/Coin.png", X, Y, this.getWidth() * 0.025, this.getHeight() * 0.05);
-        this.drawTextToCanvas("left", 20, "Minecraft", "black", `: ${amount}`, X + this.getWidth() * 0.03, Y + this.getHeight() * 0.03);
+        this.drawTextToCanvas("left", 20, "KenneyPixel", "black", `: ${amount}`, X + this.getWidth() * 0.03, Y + this.getHeight() * 0.03);
     }
     ;
     drawBarToCanvas(X, Y, maxWidth, minWidth, height, textColor, text, fontSize) {
@@ -66,7 +66,7 @@ class Canvas {
         }
         ;
         this.ctx.fillRect(X, Y, minWidth, height);
-        this.drawTextToCanvas("center", fontSize, "Minecraft", textColor, text, X + maxWidth * 0.5, Y - this.getHeight() * 0.008);
+        this.drawTextToCanvas("center", fontSize, "KenneyPixel", textColor, text, X + maxWidth * 0.5, Y - this.getHeight() * 0.008);
     }
     ;
     drawBarstoCanvas(X, Y, currentHunger, currentEnergy, currentMood, currentHealth) {
