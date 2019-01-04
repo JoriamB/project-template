@@ -143,7 +143,7 @@ class Canvas {
                                 this.getHeight() * 0.05);
         this.drawTextToCanvas(  "left",
                                 20,
-                                "Minecraft",
+                                "KenneyPixel",
                                 "black",
                                 `: ${amount}`,
                                 X + this.getWidth() * 0.03,
@@ -193,7 +193,7 @@ class Canvas {
                             height)
         this.drawTextToCanvas(  "center",
                                 fontSize,
-                                "Minecraft",
+                                "KenneyPixel",
                                 textColor,
                                 text,
                                 X + maxWidth * 0.5,
