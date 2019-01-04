@@ -37,6 +37,33 @@ public draw = () => {
                                     this.player.getEnergy(),
                                     this.player.getMood(),
                                     this.player.getHealth())
+    this.canvas.drawTextButtonToCanvas( "./assets/Icons/ButtonsFREE/PlayBlank.png",
+                                        "Math",
+                                        this.canvas.getWidth()*0.25 - (this.canvas.getWidth() * 0.1)/2,
+                                        this.canvas.getHeight()*0.49 - (this.canvas.getHeight() * 0.1)/2,
+                                        this.canvas.getWidth() * 0.1,
+                                        this.canvas.getHeight() * 0.075, () => {
+                                            this.player.setLocation("Question");
+                                            this.mouseListener.setHasBeenClicked()})
+
+    this.canvas.drawTextButtonToCanvas( "./assets/Icons/ButtonsFREE/PlayBlank.png",
+                                                "History",
+                                                this.canvas.getWidth()*0.65 - (this.canvas.getWidth() * 0.1)/2,
+                                                this.canvas.getHeight()*0.49 - (this.canvas.getHeight() * 0.1)/2,
+                                                this.canvas.getWidth() * 0.1,
+                                                this.canvas.getHeight() * 0.075, () => {
+                                                    this.player.setLocation("Question");
+                                                    this.mouseListener.setHasBeenClicked()})
+    this.canvas.drawButtonToCanvas( "./assets/QuestionAK/populationDensity.png",
+                                    this.canvas.getWidth() * 0.45,
+                                    this.canvas.getHeight() * 0.45,
+                                    this.canvas.getWidth() * 0.1,
+                                    this.canvas.getHeight() * 0.135,
+                                    () => {
+                                        this.player.setEnergy(this.player.getEnergy()-15),
+                                        this.player.setHunger(this.player.getHunger()-30)
+                                        this.player.setLocation("School");
+                                        this.mouseListener.setHasBeenClicked()});
      
 };
 
