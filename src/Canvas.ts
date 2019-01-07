@@ -1,16 +1,21 @@
 class Canvas {
     private canvas: HTMLCanvasElement;
     private ctx: CanvasRenderingContext2D;
+    private mouseListener : MouseHelper;
 
-    public constructor(canvas: HTMLCanvasElement) {
+    public constructor(canvas: HTMLCanvasElement,
+                        mouseListener : MouseHelper) {
         this.canvas = canvas;
         this.ctx = this.canvas.getContext("2d");
-        this.canvas.height = window.innerHeight
+        this.canvas.height = window.innerHeight;
         this.canvas.width = window.innerWidth;
+        this.mouseListener = mouseListener;
     };
 
     /**
-     * @param fontsize 
+     * @param alignment
+     * @param fontsize
+     * @param fontFamily
      * @param color 
      * @param text 
      * @param x 
@@ -19,13 +24,16 @@ class Canvas {
      * @method
      * method for writing text to canvas
      */
-    public drawTextToCanvas(fontsize: number,
+    public drawTextToCanvas(alignment : CanvasTextAlign,
+                            fontsize: number,
+                            fontFamily : string,
                             color: string,
                             text: string,
                             x: number,
                             y: number
-    ): void {
-        this.ctx.font = `${fontsize}px Arial`
+                            ): void {
+        this.ctx.textAlign = alignment;
+        this.ctx.font = `${fontsize}px ${fontFamily}`;
         this.ctx.fillStyle = color;
         this.ctx.fillText(text, x, y);
     };
@@ -45,7 +53,7 @@ class Canvas {
                             y: number,
                             width: number,
                             height: number
-    ): void {
+                            ): void {
         let image = new Image();
         image.src = src
         this.ctx.drawImage(image, x, y, width, height);
@@ -67,20 +75,53 @@ class Canvas {
                                 y: number,
                                 width: number,
                                 height: number,
-                                callback: (event: MouseEvent) => void = null) {
+                                callback: () => void) {
         this.drawImageToCanvas(src, x, y, width, height);
-        if (!callback) return;
-            let _listener = (event : MouseEvent) => {
-                if (event.x > x &&
-                    event.x < x + width &&
-                    event.y > y &&
-                    event.y < y + height) {
-                        callback(event);
-                        window.removeEventListener("click", _listener); 
-                };
-            };
-            console.log('klikkerdeklik')
-        window.addEventListener("click", _listener)
+        if (this.mouseListener.getMouseStatus() == true &&
+            this.mouseListener.getHasBeenClicked() != true &&
+            this.mouseListener.getEventX() > x &&
+            this.mouseListener.getEventX() < x + width &&
+            this.mouseListener.getEventY() > y &&
+            this.mouseListener.getEventY() < y + height) {
+                callback()
+        };
+    };
+
+    /**
+     * @param src
+     * @param text
+     * @param x 
+     * @param y 
+     * @param width 
+     * @param height 
+     * @param callback
+     * @access public
+     * @method
+     * method for drawing a button to cnavas
+     */
+    public drawTextButtonToCanvas(  src: string,
+                                    text : string,
+                                    x: number,
+                                    y: number,
+                                    width: number,
+                                    height: number,
+                                    callback: () => void) {
+        this.drawImageToCanvas(src, x, y, width, height);
+        if (this.mouseListener.getMouseStatus() == true &&
+            this.mouseListener.getHasBeenClicked() != true &&
+            this.mouseListener.getEventX() > x &&
+            this.mouseListener.getEventX() < x + width &&
+            this.mouseListener.getEventY() > y &&
+            this.mouseListener.getEventY() < y + height) {
+                callback()
+        };
+        this.drawTextToCanvas(  "center",
+                                25,
+                                "KenneyPixel",
+                                "white",
+                                text,
+                                x + (width * 0.5),
+                                y + (height * 0.65));
     };
 
     /**
@@ -91,19 +132,22 @@ class Canvas {
      * @method
      * method for drawing the coin image and value to canvas
      */
-    public drawCoinToCanvas (X : number,
-                            Y : number,
-                            amount : number
-                            ) : void {
-        this.drawImageToCanvas("./Assets/Icons/ButtonsFREE/Coin.png",
+    public drawCoinToCanvas (   X : number,
+                                Y : number,
+                                amount : number
+                                ) : void {
+        this.drawImageToCanvas( "./Assets/Icons/ButtonsFREE/Coin.png",
                                 X,
                                 Y,
-                                40,
-                                40)
-        this.drawTextToCanvas(20,
-                            "black",`: ${amount}`,
-                            X + 45,
-                            Y + 25);
+                                this.getWidth() * 0.025,
+                                this.getHeight() * 0.05);
+        this.drawTextToCanvas(  "left",
+                                20,
+                                "Minecraft",
+                                "black",
+                                `: ${amount}`,
+                                X + this.getWidth() * 0.03,
+                                Y + this.getHeight() * 0.03);
     };
 
     /**
@@ -112,11 +156,9 @@ class Canvas {
      * @param Y 
      * @param maxWidth 
      * @param minWidth 
-     * @param height 
-     * @param maxColor 
-     * @param minColor 
+     * @param height
      * @param textColor 
-     * @param text 
+     * @param text
      * @param fontSize 
      * @access public
      * @method
@@ -127,25 +169,87 @@ class Canvas {
                             maxWidth: number,
                             minWidth: number,
                             height: number,
-                            maxColor: string,
-                            minColor: string,
                             textColor: string,
                             text: string,
                             fontSize: number
                             ) : void {
-        this.ctx.fillStyle = maxColor;
+        this.ctx.fillStyle = "black";
         this.ctx.fillRect(  X,
                             Y,
                             maxWidth,
                             height)
-        this.ctx.fillStyle = minColor;
+        if (minWidth/maxWidth > 0.75) {
+            this.ctx.fillStyle = "green";
+        }
+        else if (minWidth/maxWidth > 0.25) {
+            this.ctx.fillStyle = "orange";
+        }
+        else {
+            this.ctx.fillStyle = "red";
+        };
         this.ctx.fillRect(  X,
                             Y,
                             minWidth,
                             height)
-        this.ctx.fillStyle = textColor
-        this.ctx.font = `${fontSize}px Arial`;
-        this.ctx.fillText(text, X + maxWidth * 0.15, Y - 5)
+        this.drawTextToCanvas(  "center",
+                                fontSize,
+                                "KenneyPixel",
+                                textColor,
+                                text,
+                                X + maxWidth * 0.5,
+                                Y - this.getHeight() * 0.008)
+    };
+
+    /**
+     * @param X
+     * @param Y
+     * @param currentHunger
+     * @param currentEnergy
+     * @param currentMood
+     * @param currentHealth
+     * @access public
+     * @method
+     * Method for drawing all the bars to canvas
+     */
+    public drawBarstoCanvas (   X : number,
+                                Y : number,
+                                currentHunger : number,
+                                currentEnergy : number,
+                                currentMood : number,
+                                currentHealth : number
+                                ) : void {
+        this.drawBarToCanvas(   X,
+                                Y,
+                                this.getWidth() * 0.05,
+                                (this.getWidth() * 0.05/100) * currentHunger,
+                                this.getHeight() * 0.02,
+                                "black",
+                                "Hunger:",
+                                20);
+        this.drawBarToCanvas(   X,
+                                Y + this.getHeight() * 0.05,
+                                this.getWidth() * 0.05,
+                                (this.getWidth() * 0.05/100) * currentEnergy,
+                                this.getHeight() * 0.02,
+                                "black",
+                                "Energy:",
+                                20);
+        this.drawBarToCanvas(   X,
+                                Y + this.getHeight() * 0.1,
+                                this.getWidth() * 0.05,
+                                (this.getWidth() * 0.05/100) * currentMood,
+                                this.getHeight() * 0.02,
+                                "black",
+                                "Mood:",
+                                20);
+        this.drawBarToCanvas(   X,
+                                Y + this.getHeight() * 0.15,
+                                this.getWidth() * 0.05,
+                                (this.getWidth() * 0.05/100) * currentHealth,
+                                this.getHeight() * 0.02,
+                                "black",
+                                "Health:",
+                                20);
     };
 
     /**
@@ -153,7 +257,7 @@ class Canvas {
      * @method
      * method for returning the center of the canvas
      */
-    public getCenter(): { X: number, Y: number } {
+    public getCenter() : { X : number, Y : number } {
         return { X: this.getWidth() / 2, Y: this.getHeight() / 2 };
 
     };
@@ -163,7 +267,7 @@ class Canvas {
      * @method
      * Method for returning height
      */
-    public getHeight(): number {
+    public getHeight() : number {
         return this.canvas.height;
     };
 
@@ -172,7 +276,7 @@ class Canvas {
      * @method
      * Method for returning width
      */
-    public getWidth(): number {
+    public getWidth() : number {
         return this.canvas.width;
     };
 
@@ -181,7 +285,18 @@ class Canvas {
      * @method
      * Method for clearing the canvas
      */
-    public clear(): void {
+    public clear() : void {
         this.ctx.clearRect(0, 0, this.getWidth(), this.getHeight());
     };
+
+    /**
+     * @access public
+     * @method
+     * Method to update the size of the canvas
+     */
+    public updateScreenSize () : void {
+        this.canvas.height = window.innerHeight;
+        this.canvas.width = window.innerWidth;
+    };
 };
+

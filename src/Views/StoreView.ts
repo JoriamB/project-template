@@ -2,8 +2,12 @@ class StoreView extends BaseView {
 
     public constructor (src : string,
                         canvas : Canvas,
-                        player : Player) {
-        super(src, canvas, player);
+                        player : Player,
+                        mouseListener : MouseHelper) {
+        super(  src,
+                canvas,
+                player,
+                mouseListener);
     };
 
     /**
@@ -18,63 +22,35 @@ class StoreView extends BaseView {
                                         this.canvas.getWidth(),
                                         this.canvas.getHeight());
         this.canvas.drawButtonToCanvas(  "./assets/Icons/ButtonsFREE/Home.png",
-                                        this.canvas.getWidth() * 0.03,
-                                        this.canvas.getHeight() * 0.02,
-                                        50,
-                                        50,
-                                        (event: MouseEvent) => {
+                                        this.canvas.getWidth() * 0.05,
+                                        this.canvas.getHeight() * 0.05,
+                                        this.canvas.getWidth() * 0.025,
+                                        this.canvas.getHeight() * 0.05,
+                                        () => {
                                             this.player.setLocation("Map");
+                                            this.mouseListener.setHasBeenClicked()
                                         });
-        this.canvas.drawCoinToCanvas(   this.canvas.getWidth() / 2,
-                                        this.canvas.getHeight() * 0.02,
+        this.canvas.drawCoinToCanvas(   this.canvas.getWidth()/2,
+                                        this.canvas.getHeight() * 0.04,
                                         this.player.getCoin());
-        this.canvas.drawBarToCanvas(this.canvas.getWidth()*0.9,
+        this.canvas.drawBarstoCanvas(   this.canvas.getWidth()*0.9,
                                         this.canvas.getHeight()*0.05,
-                                        100,
                                         this.player.getHunger(),
-                                        20,
-                                        "black",
-                                        "green",
-                                        "black",
-                                        "Hunger:",
-                                        20);
-            this.canvas.drawBarToCanvas(this.canvas.getWidth()*0.9,
-                                        this.canvas.getHeight()*0.1,
-                                        100,
                                         this.player.getEnergy(),
-                                        20,
-                                        "black",
-                                        "red",
-                                        "black",
-                                        "Energy:",
-                                        20);
-            this.canvas.drawBarToCanvas(this.canvas.getWidth()*0.9,
-                                        this.canvas.getHeight()*0.15,
-                                        100,
                                         this.player.getMood(),
-                                        20,
-                                        "black",
-                                        "orange",
-                                        "black",
-                                        "Mood:",
-                                        20);
-            this.canvas.drawBarToCanvas(this.canvas.getWidth()*0.9,
-                                        this.canvas.getHeight()*0.2,
-                                        100,
-                                        this.player.getHealth(),
-                                        20,
-                                        "black",
-                                        "red",
-                                        "black",
-                                        "Health:",
-                                        20);
-            this.canvas.drawButtonToCanvas( "./assets/Icons/ButtonsFREE/Play.png",
-                                            this.canvas.getWidth()*0.5,
-                                            this.canvas.getHeight()*0.9,
-                                            200,
-                                            100,
-                                            (event: MouseEvent) => {
+                                        this.player.getHealth())
+        this.canvas.drawTextButtonToCanvas( "./assets/Icons/ButtonsFREE/PlayBlank.png",
+                                        "Work",
+                                        this.canvas.getWidth()*0.5 - (this.canvas.getWidth() * 0.1)/2,
+                                        this.canvas.getHeight()*0.9 - (this.canvas.getHeight() * 0.1)/2,
+                                        this.canvas.getWidth() * 0.1,
+                                        this.canvas.getHeight() * 0.1,
+                                        () => {
+                                            if (this.player.getEnergy() >= 5) {
                                                 this.player.setCoin(this.player.getCoin() + 5)
-                                            });
+                                                this.player.setEnergy(this.player.getEnergy() - 5)
+                                            };
+                                            this.mouseListener.setHasBeenClicked()
+                                        });
         };
     };
