@@ -18,7 +18,7 @@ class SchoolView extends BaseView {
                                         0,
                                         this.canvas.getWidth(),
                                         this.canvas.getHeight());
-        this.canvas.drawButtonToCanvas(  "./assets/Icons/ButtonsFREE/Home.png",
+        this.canvas.drawButtonToCanvas(  "./Assets/Icons/ButtonsFREE/Home.png",
                                         this.canvas.getWidth() * 0.05,
                                         this.canvas.getHeight() * 0.05,
                                         this.canvas.getWidth() * 0.025,
@@ -28,7 +28,7 @@ class SchoolView extends BaseView {
                                             this.mouseListener.setHasBeenClicked()
                                         });
         
-        this.canvas.drawTextButtonToCanvas( "./assets/Icons/ButtonsFREE/PlayBlank.png",
+        this.canvas.drawTextButtonToCanvas( "./Assets/Icons/ButtonsFREE/PlayBlank.png",
                                             "Play",
                                             this.canvas.getWidth()*0.65 - (this.canvas.getWidth() * 0.1)/2,
                                             this.canvas.getHeight()*0.46 - (this.canvas.getHeight() * 0.1)/2,

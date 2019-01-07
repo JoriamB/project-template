@@ -21,7 +21,7 @@ class StoreView extends BaseView {
                                         0,
                                         this.canvas.getWidth(),
                                         this.canvas.getHeight());
-        this.canvas.drawButtonToCanvas(  "./assets/Icons/ButtonsFREE/Home.png",
+        this.canvas.drawButtonToCanvas(  "./Assets/Icons/ButtonsFREE/Home.png",
                                         this.canvas.getWidth() * 0.05,
                                         this.canvas.getHeight() * 0.05,
                                         this.canvas.getWidth() * 0.025,
@@ -39,7 +39,7 @@ class StoreView extends BaseView {
                                         this.player.getEnergy(),
                                         this.player.getMood(),
                                         this.player.getHealth())
-        this.canvas.drawTextButtonToCanvas( "./assets/Icons/ButtonsFREE/PlayBlank.png",
+        this.canvas.drawTextButtonToCanvas( "./Assets/Icons/ButtonsFREE/PlayBlank.png",
                                         "Work",
                                         this.canvas.getWidth()*0.5 - (this.canvas.getWidth() * 0.1)/2,
                                         this.canvas.getHeight()*0.9 - (this.canvas.getHeight() * 0.1)/2,

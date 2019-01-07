@@ -15,7 +15,7 @@ class MathQuest extends BaseView{
                                         0,
                                         this.canvas.getWidth(),
                                         this.canvas.getHeight());
-        this.canvas.drawButtonToCanvas( "./assets/Icons/ButtonsFREE/Home.png",
+        this.canvas.drawButtonToCanvas( "./Assets/Icons/ButtonsFREE/Home.png",
                                         this.canvas.getWidth() * 0.05,
                                         this.canvas.getHeight() * 0.05,
                                         this.canvas.getWidth() * 0.025,
@@ -48,7 +48,7 @@ class MathQuest extends BaseView{
                                         this.canvas.getWidth() * 0.2,
                                         this.canvas.getHeight() * 0.15)
         };
-        this.canvas.drawTextButtonToCanvas( "./assets/Icons/ButtonsFREE/PlayBlank.png",
+        this.canvas.drawTextButtonToCanvas( "./Assets/Icons/ButtonsFREE/PlayBlank.png",
                                             this.getCurrentQuestion().Answer,
                                             this.canvas.getWidth()*0.35 - (this.canvas.getWidth() * 0.2)/2,
                                             this.canvas.getHeight()*0.6 - (this.canvas.getHeight() * 0.075)/2,
@@ -63,7 +63,7 @@ class MathQuest extends BaseView{
                                                 console.log("Probeer het opnieuw.");
                                                 };
                                                 this.mouseListener.setHasBeenClicked()});
-        this.canvas.drawTextButtonToCanvas( "./assets/Icons/ButtonsFREE/PlayBlank.png",
+        this.canvas.drawTextButtonToCanvas( "./Assets/Icons/ButtonsFREE/PlayBlank.png",
                                             this.getCurrentQuestion().Answer1,
                                             this.canvas.getWidth()*0.65 - (this.canvas.getWidth() * 0.2)/2,
                                             this.canvas.getHeight()*0.6 - (this.canvas.getHeight() * 0.075)/2,
@@ -78,7 +78,7 @@ class MathQuest extends BaseView{
                                                     console.log("Probeer het opnieuw.");
                                                 };
                                                 this.mouseListener.setHasBeenClicked()});
-        this.canvas.drawTextButtonToCanvas( "./assets/Icons/ButtonsFREE/PlayBlank.png",
+        this.canvas.drawTextButtonToCanvas( "./Assets/Icons/ButtonsFREE/PlayBlank.png",
                                             this.getCurrentQuestion().Answer2,
                                             this.canvas.getWidth()*0.35 - (this.canvas.getWidth() * 0.2)/2,
                                             this.canvas.getHeight()*0.75 - (this.canvas.getHeight() * 0.075)/2,
@@ -93,7 +93,7 @@ class MathQuest extends BaseView{
                                                     console.log("Probeer het opnieuw.");
                                                 };
                                                 this.mouseListener.setHasBeenClicked()});
-        this.canvas.drawTextButtonToCanvas( "./assets/Icons/ButtonsFREE/PlayBlank.png",
+        this.canvas.drawTextButtonToCanvas( "./Assets/Icons/ButtonsFREE/PlayBlank.png",
                                             this.getCurrentQuestion().Answer3,
                                             this.canvas.getWidth()*0.65 - (this.canvas.getWidth() * 0.2)/2,
                                             this.canvas.getHeight()*0.75 - (this.canvas.getHeight() * 0.075)/2,
