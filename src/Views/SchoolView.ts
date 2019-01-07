@@ -29,15 +29,18 @@ class SchoolView extends BaseView {
                                         });
         
         this.canvas.drawTextButtonToCanvas( "./assets/Icons/ButtonsFREE/PlayBlank.png",
-                                        "Play",
-                                        this.canvas.getWidth()*0.65 - (this.canvas.getWidth() * 0.1)/2,
-                                        this.canvas.getHeight()*0.46 - (this.canvas.getHeight() * 0.1)/2,
-                                        this.canvas.getWidth() * 0.1,
-                                        this.canvas.getHeight() * 0.075, () => {
-                                            this.player.setLocation("Question");
-                                            this.mouseListener.setHasBeenClicked()
-                                         
-                                        });
+                                            "Play",
+                                            this.canvas.getWidth()*0.65 - (this.canvas.getWidth() * 0.1)/2,
+                                            this.canvas.getHeight()*0.46 - (this.canvas.getHeight() * 0.1)/2,
+                                            this.canvas.getWidth() * 0.1,
+                                            this.canvas.getHeight() * 0.075,
+                                            () => {
+                                                if (this.player.getEnergy() >= 15&&
+                                                    this.player.getHunger() >= 30) {
+                                                this.player.setLocation("Question");
+                                                };
+                                                this.mouseListener.setHasBeenClicked();
+                                            });
 
 
         this.canvas.drawCoinToCanvas(   this.canvas.getWidth()/2,

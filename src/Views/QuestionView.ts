@@ -1,6 +1,6 @@
 class  QuestionView extends BaseView{
 
-    private geography : Geography
+    private geographyquest : GeographyQuest
     private mathquest: MathQuest
     private historyquest: HistoryQuest
     
@@ -8,11 +8,11 @@ class  QuestionView extends BaseView{
         canvas : Canvas,
         player : Player,
         mouseListener : MouseHelper,
-        geography : Geography,
+        geographyquest : GeographyQuest,
         mathquest: MathQuest,
         historyquest:HistoryQuest,) {
 super(src, canvas, player, mouseListener);
-this.geography = geography;
+this.geographyquest = geographyquest;
 this.mathquest = mathquest;
 this.historyquest = historyquest
 };
@@ -53,29 +53,28 @@ public draw = () => {
                                         this.canvas.getHeight()*0.49 - (this.canvas.getHeight() * 0.1)/2,
                                         this.canvas.getWidth() * 0.1,
                                         this.canvas.getHeight() * 0.075, () => {
+                                            this.mathquest.setCurrentQuestion(this.mathquest.MathArray[MathHelper.randomNumber(0, this.mathquest.MathArray.length - 1)]);
                                             this.player.setLocation("Math");
                                             this.mouseListener.setHasBeenClicked()})
-
     this.canvas.drawTextButtonToCanvas( "./assets/Icons/ButtonsFREE/PlayBlank.png",
-                                                "History",
-                                                this.canvas.getWidth()*0.65 - (this.canvas.getWidth() * 0.1)/2,
-                                                this.canvas.getHeight()*0.49 - (this.canvas.getHeight() * 0.1)/2,
-                                                this.canvas.getWidth() * 0.1,
-                                                this.canvas.getHeight() * 0.075, () => {
-                                                    this.player.setLocation("History");
-                                                    this.mouseListener.setHasBeenClicked()})
+                                        "History",
+                                        this.canvas.getWidth()*0.65 - (this.canvas.getWidth() * 0.1)/2,
+                                        this.canvas.getHeight()*0.49 - (this.canvas.getHeight() * 0.1)/2,
+                                        this.canvas.getWidth() * 0.1,
+                                        this.canvas.getHeight() * 0.075, () => {
+                                            this.historyquest.setCurrentQuestion(this.historyquest.HistoryArray[MathHelper.randomNumber(0, this.historyquest.HistoryArray.length - 1)]);
+                                            this.player.setLocation("History");
+                                            this.mouseListener.setHasBeenClicked()})
     this.canvas.drawTextButtonToCanvas( "./assets/Icons/ButtonsFREE/PlayBlank.png",
-                                   "Geography",
-                                 this.canvas.getWidth()*0.45 - (this.canvas.getWidth() * 0.1)/2,
-                                 this.canvas.getHeight()*0.49 - (this.canvas.getHeight() * 0.1)/2,
-                                 this.canvas.getWidth() * 0.1,
-                                 this.canvas.getHeight() * 0.075, () => {
-                                 this.geography.printQuestions()
-                                 this.player.setCurrentQuestion(this.geography.QuestArray[MathHelper.randomNumber(0, this.geography.QuestArray.length)])
-                                 this.player.setLocation("Geography");
-                                 this.mouseListener.setHasBeenClicked()})
-
-     
+                                        "Geography",
+                                        this.canvas.getWidth()*0.45 - (this.canvas.getWidth() * 0.1)/2,
+                                        this.canvas.getHeight()*0.49 - (this.canvas.getHeight() * 0.1)/2,
+                                        this.canvas.getWidth() * 0.1,
+                                        this.canvas.getHeight() * 0.075,
+                                        () => {
+                                            this.geographyquest.setCurrentQuestion(this.geographyquest.GeoArray[MathHelper.randomNumber(0, this.geographyquest.GeoArray.length - 1)]);
+                                            this.player.setLocation("Geography");
+                                            this.mouseListener.setHasBeenClicked()});
 };
 
 }

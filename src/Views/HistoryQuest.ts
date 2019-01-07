@@ -1,4 +1,4 @@
-class MathQuest extends BaseView{
+class HistoryQuest extends BaseView {
 
     private currentQuestion : currentQuestion;
 
@@ -7,7 +7,6 @@ class MathQuest extends BaseView{
                         player : Player,
                         mouseListener : MouseHelper) {
         super(src, canvas, player, mouseListener);
-        this.currentQuestion = this.MathArray[0];
     }
     public draw = () => {
         this.canvas.drawImageToCanvas(  this.src,
@@ -34,7 +33,7 @@ class MathQuest extends BaseView{
                                         this.player.getEnergy(),
                                         this.player.getMood(),
                                         this.player.getHealth())
-                                        this.canvas.drawTextToCanvas(   "center",
+        this.canvas.drawTextToCanvas(   "center",
                                         20,
                                         "Minecraft",
                                         "White",
@@ -56,7 +55,7 @@ class MathQuest extends BaseView{
                                             this.canvas.getHeight() * 0.075,
                                             () => {
                                                 if (this.getCurrentQuestion().Answer == this.getCurrentQuestion().RightAnswer) {
-                                                    this.setCurrentQuestion(this.MathArray[MathHelper.randomNumber(0, this.MathArray.length - 1)]);
+                                                    this.setCurrentQuestion(this.HistoryArray[MathHelper.randomNumber(0, this.HistoryArray.length - 1)]);
                                                     console.log("Goed Gedaan!");
                                                 }
                                                 else {
@@ -71,7 +70,7 @@ class MathQuest extends BaseView{
                                             this.canvas.getHeight() * 0.075,
                                             () => {
                                                 if (this.getCurrentQuestion().Answer1 == this.getCurrentQuestion().RightAnswer) {
-                                                    this.setCurrentQuestion(this.MathArray[MathHelper.randomNumber(0, this.MathArray.length - 1)]);
+                                                    this.setCurrentQuestion(this.HistoryArray[MathHelper.randomNumber(0, this.HistoryArray.length - 1)]);
                                                     console.log("Goed Gedaan!");
                                                 }
                                                 else {
@@ -86,7 +85,7 @@ class MathQuest extends BaseView{
                                             this.canvas.getHeight() * 0.075,
                                             () => {
                                                 if (this.getCurrentQuestion().Answer2 == this.getCurrentQuestion().RightAnswer) {
-                                                    this.setCurrentQuestion(this.MathArray[MathHelper.randomNumber(0, this.MathArray.length - 1)]);
+                                                    this.setCurrentQuestion(this.HistoryArray[MathHelper.randomNumber(0, this.HistoryArray.length - 1)]);
                                                     console.log("Goed Gedaan!");
                                                 }
                                                 else {
@@ -101,77 +100,24 @@ class MathQuest extends BaseView{
                                             this.canvas.getHeight() * 0.075,
                                             () => {
                                                 if (this.getCurrentQuestion().Answer3 == this.getCurrentQuestion().RightAnswer) {
-                                                    this.setCurrentQuestion(this.MathArray[MathHelper.randomNumber(0, this.MathArray.length - 1)]);
+                                                    this.setCurrentQuestion(this.HistoryArray[MathHelper.randomNumber(0, this.HistoryArray.length - 1)]);
                                                     console.log("Goed Gedaan!");
                                                 }
                                                 else {
                                                     console.log("Probeer het opnieuw.");
                                                 };
-                                                this.mouseListener.setHasBeenClicked()});                       
+                                                this.mouseListener.setHasBeenClicked()});
     };
 
-    MathArray = [{
+    HistoryArray = [{
         ImgSrc: "",
-        Question:"0,4 miljoen kun je ook schrijven als?",
-        Answer:"400.00",
-        Answer1:"4 duizend",
-        Answer2:"40 duizend",
-        Answer3:"400.000",
-        RightAnswer:"400.000"
-    },
-    {
-        ImgSrc: "",
-        Question:"8,3 miljard is 8 miljard en ...?",
-        Answer:"30.000",
-        Answer1:"300.000",
-        Answer2:"300.000.000",
-        Answer3:"300.000.000.000",
-        RightAnswer:"300.000.000"
-    },
-    {
-        ImgSrc: "",
-        Question:"Hoeveel is een half miljoen?",
-        Answer:"50.000",
-        Answer1:"500.000",
-        Answer2:"5000.000",
-        Answer3:"5000",
-        RightAnswer:"500.000"
-    },
-    {
-        ImgSrc: "",
-        Question:"Hoeveel is 0,8 miljoen?",
-        Answer:"80.000",
-        Answer1:"800.000",
-        Answer2:"8.000.000",
-        Answer3:"8000",
-        RightAnswer:"800.000"
-    },
-    {
-        ImgSrc: "",
-        Question:"Hoeveel is honderdduizend?",
-        Answer:"10.000",
-        Answer1:"100.000",
-        Answer2:"1000.000",
-        Answer3:"1000.00",
-        RightAnswer:"100.000"
-    },
-    {
-        ImgSrc: "",
-        Question:"2,8 miljoen kun je ook schrijven als...?",
-        Answer:"50.000",
-        Answer1:"500.000",
-        Answer2:"5000.000",
-        Answer3:"5000",
-        RightAnswer:"500.00"
-    },
-    {
-        ImgSrc: "",
-        Question:"Hoeveel is een half miljoen?",
-        Answer:"50.000",
-        Answer1:"500.000",
-        Answer2:"5000.000",
-        Answer3:"5000",
-        RightAnswer:"500.00"}];
+        Question: "Hoeveel inwoners heeft Europa?",
+        Answer: " 741.1 miljoen",
+        Answer1: "1 miljard",
+        Answer2: " 884.6miljoen",
+        Answer3: "1,3 miljard",
+        RightAnswer: "741.1 miljoen"
+    }];
 
     /**
      * @param currentQuestion
@@ -191,4 +137,4 @@ class MathQuest extends BaseView{
     public getCurrentQuestion () : currentQuestion {
         return this.currentQuestion;
     };
-}
+};
