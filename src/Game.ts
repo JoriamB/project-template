@@ -34,9 +34,14 @@ class Game {
                                     this.canvas.getCenter().Y,
                                     this.canvas.getWidth() * 0.025,
                                     this.canvas.getHeight() * 0.05,
+<<<<<<< HEAD
                                     "School",
                                     10000,
                                     this.geography.QuestArray[0]);
+=======
+                                    "Map",
+                                    10000);
+>>>>>>> 5977309fb47161b9208108f9a3057fe4369fbfb1
         this.park = new ParkView(   "./assets/Backgrounds/park.jpg",
                                     this.canvas,
                                     this.player,
@@ -57,7 +62,7 @@ class Game {
                                     this.canvas,
                                     this.player,
                                     this.mouseListener);
-        this.restaurant = new RestaurantView(   "./assets/Backgrounds/Restaurant2.jpg",
+        this.restaurant = new RestaurantView(   "./assets/Backgrounds/Restaurant3.jpg",
                                                 this.canvas,
                                                 this.player,
                                                 this.mouseListener);

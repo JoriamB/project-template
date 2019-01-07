@@ -1,3 +1,5 @@
+/// <reference path="../src/Helpers/KeyboardHelper.ts"/>
+
 class Player {
     private src : string;
     private canvas : Canvas;
@@ -42,6 +44,7 @@ class Player {
         this.hunger = hunger;
         this.energy = energy;
         this.mood = mood;
+        
         this.xPos = xPos;
         this.yPos = yPos;
         this.width = width;
@@ -50,6 +53,12 @@ class Player {
         this.coin = coin;
         this.currentQuestion = currentQuestion;
     };
+
+    protected updateCoins () {
+        // Change current value of coins
+        //if worked in store --> ++
+        //if spend in store --> --
+    }
 
     /**
      * @access public

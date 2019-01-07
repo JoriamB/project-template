@@ -154,13 +154,17 @@ class Game {
         this.mathHelper = new MathHelper();
         this.mouseListener = new MouseHelper(false, false);
         this.canvas = new Canvas(document.getElementById("canvas"), this.mouseListener);
+<<<<<<< HEAD
         this.player = new Player("./Assets/Female/Poses/female_slide.png", this.canvas, 5, 20, 80, 100, 60, this.canvas.getCenter().X, this.canvas.getCenter().Y, this.canvas.getWidth() * 0.025, this.canvas.getHeight() * 0.05, "School", 10000, "");
+=======
+        this.player = new Player("./Assets/Female/Poses/female_slide.png", this.canvas, 5, 20, 80, 100, 60, this.canvas.getCenter().X, this.canvas.getCenter().Y, this.canvas.getWidth() * 0.025, this.canvas.getHeight() * 0.05, "Map", 10000);
+>>>>>>> 5977309fb47161b9208108f9a3057fe4369fbfb1
         this.park = new ParkView("./assets/Backgrounds/park.jpg", this.canvas, this.player, this.mouseListener);
         this.hospital = new HospitalView("./assets/Backgrounds/hospital.jpg", this.canvas, this.player, this.mouseListener);
         this.house = new HouseView("./assets/Backgrounds/House.png", this.canvas, this.player, this.mouseListener);
         this.school = new SchoolView("./assets/Backgrounds/classroom2.jpg", this.canvas, this.player, this.mouseListener);
         this.store = new StoreView("./assets/Backgrounds/Store.jpg", this.canvas, this.player, this.mouseListener);
-        this.restaurant = new RestaurantView("./assets/Backgrounds/Restaurant2.jpg", this.canvas, this.player, this.mouseListener);
+        this.restaurant = new RestaurantView("./assets/Backgrounds/Restaurant3.jpg", this.canvas, this.player, this.mouseListener);
         this.map = new MapView("./assets/map/mapleeg.png", this.canvas, this.player, this.mouseListener);
         this.soccer = new SoccerView("./assets/FootballGame/background.jpg", this.canvas, this.player, this.mouseListener);
         this.beach = new BeachView("./assets/Backgrounds/beach.jpg", this.canvas, this.player, this.mouseListener);
@@ -761,6 +765,20 @@ class HouseView extends BaseView {
             });
             this.canvas.drawCoinToCanvas(this.canvas.getWidth() / 2, this.canvas.getHeight() * 0.04, this.player.getCoin());
             this.canvas.drawBarstoCanvas(this.canvas.getWidth() * 0.9, this.canvas.getHeight() * 0.05, this.player.getHunger(), this.player.getEnergy(), this.player.getMood(), this.player.getHealth());
+            this.canvas.drawTextButtonToCanvas("./assets/Icons/ButtonsFREE/PlayBlank.png", "Sleep", this.canvas.getWidth() * 0.5 - (this.canvas.getWidth() * 0.1) / 2, this.canvas.getHeight() * 0.9 - (this.canvas.getHeight() * 0.1) / 2, this.canvas.getWidth() * 0.1, this.canvas.getHeight() * 0.1, () => {
+                if (this.player.getHunger() >= 15 &&
+                    this.player.getEnergy() < 80) {
+                    this.player.setHunger(this.player.getHunger() - 3);
+                    this.player.setEnergy(this.player.getEnergy() + 20);
+                }
+                else if (this.player.getHunger() >= 15 &&
+                    this.player.getEnergy() < 100) {
+                    this.player.setHunger(this.player.getHunger() - 3);
+                    this.player.setEnergy(100);
+                }
+                ;
+                this.mouseListener.setHasBeenClicked();
+            });
         };
     }
     ;
@@ -940,6 +958,20 @@ class RestaurantView extends BaseView {
             });
             this.canvas.drawCoinToCanvas(this.canvas.getWidth() / 2, this.canvas.getHeight() * 0.04, this.player.getCoin());
             this.canvas.drawBarstoCanvas(this.canvas.getWidth() * 0.9, this.canvas.getHeight() * 0.05, this.player.getHunger(), this.player.getEnergy(), this.player.getMood(), this.player.getHealth());
+            this.canvas.drawTextButtonToCanvas("./assets/Icons/ButtonsFREE/PlayBlank.png", "Eat", this.canvas.getWidth() * 0.5 - (this.canvas.getWidth() * 0.1) / 2, this.canvas.getHeight() * 0.9 - (this.canvas.getHeight() * 0.1) / 2, this.canvas.getWidth() * 0.1, this.canvas.getHeight() * 0.1, () => {
+                if (this.player.getCoin() >= 15 &&
+                    this.player.getHunger() < 80) {
+                    this.player.setCoin(this.player.getCoin() - 15);
+                    this.player.setHunger(this.player.getHunger() + 20);
+                }
+                else if (this.player.getCoin() >= 15 &&
+                    this.player.getHunger() < 100) {
+                    this.player.setCoin(this.player.getCoin() - 15);
+                    this.player.setHunger(100);
+                }
+                ;
+                this.mouseListener.setHasBeenClicked();
+            });
         };
     }
     ;
