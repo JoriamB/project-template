@@ -24,12 +24,12 @@ class Game {
                                     20,
                                     80,
                                     100,
-                                    100,
+                                    60,
                                     this.canvas.getCenter().X,
                                     this.canvas.getCenter().Y,
                                     this.canvas.getWidth() * 0.025,
                                     this.canvas.getHeight() * 0.05,
-                                    "School",
+                                    "Map",
                                     10000);
         this.park = new ParkView(   "./assets/Backgrounds/park.jpg",
                                     this.canvas,
@@ -51,7 +51,7 @@ class Game {
                                     this.canvas,
                                     this.player,
                                     this.mouseListener);
-        this.restaurant = new RestaurantView(   "./assets/Backgrounds/Restaurant2.jpg",
+        this.restaurant = new RestaurantView(   "./assets/Backgrounds/Restaurant3.jpg",
                                                 this.canvas,
                                                 this.player,
                                                 this.mouseListener);
@@ -77,6 +77,11 @@ class Game {
                                           this.mouseListener);
     };
 
+    /**
+     * @access public
+     * @method
+     * main draw method for the game
+     */
     public draw = () => {
         this.canvas.clear();
         this.player.updatePlayer();
@@ -120,8 +125,13 @@ class Game {
     };
 };
 
-
 window.addEventListener("load", init);
+
+/**
+ * @access public
+ * @function
+ * Function to initialise the game
+ */
 function init () : void {
     const LudosMundi = new Game();                                                            
     window.requestAnimationFrame(LudosMundi.draw);
