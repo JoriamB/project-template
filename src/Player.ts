@@ -15,7 +15,6 @@ class Player {
     private height : number;
     private location : string;
     private coin : number;
-    private currentQuestion: Object;
 
     public constructor (src : string,
                         canvas : Canvas,
@@ -29,8 +28,7 @@ class Player {
                         width : number,
                         height : number,
                         location : string,
-                        coin : number,
-                        currentQuestion: Object) {
+                        coin : number) {
         this.keyboardListener = new KeyboardHelper(false,
                                                     false,
                                                     false,
@@ -51,7 +49,6 @@ class Player {
         this.height = height;
         this.location = location;
         this.coin = coin;
-        this.currentQuestion = currentQuestion;
     };
 
     protected updateCoins () {
@@ -256,12 +253,4 @@ class Player {
     public setCoin (coin : number) : void {
         this.coin = coin;
     };
-
-    public setCurrentQuestion(currentQuestion:Object){
-        this.currentQuestion = currentQuestion;
-    }
-
-    public getCurrentQuestion() : Object {
-        return this.currentQuestion;
-    }
 };

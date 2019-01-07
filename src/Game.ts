@@ -14,7 +14,7 @@ class Game {
     private beach: SoccerView;
     private fishing: FishingView;
     private question: QuestionView;
-    private geography: Geography;
+    private geographyquest: GeographyQuest;
     private mathquest: MathQuest;
     private historyquest: HistoryQuest;
 
@@ -34,14 +34,8 @@ class Game {
                                     this.canvas.getCenter().Y,
                                     this.canvas.getWidth() * 0.025,
                                     this.canvas.getHeight() * 0.05,
-<<<<<<< HEAD
-                                    "School",
-                                    10000,
-                                    this.geography.QuestArray[0]);
-=======
-                                    "Map",
+                                    "Question",
                                     10000);
->>>>>>> 5977309fb47161b9208108f9a3057fe4369fbfb1
         this.park = new ParkView(   "./assets/Backgrounds/park.jpg",
                                     this.canvas,
                                     this.player,
@@ -82,25 +76,23 @@ class Game {
                                         this.canvas,
                                         this.player,
                                         this.mouseListener);
-        this.geography = new Geography( "./assets/Backgrounds/Question.png",
+        this.geographyquest = new GeographyQuest( "./assets/Backgrounds/Question.png",
                                         this.canvas,
                                         this.player,
                                         this.mouseListener)  
         this.mathquest = new MathQuest( "./assets/Backgrounds/Question.png",
                                         this.canvas,
                                         this.player,
-                                        this.mouseListener,
-                                        this.mathHelper,);
+                                        this.mouseListener);
         this.historyquest = new HistoryQuest( "./assets/Backgrounds/Question.png",
                                         this.canvas,
                                         this.player,
-                                        this.mouseListener,
-                                        this.mathHelper,)                                                                    
+                                        this.mouseListener)                                                                    
         this.question = new QuestionView("./assets/Backgrounds/Question.png",
                                           this.canvas,
                                           this.player,
                                           this.mouseListener,
-                                          this.geography,
+                                          this.geographyquest,
                                           this.mathquest,
                                           this.historyquest);
     };
@@ -146,7 +138,7 @@ class Game {
             this.question.draw();
             break; 
             case "Geography":
-            this.geography.draw();
+            this.geographyquest.draw();
             break;
             case "Math":
             this.mathquest.draw();
