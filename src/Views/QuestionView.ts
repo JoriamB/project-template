@@ -1,10 +1,20 @@
 class  QuestionView extends BaseView{
+
+    private geography : Geography
+    private mathquest: MathQuest
+    private historyquest: HistoryQuest
     
     public constructor (src : string,
         canvas : Canvas,
         player : Player,
-        mouseListener : MouseHelper) {
+        mouseListener : MouseHelper,
+        geography : Geography,
+        mathquest: MathQuest,
+        historyquest:HistoryQuest,) {
 super(src, canvas, player, mouseListener);
+this.geography = geography;
+this.mathquest = mathquest;
+this.historyquest = historyquest
 };
 
 /**
@@ -43,7 +53,7 @@ public draw = () => {
                                         this.canvas.getHeight()*0.49 - (this.canvas.getHeight() * 0.1)/2,
                                         this.canvas.getWidth() * 0.1,
                                         this.canvas.getHeight() * 0.075, () => {
-                                            this.player.setLocation("Question");
+                                            this.player.setLocation("Math");
                                             this.mouseListener.setHasBeenClicked()})
 
     this.canvas.drawTextButtonToCanvas( "./assets/Icons/ButtonsFREE/PlayBlank.png",
@@ -52,18 +62,19 @@ public draw = () => {
                                                 this.canvas.getHeight()*0.49 - (this.canvas.getHeight() * 0.1)/2,
                                                 this.canvas.getWidth() * 0.1,
                                                 this.canvas.getHeight() * 0.075, () => {
-                                                    this.player.setLocation("Question");
+                                                    this.player.setLocation("History");
                                                     this.mouseListener.setHasBeenClicked()})
-    this.canvas.drawButtonToCanvas( "./assets/QuestionAK/populationDensity.png",
-                                    this.canvas.getWidth() * 0.45,
-                                    this.canvas.getHeight() * 0.45,
-                                    this.canvas.getWidth() * 0.1,
-                                    this.canvas.getHeight() * 0.135,
-                                    () => {
-                                        this.player.setEnergy(this.player.getEnergy()-15),
-                                        this.player.setHunger(this.player.getHunger()-30)
-                                        this.player.setLocation("School");
-                                        this.mouseListener.setHasBeenClicked()});
+    this.canvas.drawTextButtonToCanvas( "./assets/Icons/ButtonsFREE/PlayBlank.png",
+                                   "Geography",
+                                 this.canvas.getWidth()*0.45 - (this.canvas.getWidth() * 0.1)/2,
+                                 this.canvas.getHeight()*0.49 - (this.canvas.getHeight() * 0.1)/2,
+                                 this.canvas.getWidth() * 0.1,
+                                 this.canvas.getHeight() * 0.075, () => {
+                                 this.geography.printQuestions()
+                                 this.player.setCurrentQuestion(this.geography.QuestArray[MathHelper.randomNumber(0, this.geography.QuestArray.length)])
+                                 this.player.setLocation("Geography");
+                                 this.mouseListener.setHasBeenClicked()})
+
      
 };
 
