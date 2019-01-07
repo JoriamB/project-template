@@ -6,7 +6,7 @@ class MathHelper {
      * @method
      * Method to return a random number between min and max
      */
-    public randomNumber (min : number, max : number) {
+    public static randomNumber (min : number, max : number) {
         return Math.round(Math.random() * (max - min) + min)
     };
 };
