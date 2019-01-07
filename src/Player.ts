@@ -1,5 +1,7 @@
+/// <reference path="../src/Helpers/KeyboardHelper.ts"/>
+
 class Player {
-    src : string;
+    private src : string;
     private canvas : Canvas;
     private keyboardListener : KeyboardHelper;
     private speed : number;
@@ -11,6 +13,8 @@ class Player {
     private yPos : number;
     private width : number;
     private height : number;
+    private location : string;
+    private coin : number;
 
     public constructor (src : string,
                         canvas : Canvas,
@@ -22,7 +26,9 @@ class Player {
                         xPos : number,
                         yPos : number,
                         width : number,
-                        height : number) {
+                        height : number,
+                        location : string,
+                        coin : number) {
         this.keyboardListener = new KeyboardHelper(false,
                                                     false,
                                                     false,
@@ -36,51 +42,71 @@ class Player {
         this.hunger = hunger;
         this.energy = energy;
         this.mood = mood;
+        
         this.xPos = xPos;
         this.yPos = yPos;
         this.width = width;
         this.height = height;
+        this.location = location;
+        this.coin = coin;
     };
 
+    protected updateCoins () {
+        // Change current value of coins
+        //if worked in store --> ++
+        //if spend in store --> --
+    }
+
+    /**
+     * @access public
+     * @method
+     * method to change the player position
+     */
     public move () {
         if (this.keyboardListener.leftPressed ||
             this.keyboardListener.rightPressed ||
             this.keyboardListener.upPressed ||
             this.keyboardListener.downPressed)
             {
-                if (this.keyboardListener.leftPressed)
+                if (this.keyboardListener.leftPressed) {
                     this.xPos -= this.speed;
-                else if (this.keyboardListener.rightPressed)
+                }
+                else if (this.keyboardListener.rightPressed) {
                     this.xPos += this.speed;
-                else if (this.keyboardListener.upPressed)
+                }
+                else if (this.keyboardListener.upPressed) {
                     this.yPos -= this.speed;
-                else if (this.keyboardListener.downPressed)
+                }
+                else if (this.keyboardListener.downPressed) {
                     this.yPos += this.speed;
+                }
                 //Left
                 if (this.xPos < 0) {
                     this.xPos = 0
-                }
+                };
                 //Right
                 if (this.xPos + this.width > this.canvas.getWidth()) {
                     this.xPos = this.canvas.getWidth() - this.width;
-                }
+                };
                 //Down
                 if (this.yPos + this.height > this.canvas.getHeight()) {
                     this.yPos = this.canvas.getHeight() - this.height;
-                }
+                };
                 //Up
                 if (this.yPos < 0) {
                     this.yPos = 0
-                }
-            }
+                };
+            };
     };
 
-    public isColliding () {
-
+    public updatePlayer () : void {
+        this.width = this.canvas.getWidth() * 0.025;
+        this.height = this.canvas.getHeight() * 0.05;
     };
 
     /**
      * @access public
+     * @method
      * Method for returning health
      */
     public getHealth () : number {
@@ -88,7 +114,18 @@ class Player {
     };
 
     /**
+     * @param amount
      * @access public
+     * @method
+     * Method for setting health
+     */
+    public setHealth (amount : number) : void {
+        this.health = amount;
+    };
+
+    /**
+     * @access public
+     * @method
      * Method for returning hunger
      */
     public getHunger () : number {
@@ -96,7 +133,18 @@ class Player {
     };
 
     /**
+     * @param amount
      * @access public
+     * @method
+     * Method for setting hunger
+     */
+    public setHunger (amount : number) : void {
+        this.hunger = amount;
+    };
+
+    /**
+     * @access public
+     * @method
      * Method for returning energy
      */
     public getEnergy () : number {
@@ -104,26 +152,105 @@ class Player {
     };
 
     /**
+     * @param amount
      * @access public
+     * @method
+     * Method for setting energy
+     */
+    public setEnergy (amount : number) : void {
+        this.energy = amount;
+    };
+
+    /**
+     * @access public
+     * @method
      * Method for returning mood
      */
     public getMood () : number {
         return this.mood;
     };
 
+    /**
+     * @param amount
+     * @access public
+     * @method
+     * Method for setting mood
+     */
+    public setMood (amount : number) : void {
+        this.mood = amount;
+    };
+
+    /**
+     * @access public
+     * @method
+     * Method for returning x position
+     */
     public getX () : number {
         return this.xPos
     }
 
+    /**
+     * @access public
+     * @method
+     * Method for returning y position
+     */
     public getY () : number {
         return this.yPos
     }
 
+    /**
+     * @access public
+     * @method
+     * Method for returning width
+     */
     public getWidth () : number {
         return this.width;
     }
 
+    /**
+     * @access public
+     * @method
+     * Method for returning height
+     */
     public getHeight () : number {
         return this.height;
     }
+
+    /**
+     * @access public
+     * @method
+     * Method for returning location
+     */
+    public getLocation () : string {
+        return this.location;
+    }
+
+    /**
+     * @param amount
+     * @access public
+     * @method
+     * Method for setting location
+     */
+    public setLocation (location : string) : void {
+        this.location = location;
+    }
+
+    /**
+     * @access public
+     * @method
+     * Method for returning coin amount
+     */
+    public getCoin () : number {
+        return this.coin
+    };
+
+    /**
+     * @param amount
+     * @access public
+     * @method
+     * Method for setting coin amount
+     */
+    public setCoin (coin : number) : void {
+        this.coin = coin;
+    };
 };
