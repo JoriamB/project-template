@@ -15,7 +15,7 @@ class GeographyQuest extends BaseView {
                                         0,
                                         this.canvas.getWidth(),
                                         this.canvas.getHeight());
-        this.canvas.drawButtonToCanvas( "./assets/Icons/ButtonsFREE/Home.png",
+        this.canvas.drawButtonToCanvas( "./Assets/Icons/ButtonsFREE/Home.png",
                                         this.canvas.getWidth() * 0.05,
                                         this.canvas.getHeight() * 0.05,
                                         this.canvas.getWidth() * 0.025,
@@ -48,7 +48,7 @@ class GeographyQuest extends BaseView {
                                         this.canvas.getWidth() * 0.2,
                                         this.canvas.getHeight() * 0.15)
         };
-        this.canvas.drawTextButtonToCanvas( "./assets/Icons/ButtonsFREE/PlayBlank.png",
+        this.canvas.drawTextButtonToCanvas( "./Assets/Icons/ButtonsFREE/PlayBlank.png",
                                             this.getCurrentQuestion().Answer,
                                             this.canvas.getWidth()*0.35 - (this.canvas.getWidth() * 0.2)/2,
                                             this.canvas.getHeight()*0.6 - (this.canvas.getHeight() * 0.075)/2,
@@ -63,7 +63,7 @@ class GeographyQuest extends BaseView {
                                                 console.log("Probeer het opnieuw.");
                                                 };
                                                 this.mouseListener.setHasBeenClicked()});
-        this.canvas.drawTextButtonToCanvas( "./assets/Icons/ButtonsFREE/PlayBlank.png",
+        this.canvas.drawTextButtonToCanvas( "./Assets/Icons/ButtonsFREE/PlayBlank.png",
                                             this.getCurrentQuestion().Answer1,
                                             this.canvas.getWidth()*0.65 - (this.canvas.getWidth() * 0.2)/2,
                                             this.canvas.getHeight()*0.6 - (this.canvas.getHeight() * 0.075)/2,
@@ -78,7 +78,7 @@ class GeographyQuest extends BaseView {
                                                     console.log("Probeer het opnieuw.");
                                                 };
                                                 this.mouseListener.setHasBeenClicked()});
-        this.canvas.drawTextButtonToCanvas( "./assets/Icons/ButtonsFREE/PlayBlank.png",
+        this.canvas.drawTextButtonToCanvas( "./Assets/Icons/ButtonsFREE/PlayBlank.png",
                                             this.getCurrentQuestion().Answer2,
                                             this.canvas.getWidth()*0.35 - (this.canvas.getWidth() * 0.2)/2,
                                             this.canvas.getHeight()*0.75 - (this.canvas.getHeight() * 0.075)/2,
@@ -93,7 +93,7 @@ class GeographyQuest extends BaseView {
                                                     console.log("Probeer het opnieuw.");
                                                 };
                                                 this.mouseListener.setHasBeenClicked()});
-        this.canvas.drawTextButtonToCanvas( "./assets/Icons/ButtonsFREE/PlayBlank.png",
+        this.canvas.drawTextButtonToCanvas( "./Assets/Icons/ButtonsFREE/PlayBlank.png",
                                             this.getCurrentQuestion().Answer3,
                                             this.canvas.getWidth()*0.65 - (this.canvas.getWidth() * 0.2)/2,
                                             this.canvas.getHeight()*0.75 - (this.canvas.getHeight() * 0.075)/2,
@@ -264,7 +264,7 @@ class GeographyQuest extends BaseView {
         RightAnswer: "Wijn"
     },
     {
-        ImgSrc: "./assets/QuestionAK/France.jpg",
+        ImgSrc: "./Assets/QuestionAK/France.jpg",
         Question: "Van welk land is deze vlag?",
         Answer: "Frankrijk",
         Answer1: "Duitsland",
@@ -273,7 +273,7 @@ class GeographyQuest extends BaseView {
         RightAnswer: "Frankrijk"
     },
     {
-        ImgSrc:"./assets/QuestionAK/Italy.jpg",
+        ImgSrc:"./Assets/QuestionAK/Italy.jpg",
         Question: "Welk land is hier te zien?",
         Answer: "Griekenland",
         Answer1: "Bulgarije",
@@ -300,7 +300,7 @@ class GeographyQuest extends BaseView {
         RightAnswer: "Frankrijk"
     },
     {
-        ImgSrc:"./assets/QuestionAK/Croatia.png",
+        ImgSrc:"./Assets/QuestionAK/Croatia.png",
         Question: "Bij welk land hoort deze vlag?",
         Answer: "Letland",
         Answer1: "Kroatië",
@@ -309,7 +309,7 @@ class GeographyQuest extends BaseView {
         RightAnswer: "Kroatië"
     },
     {
-        ImgSrc:"./assets/QuestionAK/Finland.png",
+        ImgSrc:"./Assets/QuestionAK/Finland.png",
         Question: "Bij welk land hoort deze vlag?",
         Answer: "Finland",
         Answer1: "Polen",
@@ -318,7 +318,7 @@ class GeographyQuest extends BaseView {
         RightAnswer: "Finland"
     },
     {
-        ImgSrc:"./assets/QuestionAK/Russia.png",
+        ImgSrc:"./Assets/QuestionAK/Russia.png",
         Question: "Bij welk land hoort deze vlag?",
         Answer: "Letland",
         Answer1: "Rusland",
@@ -327,7 +327,7 @@ class GeographyQuest extends BaseView {
         RightAnswer: "Rusland"
     },
     {
-        ImgSrc:"./assets/QuestionAK/Sweden.png",
+        ImgSrc:"./Assets/QuestionAK/Sweden.png",
         Question: "Bij welk land hoort deze vlag?",
         Answer: "Letland",
         Answer1: "Denemarken",
@@ -336,7 +336,7 @@ class GeographyQuest extends BaseView {
         RightAnswer: "Zweden"
     },
     {
-        ImgSrc:"./assets/QuestionAK/WitRusland.png",
+        ImgSrc:"./Assets/QuestionAK/WitRusland.png",
         Question: "Bij welk land hoort deze vlag?",
         Answer: "Letland",
         Answer1: "Estland",
@@ -345,7 +345,7 @@ class GeographyQuest extends BaseView {
         RightAnswer: "Wit-Rusland"
     },
     {
-        ImgSrc:"./assets/QuestionAK/Zwitserland.png",
+        ImgSrc:"./Assets/QuestionAK/Zwitserland.png",
         Question: "Bij welk land hoort deze vlag?",
         Answer: "Zwitserland",
         Answer1: "Polen",

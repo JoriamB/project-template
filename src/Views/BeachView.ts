@@ -18,7 +18,7 @@ class BeachView extends BaseView {
                                         0,
                                         this.canvas.getWidth(),
                                         this.canvas.getHeight());
-        this.canvas.drawButtonToCanvas(  "./assets/Icons/ButtonsFree/Home.png",
+        this.canvas.drawButtonToCanvas(  "./Assets/Icons/ButtonsFree/Home.png",
                                         this.canvas.getWidth() * 0.05,
                                         this.canvas.getHeight() * 0.05,
                                         this.canvas.getWidth() * 0.025,
@@ -26,7 +26,7 @@ class BeachView extends BaseView {
                                         () => {
                                             this.player.setLocation("Map");
                                             this.mouseListener.setHasBeenClicked()});
-        this.canvas.drawButtonToCanvas( "./assets/FishingGame/boat.png",
+        this.canvas.drawButtonToCanvas( "./Assets/FishingGame/boat.png",
                                         this.canvas.getWidth() * 0.339,
                                         this.canvas.getHeight() * 0.2555,
                                         this.canvas.getWidth()*0.24,

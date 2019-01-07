@@ -28,7 +28,7 @@ public draw = () => {
                                     0,
                                     this.canvas.getWidth(),
                                     this.canvas.getHeight());
-    this.canvas.drawButtonToCanvas( "./assets/Icons/ButtonsFREE/Home.png",
+    this.canvas.drawButtonToCanvas( "./Assets/Icons/ButtonsFREE/Home.png",
                                     this.canvas.getWidth() * 0.05,
                                     this.canvas.getHeight() * 0.05,
                                     this.canvas.getWidth() * 0.025,
@@ -47,7 +47,7 @@ public draw = () => {
                                     this.player.getEnergy(),
                                     this.player.getMood(),
                                     this.player.getHealth())
-    this.canvas.drawTextButtonToCanvas( "./assets/Icons/ButtonsFREE/PlayBlank.png",
+    this.canvas.drawTextButtonToCanvas( "./Assets/Icons/ButtonsFREE/PlayBlank.png",
                                         "Math",
                                         this.canvas.getWidth()*0.25 - (this.canvas.getWidth() * 0.1)/2,
                                         this.canvas.getHeight()*0.49 - (this.canvas.getHeight() * 0.1)/2,
@@ -56,7 +56,7 @@ public draw = () => {
                                             this.mathquest.setCurrentQuestion(this.mathquest.MathArray[MathHelper.randomNumber(0, this.mathquest.MathArray.length - 1)]);
                                             this.player.setLocation("Math");
                                             this.mouseListener.setHasBeenClicked()})
-    this.canvas.drawTextButtonToCanvas( "./assets/Icons/ButtonsFREE/PlayBlank.png",
+    this.canvas.drawTextButtonToCanvas( "./Assets/Icons/ButtonsFREE/PlayBlank.png",
                                         "History",
                                         this.canvas.getWidth()*0.65 - (this.canvas.getWidth() * 0.1)/2,
                                         this.canvas.getHeight()*0.49 - (this.canvas.getHeight() * 0.1)/2,
@@ -65,7 +65,7 @@ public draw = () => {
                                             this.historyquest.setCurrentQuestion(this.historyquest.HistoryArray[MathHelper.randomNumber(0, this.historyquest.HistoryArray.length - 1)]);
                                             this.player.setLocation("History");
                                             this.mouseListener.setHasBeenClicked()})
-    this.canvas.drawTextButtonToCanvas( "./assets/Icons/ButtonsFREE/PlayBlank.png",
+    this.canvas.drawTextButtonToCanvas( "./Assets/Icons/ButtonsFREE/PlayBlank.png",
                                         "Geography",
                                         this.canvas.getWidth()*0.45 - (this.canvas.getWidth() * 0.1)/2,
                                         this.canvas.getHeight()*0.49 - (this.canvas.getHeight() * 0.1)/2,

@@ -18,7 +18,7 @@ super(src, canvas, player, mouseListener);
                                         0,
                                         this.canvas.getWidth(),
                                         this.canvas.getHeight());
-        this.canvas.drawButtonToCanvas( "./assets/Icons/ButtonsFREE/Home.png",
+        this.canvas.drawButtonToCanvas( "./Assets/Icons/ButtonsFREE/Home.png",
                                         this.canvas.getWidth() * 0.05,
                                         this.canvas.getHeight() * 0.05,
                                         this.canvas.getWidth() * 0.025,
@@ -43,12 +43,12 @@ super(src, canvas, player, mouseListener);
                                         this.player.getEnergy(),
                                         this.player.getMood(),
                                         this.player.getHealth())
-        this.canvas.drawImageToCanvas(  "./assets/FishingGame/fishblue1.png",
+        this.canvas.drawImageToCanvas(  "./Assets/FishingGame/fishblue1.png",
                                         this.canvas.getWidth()*0.5 - (this.canvas.getWidth() * 0.15)/2,
                                         this.canvas.getHeight()*0.55 - (this.canvas.getHeight() * 0.2)/2,
                                         this.canvas.getWidth() * 0.05,
                                         this.canvas.getHeight() * 0.1)
-        this.canvas.drawImageToCanvas(  "./assets/FishingGame/hengel.png",
+        this.canvas.drawImageToCanvas(  "./Assets/FishingGame/hengel.png",
                                         this.mouseListener.getEventX() - (this.canvas.getWidth() * 0.05)/2,
                                         this.mouseListener.getEventY() - (this.canvas.getHeight() * 0.1)/2,
                                         this.canvas.getWidth() * 0.05,
