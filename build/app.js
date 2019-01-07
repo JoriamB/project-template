@@ -142,20 +142,9 @@ class Game {
             }
             window.requestAnimationFrame(this.draw);
         };
-<<<<<<< HEAD
-        this.canvas = canvas;
-        this.player = new Player("./Assets/Female/Poses/female_slide.png", this.canvas, 5, 100, 100, 100, 100, this.canvas.getCenter().X, this.canvas.getCenter().Y, 50, 50, "Hospital", 420);
-        this.park = new ParkView("./assets/Backgrounds/park.jpg", this.canvas, this.player);
-        this.hospital = new HospitalView("./assets/Backgrounds/hospital.jpg", this.canvas, this.player);
-        this.house = new HouseView("./assets/Backgrounds/House.png", this.canvas, this.player);
-        this.school = new SchoolView("./assets/Backgrounds/classroom.jpg", this.canvas, this.player);
-        this.store = new StoreView("./assets/Backgrounds/Store.jpg", this.canvas, this.player);
-        this.restaurant = new RestaurantView("./assets/Backgrounds/Restaurant.jpg", this.canvas, this.player);
-        this.map = new MapView("./assets/map/map.png", this.canvas, this.player);
-=======
         this.mouseListener = new MouseHelper(false, false);
         this.canvas = new Canvas(document.getElementById("canvas"), this.mouseListener);
-        this.player = new Player("./Assets/Female/Poses/female_slide.png", this.canvas, 5, 20, 80, 100, 60, this.canvas.getCenter().X, this.canvas.getCenter().Y, this.canvas.getWidth() * 0.025, this.canvas.getHeight() * 0.05, "School", 10000);
+        this.player = new Player("./Assets/Female/Poses/female_slide.png", this.canvas, 5, 20, 80, 100, 100, this.canvas.getCenter().X, this.canvas.getCenter().Y, this.canvas.getWidth() * 0.025, this.canvas.getHeight() * 0.05, "School", 10000);
         this.park = new ParkView("./assets/Backgrounds/park.jpg", this.canvas, this.player, this.mouseListener);
         this.hospital = new HospitalView("./assets/Backgrounds/hospital.jpg", this.canvas, this.player, this.mouseListener);
         this.house = new HouseView("./assets/Backgrounds/House.png", this.canvas, this.player, this.mouseListener);
@@ -167,7 +156,6 @@ class Game {
         this.beach = new BeachView("./assets/Backgrounds/beach.jpg", this.canvas, this.player, this.mouseListener);
         this.fishing = new FishingView("./assets/FishingGame/background1.jpg", this.canvas, this.player, this.mouseListener);
         this.question = new QuestionView("./assets/Backgrounds/Question.png", this.canvas, this.player, this.mouseListener);
->>>>>>> 77292e58b6dad03a20b0de03ca4acd2dffd6bd53
     }
     ;
 }
@@ -658,6 +646,20 @@ class RestaurantView extends BaseView {
             });
             this.canvas.drawCoinToCanvas(this.canvas.getWidth() / 2, this.canvas.getHeight() * 0.04, this.player.getCoin());
             this.canvas.drawBarstoCanvas(this.canvas.getWidth() * 0.9, this.canvas.getHeight() * 0.05, this.player.getHunger(), this.player.getEnergy(), this.player.getMood(), this.player.getHealth());
+            this.canvas.drawTextButtonToCanvas("./assets/Icons/ButtonsFREE/PlayBlank.png", "Eat zeh food", this.canvas.getWidth() * 0.5 - (this.canvas.getWidth() * 0.1) / 2, this.canvas.getHeight() * 0.9 - (this.canvas.getHeight() * 0.1) / 2, this.canvas.getWidth() * 0.1, this.canvas.getHeight() * 0.1, () => {
+                if (this.player.getCoin() >= 15 &&
+                    this.player.getHunger() < 80) {
+                    this.player.setCoin(this.player.getCoin() - 15);
+                    this.player.setHunger(this.player.getHunger() + 20);
+                }
+                else if (this.player.getCoin() >= 15 &&
+                    this.player.getHunger() < 100) {
+                    this.player.setCoin(this.player.getCoin() - 15);
+                    this.player.setHunger(100);
+                }
+                ;
+                this.mouseListener.setHasBeenClicked();
+            });
         };
     }
     ;
