@@ -37,7 +37,7 @@ class RestaurantView extends BaseView {
                                         this.player.getMood(),
                                         this.player.getHealth());
         this.canvas.drawTextButtonToCanvas( "./assets/Icons/ButtonsFREE/PlayBlank.png",
-                                        "Eat zeh food",
+                                        "Eat",
                                         this.canvas.getWidth()*0.5 - (this.canvas.getWidth() * 0.1)/2,
                                         this.canvas.getHeight()*0.9 - (this.canvas.getHeight() * 0.1)/2,
                                         this.canvas.getWidth() * 0.1,
