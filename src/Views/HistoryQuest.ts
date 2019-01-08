@@ -112,7 +112,7 @@ class HistoryQuest extends BaseView {
     HistoryArray = [{
         ImgSrc: "",
         Question: "Hoeveel inwoners heeft Europa?",
-        Answer: " 741.1 miljoen",
+        Answer: "741.1 miljoen",
         Answer1: "1 miljard",
         Answer2: " 884.6miljoen",
         Answer3: "1,3 miljard",
