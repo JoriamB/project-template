@@ -1,10 +1,14 @@
-class FishingView extends BaseView{
+class FishingView extends BaseView {
+
+    private fishArray : Array<Fish>
     
     public constructor (src : string,
-        canvas : Canvas,
-        player : Player,
-        mouseListener : MouseHelper) {
-super(src, canvas, player, mouseListener);
+                        canvas : Canvas,
+                        player : Player,
+                        mouseListener : MouseHelper,
+                        fishArray : Array<Fish>) {
+        super(src, canvas, player, mouseListener);
+        this.fishArray = fishArray;
 };
 
 /**
@@ -42,12 +46,10 @@ super(src, canvas, player, mouseListener);
                                         this.player.getHunger(),
                                         this.player.getEnergy(),
                                         this.player.getMood(),
-                                        this.player.getHealth())
-        this.canvas.drawImageToCanvas(  "./Assets/FishingGame/fishblue1.png",
-                                        this.canvas.getWidth()*0.5 - (this.canvas.getWidth() * 0.15)/2,
-                                        this.canvas.getHeight()*0.55 - (this.canvas.getHeight() * 0.2)/2,
-                                        this.canvas.getWidth() * 0.05,
-                                        this.canvas.getHeight() * 0.1)
+                                        this.player.getHealth());
+        for (let i = 0; i < this.fishArray.length; i++) {
+            this.fishArray[i].draw()
+        }
         this.canvas.drawImageToCanvas(  "./Assets/FishingGame/hengel.png",
                                         this.mouseListener.getEventX() - (this.canvas.getWidth() * 0.05)/2,
                                         this.mouseListener.getEventY() - (this.canvas.getHeight() * 0.1)/2,
