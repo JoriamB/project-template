@@ -13,57 +13,25 @@ class Game {
     private beach: SoccerView;
     private fishing: FishingView;
     private question: QuestionView;
+    private fishArray : Array<Fish>
 
     public constructor () {
+        this.fishArray = [];
         this.mouseListener = new MouseHelper(false, false);
         this.canvas = new Canvas(   <HTMLCanvasElement>document.getElementById("canvas"),
                                     this.mouseListener)
         this.player = new Player(   "./Assets/Female/Poses/female_slide.png",
                                     this.canvas,
                                     5,
-<<<<<<< HEAD
-=======
                                     20,
                                     80,
->>>>>>> 77292e58b6dad03a20b0de03ca4acd2dffd6bd53
-                                    100,
-                                    100,
-                                    100,
-                                    100,
+                                    80,
+                                    80,
                                     this.canvas.getCenter().X,
                                     this.canvas.getCenter().Y,
-<<<<<<< HEAD
-                                    50,
-                                    50,
-                                    "Hospital",
-                                    420);
-        this.park = new ParkView("./assets/Backgrounds/park.jpg",
-                            this.canvas,
-                            this.player);
-        this.hospital = new HospitalView("./assets/Backgrounds/hospital.jpg",
-                            this.canvas,
-                            this.player);
-        this.house = new HouseView("./assets/Backgrounds/House.png",
-                            this.canvas,
-                            this.player);
-        this.school = new SchoolView("./assets/Backgrounds/classroom.jpg",
-                            this.canvas,
-                            this.player);
-        this.store = new StoreView("./assets/Backgrounds/Store.jpg",
-                            this.canvas,
-                            this.player);
-        this.restaurant = new RestaurantView("./assets/Backgrounds/Restaurant.jpg",
-                            this.canvas,
-                            this.player);
-        this.map = new MapView("./assets/map/map.png",
-                            this.canvas,
-                            this.player);
-
-                           
-=======
                                     this.canvas.getWidth() * 0.025,
                                     this.canvas.getHeight() * 0.05,
-                                    "School",
+                                    "Beach",
                                     10000);
         this.park = new ParkView(   "./assets/Backgrounds/park.jpg",
                                     this.canvas,
@@ -100,16 +68,17 @@ class Game {
         this.beach = new BeachView( "./assets/Backgrounds/beach.jpg",
                                     this.canvas,
                                     this.player,
-                                    this.mouseListener);            
+                                    this.mouseListener,
+                                    this.fishArray)          
         this.fishing = new FishingView( "./assets/FishingGame/background1.jpg",
                                         this.canvas,
                                         this.player,
-                                        this.mouseListener);  
+                                        this.mouseListener,
+                                        this.fishArray);  
         this.question = new QuestionView("./assets/Backgrounds/Question.png",
                                           this.canvas,
                                           this.player,
                                           this.mouseListener);
->>>>>>> 77292e58b6dad03a20b0de03ca4acd2dffd6bd53
     };
 
     public draw = () => {
@@ -160,4 +129,22 @@ window.addEventListener("load", init);
 function init () : void {
     const LudosMundi = new Game();                                                            
     window.requestAnimationFrame(LudosMundi.draw);
+}
+
+function createFish (   min : number,
+                        max : number,
+                        canvas : Canvas,
+                        fishArray : Array<Fish>) {
+    for (let i = min; i < max; i++) {
+        console.log(i);
+        let fish = new Fish(MathHelper.randomNumber(   0, 
+                                                        canvas.getWidth() - 50),
+                            MathHelper.randomNumber(   0,
+                                                        canvas.getHeight() - 50),
+                            100,
+                            100,
+                            "./assets/FishingGame/fishblue1.png",
+                            canvas);
+        fishArray.push(fish)
+    }
 }

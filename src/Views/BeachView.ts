@@ -1,10 +1,14 @@
 class BeachView extends BaseView {
 
+    private fishArray : Array<Fish>
+
     public constructor (src : string,
                         canvas : Canvas,
                         player : Player,
-                        mouseListener : MouseHelper) {
+                        mouseListener : MouseHelper,
+                        fishArray : Array<Fish>) {
         super(src, canvas, player, mouseListener);
+        this.fishArray = fishArray;
     };
 
     /**
@@ -34,7 +38,11 @@ class BeachView extends BaseView {
                                         () => {
                                             if (this.player.getEnergy() >= 10 &&
                                                 this.player.getMood() < 100) {
-                                                this.player.setLocation("Fishing");
+                                                this.player.setLocation("Fishing")
+                                                createFish( 1,
+                                                            5,
+                                                            this.canvas,
+                                                            this.fishArray);
                                             }
                                             this.mouseListener.setHasBeenClicked()});
         this.canvas.drawCoinToCanvas(   this.canvas.getWidth()/2,
