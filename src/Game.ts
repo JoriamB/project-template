@@ -60,7 +60,7 @@ class Game {
                                                 this.canvas,
                                                 this.player,
                                                 this.mouseListener);
-        this.map = new MapView( "./Assets/map/mapleeg.png",
+        this.map = new MapView( "./Assets/Map/mapleeg.png",
                                 this.canvas,
                                 this.player,
                                 this.mouseListener);
