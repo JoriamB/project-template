@@ -36,16 +36,30 @@ super(src, canvas, player, mouseListener);
                                         this.player.getHunger(),
                                         this.player.getEnergy(),
                                         this.player.getMood(),
-                                        this.player.getHealth())
+                                        this.player.getHealth());
+        this.canvas.drawButtonToCanvas( "./Assets/FootballGame/goal.jpg",
+                                        this.canvas.getWidth()*0.5 - (this.canvas.getWidth() * 0.21)/2,
+                                        this.canvas.getHeight()*0.51 - (this.canvas.getHeight() * 0.2)/2,
+                                        this.canvas.getWidth() * 0.21,
+                                        this.canvas.getHeight() * 0.2,
+                                        () => {
+                                            if (this.mouseListener.getEventX() > (this.canvas.getWidth()*0.5 - (this.canvas.getWidth() * 0.21)/2) + (this.canvas.getHeight() * (0.2 * this.mouseListener.getEventY()/this.canvas.getHeight()))/2&&
+                                                this.mouseListener.getEventX() < (this.canvas.getWidth()*0.5 - (this.canvas.getWidth() * 0.21)/2) + (this.canvas.getWidth() * 0.21) - (this.canvas.getHeight() * (0.2 * this.mouseListener.getEventY()/this.canvas.getHeight()))/2&&
+                                                this.mouseListener.getEventY() > (this.canvas.getHeight()*0.51 - (this.canvas.getHeight() * 0.2)/2) + (this.canvas.getHeight() * (0.2 * this.mouseListener.getEventY()/this.canvas.getHeight()))/2&&
+                                                this.mouseListener.getEventY() < (this.canvas.getHeight()*0.51 - (this.canvas.getHeight() * 0.2)/2) + (this.canvas.getHeight() * 0.21) - (this.canvas.getHeight() * (0.2 * this.mouseListener.getEventY()/this.canvas.getHeight()))/2) {
+                                                console.log("Goal!")
+                                                this.mouseListener.setHasBeenClicked()
+                                            }
+                                        });
         this.canvas.drawImageToCanvas(  "./Assets/FootballGame/goalkeeper.png",
                                         this.canvas.getWidth()*0.5 - (this.canvas.getWidth() * 0.15)/2,
                                         this.canvas.getHeight()*0.55 - (this.canvas.getHeight() * 0.2)/2,
                                         this.canvas.getWidth() * 0.15,
-                                        this.canvas.getHeight() * 0.2)
+                                        this.canvas.getHeight() * 0.2);
         this.canvas.drawImageToCanvas(  "./Assets/FootballGame/football.png",
                                         this.mouseListener.getEventX() - (this.canvas.getHeight() * (0.2 * this.mouseListener.getEventY()/this.canvas.getHeight()))/2,
                                         this.mouseListener.getEventY() - (this.canvas.getHeight() * (0.2 * this.mouseListener.getEventY()/this.canvas.getHeight()))/2,
                                         this.canvas.getHeight() * (0.2 * this.mouseListener.getEventY()/this.canvas.getHeight()),
-                                        this.canvas.getHeight() * (0.2 * this.mouseListener.getEventY()/this.canvas.getHeight()))
+                                        this.canvas.getHeight() * (0.2 * this.mouseListener.getEventY()/this.canvas.getHeight()));
     };
 };
