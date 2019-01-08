@@ -70,10 +70,10 @@ class Canvas {
     }
     ;
     drawBarstoCanvas(X, Y, currentHunger, currentEnergy, currentMood, currentHealth) {
-        this.drawBarToCanvas(X, Y, this.getWidth() * 0.05, (this.getWidth() * 0.05 / 100) * currentHunger, this.getHeight() * 0.02, "black", "Hunger:", 20);
-        this.drawBarToCanvas(X, Y + this.getHeight() * 0.05, this.getWidth() * 0.05, (this.getWidth() * 0.05 / 100) * currentEnergy, this.getHeight() * 0.02, "black", "Energy:", 20);
-        this.drawBarToCanvas(X, Y + this.getHeight() * 0.1, this.getWidth() * 0.05, (this.getWidth() * 0.05 / 100) * currentMood, this.getHeight() * 0.02, "black", "Mood:", 20);
-        this.drawBarToCanvas(X, Y + this.getHeight() * 0.15, this.getWidth() * 0.05, (this.getWidth() * 0.05 / 100) * currentHealth, this.getHeight() * 0.02, "black", "Health:", 20);
+        this.drawBarToCanvas(X, Y, this.getWidth() * 0.05, (this.getWidth() * 0.05 / 100) * currentHunger, this.getHeight() * 0.02, "black", "Honger:", 20);
+        this.drawBarToCanvas(X, Y + this.getHeight() * 0.05, this.getWidth() * 0.05, (this.getWidth() * 0.05 / 100) * currentEnergy, this.getHeight() * 0.02, "black", "Energie:", 20);
+        this.drawBarToCanvas(X, Y + this.getHeight() * 0.1, this.getWidth() * 0.05, (this.getWidth() * 0.05 / 100) * currentMood, this.getHeight() * 0.02, "black", "Stemming:", 20);
+        this.drawBarToCanvas(X, Y + this.getHeight() * 0.15, this.getWidth() * 0.05, (this.getWidth() * 0.05 / 100) * currentHealth, this.getHeight() * 0.02, "black", "Gezondheid:", 20);
     }
     ;
     getCenter() {
@@ -131,14 +131,27 @@ class Fish {
     ;
     draw() {
         this.move();
-        this.canvas.drawButtonToCanvas(this.src, this.xPos, this.yPos, this.width, this.height, () => {
-            this.fishArray.splice(this.getIndex(), 1);
-            for (let i = 0; i < this.fishArray.length; i++) {
-                this.index = i;
-            }
-            ;
-            this.mouseListener.setHasBeenClicked();
-        });
+        if (this.movingRight) {
+            this.canvas.drawButtonToCanvas(this.src + "Right.png", this.xPos, this.yPos, this.width, this.height, () => {
+                this.fishArray.splice(this.getIndex(), 1);
+                for (let i = 0; i < this.fishArray.length; i++) {
+                    this.index = i;
+                }
+                ;
+                this.mouseListener.setHasBeenClicked();
+            });
+        }
+        else {
+            this.canvas.drawButtonToCanvas(this.src + "Left.png", this.xPos, this.yPos, this.width, this.height, () => {
+                this.fishArray.splice(this.getIndex(), 1);
+                for (let i = 0; i < this.fishArray.length; i++) {
+                    this.index = i;
+                }
+                ;
+                this.mouseListener.setHasBeenClicked();
+            });
+        }
+        ;
     }
     ;
     getIndex() {
@@ -159,16 +172,16 @@ function getSrcArray() {
 }
 ;
 let srcArray = [
-    "fishBlue1",
-    "fishBlue2",
-    "fishGreen1",
-    "fishGreen2",
-    "fishPink1",
-    "fishPink2",
-    "fishRed1",
-    "fishRed2",
-    "fishYellow1",
-    "fishYellow2"
+    "./Assets/FishingGame/fishBlue1",
+    "./Assets/FishingGame/fishBlue2",
+    "./Assets/FishingGame/fishGreen1",
+    "./Assets/FishingGame/fishGreen2",
+    "./Assets/FishingGame/fishPink1",
+    "./Assets/FishingGame/fishPink2",
+    "./Assets/FishingGame/fishRed1",
+    "./Assets/FishingGame/fishRed2",
+    "./Assets/FishingGame/fishYellow1",
+    "./Assets/FishingGame/fishYellow2"
 ];
 class Game {
     constructor() {

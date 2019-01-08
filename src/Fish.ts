@@ -42,12 +42,10 @@ class Fish {
         if (this.xPos < this.canvas.getWidth() - this.width &&
             this.movingRight) {
             this.xPos += this.speed;
-            //this.src = this.src + "Right.png";
         }
         else if (this.xPos > 0) {
             this.xPos -= this.speed;
             this.movingRight = false;
-            //this.src = this.src + "Left.png";
         }
         else if (this.xPos <= 0) {
             this.movingRight = true;
@@ -56,18 +54,34 @@ class Fish {
 
     public draw () {
         this.move()
-        this.canvas.drawButtonToCanvas( this.src,
-                                        this.xPos,
-                                        this.yPos,
-                                        this.width,
-                                        this.height,
-                                        () => {
-                                            this.fishArray.splice(this.getIndex(), 1);
-                                            for (let i = 0; i < this.fishArray.length; i++) {
-                                                this.index = i;
-                                            };
-                                            this.mouseListener.setHasBeenClicked()
-                                        });
+        if (this.movingRight) {
+            this.canvas.drawButtonToCanvas( this.src + "Right.png",
+                                            this.xPos,
+                                            this.yPos,
+                                            this.width,
+                                            this.height,
+                                            () => {
+                                                this.fishArray.splice(this.getIndex(), 1);
+                                                for (let i = 0; i < this.fishArray.length; i++) {
+                                                    this.index = i;
+                                                };
+                                                this.mouseListener.setHasBeenClicked()
+                                            });
+        }
+        else {
+            this.canvas.drawButtonToCanvas( this.src + "Left.png",
+                                            this.xPos,
+                                            this.yPos,
+                                            this.width,
+                                            this.height,
+                                            () => {
+                                                this.fishArray.splice(this.getIndex(), 1);
+                                                for (let i = 0; i < this.fishArray.length; i++) {
+                                                    this.index = i;
+                                                };
+                                                this.mouseListener.setHasBeenClicked()
+                                            });
+        };
     };
 
     public getIndex () : number {
@@ -102,14 +116,14 @@ function getSrcArray () : Array<string> {
 };
 
 let srcArray = [
-    "fishBlue1",
-    "fishBlue2",
-    "fishGreen1",
-    "fishGreen2",
-    "fishPink1",
-    "fishPink2",
-    "fishRed1",
-    "fishRed2",
-    "fishYellow1",
-    "fishYellow2"
+    "./Assets/FishingGame/fishBlue1",
+    "./Assets/FishingGame/fishBlue2",
+    "./Assets/FishingGame/fishGreen1",
+    "./Assets/FishingGame/fishGreen2",
+    "./Assets/FishingGame/fishPink1",
+    "./Assets/FishingGame/fishPink2",
+    "./Assets/FishingGame/fishRed1",
+    "./Assets/FishingGame/fishRed2",
+    "./Assets/FishingGame/fishYellow1",
+    "./Assets/FishingGame/fishYellow2"
 ];
