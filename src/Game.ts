@@ -2,6 +2,7 @@ class Game {
     private canvas : Canvas;
     private player : Player;
     private mouseListener : MouseHelper;
+    private mathHelper : MathHelper;
     private park : ParkView;
     private hospital : HospitalView;
     private house : HouseView;
@@ -13,10 +14,12 @@ class Game {
     private beach: SoccerView;
     private fishing: FishingView;
     private question: QuestionView;
-    private fishArray : Array<Fish>
+    private geographyquest: GeographyQuest;
+    private mathquest: MathQuest;
+    private historyquest: HistoryQuest;
 
     public constructor () {
-        this.fishArray = [];
+        this.mathHelper = new MathHelper()
         this.mouseListener = new MouseHelper(false, false);
         this.canvas = new Canvas(   <HTMLCanvasElement>document.getElementById("canvas"),
                                     this.mouseListener)
@@ -25,62 +28,80 @@ class Game {
                                     5,
                                     20,
                                     80,
-                                    80,
-                                    80,
+                                    100,
+                                    60,
                                     this.canvas.getCenter().X,
                                     this.canvas.getCenter().Y,
                                     this.canvas.getWidth() * 0.025,
                                     this.canvas.getHeight() * 0.05,
-                                    "Beach",
+                                    "Question",
                                     10000);
-        this.park = new ParkView(   "./assets/Backgrounds/park.jpg",
+        this.park = new ParkView(   "./Assets/Backgrounds/park.jpg",
                                     this.canvas,
                                     this.player,
                                     this.mouseListener);
-        this.hospital = new HospitalView(   "./assets/Backgrounds/hospital.jpg",
+        this.hospital = new HospitalView(   "./Assets/Backgrounds/hospital.jpg",
                                             this.canvas,
                                             this.player,
                                             this.mouseListener);
-        this.house = new HouseView( "./assets/Backgrounds/House.png",
+        this.house = new HouseView( "./Assets/Backgrounds/House.png",
                                     this.canvas,
                                     this.player,
                                     this.mouseListener);
-        this.school = new SchoolView(   "./assets/Backgrounds/classroom2.jpg",
+        this.school = new SchoolView(   "./Assets/Backgrounds/classroom2.jpg",
                                         this.canvas,
                                         this.player,
                                         this.mouseListener);
-        this.store = new StoreView( "./assets/Backgrounds/Store.jpg",
+        this.store = new StoreView( "./Assets/Backgrounds/Store.jpg",
                                     this.canvas,
                                     this.player,
                                     this.mouseListener);
-        this.restaurant = new RestaurantView(   "./assets/Backgrounds/Restaurant2.jpg",
+        this.restaurant = new RestaurantView(   "./Assets/Backgrounds/Restaurant3.jpg",
                                                 this.canvas,
                                                 this.player,
                                                 this.mouseListener);
-        this.map = new MapView( "./assets/map/mapleeg.png",
+        this.map = new MapView( "./Assets/map/mapleeg.png",
                                 this.canvas,
                                 this.player,
                                 this.mouseListener);
-        this.soccer = new SoccerView(   "./assets/FootballGame/background.jpg",
+        this.soccer = new SoccerView(   "./Assets/FootballGame/background.jpg",
                                         this.canvas,
                                         this.player,
                                         this.mouseListener);          
-        this.beach = new BeachView( "./assets/Backgrounds/beach.jpg",
+        this.beach = new BeachView( "./Assets/Backgrounds/beach.jpg",
                                     this.canvas,
                                     this.player,
-                                    this.mouseListener,
-                                    this.fishArray)          
-        this.fishing = new FishingView( "./assets/FishingGame/background1.jpg",
+                                    this.mouseListener);            
+        this.fishing = new FishingView( "./Assets/FishingGame/background1.jpg",
                                         this.canvas,
                                         this.player,
-                                        this.mouseListener,
-                                        this.fishArray);  
-        this.question = new QuestionView("./assets/Backgrounds/Question.png",
+                                        this.mouseListener);
+        this.geographyquest = new GeographyQuest( "./Assets/Backgrounds/Question.png",
+                                        this.canvas,
+                                        this.player,
+                                        this.mouseListener)  
+        this.mathquest = new MathQuest( "./Assets/Backgrounds/Question.png",
+                                        this.canvas,
+                                        this.player,
+                                        this.mouseListener);
+        this.historyquest = new HistoryQuest( "./Assets/Backgrounds/Question.png",
+                                        this.canvas,
+                                        this.player,
+                                        this.mouseListener)                                                                    
+        this.question = new QuestionView("./Assets/Backgrounds/Question.png",
                                           this.canvas,
                                           this.player,
-                                          this.mouseListener);
+                                          this.mouseListener,
+                                          this.geographyquest,
+                                          this.mathquest,
+                                          this.historyquest);
     };
 
+    /**
+     * @access public
+     * @method
+     * main draw method for the game
+     */
     public draw = () => {
         this.canvas.clear();
         this.player.updatePlayer();
@@ -115,7 +136,16 @@ class Game {
                 break;
             case "Question":
             this.question.draw();
-            break;  
+            break; 
+            case "Geography":
+            this.geographyquest.draw();
+            break;
+            case "Math":
+            this.mathquest.draw();
+            break;
+            case "History":
+            this.historyquest.draw();
+            break;          
             default:
                 this.map.draw();
                 break;
@@ -124,8 +154,13 @@ class Game {
     };
 };
 
-
 window.addEventListener("load", init);
+
+/**
+ * @access public
+ * @function
+ * Function to initialise the game
+ */
 function init () : void {
     const LudosMundi = new Game();                                                            
     window.requestAnimationFrame(LudosMundi.draw);

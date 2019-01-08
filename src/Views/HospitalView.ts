@@ -18,7 +18,7 @@ class HospitalView extends BaseView {
                                         0,
                                         this.canvas.getWidth(),
                                         this.canvas.getHeight());
-        this.canvas.drawButtonToCanvas( "./assets/Icons/ButtonsFREE/Home.png",
+        this.canvas.drawButtonToCanvas( "./Assets/Icons/ButtonsFREE/Home.png",
                                         this.canvas.getWidth() * 0.05,
                                         this.canvas.getHeight() * 0.05,
                                         this.canvas.getWidth() * 0.025,
@@ -36,7 +36,7 @@ class HospitalView extends BaseView {
         this.canvas.drawCoinToCanvas(   this.canvas.getWidth() / 2,
                                         this.canvas.getHeight() * 0.02,
                                         this.player.getCoin());
-        this.canvas.drawTextButtonToCanvas( "./assets/Icons/ButtonsFREE/PlayBlank.png",
+        this.canvas.drawTextButtonToCanvas( "./Assets/Icons/ButtonsFREE/PlayBlank.png",
                                         "Visit Doctor",
                                         this.canvas.getWidth()*0.5 - (this.canvas.getWidth() * 0.1)/2,
                                         this.canvas.getHeight()*0.9 - (this.canvas.getHeight() * 0.1)/2,

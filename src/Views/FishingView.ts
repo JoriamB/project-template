@@ -5,10 +5,8 @@ class FishingView extends BaseView{
     public constructor (src : string,
                         canvas : Canvas,
                         player : Player,
-                        mouseListener : MouseHelper,
-                        fishArray : Array<Fish>) {
+                        mouseListener : MouseHelper) {
     super(src, canvas, player, mouseListener);
-    this.fishArray = fishArray;
 };
 
 /**
@@ -22,7 +20,7 @@ class FishingView extends BaseView{
                                         0,
                                         this.canvas.getWidth(),
                                         this.canvas.getHeight());
-        this.canvas.drawButtonToCanvas( "./assets/Icons/ButtonsFREE/Home.png",
+        this.canvas.drawButtonToCanvas( "./Assets/Icons/ButtonsFREE/Home.png",
                                         this.canvas.getWidth() * 0.05,
                                         this.canvas.getHeight() * 0.05,
                                         this.canvas.getWidth() * 0.025,
@@ -38,8 +36,6 @@ class FishingView extends BaseView{
                                             };
                                             this.player.setLocation("Beach");
                                             this.mouseListener.setHasBeenClicked()});
-                                            for (let i = 0; i < this.fishArray.length; i++) {
-                                                this.fishArray[i].draw()
                                             }
         this.canvas.drawCoinToCanvas(   this.canvas.getWidth()/2,
                                         this.canvas.getHeight() * 0.04,
@@ -50,7 +46,12 @@ class FishingView extends BaseView{
                                         this.player.getEnergy(),
                                         this.player.getMood(),
                                         this.player.getHealth())
-        this.canvas.drawImageToCanvas(  "./assets/FishingGame/hengel.png",
+        this.canvas.drawImageToCanvas(  "./Assets/FishingGame/fishblue1.png",
+                                        this.canvas.getWidth()*0.5 - (this.canvas.getWidth() * 0.15)/2,
+                                        this.canvas.getHeight()*0.55 - (this.canvas.getHeight() * 0.2)/2,
+                                        this.canvas.getWidth() * 0.05,
+                                        this.canvas.getHeight() * 0.1)
+        this.canvas.drawImageToCanvas(  "./Assets/FishingGame/hengel.png",
                                         this.mouseListener.getEventX() - (this.canvas.getWidth() * 0.05)/2,
                                         this.mouseListener.getEventY() - (this.canvas.getHeight() * 0.1)/2,
                                         this.canvas.getWidth() * 0.05,
