@@ -1084,116 +1084,116 @@ class HistoryQuest extends BaseView {
                 RightAnswer: "Hij pleegde zelfmoord"
             }, {
                 ImgSrc: "",
-                Question: "",
-                Answer: "",
-                Answer1: "",
-                Answer2: " ",
-                Answer3: "",
-                RightAnswer: ""
+                Question: "Waar is Anne Frank geboren?",
+                Answer: "Nederland",
+                Answer1: "Duitsland",
+                Answer2: "Frankrijk",
+                Answer3: "Luxemburg",
+                RightAnswer: "Duitsland"
             }, {
                 ImgSrc: "",
-                Question: "",
-                Answer: "",
-                Answer1: "",
-                Answer2: " ",
-                Answer3: "",
-                RightAnswer: ""
+                Question: "Hoe heette het boek dat is gebasseerd op het dagboek van Anne Frank?",
+                Answer: "Het achterhuis",
+                Answer1: "Het voorhuis",
+                Answer2: "Het warenhuis ",
+                Answer3: "Verstopt",
+                RightAnswer: "Het achterhuis"
             }, {
                 ImgSrc: "",
-                Question: "",
-                Answer: "",
-                Answer1: "",
-                Answer2: " ",
-                Answer3: "",
-                RightAnswer: ""
+                Question: "Op 5 september 1944 denken veel Nederlanders dat de oorlog is afgelopen. Hoe noemen we die dag?",
+                Answer: "D-Day",
+                Answer1: "Bevrijding",
+                Answer2: "Dolle Dinsdag ",
+                Answer3: "Slag om Arnhem",
+                RightAnswer: "Dolle Dinsdag"
             }, {
                 ImgSrc: "",
-                Question: "",
-                Answer: "",
-                Answer1: "",
-                Answer2: " ",
-                Answer3: "",
-                RightAnswer: ""
+                Question: "De winter van 1944-1945 was een strenge winter. In het westen was een groot tekort aan voedsel. Duizenden mensen stierven. Hoe noemen we deze winter?",
+                Answer: "De Schaarse winter",
+                Answer1: "De Strenge winter",
+                Answer2: "De Koude winter",
+                Answer3: "De Hongerwinter",
+                RightAnswer: "De Hongerwinter"
             }, {
                 ImgSrc: "",
-                Question: "",
-                Answer: "",
-                Answer1: "",
-                Answer2: " ",
-                Answer3: "",
-                RightAnswer: ""
+                Question: "In de Tweede Wereldoorlog moesten 's avonds alle ramen verduisterd zijn. Waarom is dat zo?",
+                Answer: "De Duitsers kunnen Joden oppakken.",
+                Answer1: "Engelse piloten kunnen dan niet zien waar ze zijn",
+                Answer2: "Dan viel het meteen op als er iemand van het verzet buiten liep.",
+                Answer3: "Iedereen moest zuinig zijn, ook met verlichting.",
+                RightAnswer: "Engelse piloten kunnen dan niet zien waar ze zijn"
             }, {
                 ImgSrc: "",
-                Question: "",
-                Answer: "",
-                Answer1: "",
-                Answer2: " ",
-                Answer3: "",
-                RightAnswer: ""
+                Question: "Welke koning wordt in 1814 de baas van Nederland?",
+                Answer: "Philip II",
+                Answer1: "Willem I",
+                Answer2: "Willem II ",
+                Answer3: "Willem V",
+                RightAnswer: "Willem I"
             }, {
                 ImgSrc: "",
-                Question: "",
-                Answer: "",
-                Answer1: "",
-                Answer2: " ",
-                Answer3: "",
-                RightAnswer: ""
+                Question: "Wanneer werd de kolonie Suriname onafhankelijk van Nederland?",
+                Answer: "1945",
+                Answer1: "1963",
+                Answer2: "1975 ",
+                Answer3: "1954",
+                RightAnswer: "1975"
             }, {
                 ImgSrc: "",
-                Question: "",
-                Answer: "",
-                Answer1: "",
-                Answer2: " ",
-                Answer3: "",
-                RightAnswer: ""
+                Question: "In Nederland is een actiegroep die gelijke rechten wil voor mannen en vrouwen. Hoe heet die actiegroep?",
+                Answer: "The Beatles",
+                Answer1: "The Rolling Stones",
+                Answer2: "Man en Vrouw ",
+                Answer3: "Dolle Mina",
+                RightAnswer: "Dolle Mina"
             }, {
                 ImgSrc: "",
-                Question: "",
-                Answer: "",
-                Answer1: "",
-                Answer2: " ",
-                Answer3: "",
-                RightAnswer: ""
+                Question: "Na de Tweede Wereldoorlog vertrouwen Rusland en Amerika elkaar niet meer. De Russen bouwen een hek tussen Oost- en West-Europa. Hoe noemen we dit hek?",
+                Answer: "Het IJzeren Gordijn",
+                Answer1: "Het IJzeren Hek",
+                Answer2: "De IJzeren Muur ",
+                Answer3: "De IJzeren Balustrade",
+                RightAnswer: "Het IJzeren Gordijn"
             }, {
                 ImgSrc: "",
-                Question: "",
-                Answer: "",
-                Answer1: "",
-                Answer2: " ",
-                Answer3: "",
-                RightAnswer: ""
+                Question: "De mensen die in de prehistorie van plek naar plek trokken noemen we…",
+                Answer: "Zwervers",
+                Answer1: "Boeren",
+                Answer2: "Nomaden ",
+                Answer3: "Jager-verzamelaars",
+                RightAnswer: "Jager-verzamelaars"
             }, {
                 ImgSrc: "",
-                Question: "",
-                Answer: "",
-                Answer1: "",
-                Answer2: " ",
-                Answer3: "",
-                RightAnswer: ""
+                Question: "Met de 'prehistorie' bedoelen we…",
+                Answer: "De periode waarin er nog geen mensen bestonden.",
+                Answer1: "De periode na de Romeinse tijd.",
+                Answer2: "De periode waaruit geen geschreven bronnen bekend zijn.",
+                Answer3: "De periode voor de computers.",
+                RightAnswer: "De periode waaruit geen geschreven bronnen bekend zijn."
             }, {
                 ImgSrc: "",
-                Question: "",
-                Answer: "",
-                Answer1: "",
-                Answer2: " ",
-                Answer3: "",
-                RightAnswer: ""
+                Question: "Zo’n 7000 jaar geleden bleven de mensen voor langere tijd op één plek wonen. We noemen deze mensen…",
+                Answer: "Boeren",
+                Answer1: "Stedenbouwers",
+                Answer2: "Eskimos",
+                Answer3: "Jager-verzamelaars",
+                RightAnswer: "Boeren"
             }, {
                 ImgSrc: "",
-                Question: "",
-                Answer: "",
-                Answer1: "",
-                Answer2: " ",
-                Answer3: "",
-                RightAnswer: ""
+                Question: "Wie zei dat alle mensen christen moesten worden?",
+                Answer: "De boeren die in Drenthe woonden.",
+                Answer1: " De Romeinse Keizer.",
+                Answer2: "De mensen die in Jezus Christus geloofden. ",
+                Answer3: "De leider van de Germanen.",
+                RightAnswer: " De Romeinse Keizer."
             }, {
                 ImgSrc: "",
-                Question: "",
-                Answer: "",
-                Answer1: "",
-                Answer2: " ",
-                Answer3: "",
-                RightAnswer: ""
+                Question: "Wat was de belangrijkste reden om op ontdekkingsreis te gaan?",
+                Answer: "Het Katholieke geloof verspreiden",
+                Answer1: "Ontdekken hoe de wereld eruit ziet",
+                Answer2: "Een snellere en veilige weg naar India en China vinden ",
+                Answer3: "Europa was overbevolkt",
+                RightAnswer: "Een snellere en veilige weg naar India en China vinden"
             },];
     }
     setCurrentQuestion(currentQuestion) {
