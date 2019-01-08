@@ -43,16 +43,16 @@ class GeographyQuest extends BaseView {
                                         this.canvas.getHeight() * 0.2);
         if (this.getCurrentQuestion().ImgSrc != "") {
         this.canvas.drawImageToCanvas(  this.getCurrentQuestion().ImgSrc,
-                                        this.canvas.getWidth() * 0.5 - (this.canvas.getWidth() * 0.2)/2,
+                                        this.canvas.getWidth() * 0.5 - (this.canvas.getWidth() * 0.25)/2,
                                         this.canvas.getHeight() * 0.4 - (this.canvas.getHeight() * 0.15)/2,
                                         this.canvas.getWidth() * 0.2,
                                         this.canvas.getHeight() * 0.15)
         };
         this.canvas.drawTextButtonToCanvas( "./Assets/Icons/ButtonsFREE/PlayBlank.png",
                                             this.getCurrentQuestion().Answer,
-                                            this.canvas.getWidth()*0.35 - (this.canvas.getWidth() * 0.2)/2,
+                                            this.canvas.getWidth()*0.35 - (this.canvas.getWidth() * 0.25)/2,
                                             this.canvas.getHeight()*0.6 - (this.canvas.getHeight() * 0.075)/2,
-                                            this.canvas.getWidth() * 0.2,
+                                            this.canvas.getWidth() * 0.25,
                                             this.canvas.getHeight() * 0.075,
                                             () => {
                                                 if (this.getCurrentQuestion().Answer == this.getCurrentQuestion().RightAnswer) {
@@ -65,9 +65,9 @@ class GeographyQuest extends BaseView {
                                                 this.mouseListener.setHasBeenClicked()});
         this.canvas.drawTextButtonToCanvas( "./Assets/Icons/ButtonsFREE/PlayBlank.png",
                                             this.getCurrentQuestion().Answer1,
-                                            this.canvas.getWidth()*0.65 - (this.canvas.getWidth() * 0.2)/2,
+                                            this.canvas.getWidth()*0.65 - (this.canvas.getWidth() * 0.25)/2,
                                             this.canvas.getHeight()*0.6 - (this.canvas.getHeight() * 0.075)/2,
-                                            this.canvas.getWidth() * 0.2,
+                                            this.canvas.getWidth() * 0.25,
                                             this.canvas.getHeight() * 0.075,
                                             () => {
                                                 if (this.getCurrentQuestion().Answer1 == this.getCurrentQuestion().RightAnswer) {
@@ -80,9 +80,9 @@ class GeographyQuest extends BaseView {
                                                 this.mouseListener.setHasBeenClicked()});
         this.canvas.drawTextButtonToCanvas( "./Assets/Icons/ButtonsFREE/PlayBlank.png",
                                             this.getCurrentQuestion().Answer2,
-                                            this.canvas.getWidth()*0.35 - (this.canvas.getWidth() * 0.2)/2,
+                                            this.canvas.getWidth()*0.35 - (this.canvas.getWidth() * 0.25)/2,
                                             this.canvas.getHeight()*0.75 - (this.canvas.getHeight() * 0.075)/2,
-                                            this.canvas.getWidth() * 0.2,
+                                            this.canvas.getWidth() * 0.25,
                                             this.canvas.getHeight() * 0.075,
                                             () => {
                                                 if (this.getCurrentQuestion().Answer2 == this.getCurrentQuestion().RightAnswer) {
@@ -95,9 +95,9 @@ class GeographyQuest extends BaseView {
                                                 this.mouseListener.setHasBeenClicked()});
         this.canvas.drawTextButtonToCanvas( "./Assets/Icons/ButtonsFREE/PlayBlank.png",
                                             this.getCurrentQuestion().Answer3,
-                                            this.canvas.getWidth()*0.65 - (this.canvas.getWidth() * 0.2)/2,
+                                            this.canvas.getWidth()*0.65 - (this.canvas.getWidth() * 0.25)/2,
                                             this.canvas.getHeight()*0.75 - (this.canvas.getHeight() * 0.075)/2,
-                                            this.canvas.getWidth() * 0.2,
+                                            this.canvas.getWidth() * 0.25,
                                             this.canvas.getHeight() * 0.075,
                                             () => {
                                                 if (this.getCurrentQuestion().Answer3 == this.getCurrentQuestion().RightAnswer) {
@@ -113,7 +113,7 @@ class GeographyQuest extends BaseView {
     GeoArray = [{
         ImgSrc: "",
         Question: "Hoeveel inwoners heeft Europa?",
-        Answer: " 741.1 miljoen",
+        Answer: "741.1 miljoen",
         Answer1: "1 miljard",
         Answer2: " 884.6miljoen",
         Answer3: "1,3 miljard",
@@ -248,11 +248,11 @@ class GeographyQuest extends BaseView {
     {
         ImgSrc: "",
         Question: "Wat betekend de term vergrijzing?",
-        Answer: "Dat het in bepaalde culturen in de mode is om je haar grijs te verven",
-        Answer1: "Als er in een gebied veel bomen gekapt worden noemen ze dat vergrijzing",
-        Answer2: "Dat er straks meer oudere dan jongeren zijn",
+        Answer: "Jonge mensen die snel grijs worden",
+        Answer1: "Het donker worden van de lucht",
+        Answer2: "Dat er straks meer ouderen dan jongeren zijn",
         Answer3: "Het verslechteren van een stuk grond",
-        RightAnswer: "Dat er straks meer oudere dan jongeren zijn"
+        RightAnswer: "Dat er straks meer ouderen dan jongeren zijn"
     },
     {
         ImgSrc: "",
@@ -309,7 +309,7 @@ class GeographyQuest extends BaseView {
         RightAnswer: "Kroatië"
     },
     {
-        ImgSrc:"./Assets/QuestionAK/Finland.png",
+        ImgSrc:"./Assets/QuestionAK/Fin.jpg",
         Question: "Bij welk land hoort deze vlag?",
         Answer: "Finland",
         Answer1: "Polen",
@@ -318,7 +318,7 @@ class GeographyQuest extends BaseView {
         RightAnswer: "Finland"
     },
     {
-        ImgSrc:"./Assets/QuestionAK/Russia.png",
+        ImgSrc:"./Assets/QuestionAK/Rusland.png",
         Question: "Bij welk land hoort deze vlag?",
         Answer: "Letland",
         Answer1: "Rusland",
