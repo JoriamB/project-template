@@ -18,7 +18,7 @@ class ParkView extends BaseView {
                                         0,
                                         this.canvas.getWidth(),
                                         this.canvas.getHeight());
-        this.canvas.drawButtonToCanvas(  "./Assets/Icons/ButtonsFree/Home.png",
+        this.canvas.drawButtonToCanvas(  "./Assets/Icons/ButtonsFREE/Home.png",
                                         this.canvas.getWidth() * 0.05,
                                         this.canvas.getHeight() * 0.05,
                                         this.canvas.getWidth() * 0.025,
