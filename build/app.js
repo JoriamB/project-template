@@ -1035,31 +1035,31 @@ class MapView extends BaseView {
         super(src, canvas, player, mouseListener);
         this.draw = () => {
             this.canvas.drawImageToCanvas(this.src, 0, 0, this.canvas.getWidth(), this.canvas.getHeight());
-            this.canvas.drawButtonToCanvas("./Assets/map/park.png", 0, 0, this.canvas.getWidth() * 0.3, this.canvas.getHeight() * 0.328, () => {
+            this.canvas.drawButtonToCanvas("./Assets/Map/park.png", 0, 0, this.canvas.getWidth() * 0.3, this.canvas.getHeight() * 0.328, () => {
                 this.player.setLocation("Park");
                 this.mouseListener.setHasBeenClicked();
             });
-            this.canvas.drawButtonToCanvas("./Assets/map/winkel.png", this.canvas.getWidth() * 0.715, this.canvas.getHeight() * 0.48, this.canvas.getWidth() * 0.1, this.canvas.getHeight() * 0.16, () => {
+            this.canvas.drawButtonToCanvas("./Assets/Map/winkel.png", this.canvas.getWidth() * 0.715, this.canvas.getHeight() * 0.48, this.canvas.getWidth() * 0.1, this.canvas.getHeight() * 0.16, () => {
                 this.player.setLocation("Store");
                 this.mouseListener.setHasBeenClicked();
             });
-            this.canvas.drawButtonToCanvas("./Assets/map/school.png", this.canvas.getWidth() * 0.673, this.canvas.getHeight() * 0.263, this.canvas.getWidth() * 0.14, this.canvas.getHeight() * 0.16, () => {
+            this.canvas.drawButtonToCanvas("./Assets/Map/school.png", this.canvas.getWidth() * 0.673, this.canvas.getHeight() * 0.263, this.canvas.getWidth() * 0.14, this.canvas.getHeight() * 0.16, () => {
                 this.player.setLocation("School");
                 this.mouseListener.setHasBeenClicked();
             });
-            this.canvas.drawButtonToCanvas("./Assets/map/ziekenuus.png", this.canvas.getWidth() * 0.36, this.canvas.getHeight() * 0.0, this.canvas.getWidth() * 0.16, this.canvas.getHeight() * 0.215, () => {
+            this.canvas.drawButtonToCanvas("./Assets/Map/ziekenuus.png", this.canvas.getWidth() * 0.36, this.canvas.getHeight() * 0.0, this.canvas.getWidth() * 0.16, this.canvas.getHeight() * 0.215, () => {
                 this.player.setLocation("Hospital");
                 this.mouseListener.setHasBeenClicked();
             });
-            this.canvas.drawButtonToCanvas("./Assets/map/restaurant.png", this.canvas.getWidth() * 0.475, this.canvas.getHeight() * 0.685, this.canvas.getWidth() * 0.056, this.canvas.getHeight() * 0.095, () => {
+            this.canvas.drawButtonToCanvas("./Assets/Map/restaurant.png", this.canvas.getWidth() * 0.475, this.canvas.getHeight() * 0.685, this.canvas.getWidth() * 0.056, this.canvas.getHeight() * 0.095, () => {
                 this.player.setLocation("Restaurant");
                 this.mouseListener.setHasBeenClicked();
             });
-            this.canvas.drawButtonToCanvas("./Assets/map/house.png", this.canvas.getWidth() * 0.151, this.canvas.getHeight() * 0.765, this.canvas.getWidth() * 0.043, this.canvas.getHeight() * 0.093, () => {
+            this.canvas.drawButtonToCanvas("./Assets/Map/house.png", this.canvas.getWidth() * 0.151, this.canvas.getHeight() * 0.765, this.canvas.getWidth() * 0.043, this.canvas.getHeight() * 0.093, () => {
                 this.player.setLocation("House");
                 this.mouseListener.setHasBeenClicked();
             });
-            this.canvas.drawButtonToCanvas("./Assets/map/strand.png", this.canvas.getWidth() * 0.9, this.canvas.getHeight() * 0.0, this.canvas.getWidth() * 0.1, this.canvas.getHeight(), () => {
+            this.canvas.drawButtonToCanvas("./Assets/Map/strand.png", this.canvas.getWidth() * 0.9, this.canvas.getHeight() * 0.0, this.canvas.getWidth() * 0.1, this.canvas.getHeight(), () => {
                 this.player.setLocation("Beach");
                 this.mouseListener.setHasBeenClicked();
             });
