@@ -34,7 +34,7 @@ class Game {
                                     this.canvas.getCenter().Y,
                                     this.canvas.getWidth() * 0.025,
                                     this.canvas.getHeight() * 0.05,
-                                    "Beach",
+                                    "Soccer",
                                     10000);
         this.park = new ParkView(   "./Assets/Backgrounds/park.jpg",
                                     this.canvas,
