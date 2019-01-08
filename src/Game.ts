@@ -2,7 +2,6 @@ class Game {
     private canvas : Canvas;
     private player : Player;
     private mouseListener : MouseHelper;
-    private mathHelper : MathHelper;
     private park : ParkView;
     private hospital : HospitalView;
     private house : HouseView;
@@ -17,9 +16,10 @@ class Game {
     private geographyquest: GeographyQuest;
     private mathquest: MathQuest;
     private historyquest: HistoryQuest;
+    private fishArray : Array<Fish>
 
     public constructor () {
-        this.mathHelper = new MathHelper()
+        this.fishArray = [];
         this.mouseListener = new MouseHelper(false, false);
         this.canvas = new Canvas(   <HTMLCanvasElement>document.getElementById("canvas"),
                                     this.mouseListener)
@@ -34,7 +34,7 @@ class Game {
                                     this.canvas.getCenter().Y,
                                     this.canvas.getWidth() * 0.025,
                                     this.canvas.getHeight() * 0.05,
-                                    "Question",
+                                    "Beach",
                                     10000);
         this.park = new ParkView(   "./Assets/Backgrounds/park.jpg",
                                     this.canvas,
@@ -60,7 +60,7 @@ class Game {
                                                 this.canvas,
                                                 this.player,
                                                 this.mouseListener);
-        this.map = new MapView( "./Assets/map/mapleeg.png",
+        this.map = new MapView( "./Assets/Map/mapleeg.png",
                                 this.canvas,
                                 this.player,
                                 this.mouseListener);
@@ -71,11 +71,13 @@ class Game {
         this.beach = new BeachView( "./Assets/Backgrounds/beach.jpg",
                                     this.canvas,
                                     this.player,
-                                    this.mouseListener);            
+                                    this.mouseListener,
+                                    this.fishArray);            
         this.fishing = new FishingView( "./Assets/FishingGame/background1.jpg",
                                         this.canvas,
                                         this.player,
-                                        this.mouseListener);
+                                        this.mouseListener,
+                                        this.fishArray);
         this.geographyquest = new GeographyQuest( "./Assets/Backgrounds/Question.png",
                                         this.canvas,
                                         this.player,

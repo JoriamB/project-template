@@ -224,7 +224,7 @@ class Canvas {
                                 (this.getWidth() * 0.05/100) * currentHunger,
                                 this.getHeight() * 0.02,
                                 "black",
-                                "Hunger:",
+                                "Honger:",
                                 20);
         this.drawBarToCanvas(   X,
                                 Y + this.getHeight() * 0.05,
@@ -232,7 +232,7 @@ class Canvas {
                                 (this.getWidth() * 0.05/100) * currentEnergy,
                                 this.getHeight() * 0.02,
                                 "black",
-                                "Energy:",
+                                "Energie:",
                                 20);
         this.drawBarToCanvas(   X,
                                 Y + this.getHeight() * 0.1,
@@ -240,7 +240,7 @@ class Canvas {
                                 (this.getWidth() * 0.05/100) * currentMood,
                                 this.getHeight() * 0.02,
                                 "black",
-                                "Mood:",
+                                "Stemming:",
                                 20);
         this.drawBarToCanvas(   X,
                                 Y + this.getHeight() * 0.15,
@@ -248,7 +248,7 @@ class Canvas {
                                 (this.getWidth() * 0.05/100) * currentHealth,
                                 this.getHeight() * 0.02,
                                 "black",
-                                "Health:",
+                                "Gezondheid:",
                                 20);
     };
 

@@ -1,10 +1,14 @@
 class BeachView extends BaseView {
 
+    private fishArray : Array<Fish>;
+
     public constructor (src : string,
                         canvas : Canvas,
                         player : Player,
-                        mouseListener : MouseHelper) {
+                        mouseListener : MouseHelper,
+                        fishArray : Array<Fish>) {
         super(src, canvas, player, mouseListener);
+        this.fishArray = fishArray;
     };
 
     /**
@@ -18,7 +22,7 @@ class BeachView extends BaseView {
                                         0,
                                         this.canvas.getWidth(),
                                         this.canvas.getHeight());
-        this.canvas.drawButtonToCanvas(  "./Assets/Icons/ButtonsFree/Home.png",
+        this.canvas.drawButtonToCanvas( "./Assets/Icons/ButtonsFREE/Home.png",
                                         this.canvas.getWidth() * 0.05,
                                         this.canvas.getHeight() * 0.05,
                                         this.canvas.getWidth() * 0.025,
@@ -34,6 +38,13 @@ class BeachView extends BaseView {
                                         () => {
                                             if (this.player.getEnergy() >= 10 &&
                                                 this.player.getMood() < 100) {
+                                                createFish( 1,
+                                                            5,
+                                                            this.canvas,
+                                                            this.fishArray,
+                                                            this.mouseListener,
+                                                            this.player,
+                                                            getSrcArray());
                                                 this.player.setLocation("Fishing");
                                             }
                                             this.mouseListener.setHasBeenClicked()});
