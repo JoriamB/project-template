@@ -99,6 +99,77 @@ class Canvas {
     ;
 }
 ;
+class Fish {
+    constructor(xPos, yPos, src, width, height, canvas, speed, mouseListener, player, fishArray, index) {
+        this.xPos = xPos;
+        this.yPos = yPos;
+        this.src = src;
+        this.width = width;
+        this.height = height;
+        this.canvas = canvas;
+        this.speed = speed;
+        this.movingRight = true;
+        this.mouseListener = mouseListener;
+        this.player = player;
+        this.fishArray = fishArray;
+        this.index = index;
+    }
+    ;
+    move() {
+        if (this.xPos < this.canvas.getWidth() - this.width &&
+            this.movingRight) {
+            this.xPos += this.speed;
+        }
+        else if (this.xPos > 0) {
+            this.xPos -= this.speed;
+            this.movingRight = false;
+        }
+        else if (this.xPos <= 0) {
+            this.movingRight = true;
+        }
+    }
+    ;
+    draw() {
+        this.move();
+        this.canvas.drawButtonToCanvas(this.src, this.xPos, this.yPos, this.width, this.height, () => {
+            this.fishArray.splice(this.getIndex(), 1);
+            for (let i = 0; i < this.fishArray.length; i++) {
+                this.index = i;
+            }
+            ;
+            this.mouseListener.setHasBeenClicked();
+        });
+    }
+    ;
+    getIndex() {
+        return this.index;
+    }
+}
+;
+function createFish(min, max, canvas, fishArray, mouseListener, player, srcArray) {
+    for (let i = min - 1; i < max; i++) {
+        let fish = new Fish(MathHelper.randomNumber(0, canvas.getWidth() - 50), MathHelper.randomNumber(0, canvas.getHeight() - 50), srcArray[MathHelper.randomNumber(0, srcArray.length - 1)], 50, 50, canvas, 2, mouseListener, player, fishArray, i);
+        fishArray.push(fish);
+    }
+    ;
+}
+;
+function getSrcArray() {
+    return srcArray;
+}
+;
+let srcArray = [
+    "fishBlue1",
+    "fishBlue2",
+    "fishGreen1",
+    "fishGreen2",
+    "fishPink1",
+    "fishPink2",
+    "fishRed1",
+    "fishRed2",
+    "fishYellow1",
+    "fishYellow2"
+];
 class Game {
     constructor() {
         this.draw = () => {
@@ -151,10 +222,10 @@ class Game {
             }
             window.requestAnimationFrame(this.draw);
         };
-        this.mathHelper = new MathHelper();
+        this.fishArray = [];
         this.mouseListener = new MouseHelper(false, false);
         this.canvas = new Canvas(document.getElementById("canvas"), this.mouseListener);
-        this.player = new Player("./Assets/Female/Poses/female_slide.png", this.canvas, 5, 20, 80, 100, 60, this.canvas.getCenter().X, this.canvas.getCenter().Y, this.canvas.getWidth() * 0.025, this.canvas.getHeight() * 0.05, "Question", 10000);
+        this.player = new Player("./Assets/Female/Poses/female_slide.png", this.canvas, 5, 20, 80, 100, 60, this.canvas.getCenter().X, this.canvas.getCenter().Y, this.canvas.getWidth() * 0.025, this.canvas.getHeight() * 0.05, "Beach", 10000);
         this.park = new ParkView("./Assets/Backgrounds/park.jpg", this.canvas, this.player, this.mouseListener);
         this.hospital = new HospitalView("./Assets/Backgrounds/hospital.jpg", this.canvas, this.player, this.mouseListener);
         this.house = new HouseView("./Assets/Backgrounds/House.png", this.canvas, this.player, this.mouseListener);
@@ -163,8 +234,8 @@ class Game {
         this.restaurant = new RestaurantView("./Assets/Backgrounds/Restaurant3.jpg", this.canvas, this.player, this.mouseListener);
         this.map = new MapView("./Assets/map/mapleeg.png", this.canvas, this.player, this.mouseListener);
         this.soccer = new SoccerView("./Assets/FootballGame/background.jpg", this.canvas, this.player, this.mouseListener);
-        this.beach = new BeachView("./Assets/Backgrounds/beach.jpg", this.canvas, this.player, this.mouseListener);
-        this.fishing = new FishingView("./Assets/FishingGame/background1.jpg", this.canvas, this.player, this.mouseListener);
+        this.beach = new BeachView("./Assets/Backgrounds/beach.jpg", this.canvas, this.player, this.mouseListener, this.fishArray);
+        this.fishing = new FishingView("./Assets/FishingGame/background1.jpg", this.canvas, this.player, this.mouseListener, this.fishArray);
         this.geographyquest = new GeographyQuest("./Assets/Backgrounds/Question.png", this.canvas, this.player, this.mouseListener);
         this.mathquest = new MathQuest("./Assets/Backgrounds/Question.png", this.canvas, this.player, this.mouseListener);
         this.historyquest = new HistoryQuest("./Assets/Backgrounds/Question.png", this.canvas, this.player, this.mouseListener);
@@ -356,37 +427,6 @@ class Player {
     ;
 }
 ;
-class Progress {
-    constructor(current, increment) {
-        this.bar = document.querySelectorAll('#prog-bar > .progress-bar')[0];
-        this.current = current;
-        this.increment = increment;
-    }
-    update() {
-        this.bar.style.width = this.current + '%';
-    }
-    countUp() {
-        if ((this.current + this.increment) < 100) {
-            this.current += this.increment;
-        }
-        else {
-            this.current = 100;
-            this.update();
-        }
-        ;
-    }
-    countDown() {
-        if (0 < (this.current - this.increment)) {
-            this.current -= this.increment;
-            this.update();
-        }
-        else {
-            this.current = 0;
-            this.update();
-        }
-    }
-}
-let progress = new Progress(0, 10);
 class Voetbal {
     constructor(score, xPos, Ypos) {
     }
@@ -456,7 +496,7 @@ class BaseView {
 }
 ;
 class BeachView extends BaseView {
-    constructor(src, canvas, player, mouseListener) {
+    constructor(src, canvas, player, mouseListener, fishArray) {
         super(src, canvas, player, mouseListener);
         this.draw = () => {
             this.canvas.drawImageToCanvas(this.src, 0, 0, this.canvas.getWidth(), this.canvas.getHeight());
@@ -467,6 +507,7 @@ class BeachView extends BaseView {
             this.canvas.drawButtonToCanvas("./Assets/FishingGame/boat.png", this.canvas.getWidth() * 0.339, this.canvas.getHeight() * 0.2555, this.canvas.getWidth() * 0.24, this.canvas.getHeight() * 0.32, () => {
                 if (this.player.getEnergy() >= 10 &&
                     this.player.getMood() < 100) {
+                    createFish(1, 5, this.canvas, this.fishArray, this.mouseListener, this.player, getSrcArray());
                     this.player.setLocation("Fishing");
                 }
                 this.mouseListener.setHasBeenClicked();
@@ -474,12 +515,13 @@ class BeachView extends BaseView {
             this.canvas.drawCoinToCanvas(this.canvas.getWidth() / 2, this.canvas.getHeight() * 0.04, this.player.getCoin());
             this.canvas.drawBarstoCanvas(this.canvas.getWidth() * 0.9, this.canvas.getHeight() * 0.05, this.player.getHunger(), this.player.getEnergy(), this.player.getMood(), this.player.getHealth());
         };
+        this.fishArray = fishArray;
     }
     ;
 }
 ;
 class FishingView extends BaseView {
-    constructor(src, canvas, player, mouseListener) {
+    constructor(src, canvas, player, mouseListener, fishArray) {
         super(src, canvas, player, mouseListener);
         this.draw = () => {
             this.canvas.drawImageToCanvas(this.src, 0, 0, this.canvas.getWidth(), this.canvas.getHeight());
@@ -498,9 +540,12 @@ class FishingView extends BaseView {
             });
             this.canvas.drawCoinToCanvas(this.canvas.getWidth() / 2, this.canvas.getHeight() * 0.04, this.player.getCoin());
             this.canvas.drawBarstoCanvas(this.canvas.getWidth() * 0.9, this.canvas.getHeight() * 0.05, this.player.getHunger(), this.player.getEnergy(), this.player.getMood(), this.player.getHealth());
-            this.canvas.drawImageToCanvas("./Assets/FishingGame/fishblue1.png", this.canvas.getWidth() * 0.5 - (this.canvas.getWidth() * 0.15) / 2, this.canvas.getHeight() * 0.55 - (this.canvas.getHeight() * 0.2) / 2, this.canvas.getWidth() * 0.05, this.canvas.getHeight() * 0.1);
+            for (let i = 0; i < this.fishArray.length; i++) {
+                this.fishArray[i].draw();
+            }
             this.canvas.drawImageToCanvas("./Assets/FishingGame/hengel.png", this.mouseListener.getEventX() - (this.canvas.getWidth() * 0.05) / 2, this.mouseListener.getEventY() - (this.canvas.getHeight() * 0.1) / 2, this.canvas.getWidth() * 0.05, this.canvas.getHeight() * 0.1);
         };
+        this.fishArray = fishArray;
     }
     ;
 }
