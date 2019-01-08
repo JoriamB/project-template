@@ -17,6 +17,7 @@ class Game {
     private mathquest: MathQuest;
     private historyquest: HistoryQuest;
     private fishArray : Array<Fish>
+    private selectplayer: SelectPlayer;
 
     public constructor () {
         this.fishArray = [];
@@ -34,7 +35,7 @@ class Game {
                                     this.canvas.getCenter().Y,
                                     this.canvas.getWidth() * 0.025,
                                     this.canvas.getHeight() * 0.05,
-                                    "Beach",
+                                    "SelectPlayer",
                                     10000);
         this.park = new ParkView(   "./Assets/Backgrounds/park.jpg",
                                     this.canvas,
@@ -77,7 +78,7 @@ class Game {
                                         this.canvas,
                                         this.player,
                                         this.mouseListener,
-                                        this.fishArray);
+                                       this.fishArray);
         this.geographyquest = new GeographyQuest( "./Assets/Backgrounds/Question.png",
                                         this.canvas,
                                         this.player,
@@ -97,6 +98,10 @@ class Game {
                                           this.geographyquest,
                                           this.mathquest,
                                           this.historyquest);
+         this.selectplayer = new SelectPlayer("./Assets/Backgrounds/SelectPlayer.jpg",
+                                                this.canvas,
+                                                this.player,
+                                                this.mouseListener);                                 
     };
 
     /**
@@ -147,7 +152,10 @@ class Game {
             break;
             case "History":
             this.historyquest.draw();
-            break;          
+            break; 
+            case "SelectPlayer":
+            this.selectplayer.draw();
+            break;         
             default:
                 this.map.draw();
                 break;

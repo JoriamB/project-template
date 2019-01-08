@@ -229,6 +229,9 @@ class Game {
                 case "History":
                     this.historyquest.draw();
                     break;
+                case "SelectPlayer":
+                    this.selectplayer.draw();
+                    break;
                 default:
                     this.map.draw();
                     break;
@@ -238,7 +241,7 @@ class Game {
         this.fishArray = [];
         this.mouseListener = new MouseHelper(false, false);
         this.canvas = new Canvas(document.getElementById("canvas"), this.mouseListener);
-        this.player = new Player("./Assets/Female/Poses/female_slide.png", this.canvas, 5, 20, 80, 100, 60, this.canvas.getCenter().X, this.canvas.getCenter().Y, this.canvas.getWidth() * 0.025, this.canvas.getHeight() * 0.05, "Beach", 10000);
+        this.player = new Player("./Assets/Female/Poses/female_slide.png", this.canvas, 5, 20, 80, 100, 60, this.canvas.getCenter().X, this.canvas.getCenter().Y, this.canvas.getWidth() * 0.025, this.canvas.getHeight() * 0.05, "SelectPlayer", 10000);
         this.park = new ParkView("./Assets/Backgrounds/park.jpg", this.canvas, this.player, this.mouseListener);
         this.hospital = new HospitalView("./Assets/Backgrounds/hospital.jpg", this.canvas, this.player, this.mouseListener);
         this.house = new HouseView("./Assets/Backgrounds/House.png", this.canvas, this.player, this.mouseListener);
@@ -253,6 +256,7 @@ class Game {
         this.mathquest = new MathQuest("./Assets/Backgrounds/Question.png", this.canvas, this.player, this.mouseListener);
         this.historyquest = new HistoryQuest("./Assets/Backgrounds/Question.png", this.canvas, this.player, this.mouseListener);
         this.question = new QuestionView("./Assets/Backgrounds/Question.png", this.canvas, this.player, this.mouseListener, this.geographyquest, this.mathquest, this.historyquest);
+        this.selectplayer = new SelectPlayer("./Assets/Backgrounds/SelectPlayer.jpg", this.canvas, this.player, this.mouseListener);
     }
     ;
 }
@@ -277,15 +281,15 @@ class KeyboardHelper {
                 this.leftPressed = true;
                 break;
             case 38:
-            case 73:
+            case 87:
                 this.upPressed = true;
                 break;
             case 40:
-            case 75:
+            case 83:
                 this.downPressed = true;
                 break;
             case 39:
-            case 76:
+            case 68:
                 this.rightPressed = true;
                 break;
         }
@@ -295,19 +299,19 @@ class KeyboardHelper {
     keyUpHandler(event) {
         switch (event.keyCode) {
             case 37:
-            case 74:
+            case 65:
                 this.leftPressed = false;
                 break;
             case 38:
-            case 73:
+            case 87:
                 this.upPressed = false;
                 break;
             case 40:
-            case 75:
+            case 83:
                 this.downPressed = false;
                 break;
             case 39:
-            case 76:
+            case 68:
                 this.rightPressed = false;
                 break;
         }
@@ -436,6 +440,14 @@ class Player {
     ;
     setCoin(coin) {
         this.coin = coin;
+    }
+    ;
+    getSrc() {
+        return this.src;
+    }
+    ;
+    setSrc(src) {
+        this.src = src;
     }
     ;
 }
@@ -952,13 +964,237 @@ class HistoryQuest extends BaseView {
         };
         this.HistoryArray = [{
                 ImgSrc: "",
-                Question: "Hoeveel inwoners heeft Europa?",
-                Answer: "741.1 miljoen",
-                Answer1: "1 miljard",
-                Answer2: " 884.6miljoen",
-                Answer3: "1,3 miljard",
-                RightAnswer: "741.1 miljoen"
-            }];
+                Question: "Hoe wordt de tijd tussen 1500 en 1600 genoemd?",
+                Answer: "De Heksentijd",
+                Answer1: "De Middeleeuwen",
+                Answer2: "De Renaissance",
+                Answer3: "De Gouden Eeuw",
+                RightAnswer: "De Renaissance"
+            }, {
+                ImgSrc: "",
+                Question: "Wanneer was de Gouden Eeuw?",
+                Answer: "De zeventiende eeuw",
+                Answer1: "De vijftiende eeuw",
+                Answer2: "De achttiende eeuw",
+                Answer3: "De zestiende eeuw",
+                RightAnswer: "De zeventiende eeuw"
+            }, {
+                ImgSrc: "",
+                Question: "Wie of wat is/was Max Havelaar?",
+                Answer: "Een bedrijf",
+                Answer1: "Een BN’er",
+                Answer2: "Een boek",
+                Answer3: "Een politicus",
+                RightAnswer: "Een boek"
+            }, {
+                ImgSrc: "",
+                Question: "In welke tijd leefde Napoleon?",
+                Answer: "1624 - 1676",
+                Answer1: "1812 - 1864",
+                Answer2: "1769 - 1821 ",
+                Answer3: "1534 - 1586",
+                RightAnswer: "1769 - 1821"
+            }, {
+                ImgSrc: "",
+                Question: "Van welk land was Napoleon keizer?",
+                Answer: "Oostenrijk",
+                Answer1: "Frankrijk",
+                Answer2: "Duitsland ",
+                Answer3: "Spanje",
+                RightAnswer: "Frankrijk"
+            }, {
+                ImgSrc: "",
+                Question: "Welke strijd heeft Napoleon verloren?",
+                Answer: "Hiroshima",
+                Answer1: "Waterloo",
+                Answer2: "Gettysburg",
+                Answer3: "De Franse Revolutie",
+                RightAnswer: "Waterloo"
+            }, {
+                ImgSrc: "",
+                Question: "Wie schilderde de Nachtwacht?",
+                Answer: "Rembrandt van Rijn",
+                Answer1: "Vincent van Gogh",
+                Answer2: "Pablo Picasso",
+                Answer3: "Johannes Vermeer",
+                RightAnswer: "Rembrandt van Rijn"
+            }, {
+                ImgSrc: "",
+                Question: "Wie heeft de Mona Lisa geschilderd?",
+                Answer: "Pablo Picasso",
+                Answer1: "Leonardo da Vinci",
+                Answer2: "Salvador Dali ",
+                Answer3: "Vincent van Gogh",
+                RightAnswer: "Leonardo da Vinci"
+            }, {
+                ImgSrc: "",
+                Question: "Welke schilder sneed in 1888 een stuk van zijn oor af?",
+                Answer: "Leonardo da Vinci",
+                Answer1: "Pablo Picasso",
+                Answer2: "Johannes Vermeer",
+                Answer3: "Vincent van Gogh",
+                RightAnswer: "Vincent van Gogh"
+            }, {
+                ImgSrc: "",
+                Question: "Welk politiek leider hield de bekende toespraak “I have a dream”?",
+                Answer: "Geert Wilders",
+                Answer1: "Martin Luther King",
+                Answer2: "Nelson Mandela",
+                Answer3: "Barack Obama",
+                RightAnswer: "Martin Luther King"
+            }, {
+                ImgSrc: "",
+                Question: " Ter ere van welke Grieks god werden de vroegere Olympische spelen in Griekenland gehouden?",
+                Answer: "Apollo",
+                Answer1: "Zeus",
+                Answer2: "Athena ",
+                Answer3: "Poseidon",
+                RightAnswer: "Zeus"
+            }, {
+                ImgSrc: "",
+                Question: "In welk werelddeel vond de eerste wereldoorlog plaats?",
+                Answer: "Azie",
+                Answer1: "Noord-Amerika",
+                Answer2: "Afrika ",
+                Answer3: "Europa",
+                RightAnswer: "Europa"
+            }, {
+                ImgSrc: "",
+                Question: "Wanneer eindigde de eerste wereldoorlog?",
+                Answer: "1923",
+                Answer1: "1889",
+                Answer2: "1945 ",
+                Answer3: "1918",
+                RightAnswer: "1918"
+            }, {
+                ImgSrc: "",
+                Question: "Waar kwam Michiel de Ruyter vandaan?",
+                Answer: "Hoek van Holland",
+                Answer1: "Vlissingen",
+                Answer2: "Rotterdam ",
+                Answer3: "Breskens",
+                RightAnswer: "Vlissingen"
+            }, {
+                ImgSrc: "",
+                Question: "Hoe ging Adolf Hitler dood?",
+                Answer: "Hij werd geraakt door een bom",
+                Answer1: "Hij werd neergeschoten",
+                Answer2: "Hij werd opgehangen ",
+                Answer3: "Hij pleegde zelfmoord",
+                RightAnswer: "Hij pleegde zelfmoord"
+            }, {
+                ImgSrc: "",
+                Question: "",
+                Answer: "",
+                Answer1: "",
+                Answer2: " ",
+                Answer3: "",
+                RightAnswer: ""
+            }, {
+                ImgSrc: "",
+                Question: "",
+                Answer: "",
+                Answer1: "",
+                Answer2: " ",
+                Answer3: "",
+                RightAnswer: ""
+            }, {
+                ImgSrc: "",
+                Question: "",
+                Answer: "",
+                Answer1: "",
+                Answer2: " ",
+                Answer3: "",
+                RightAnswer: ""
+            }, {
+                ImgSrc: "",
+                Question: "",
+                Answer: "",
+                Answer1: "",
+                Answer2: " ",
+                Answer3: "",
+                RightAnswer: ""
+            }, {
+                ImgSrc: "",
+                Question: "",
+                Answer: "",
+                Answer1: "",
+                Answer2: " ",
+                Answer3: "",
+                RightAnswer: ""
+            }, {
+                ImgSrc: "",
+                Question: "",
+                Answer: "",
+                Answer1: "",
+                Answer2: " ",
+                Answer3: "",
+                RightAnswer: ""
+            }, {
+                ImgSrc: "",
+                Question: "",
+                Answer: "",
+                Answer1: "",
+                Answer2: " ",
+                Answer3: "",
+                RightAnswer: ""
+            }, {
+                ImgSrc: "",
+                Question: "",
+                Answer: "",
+                Answer1: "",
+                Answer2: " ",
+                Answer3: "",
+                RightAnswer: ""
+            }, {
+                ImgSrc: "",
+                Question: "",
+                Answer: "",
+                Answer1: "",
+                Answer2: " ",
+                Answer3: "",
+                RightAnswer: ""
+            }, {
+                ImgSrc: "",
+                Question: "",
+                Answer: "",
+                Answer1: "",
+                Answer2: " ",
+                Answer3: "",
+                RightAnswer: ""
+            }, {
+                ImgSrc: "",
+                Question: "",
+                Answer: "",
+                Answer1: "",
+                Answer2: " ",
+                Answer3: "",
+                RightAnswer: ""
+            }, {
+                ImgSrc: "",
+                Question: "",
+                Answer: "",
+                Answer1: "",
+                Answer2: " ",
+                Answer3: "",
+                RightAnswer: ""
+            }, {
+                ImgSrc: "",
+                Question: "",
+                Answer: "",
+                Answer1: "",
+                Answer2: " ",
+                Answer3: "",
+                RightAnswer: ""
+            }, {
+                ImgSrc: "",
+                Question: "",
+                Answer: "",
+                Answer1: "",
+                Answer2: " ",
+                Answer3: "",
+                RightAnswer: ""
+            },];
     }
     setCurrentQuestion(currentQuestion) {
         this.currentQuestion = currentQuestion;
@@ -1066,7 +1302,7 @@ class MapView extends BaseView {
             this.canvas.drawCoinToCanvas(this.canvas.getWidth() * 0.09, this.canvas.getHeight() * 0.04, this.player.getCoin());
             this.canvas.drawBarstoCanvas(this.canvas.getWidth() * 0.9, this.canvas.getHeight() * 0.05, this.player.getHunger(), this.player.getEnergy(), this.player.getMood(), this.player.getHealth());
             this.player.move();
-            this.canvas.drawImageToCanvas("./Assets/Player/Female/Poses/female_walk1.png", this.player.getX(), this.player.getY(), this.player.getWidth(), this.player.getHeight());
+            this.canvas.drawImageToCanvas(this.player.getSrc(), this.player.getX(), this.player.getY(), this.player.getWidth(), this.player.getHeight());
         };
     }
     ;
@@ -1603,6 +1839,26 @@ class SchoolView extends BaseView {
             });
             this.canvas.drawCoinToCanvas(this.canvas.getWidth() / 2, this.canvas.getHeight() * 0.04, this.player.getCoin());
             this.canvas.drawBarstoCanvas(this.canvas.getWidth() * 0.9, this.canvas.getHeight() * 0.05, this.player.getHunger(), this.player.getEnergy(), this.player.getMood(), this.player.getHealth());
+        };
+    }
+    ;
+}
+;
+class SelectPlayer extends BaseView {
+    constructor(src, canvas, player, mouseListener) {
+        super(src, canvas, player, mouseListener);
+        this.draw = () => {
+            this.canvas.drawImageToCanvas(this.src, 0, 0, this.canvas.getWidth(), this.canvas.getHeight());
+            this.canvas.drawButtonToCanvas("./Assets/Player/Female/Poses/female_idle.png", this.canvas.getWidth() * 0.25, this.canvas.getHeight() * 0.5, this.canvas.getWidth() * 0.1, this.canvas.getHeight() * 0.2, () => {
+                this.player.setSrc("./Assets/Player/Female/Poses/female_idle.png");
+                this.player.setLocation("Map");
+                this.mouseListener.setHasBeenClicked();
+            });
+            this.canvas.drawButtonToCanvas("./Assets/Player/Male/Poses/player_idle.png", this.canvas.getWidth() * 0.55, this.canvas.getHeight() * 0.5, this.canvas.getWidth() * 0.1, this.canvas.getHeight() * 0.2, () => {
+                this.player.setSrc("./Assets/Player/Male/Poses/player_idle.png");
+                this.player.setLocation("Map");
+                this.mouseListener.setHasBeenClicked();
+            });
         };
     }
     ;

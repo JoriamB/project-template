@@ -253,4 +253,12 @@ class Player {
     public setCoin (coin : number) : void {
         this.coin = coin;
     };
+    
+    public getSrc(){
+        return this.src
+    };
+
+    public setSrc(src:string){
+        this.src = src;
+    };
 };

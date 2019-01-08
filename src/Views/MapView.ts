@@ -91,7 +91,7 @@ class MapView extends BaseView {
                                         this.player.getMood(),
                                         this.player.getHealth())
         this.player.move();
-        this.canvas.drawImageToCanvas(  "./Assets/Player/Female/Poses/female_walk1.png",
+        this.canvas.drawImageToCanvas(  this.player.getSrc(),
                                         this.player.getX(),
                                         this.player.getY(),
                                         this.player.getWidth(),
