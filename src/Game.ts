@@ -69,18 +69,19 @@ class Game {
                                         this.canvas,
                                         this.player,
                                         this.mouseListener,
-                                        0);          
-        this.beach = new BeachView( "./Assets/Backgrounds/beach.jpg",
-                                    this.canvas,
-                                    this.player,
-                                    this.mouseListener,
-                                    this.fishArray);            
+                                        0);   
         this.fishing = new FishingView( "./Assets/FishingGame/background1.jpg",
                                         this.canvas,
                                         this.player,
                                         this.mouseListener,
                                        this.fishArray,
-                                       0);
+                                       0);       
+        this.beach = new BeachView( "./Assets/Backgrounds/beach.jpg",
+                                    this.canvas,
+                                    this.player,
+                                    this.mouseListener,
+                                    this.fishArray,
+                                    this.fishing);
         this.geographyquest = new GeographyQuest( "./Assets/Backgrounds/Question.png",
                                         this.canvas,
                                         this.player,

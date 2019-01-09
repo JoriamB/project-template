@@ -12,6 +12,7 @@ class Fish {
     private player : Player;
     private fishArray : Array<Fish>;
     private index : number;
+    private fishingView : FishingView;
 
     public constructor (xPos : number,
                         yPos : number,
@@ -23,7 +24,8 @@ class Fish {
                         mouseListener : MouseHelper,
                         player : Player,
                         fishArray : Array<Fish>,
-                        index : number) {
+                        index : number,
+                        fishingView : FishingView) {
         this.xPos = xPos;
         this.yPos = yPos;
         this.src = src;
@@ -36,6 +38,7 @@ class Fish {
         this.player = player;
         this.fishArray = fishArray;
         this.index = index
+        this.fishingView = fishingView;
     };
 
     public move () {
@@ -79,6 +82,7 @@ class Fish {
                                                 for (let i = 0; i < this.fishArray.length; i++) {
                                                     this.index = i;
                                                 };
+                                                this.fishingView.setScore(this.fishingView.getScore() + 1);
                                                 this.mouseListener.setHasBeenClicked()
                                             });
         };
@@ -94,7 +98,8 @@ function createFish (   min : number,
                         fishArray : Array<Fish>,
                         mouseListener : MouseHelper,
                         player : Player,
-                        srcArray : Array<string>) {
+                        srcArray : Array<string>,
+                        fishingView : FishingView) {
     for (let i = min - 1; i < max; i++) {
         let fish = new Fish(MathHelper.randomNumber(0, canvas.getWidth() - 50),
                             MathHelper.randomNumber(0, canvas.getHeight() - 50),
@@ -106,7 +111,8 @@ function createFish (   min : number,
                             mouseListener,
                             player,
                             fishArray,
-                            i);
+                            i,
+                            fishingView);
         fishArray.push(fish);
     };
 };

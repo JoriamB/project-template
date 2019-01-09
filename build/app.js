@@ -100,7 +100,7 @@ class Canvas {
 }
 ;
 class Fish {
-    constructor(xPos, yPos, src, width, height, canvas, speed, mouseListener, player, fishArray, index) {
+    constructor(xPos, yPos, src, width, height, canvas, speed, mouseListener, player, fishArray, index, fishingView) {
         this.xPos = xPos;
         this.yPos = yPos;
         this.src = src;
@@ -113,6 +113,7 @@ class Fish {
         this.player = player;
         this.fishArray = fishArray;
         this.index = index;
+        this.fishingView = fishingView;
     }
     ;
     move() {
@@ -148,6 +149,7 @@ class Fish {
                     this.index = i;
                 }
                 ;
+                this.fishingView.setScore(this.fishingView.getScore() + 1);
                 this.mouseListener.setHasBeenClicked();
             });
         }
@@ -159,9 +161,9 @@ class Fish {
     }
 }
 ;
-function createFish(min, max, canvas, fishArray, mouseListener, player, srcArray) {
+function createFish(min, max, canvas, fishArray, mouseListener, player, srcArray, fishingView) {
     for (let i = min - 1; i < max; i++) {
-        let fish = new Fish(MathHelper.randomNumber(0, canvas.getWidth() - 50), MathHelper.randomNumber(0, canvas.getHeight() - 50), srcArray[MathHelper.randomNumber(0, srcArray.length - 1)], 50, 50, canvas, 2, mouseListener, player, fishArray, i);
+        let fish = new Fish(MathHelper.randomNumber(0, canvas.getWidth() - 50), MathHelper.randomNumber(0, canvas.getHeight() - 50), srcArray[MathHelper.randomNumber(0, srcArray.length - 1)], 50, 50, canvas, 2, mouseListener, player, fishArray, i, fishingView);
         fishArray.push(fish);
     }
     ;
@@ -250,8 +252,8 @@ class Game {
         this.restaurant = new RestaurantView("./Assets/Backgrounds/Restaurant3.jpg", this.canvas, this.player, this.mouseListener);
         this.map = new MapView("./Assets/Map/mapleeg.png", this.canvas, this.player, this.mouseListener);
         this.soccer = new SoccerView("./Assets/FootballGame/background.jpg", this.canvas, this.player, this.mouseListener, 0);
-        this.beach = new BeachView("./Assets/Backgrounds/beach.jpg", this.canvas, this.player, this.mouseListener, this.fishArray);
         this.fishing = new FishingView("./Assets/FishingGame/background1.jpg", this.canvas, this.player, this.mouseListener, this.fishArray, 0);
+        this.beach = new BeachView("./Assets/Backgrounds/beach.jpg", this.canvas, this.player, this.mouseListener, this.fishArray, this.fishing);
         this.geographyquest = new GeographyQuest("./Assets/Backgrounds/Question.png", this.canvas, this.player, this.mouseListener, 0);
         this.mathquest = new MathQuest("./Assets/Backgrounds/Question.png", this.canvas, this.player, this.mouseListener, 0);
         this.historyquest = new HistoryQuest("./Assets/Backgrounds/Question.png", this.canvas, this.player, this.mouseListener, 0);
@@ -521,7 +523,7 @@ class BaseView {
 }
 ;
 class BeachView extends BaseView {
-    constructor(src, canvas, player, mouseListener, fishArray) {
+    constructor(src, canvas, player, mouseListener, fishArray, fishingView) {
         super(src, canvas, player, mouseListener);
         this.draw = () => {
             this.canvas.drawImageToCanvas(this.src, 0, 0, this.canvas.getWidth(), this.canvas.getHeight());
@@ -532,7 +534,7 @@ class BeachView extends BaseView {
             this.canvas.drawButtonToCanvas("./Assets/FishingGame/boat.png", this.canvas.getWidth() * 0.339, this.canvas.getHeight() * 0.2555, this.canvas.getWidth() * 0.24, this.canvas.getHeight() * 0.32, () => {
                 if (this.player.getEnergy() >= 10 &&
                     this.player.getMood() < 100) {
-                    createFish(25, 50, this.canvas, this.fishArray, this.mouseListener, this.player, getSrcArray());
+                    createFish(25, 50, this.canvas, this.fishArray, this.mouseListener, this.player, getSrcArray(), this.fishingView);
                     this.player.setLocation("Fishing");
                 }
                 this.mouseListener.setHasBeenClicked();
@@ -541,6 +543,7 @@ class BeachView extends BaseView {
             this.canvas.drawBarstoCanvas(this.canvas.getWidth() * 0.9, this.canvas.getHeight() * 0.05, this.player.getHunger(), this.player.getEnergy(), this.player.getMood(), this.player.getHealth());
         };
         this.fishArray = fishArray;
+        this.fishingView = fishingView;
     }
     ;
 }
@@ -554,6 +557,7 @@ class FishingView extends BaseView {
                 this.fishArray[i].draw();
             }
             ;
+            this.canvas.drawTextToCanvas("center", 20, "Minecraft", "white", `Score: ${this.score}`, this.canvas.getWidth() * 0.3, this.canvas.getHeight() * 0.08);
             this.canvas.drawButtonToCanvas("./Assets/Icons/ButtonsFREE/Home.png", this.canvas.getWidth() * 0.05, this.canvas.getHeight() * 0.05, this.canvas.getWidth() * 0.025, this.canvas.getHeight() * 0.05, () => {
                 if (this.player.getMood() < 70) {
                     this.player.setEnergy(this.player.getEnergy() - 10);
@@ -573,6 +577,14 @@ class FishingView extends BaseView {
             this.canvas.drawImageToCanvas("./Assets/FishingGame/hengel.png", this.mouseListener.getEventX() - (this.canvas.getWidth() * 0.05) / 2, this.mouseListener.getEventY() - (this.canvas.getHeight() * 0.1) / 2, this.canvas.getWidth() * 0.05, this.canvas.getHeight() * 0.1);
         };
         this.fishArray = fishArray;
+        this.score = score;
+    }
+    ;
+    getScore() {
+        return this.score;
+    }
+    ;
+    setScore(score) {
         this.score = score;
     }
     ;
@@ -1886,7 +1898,7 @@ class SelectPlayer extends BaseView {
         this.draw = () => {
             this.canvas.drawImageToCanvas(this.src, 0, 0, this.canvas.getWidth(), this.canvas.getHeight());
             this.canvas.drawTextToCanvas("center", 60, "Minecraft", "white", "Ludos Mundi", this.canvas.getWidth() * 0.5, this.canvas.getHeight() * 0.2);
-            this.canvas.drawTextToCanvas("center", 40, "Minecraft", "white", "Kies je karakter.", this.canvas.getWidth() * 0.5, this.canvas.getHeight() * 0.4);
+            this.canvas.drawTextToCanvas("center", 40, "Minecraft", "orange", "Kies je karakter.", this.canvas.getWidth() * 0.5, this.canvas.getHeight() * 0.4);
             this.canvas.drawButtonToCanvas("./Assets/Player/Female/Poses/female_idle.png", this.canvas.getWidth() * 0.35, this.canvas.getHeight() * 0.5, this.canvas.getWidth() * 0.1, this.canvas.getHeight() * 0.2, () => {
                 this.player.setSrc("./Assets/Player/Female/Poses/female_idle.png");
                 this.player.setLocation("Map");

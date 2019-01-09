@@ -29,13 +29,13 @@ class FishingView extends BaseView {
         for (let i = 0; i < this.fishArray.length; i++) {
             this.fishArray[i].draw()
         };
-        /*this.canvas.drawTextToCanvas(   "center",
+        this.canvas.drawTextToCanvas(   "center",
                                         20,
                                         "Minecraft",
                                         "white",
                                         `Score: ${this.score}`,
                                         this.canvas.getWidth() * 0.3,
-                                        this.canvas.getHeight() * 0.08);*/
+                                        this.canvas.getHeight() * 0.08);
         this.canvas.drawButtonToCanvas( "./Assets/Icons/ButtonsFREE/Home.png",
                                         this.canvas.getWidth() * 0.05,
                                         this.canvas.getHeight() * 0.05,
@@ -67,5 +67,13 @@ class FishingView extends BaseView {
                                         this.mouseListener.getEventY() - (this.canvas.getHeight() * 0.1)/2,
                                         this.canvas.getWidth() * 0.05,
                                         this.canvas.getHeight() * 0.1);
+    };
+
+    public getScore () : number {
+        return this.score
+    };
+
+    public setScore (score : number) {
+        this.score = score;
     };
 };
