@@ -21,14 +21,14 @@ class SelectPlayer extends BaseView {
         this.canvas.drawTextToCanvas(   "center",
                                         60,
                                         "Minecraft",
-                                        "white",
+                                        "orange",
                                         "Ludos Mundi",
                                         this.canvas.getWidth() * 0.5,
                                         this.canvas.getHeight() * 0.2);
         this.canvas.drawTextToCanvas(   "center",
                                         40,
                                         "Minecraft",
-                                        "orange",
+                                        "white",
                                         "Kies je karakter.",
                                         this.canvas.getWidth() * 0.5,
                                         this.canvas.getHeight() * 0.4);
