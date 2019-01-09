@@ -1,10 +1,14 @@
 class SoccerView extends BaseView{
+
+    private score : number;
     
     public constructor (src : string,
         canvas : Canvas,
         player : Player,
-        mouseListener : MouseHelper) {
-super(src, canvas, player, mouseListener);
+        mouseListener : MouseHelper,
+        score : number) {
+        super(src, canvas, player, mouseListener);
+        this.score = score;
 };
 
 /**
@@ -26,6 +30,7 @@ super(src, canvas, player, mouseListener);
                                         () => {
                                             this.player.setEnergy(this.player.getEnergy()-15),
                                             this.player.setHunger(this.player.getHunger()-30)
+                                            this.score = 0;
                                             this.player.setLocation("Park");
                                             this.mouseListener.setHasBeenClicked()});
         this.canvas.drawCoinToCanvas(   this.canvas.getWidth()/2,
@@ -37,6 +42,13 @@ super(src, canvas, player, mouseListener);
                                         this.player.getEnergy(),
                                         this.player.getMood(),
                                         this.player.getHealth());
+        this.canvas.drawTextToCanvas(   "center",
+                                        20,
+                                        "Minecraft",
+                                        "white",
+                                        `Score: ${this.score}`,
+                                        this.canvas.getWidth() * 0.3,
+                                        this.canvas.getHeight() * 0.08);
         this.canvas.drawButtonToCanvas( "./Assets/FootballGame/goal.jpg",
                                         this.canvas.getWidth()*0.5 - (this.canvas.getWidth() * 0.21)/2,
                                         this.canvas.getHeight()*0.51 - (this.canvas.getHeight() * 0.2)/2,
@@ -48,6 +60,7 @@ super(src, canvas, player, mouseListener);
                                                 this.mouseListener.getEventY() > (this.canvas.getHeight()*0.51 - (this.canvas.getHeight() * 0.2)/2) + (this.canvas.getHeight() * (0.2 * this.mouseListener.getEventY()/this.canvas.getHeight()))/2&&
                                                 this.mouseListener.getEventY() < (this.canvas.getHeight()*0.51 - (this.canvas.getHeight() * 0.2)/2) + (this.canvas.getHeight() * 0.21) - (this.canvas.getHeight() * (0.2 * this.mouseListener.getEventY()/this.canvas.getHeight()))/2) {
                                                 console.log("Goal!")
+                                                this.score += 1;
                                                 this.mouseListener.setHasBeenClicked()
                                             }
                                         });

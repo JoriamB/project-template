@@ -249,12 +249,12 @@ class Game {
         this.store = new StoreView("./Assets/Backgrounds/Store.jpg", this.canvas, this.player, this.mouseListener);
         this.restaurant = new RestaurantView("./Assets/Backgrounds/Restaurant3.jpg", this.canvas, this.player, this.mouseListener);
         this.map = new MapView("./Assets/Map/mapleeg.png", this.canvas, this.player, this.mouseListener);
-        this.soccer = new SoccerView("./Assets/FootballGame/background.jpg", this.canvas, this.player, this.mouseListener);
+        this.soccer = new SoccerView("./Assets/FootballGame/background.jpg", this.canvas, this.player, this.mouseListener, 0);
         this.beach = new BeachView("./Assets/Backgrounds/beach.jpg", this.canvas, this.player, this.mouseListener, this.fishArray);
-        this.fishing = new FishingView("./Assets/FishingGame/background1.jpg", this.canvas, this.player, this.mouseListener, this.fishArray);
-        this.geographyquest = new GeographyQuest("./Assets/Backgrounds/Question.png", this.canvas, this.player, this.mouseListener);
-        this.mathquest = new MathQuest("./Assets/Backgrounds/Question.png", this.canvas, this.player, this.mouseListener);
-        this.historyquest = new HistoryQuest("./Assets/Backgrounds/Question.png", this.canvas, this.player, this.mouseListener);
+        this.fishing = new FishingView("./Assets/FishingGame/background1.jpg", this.canvas, this.player, this.mouseListener, this.fishArray, 0);
+        this.geographyquest = new GeographyQuest("./Assets/Backgrounds/Question.png", this.canvas, this.player, this.mouseListener, 0);
+        this.mathquest = new MathQuest("./Assets/Backgrounds/Question.png", this.canvas, this.player, this.mouseListener, 0);
+        this.historyquest = new HistoryQuest("./Assets/Backgrounds/Question.png", this.canvas, this.player, this.mouseListener, 0);
         this.question = new QuestionView("./Assets/Backgrounds/Question.png", this.canvas, this.player, this.mouseListener, this.geographyquest, this.mathquest, this.historyquest);
         this.selectplayer = new SelectPlayer("./Assets/Backgrounds/SelectPlayer.jpg", this.canvas, this.player, this.mouseListener);
     }
@@ -532,7 +532,7 @@ class BeachView extends BaseView {
             this.canvas.drawButtonToCanvas("./Assets/FishingGame/boat.png", this.canvas.getWidth() * 0.339, this.canvas.getHeight() * 0.2555, this.canvas.getWidth() * 0.24, this.canvas.getHeight() * 0.32, () => {
                 if (this.player.getEnergy() >= 10 &&
                     this.player.getMood() < 100) {
-                    createFish(1, 5, this.canvas, this.fishArray, this.mouseListener, this.player, getSrcArray());
+                    createFish(25, 50, this.canvas, this.fishArray, this.mouseListener, this.player, getSrcArray());
                     this.player.setLocation("Fishing");
                 }
                 this.mouseListener.setHasBeenClicked();
@@ -546,10 +546,14 @@ class BeachView extends BaseView {
 }
 ;
 class FishingView extends BaseView {
-    constructor(src, canvas, player, mouseListener, fishArray) {
+    constructor(src, canvas, player, mouseListener, fishArray, score) {
         super(src, canvas, player, mouseListener);
         this.draw = () => {
             this.canvas.drawImageToCanvas(this.src, 0, 0, this.canvas.getWidth(), this.canvas.getHeight());
+            for (let i = 0; i < this.fishArray.length; i++) {
+                this.fishArray[i].draw();
+            }
+            ;
             this.canvas.drawButtonToCanvas("./Assets/Icons/ButtonsFREE/Home.png", this.canvas.getWidth() * 0.05, this.canvas.getHeight() * 0.05, this.canvas.getWidth() * 0.025, this.canvas.getHeight() * 0.05, () => {
                 if (this.player.getMood() < 70) {
                     this.player.setEnergy(this.player.getEnergy() - 10);
@@ -560,46 +564,49 @@ class FishingView extends BaseView {
                     this.player.setMood(100);
                 }
                 ;
+                this.score = 0;
                 this.player.setLocation("Beach");
                 this.mouseListener.setHasBeenClicked();
             });
             this.canvas.drawCoinToCanvas(this.canvas.getWidth() / 2, this.canvas.getHeight() * 0.04, this.player.getCoin());
             this.canvas.drawBarstoCanvas(this.canvas.getWidth() * 0.9, this.canvas.getHeight() * 0.05, this.player.getHunger(), this.player.getEnergy(), this.player.getMood(), this.player.getHealth());
-            for (let i = 0; i < this.fishArray.length; i++) {
-                this.fishArray[i].draw();
-            }
             this.canvas.drawImageToCanvas("./Assets/FishingGame/hengel.png", this.mouseListener.getEventX() - (this.canvas.getWidth() * 0.05) / 2, this.mouseListener.getEventY() - (this.canvas.getHeight() * 0.1) / 2, this.canvas.getWidth() * 0.05, this.canvas.getHeight() * 0.1);
         };
         this.fishArray = fishArray;
+        this.score = score;
     }
     ;
 }
 ;
 class GeographyQuest extends BaseView {
-    constructor(src, canvas, player, mouseListener) {
+    constructor(src, canvas, player, mouseListener, score) {
         super(src, canvas, player, mouseListener);
         this.draw = () => {
             this.canvas.drawImageToCanvas(this.src, 0, 0, this.canvas.getWidth(), this.canvas.getHeight());
             this.canvas.drawButtonToCanvas("./Assets/Icons/ButtonsFREE/Home.png", this.canvas.getWidth() * 0.05, this.canvas.getHeight() * 0.05, this.canvas.getWidth() * 0.025, this.canvas.getHeight() * 0.05, () => {
                 this.player.setEnergy(this.player.getEnergy() - 15),
                     this.player.setHunger(this.player.getHunger() - 30);
+                this.score = 0;
                 this.player.setLocation("School");
                 this.mouseListener.setHasBeenClicked();
             });
             this.canvas.drawCoinToCanvas(this.canvas.getWidth() / 2, this.canvas.getHeight() * 0.04, this.player.getCoin());
             this.canvas.drawBarstoCanvas(this.canvas.getWidth() * 0.9, this.canvas.getHeight() * 0.05, this.player.getHunger(), this.player.getEnergy(), this.player.getMood(), this.player.getHealth());
+            this.canvas.drawTextToCanvas("center", 20, "Minecraft", "white", `Score: ${this.score}`, this.canvas.getWidth() * 0.3, this.canvas.getHeight() * 0.08);
             this.canvas.drawTextToCanvas("center", 20, "Minecraft", "White", this.getCurrentQuestion().Question, this.canvas.getWidth() / 2, this.canvas.getHeight() * 0.2);
             if (this.getCurrentQuestion().ImgSrc != "") {
-                this.canvas.drawImageToCanvas(this.getCurrentQuestion().ImgSrc, this.canvas.getWidth() * 0.5 - (this.canvas.getWidth() * 0.25) / 2, this.canvas.getHeight() * 0.4 - (this.canvas.getHeight() * 0.15) / 2, this.canvas.getWidth() * 0.2, this.canvas.getHeight() * 0.15);
+                this.canvas.drawImageToCanvas(this.getCurrentQuestion().ImgSrc, this.canvas.getWidth() * 0.5 - (this.canvas.getWidth() * 0.2) / 2, this.canvas.getHeight() * 0.4 - (this.canvas.getHeight() * 0.15) / 2, this.canvas.getWidth() * 0.2, this.canvas.getHeight() * 0.15);
             }
             ;
             this.canvas.drawTextButtonToCanvas("./Assets/Icons/ButtonsFREE/PlayBlank.png", this.getCurrentQuestion().Answer, this.canvas.getWidth() * 0.35 - (this.canvas.getWidth() * 0.25) / 2, this.canvas.getHeight() * 0.6 - (this.canvas.getHeight() * 0.075) / 2, this.canvas.getWidth() * 0.25, this.canvas.getHeight() * 0.075, () => {
                 if (this.getCurrentQuestion().Answer == this.getCurrentQuestion().RightAnswer) {
                     this.setCurrentQuestion(this.GeoArray[MathHelper.randomNumber(0, this.GeoArray.length - 1)]);
                     console.log("Goed Gedaan!");
+                    this.score += 1;
                 }
                 else {
                     console.log("Probeer het opnieuw.");
+                    this.setCurrentQuestion(this.GeoArray[MathHelper.randomNumber(0, this.GeoArray.length - 1)]);
                 }
                 ;
                 this.mouseListener.setHasBeenClicked();
@@ -608,9 +615,11 @@ class GeographyQuest extends BaseView {
                 if (this.getCurrentQuestion().Answer1 == this.getCurrentQuestion().RightAnswer) {
                     this.setCurrentQuestion(this.GeoArray[MathHelper.randomNumber(0, this.GeoArray.length - 1)]);
                     console.log("Goed Gedaan!");
+                    this.score += 1;
                 }
                 else {
                     console.log("Probeer het opnieuw.");
+                    this.setCurrentQuestion(this.GeoArray[MathHelper.randomNumber(0, this.GeoArray.length - 1)]);
                 }
                 ;
                 this.mouseListener.setHasBeenClicked();
@@ -619,9 +628,11 @@ class GeographyQuest extends BaseView {
                 if (this.getCurrentQuestion().Answer2 == this.getCurrentQuestion().RightAnswer) {
                     this.setCurrentQuestion(this.GeoArray[MathHelper.randomNumber(0, this.GeoArray.length - 1)]);
                     console.log("Goed Gedaan!");
+                    this.score += 1;
                 }
                 else {
                     console.log("Probeer het opnieuw.");
+                    this.setCurrentQuestion(this.GeoArray[MathHelper.randomNumber(0, this.GeoArray.length - 1)]);
                 }
                 ;
                 this.mouseListener.setHasBeenClicked();
@@ -630,9 +641,11 @@ class GeographyQuest extends BaseView {
                 if (this.getCurrentQuestion().Answer3 == this.getCurrentQuestion().RightAnswer) {
                     this.setCurrentQuestion(this.GeoArray[MathHelper.randomNumber(0, this.GeoArray.length - 1)]);
                     console.log("Goed Gedaan!");
+                    this.score += 1;
                 }
                 else {
                     console.log("Probeer het opnieuw.");
+                    this.setCurrentQuestion(this.GeoArray[MathHelper.randomNumber(0, this.GeoArray.length - 1)]);
                 }
                 ;
                 this.mouseListener.setHasBeenClicked();
@@ -882,6 +895,7 @@ class GeographyQuest extends BaseView {
                 RightAnswer: "Zwitserland"
             }];
         this.currentQuestion = this.GeoArray[0];
+        this.score = score;
     }
     printQuestions() {
         let i = MathHelper.randomNumber(0, this.GeoArray.length - 1);
@@ -900,13 +914,14 @@ class GeographyQuest extends BaseView {
 ;
 ;
 class HistoryQuest extends BaseView {
-    constructor(src, canvas, player, mouseListener) {
+    constructor(src, canvas, player, mouseListener, score) {
         super(src, canvas, player, mouseListener);
         this.draw = () => {
             this.canvas.drawImageToCanvas(this.src, 0, 0, this.canvas.getWidth(), this.canvas.getHeight());
             this.canvas.drawButtonToCanvas("./Assets/Icons/ButtonsFREE/Home.png", this.canvas.getWidth() * 0.05, this.canvas.getHeight() * 0.05, this.canvas.getWidth() * 0.025, this.canvas.getHeight() * 0.05, () => {
                 this.player.setEnergy(this.player.getEnergy() - 15),
                     this.player.setHunger(this.player.getHunger() - 30);
+                this.score = 0;
                 this.player.setLocation("School");
                 this.mouseListener.setHasBeenClicked();
             });
@@ -917,13 +932,16 @@ class HistoryQuest extends BaseView {
                 this.canvas.drawImageToCanvas(this.getCurrentQuestion().ImgSrc, this.canvas.getWidth() * 0.5 - (this.canvas.getWidth() * 0.2) / 2, this.canvas.getHeight() * 0.4 - (this.canvas.getHeight() * 0.15) / 2, this.canvas.getWidth() * 0.2, this.canvas.getHeight() * 0.15);
             }
             ;
+            this.canvas.drawTextToCanvas("center", 20, "Minecraft", "white", `Score: ${this.score}`, this.canvas.getWidth() * 0.3, this.canvas.getHeight() * 0.08);
             this.canvas.drawTextButtonToCanvas("./Assets/Icons/ButtonsFREE/PlayBlank.png", this.getCurrentQuestion().Answer, this.canvas.getWidth() * 0.35 - (this.canvas.getWidth() * 0.2) / 2, this.canvas.getHeight() * 0.6 - (this.canvas.getHeight() * 0.075) / 2, this.canvas.getWidth() * 0.2, this.canvas.getHeight() * 0.075, () => {
                 if (this.getCurrentQuestion().Answer == this.getCurrentQuestion().RightAnswer) {
                     this.setCurrentQuestion(this.HistoryArray[MathHelper.randomNumber(0, this.HistoryArray.length - 1)]);
                     console.log("Goed Gedaan!");
+                    this.score += 1;
                 }
                 else {
                     console.log("Probeer het opnieuw.");
+                    this.setCurrentQuestion(this.HistoryArray[MathHelper.randomNumber(0, this.HistoryArray.length - 1)]);
                 }
                 ;
                 this.mouseListener.setHasBeenClicked();
@@ -932,9 +950,11 @@ class HistoryQuest extends BaseView {
                 if (this.getCurrentQuestion().Answer1 == this.getCurrentQuestion().RightAnswer) {
                     this.setCurrentQuestion(this.HistoryArray[MathHelper.randomNumber(0, this.HistoryArray.length - 1)]);
                     console.log("Goed Gedaan!");
+                    this.score += 1;
                 }
                 else {
                     console.log("Probeer het opnieuw.");
+                    this.setCurrentQuestion(this.HistoryArray[MathHelper.randomNumber(0, this.HistoryArray.length - 1)]);
                 }
                 ;
                 this.mouseListener.setHasBeenClicked();
@@ -943,9 +963,11 @@ class HistoryQuest extends BaseView {
                 if (this.getCurrentQuestion().Answer2 == this.getCurrentQuestion().RightAnswer) {
                     this.setCurrentQuestion(this.HistoryArray[MathHelper.randomNumber(0, this.HistoryArray.length - 1)]);
                     console.log("Goed Gedaan!");
+                    this.score += 1;
                 }
                 else {
                     console.log("Probeer het opnieuw.");
+                    this.setCurrentQuestion(this.HistoryArray[MathHelper.randomNumber(0, this.HistoryArray.length - 1)]);
                 }
                 ;
                 this.mouseListener.setHasBeenClicked();
@@ -954,9 +976,11 @@ class HistoryQuest extends BaseView {
                 if (this.getCurrentQuestion().Answer3 == this.getCurrentQuestion().RightAnswer) {
                     this.setCurrentQuestion(this.HistoryArray[MathHelper.randomNumber(0, this.HistoryArray.length - 1)]);
                     console.log("Goed Gedaan!");
+                    this.score += 1;
                 }
                 else {
                     console.log("Probeer het opnieuw.");
+                    this.setCurrentQuestion(this.HistoryArray[MathHelper.randomNumber(0, this.HistoryArray.length - 1)]);
                 }
                 ;
                 this.mouseListener.setHasBeenClicked();
@@ -1195,6 +1219,7 @@ class HistoryQuest extends BaseView {
                 Answer3: "Europa was overbevolkt",
                 RightAnswer: "Een snellere en veilige weg naar India en China vinden"
             },];
+        this.score = score;
     }
     setCurrentQuestion(currentQuestion) {
         this.currentQuestion = currentQuestion;
@@ -1309,18 +1334,20 @@ class MapView extends BaseView {
 }
 ;
 class MathQuest extends BaseView {
-    constructor(src, canvas, player, mouseListener) {
+    constructor(src, canvas, player, mouseListener, score) {
         super(src, canvas, player, mouseListener);
         this.draw = () => {
             this.canvas.drawImageToCanvas(this.src, 0, 0, this.canvas.getWidth(), this.canvas.getHeight());
             this.canvas.drawButtonToCanvas("./Assets/Icons/ButtonsFREE/Home.png", this.canvas.getWidth() * 0.05, this.canvas.getHeight() * 0.05, this.canvas.getWidth() * 0.025, this.canvas.getHeight() * 0.05, () => {
                 this.player.setEnergy(this.player.getEnergy() - 15),
                     this.player.setHunger(this.player.getHunger() - 30);
+                this.score = 0;
                 this.player.setLocation("School");
                 this.mouseListener.setHasBeenClicked();
             });
             this.canvas.drawCoinToCanvas(this.canvas.getWidth() / 2, this.canvas.getHeight() * 0.04, this.player.getCoin());
             this.canvas.drawBarstoCanvas(this.canvas.getWidth() * 0.9, this.canvas.getHeight() * 0.05, this.player.getHunger(), this.player.getEnergy(), this.player.getMood(), this.player.getHealth());
+            this.canvas.drawTextToCanvas("center", 20, "Minecraft", "white", `Score: ${this.score}`, this.canvas.getWidth() * 0.3, this.canvas.getHeight() * 0.08);
             this.canvas.drawTextToCanvas("center", 20, "Minecraft", "White", this.getCurrentQuestion().Question, this.canvas.getWidth() / 2, this.canvas.getHeight() * 0.2);
             if (this.getCurrentQuestion().ImgSrc != "") {
                 this.canvas.drawImageToCanvas(this.getCurrentQuestion().ImgSrc, this.canvas.getWidth() * 0.5 - (this.canvas.getWidth() * 0.2) / 2, this.canvas.getHeight() * 0.4 - (this.canvas.getHeight() * 0.15) / 2, this.canvas.getWidth() * 0.2, this.canvas.getHeight() * 0.15);
@@ -1330,9 +1357,11 @@ class MathQuest extends BaseView {
                 if (this.getCurrentQuestion().Answer == this.getCurrentQuestion().RightAnswer) {
                     this.setCurrentQuestion(this.MathArray[MathHelper.randomNumber(0, this.MathArray.length - 1)]);
                     console.log("Goed Gedaan!");
+                    this.score += 1;
                 }
                 else {
                     console.log("Probeer het opnieuw.");
+                    this.setCurrentQuestion(this.MathArray[MathHelper.randomNumber(0, this.MathArray.length - 1)]);
                 }
                 ;
                 this.mouseListener.setHasBeenClicked();
@@ -1341,9 +1370,11 @@ class MathQuest extends BaseView {
                 if (this.getCurrentQuestion().Answer1 == this.getCurrentQuestion().RightAnswer) {
                     this.setCurrentQuestion(this.MathArray[MathHelper.randomNumber(0, this.MathArray.length - 1)]);
                     console.log("Goed Gedaan!");
+                    this.score += 1;
                 }
                 else {
                     console.log("Probeer het opnieuw.");
+                    this.setCurrentQuestion(this.MathArray[MathHelper.randomNumber(0, this.MathArray.length - 1)]);
                 }
                 ;
                 this.mouseListener.setHasBeenClicked();
@@ -1352,9 +1383,11 @@ class MathQuest extends BaseView {
                 if (this.getCurrentQuestion().Answer2 == this.getCurrentQuestion().RightAnswer) {
                     this.setCurrentQuestion(this.MathArray[MathHelper.randomNumber(0, this.MathArray.length - 1)]);
                     console.log("Goed Gedaan!");
+                    this.score += 1;
                 }
                 else {
                     console.log("Probeer het opnieuw.");
+                    this.setCurrentQuestion(this.MathArray[MathHelper.randomNumber(0, this.MathArray.length - 1)]);
                 }
                 ;
                 this.mouseListener.setHasBeenClicked();
@@ -1363,9 +1396,11 @@ class MathQuest extends BaseView {
                 if (this.getCurrentQuestion().Answer3 == this.getCurrentQuestion().RightAnswer) {
                     this.setCurrentQuestion(this.MathArray[MathHelper.randomNumber(0, this.MathArray.length - 1)]);
                     console.log("Goed Gedaan!");
+                    this.score += 1;
                 }
                 else {
                     console.log("Probeer het opnieuw.");
+                    this.setCurrentQuestion(this.MathArray[MathHelper.randomNumber(0, this.MathArray.length - 1)]);
                 }
                 ;
                 this.mouseListener.setHasBeenClicked();
@@ -1721,6 +1756,7 @@ class MathQuest extends BaseView {
             }
         ];
         this.currentQuestion = this.MathArray[0];
+        this.score = score;
     }
     setCurrentQuestion(currentQuestion) {
         this.currentQuestion = currentQuestion;
@@ -1849,7 +1885,9 @@ class SelectPlayer extends BaseView {
         super(src, canvas, player, mouseListener);
         this.draw = () => {
             this.canvas.drawImageToCanvas(this.src, 0, 0, this.canvas.getWidth(), this.canvas.getHeight());
-            this.canvas.drawButtonToCanvas("./Assets/Player/Female/Poses/female_idle.png", this.canvas.getWidth() * 0.25, this.canvas.getHeight() * 0.5, this.canvas.getWidth() * 0.1, this.canvas.getHeight() * 0.2, () => {
+            this.canvas.drawTextToCanvas("center", 60, "Minecraft", "white", "Ludos Mundi", this.canvas.getWidth() * 0.5, this.canvas.getHeight() * 0.2);
+            this.canvas.drawTextToCanvas("center", 40, "Minecraft", "white", "Kies je karakter.", this.canvas.getWidth() * 0.5, this.canvas.getHeight() * 0.4);
+            this.canvas.drawButtonToCanvas("./Assets/Player/Female/Poses/female_idle.png", this.canvas.getWidth() * 0.35, this.canvas.getHeight() * 0.5, this.canvas.getWidth() * 0.1, this.canvas.getHeight() * 0.2, () => {
                 this.player.setSrc("./Assets/Player/Female/Poses/female_idle.png");
                 this.player.setLocation("Map");
                 this.mouseListener.setHasBeenClicked();
@@ -1865,30 +1903,34 @@ class SelectPlayer extends BaseView {
 }
 ;
 class SoccerView extends BaseView {
-    constructor(src, canvas, player, mouseListener) {
+    constructor(src, canvas, player, mouseListener, score) {
         super(src, canvas, player, mouseListener);
         this.draw = () => {
             this.canvas.drawImageToCanvas(this.src, 0, 0, this.canvas.getWidth(), this.canvas.getHeight());
             this.canvas.drawButtonToCanvas("./Assets/Icons/ButtonsFREE/Home.png", this.canvas.getWidth() * 0.05, this.canvas.getHeight() * 0.05, this.canvas.getWidth() * 0.025, this.canvas.getHeight() * 0.05, () => {
                 this.player.setEnergy(this.player.getEnergy() - 15),
                     this.player.setHunger(this.player.getHunger() - 30);
+                this.score = 0;
                 this.player.setLocation("Park");
                 this.mouseListener.setHasBeenClicked();
             });
             this.canvas.drawCoinToCanvas(this.canvas.getWidth() / 2, this.canvas.getHeight() * 0.04, this.player.getCoin());
             this.canvas.drawBarstoCanvas(this.canvas.getWidth() * 0.9, this.canvas.getHeight() * 0.05, this.player.getHunger(), this.player.getEnergy(), this.player.getMood(), this.player.getHealth());
+            this.canvas.drawTextToCanvas("center", 20, "Minecraft", "white", `Score: ${this.score}`, this.canvas.getWidth() * 0.3, this.canvas.getHeight() * 0.08);
             this.canvas.drawButtonToCanvas("./Assets/FootballGame/goal.jpg", this.canvas.getWidth() * 0.5 - (this.canvas.getWidth() * 0.21) / 2, this.canvas.getHeight() * 0.51 - (this.canvas.getHeight() * 0.2) / 2, this.canvas.getWidth() * 0.21, this.canvas.getHeight() * 0.2, () => {
                 if (this.mouseListener.getEventX() > (this.canvas.getWidth() * 0.5 - (this.canvas.getWidth() * 0.21) / 2) + (this.canvas.getHeight() * (0.2 * this.mouseListener.getEventY() / this.canvas.getHeight())) / 2 &&
                     this.mouseListener.getEventX() < (this.canvas.getWidth() * 0.5 - (this.canvas.getWidth() * 0.21) / 2) + (this.canvas.getWidth() * 0.21) - (this.canvas.getHeight() * (0.2 * this.mouseListener.getEventY() / this.canvas.getHeight())) / 2 &&
                     this.mouseListener.getEventY() > (this.canvas.getHeight() * 0.51 - (this.canvas.getHeight() * 0.2) / 2) + (this.canvas.getHeight() * (0.2 * this.mouseListener.getEventY() / this.canvas.getHeight())) / 2 &&
                     this.mouseListener.getEventY() < (this.canvas.getHeight() * 0.51 - (this.canvas.getHeight() * 0.2) / 2) + (this.canvas.getHeight() * 0.21) - (this.canvas.getHeight() * (0.2 * this.mouseListener.getEventY() / this.canvas.getHeight())) / 2) {
                     console.log("Goal!");
+                    this.score += 1;
                     this.mouseListener.setHasBeenClicked();
                 }
             });
             this.canvas.drawImageToCanvas("./Assets/FootballGame/goalkeeper.png", this.canvas.getWidth() * 0.5 - (this.canvas.getWidth() * 0.15) / 2, this.canvas.getHeight() * 0.55 - (this.canvas.getHeight() * 0.2) / 2, this.canvas.getWidth() * 0.15, this.canvas.getHeight() * 0.2);
             this.canvas.drawImageToCanvas("./Assets/FootballGame/football.png", this.mouseListener.getEventX() - (this.canvas.getHeight() * (0.2 * this.mouseListener.getEventY() / this.canvas.getHeight())) / 2, this.mouseListener.getEventY() - (this.canvas.getHeight() * (0.2 * this.mouseListener.getEventY() / this.canvas.getHeight())) / 2, this.canvas.getHeight() * (0.2 * this.mouseListener.getEventY() / this.canvas.getHeight()), this.canvas.getHeight() * (0.2 * this.mouseListener.getEventY() / this.canvas.getHeight()));
         };
+        this.score = score;
     }
     ;
 }

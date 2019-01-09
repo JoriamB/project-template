@@ -38,8 +38,8 @@ class BeachView extends BaseView {
                                         () => {
                                             if (this.player.getEnergy() >= 10 &&
                                                 this.player.getMood() < 100) {
-                                                createFish( 1,
-                                                            5,
+                                                createFish( 25,
+                                                            50,
                                                             this.canvas,
                                                             this.fishArray,
                                                             this.mouseListener,
