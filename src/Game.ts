@@ -20,6 +20,7 @@ class Game {
     private selectplayer: SelectPlayer;
     private tasklist : Tasklist;
     private startview: StartView;
+    private tutorialview: TutorialView;
 
     public constructor () {
         this.fishArray = [];
@@ -123,7 +124,11 @@ class Game {
          this.startview = new StartView("./Assets/Backgrounds/SelectPlayer.jpg",
                                                 this.canvas,
                                                 this.player,
-                                                this.mouseListener);                              
+                                                this.mouseListener);
+         this.tutorialview = new TutorialView("./Assets/Backgrounds/SelectPlayer.jpg",
+                                                      this.canvas,
+                                                      this.player,
+                                                      this.mouseListener);                                                                   
     };
 
     /**
@@ -181,6 +186,9 @@ class Game {
                 break;        
             case "StartView":
                 this.startview.draw();
+                break;
+            case "Tutorial":
+                this.tutorialview.draw();
                 break;
             default:
                 this.map.draw();
