@@ -47,7 +47,7 @@ class Game {
                                             this.canvas,
                                             this.player,
                                             this.mouseListener);
-        this.house = new HouseView( "./Assets/Backgrounds/House.png",
+        this.house = new HouseView( "./Assets/Backgrounds/House1.png",
                                     this.canvas,
                                     this.player,
                                     this.mouseListener);
