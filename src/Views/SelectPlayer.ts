@@ -18,8 +18,22 @@ class SelectPlayer extends BaseView {
                                         0,
                                         this.canvas.getWidth(),
                                         this.canvas.getHeight());
+        this.canvas.drawTextToCanvas(   "center",
+                                        60,
+                                        "Minecraft",
+                                        "orange",
+                                        "Ludos Mundi",
+                                        this.canvas.getWidth() * 0.5,
+                                        this.canvas.getHeight() * 0.2);
+        this.canvas.drawTextToCanvas(   "center",
+                                        40,
+                                        "Minecraft",
+                                        "white",
+                                        "Kies je karakter.",
+                                        this.canvas.getWidth() * 0.5,
+                                        this.canvas.getHeight() * 0.4);
         this.canvas.drawButtonToCanvas( "./Assets/Player/Female/Poses/female_idle.png",
-                                        this.canvas.getWidth() * 0.25,
+                                        this.canvas.getWidth() * 0.35,
                                         this.canvas.getHeight() * 0.5,
                                         this.canvas.getWidth() * 0.1,
                                         this.canvas.getHeight() * 0.2,

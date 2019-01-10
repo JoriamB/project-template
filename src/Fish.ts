@@ -12,6 +12,7 @@ class Fish {
     private player : Player;
     private fishArray : Array<Fish>;
     private index : number;
+    private fishingView : FishingView;
 
     public constructor (xPos : number,
                         yPos : number,
@@ -23,7 +24,8 @@ class Fish {
                         mouseListener : MouseHelper,
                         player : Player,
                         fishArray : Array<Fish>,
-                        index : number) {
+                        index : number,
+                        fishingView : FishingView) {
         this.xPos = xPos;
         this.yPos = yPos;
         this.src = src;
@@ -36,6 +38,7 @@ class Fish {
         this.player = player;
         this.fishArray = fishArray;
         this.index = index
+        this.fishingView = fishingView;
     };
 
     public move () {
@@ -62,9 +65,8 @@ class Fish {
                                             this.height,
                                             () => {
                                                 this.fishArray.splice(this.getIndex(), 1);
-                                                for (let i = 0; i < this.fishArray.length; i++) {
-                                                    this.index = i;
-                                                };
+                                                updateIndex(this.fishArray);
+                                                this.fishingView.setScore(this.fishingView.getScore() + 1);
                                                 this.mouseListener.setHasBeenClicked()
                                             });
         }
@@ -76,25 +78,64 @@ class Fish {
                                             this.height,
                                             () => {
                                                 this.fishArray.splice(this.getIndex(), 1);
-                                                for (let i = 0; i < this.fishArray.length; i++) {
-                                                    this.index = i;
-                                                };
+                                                updateIndex(this.fishArray);
+                                                this.fishingView.setScore(this.fishingView.getScore() + 1);
                                                 this.mouseListener.setHasBeenClicked()
                                             });
         };
     };
 
+    /**
+     * @access public
+     * @method
+     * Method to return the index
+     */
     public getIndex () : number {
         return this.index;
     }
+
+    /**
+     * @access public
+     * @method
+     * @param index 
+     * Method to set the index
+     */
+    public setIndex (index : number) {
+        this.index = index;
+    }
 };
+/**
+ * @access public
+ * @function
+ * Function to update the indexes of the fishArray
+ */
+function updateIndex (fishArray : Array<Fish>) {
+    for (let i = 0; i < fishArray.length; i++) {
+        fishArray[i].setIndex(i);
+    };
+};
+
+/**
+ * @access public
+ * @function
+ * @param min 
+ * @param max 
+ * @param canvas 
+ * @param fishArray 
+ * @param mouseListener 
+ * @param player 
+ * @param srcArray 
+ * @param fishingView
+ * Function to create fish objects
+ */
 function createFish (   min : number,
                         max : number,
                         canvas : Canvas,
                         fishArray : Array<Fish>,
                         mouseListener : MouseHelper,
                         player : Player,
-                        srcArray : Array<string>) {
+                        srcArray : Array<string>,
+                        fishingView : FishingView) {
     for (let i = min - 1; i < max; i++) {
         let fish = new Fish(MathHelper.randomNumber(0, canvas.getWidth() - 50),
                             MathHelper.randomNumber(0, canvas.getHeight() - 50),
@@ -106,11 +147,17 @@ function createFish (   min : number,
                             mouseListener,
                             player,
                             fishArray,
-                            i);
+                            i,
+                            fishingView);
         fishArray.push(fish);
     };
 };
 
+/**
+ * @access public
+ * @function
+ * Function to return the array of sources
+ */
 function getSrcArray () : Array<string> {
     return srcArray;
 };

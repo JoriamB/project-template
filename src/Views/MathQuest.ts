@@ -1,13 +1,16 @@
 class MathQuest extends BaseView {
 
     private currentQuestion: currentQuestion;
+    private score : number;
 
-    public constructor(src: string,
-        canvas: Canvas,
-        player: Player,
-        mouseListener: MouseHelper) {
+    public constructor( src: string,
+                        canvas: Canvas,
+                        player: Player,
+                        mouseListener: MouseHelper,
+                        score : number) {
         super(src, canvas, player, mouseListener);
         this.currentQuestion = this.MathArray[0];
+        this.score = score;
     }
     public draw = () => {
         this.canvas.drawImageToCanvas(this.src,
@@ -23,18 +26,26 @@ class MathQuest extends BaseView {
             () => {
                 this.player.setEnergy(this.player.getEnergy() - 15),
                     this.player.setHunger(this.player.getHunger() - 30)
+                    this.score = 0;
                 this.player.setLocation("School");
                 this.mouseListener.setHasBeenClicked()
             });
-        this.canvas.drawCoinToCanvas(this.canvas.getWidth() / 2,
-            this.canvas.getHeight() * 0.04,
-            this.player.getCoin());
+        this.canvas.drawCoinToCanvas(   this.canvas.getWidth() / 2,
+                                        this.canvas.getHeight() * 0.04,
+                                        this.player.getCoin());
         this.canvas.drawBarstoCanvas(this.canvas.getWidth() * 0.9,
             this.canvas.getHeight() * 0.05,
             this.player.getHunger(),
             this.player.getEnergy(),
             this.player.getMood(),
-            this.player.getHealth())
+            this.player.getHealth());
+        this.canvas.drawTextToCanvas(   "center",
+                                        20,
+                                        "Minecraft",
+                                        "white",
+                                        `Score: ${this.score}`,
+                                        this.canvas.getWidth() * 0.3,
+                                        this.canvas.getHeight() * 0.08);    
         this.canvas.drawTextToCanvas("center",
             20,
             "Minecraft",
@@ -59,9 +70,11 @@ class MathQuest extends BaseView {
                 if (this.getCurrentQuestion().Answer == this.getCurrentQuestion().RightAnswer) {
                     this.setCurrentQuestion(this.MathArray[MathHelper.randomNumber(0, this.MathArray.length - 1)]);
                     console.log("Goed Gedaan!");
+                    this.score += 1;
                 }
                 else {
                     console.log("Probeer het opnieuw.");
+                    this.setCurrentQuestion(this.MathArray[MathHelper.randomNumber(0, this.MathArray.length - 1)]);
                 };
                 this.mouseListener.setHasBeenClicked()
             });
@@ -75,9 +88,11 @@ class MathQuest extends BaseView {
                 if (this.getCurrentQuestion().Answer1 == this.getCurrentQuestion().RightAnswer) {
                     this.setCurrentQuestion(this.MathArray[MathHelper.randomNumber(0, this.MathArray.length - 1)]);
                     console.log("Goed Gedaan!");
+                    this.score += 1;
                 }
                 else {
                     console.log("Probeer het opnieuw.");
+                    this.setCurrentQuestion(this.MathArray[MathHelper.randomNumber(0, this.MathArray.length - 1)]);
                 };
                 this.mouseListener.setHasBeenClicked()
             });
@@ -91,9 +106,11 @@ class MathQuest extends BaseView {
                 if (this.getCurrentQuestion().Answer2 == this.getCurrentQuestion().RightAnswer) {
                     this.setCurrentQuestion(this.MathArray[MathHelper.randomNumber(0, this.MathArray.length - 1)]);
                     console.log("Goed Gedaan!");
+                    this.score += 1;
                 }
                 else {
                     console.log("Probeer het opnieuw.");
+                    this.setCurrentQuestion(this.MathArray[MathHelper.randomNumber(0, this.MathArray.length - 1)]);
                 };
                 this.mouseListener.setHasBeenClicked()
             });
@@ -107,9 +124,11 @@ class MathQuest extends BaseView {
                 if (this.getCurrentQuestion().Answer3 == this.getCurrentQuestion().RightAnswer) {
                     this.setCurrentQuestion(this.MathArray[MathHelper.randomNumber(0, this.MathArray.length - 1)]);
                     console.log("Goed Gedaan!");
+                    this.score += 1;
                 }
                 else {
                     console.log("Probeer het opnieuw.");
+                    this.setCurrentQuestion(this.MathArray[MathHelper.randomNumber(0, this.MathArray.length - 1)]);
                 };
                 this.mouseListener.setHasBeenClicked()
             });

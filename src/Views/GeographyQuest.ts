@@ -1,13 +1,16 @@
 class GeographyQuest extends BaseView {
 
     private currentQuestion : currentQuestion;
+    private score : number;
 
     public constructor (src : string,
-        canvas : Canvas,
-        player : Player,
-        mouseListener : MouseHelper) {
-            super(src, canvas, player, mouseListener);
-            this.currentQuestion = this.GeoArray[0];
+                        canvas : Canvas,
+                        player : Player,
+                        mouseListener : MouseHelper,
+                        score : number) {
+        super(src, canvas, player, mouseListener);
+        this.currentQuestion = this.GeoArray[0];
+        this.score = score;
     }
     public draw = () => {
         this.canvas.drawImageToCanvas(  this.src,
@@ -23,6 +26,7 @@ class GeographyQuest extends BaseView {
                                         () => {
                                             this.player.setEnergy(this.player.getEnergy()-15),
                                             this.player.setHunger(this.player.getHunger()-30)
+                                            this.score = 0;
                                             this.player.setLocation("School");
                                             this.mouseListener.setHasBeenClicked()});
         this.canvas.drawCoinToCanvas(   this.canvas.getWidth()/2,
@@ -37,13 +41,20 @@ class GeographyQuest extends BaseView {
         this.canvas.drawTextToCanvas(   "center",
                                         20,
                                         "Minecraft",
+                                        "white",
+                                        `Score: ${this.score}`,
+                                        this.canvas.getWidth() * 0.3,
+                                        this.canvas.getHeight() * 0.08);
+        this.canvas.drawTextToCanvas(   "center",
+                                        20,
+                                        "Minecraft",
                                         "White",
                                         this.getCurrentQuestion().Question,
                                         this.canvas.getWidth()/2,
                                         this.canvas.getHeight() * 0.2);
         if (this.getCurrentQuestion().ImgSrc != "") {
         this.canvas.drawImageToCanvas(  this.getCurrentQuestion().ImgSrc,
-                                        this.canvas.getWidth() * 0.5 - (this.canvas.getWidth() * 0.25)/2,
+                                        this.canvas.getWidth() * 0.5 - (this.canvas.getWidth() * 0.2)/2,
                                         this.canvas.getHeight() * 0.4 - (this.canvas.getHeight() * 0.15)/2,
                                         this.canvas.getWidth() * 0.2,
                                         this.canvas.getHeight() * 0.15)
@@ -58,9 +69,11 @@ class GeographyQuest extends BaseView {
                                                 if (this.getCurrentQuestion().Answer == this.getCurrentQuestion().RightAnswer) {
                                                     this.setCurrentQuestion(this.GeoArray[MathHelper.randomNumber(0, this.GeoArray.length - 1)]);
                                                     console.log("Goed Gedaan!");
+                                                    this.score += 1;
                                                 }
                                                 else {
-                                                console.log("Probeer het opnieuw.");
+                                                    console.log("Probeer het opnieuw.");
+                                                    this.setCurrentQuestion(this.GeoArray[MathHelper.randomNumber(0, this.GeoArray.length - 1)]);
                                                 };
                                                 this.mouseListener.setHasBeenClicked()});
         this.canvas.drawTextButtonToCanvas( "./Assets/Icons/ButtonsFREE/PlayBlank.png",
@@ -73,9 +86,11 @@ class GeographyQuest extends BaseView {
                                                 if (this.getCurrentQuestion().Answer1 == this.getCurrentQuestion().RightAnswer) {
                                                     this.setCurrentQuestion(this.GeoArray[MathHelper.randomNumber(0, this.GeoArray.length - 1)]);
                                                     console.log("Goed Gedaan!");
+                                                    this.score += 1;
                                                 }
                                                 else {
                                                     console.log("Probeer het opnieuw.");
+                                                    this.setCurrentQuestion(this.GeoArray[MathHelper.randomNumber(0, this.GeoArray.length - 1)]);
                                                 };
                                                 this.mouseListener.setHasBeenClicked()});
         this.canvas.drawTextButtonToCanvas( "./Assets/Icons/ButtonsFREE/PlayBlank.png",
@@ -88,9 +103,11 @@ class GeographyQuest extends BaseView {
                                                 if (this.getCurrentQuestion().Answer2 == this.getCurrentQuestion().RightAnswer) {
                                                     this.setCurrentQuestion(this.GeoArray[MathHelper.randomNumber(0, this.GeoArray.length - 1)]);
                                                     console.log("Goed Gedaan!");
+                                                    this.score += 1;
                                                 }
                                                 else {
                                                     console.log("Probeer het opnieuw.");
+                                                    this.setCurrentQuestion(this.GeoArray[MathHelper.randomNumber(0, this.GeoArray.length - 1)]);
                                                 };
                                                 this.mouseListener.setHasBeenClicked()});
         this.canvas.drawTextButtonToCanvas( "./Assets/Icons/ButtonsFREE/PlayBlank.png",
@@ -103,9 +120,11 @@ class GeographyQuest extends BaseView {
                                                 if (this.getCurrentQuestion().Answer3 == this.getCurrentQuestion().RightAnswer) {
                                                     this.setCurrentQuestion(this.GeoArray[MathHelper.randomNumber(0, this.GeoArray.length - 1)]);
                                                     console.log("Goed Gedaan!");
+                                                    this.score += 1;
                                                 }
                                                 else {
                                                     console.log("Probeer het opnieuw.");
+                                                    this.setCurrentQuestion(this.GeoArray[MathHelper.randomNumber(0, this.GeoArray.length - 1)]);
                                                 };
                                                 this.mouseListener.setHasBeenClicked()});
     };

@@ -10,7 +10,7 @@ class Game {
     private restaurant : RestaurantView;
     private map : MapView;
     private soccer: SoccerView;
-    private beach: SoccerView;
+    private beach: BeachView;
     private fishing: FishingView;
     private question: QuestionView;
     private geographyquest: GeographyQuest;
@@ -68,29 +68,35 @@ class Game {
         this.soccer = new SoccerView(   "./Assets/FootballGame/background.jpg",
                                         this.canvas,
                                         this.player,
-                                        this.mouseListener);          
-        this.beach = new BeachView( "./Assets/Backgrounds/beach.jpg",
-                                    this.canvas,
-                                    this.player,
-                                    this.mouseListener,
-                                    this.fishArray);            
+                                        this.mouseListener,
+                                        0);   
         this.fishing = new FishingView( "./Assets/FishingGame/background1.jpg",
                                         this.canvas,
                                         this.player,
                                         this.mouseListener,
-                                       this.fishArray);
+                                       this.fishArray,
+                                       0);       
+        this.beach = new BeachView( "./Assets/Backgrounds/beach.jpg",
+                                    this.canvas,
+                                    this.player,
+                                    this.mouseListener,
+                                    this.fishArray,
+                                    this.fishing);
         this.geographyquest = new GeographyQuest( "./Assets/Backgrounds/Question.png",
                                         this.canvas,
                                         this.player,
-                                        this.mouseListener)  
+                                        this.mouseListener,
+                                        0)  
         this.mathquest = new MathQuest( "./Assets/Backgrounds/Question.png",
                                         this.canvas,
                                         this.player,
-                                        this.mouseListener);
+                                        this.mouseListener,
+                                        0);
         this.historyquest = new HistoryQuest( "./Assets/Backgrounds/Question.png",
                                         this.canvas,
                                         this.player,
-                                        this.mouseListener)                                                                    
+                                        this.mouseListener,
+                                        0)                                                                    
         this.question = new QuestionView("./Assets/Backgrounds/Question.png",
                                           this.canvas,
                                           this.player,
