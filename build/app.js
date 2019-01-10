@@ -244,7 +244,7 @@ class Game {
         this.player = new Player("./Assets/Female/Poses/female_slide.png", this.canvas, 5, 20, 80, 100, 60, this.canvas.getCenter().X, this.canvas.getCenter().Y, this.canvas.getWidth() * 0.025, this.canvas.getHeight() * 0.05, "SelectPlayer", 10000);
         this.park = new ParkView("./Assets/Backgrounds/park.jpg", this.canvas, this.player, this.mouseListener);
         this.hospital = new HospitalView("./Assets/Backgrounds/hospital.jpg", this.canvas, this.player, this.mouseListener);
-        this.house = new HouseView("./Assets/Backgrounds/House.png", this.canvas, this.player, this.mouseListener);
+        this.house = new HouseView("./Assets/Backgrounds/House1.png", this.canvas, this.player, this.mouseListener);
         this.school = new SchoolView("./Assets/Backgrounds/classroom2.jpg", this.canvas, this.player, this.mouseListener);
         this.store = new StoreView("./Assets/Backgrounds/Store.jpg", this.canvas, this.player, this.mouseListener);
         this.restaurant = new RestaurantView("./Assets/Backgrounds/Restaurant3.jpg", this.canvas, this.player, this.mouseListener);
@@ -917,7 +917,7 @@ class HistoryQuest extends BaseView {
                 this.canvas.drawImageToCanvas(this.getCurrentQuestion().ImgSrc, this.canvas.getWidth() * 0.5 - (this.canvas.getWidth() * 0.2) / 2, this.canvas.getHeight() * 0.4 - (this.canvas.getHeight() * 0.15) / 2, this.canvas.getWidth() * 0.2, this.canvas.getHeight() * 0.15);
             }
             ;
-            this.canvas.drawTextButtonToCanvas("./Assets/Icons/ButtonsFREE/PlayBlank.png", this.getCurrentQuestion().Answer, this.canvas.getWidth() * 0.35 - (this.canvas.getWidth() * 0.2) / 2, this.canvas.getHeight() * 0.6 - (this.canvas.getHeight() * 0.075) / 2, this.canvas.getWidth() * 0.2, this.canvas.getHeight() * 0.075, () => {
+            this.canvas.drawTextButtonToCanvas("./Assets/Icons/ButtonsFREE/PlayBlank.png", this.getCurrentQuestion().Answer, this.canvas.getWidth() * 0.25 - (this.canvas.getWidth() * 0.35) / 2, this.canvas.getHeight() * 0.6 - (this.canvas.getHeight() * 0.075) / 2, this.canvas.getWidth() * 0.35, this.canvas.getHeight() * 0.075, () => {
                 if (this.getCurrentQuestion().Answer == this.getCurrentQuestion().RightAnswer) {
                     this.setCurrentQuestion(this.HistoryArray[MathHelper.randomNumber(0, this.HistoryArray.length - 1)]);
                     console.log("Goed Gedaan!");
@@ -928,7 +928,7 @@ class HistoryQuest extends BaseView {
                 ;
                 this.mouseListener.setHasBeenClicked();
             });
-            this.canvas.drawTextButtonToCanvas("./Assets/Icons/ButtonsFREE/PlayBlank.png", this.getCurrentQuestion().Answer1, this.canvas.getWidth() * 0.65 - (this.canvas.getWidth() * 0.2) / 2, this.canvas.getHeight() * 0.6 - (this.canvas.getHeight() * 0.075) / 2, this.canvas.getWidth() * 0.2, this.canvas.getHeight() * 0.075, () => {
+            this.canvas.drawTextButtonToCanvas("./Assets/Icons/ButtonsFREE/PlayBlank.png", this.getCurrentQuestion().Answer1, this.canvas.getWidth() * 0.75 - (this.canvas.getWidth() * 0.35) / 2, this.canvas.getHeight() * 0.6 - (this.canvas.getHeight() * 0.075) / 2, this.canvas.getWidth() * 0.35, this.canvas.getHeight() * 0.075, () => {
                 if (this.getCurrentQuestion().Answer1 == this.getCurrentQuestion().RightAnswer) {
                     this.setCurrentQuestion(this.HistoryArray[MathHelper.randomNumber(0, this.HistoryArray.length - 1)]);
                     console.log("Goed Gedaan!");
@@ -939,7 +939,7 @@ class HistoryQuest extends BaseView {
                 ;
                 this.mouseListener.setHasBeenClicked();
             });
-            this.canvas.drawTextButtonToCanvas("./Assets/Icons/ButtonsFREE/PlayBlank.png", this.getCurrentQuestion().Answer2, this.canvas.getWidth() * 0.35 - (this.canvas.getWidth() * 0.2) / 2, this.canvas.getHeight() * 0.75 - (this.canvas.getHeight() * 0.075) / 2, this.canvas.getWidth() * 0.2, this.canvas.getHeight() * 0.075, () => {
+            this.canvas.drawTextButtonToCanvas("./Assets/Icons/ButtonsFREE/PlayBlank.png", this.getCurrentQuestion().Answer2, this.canvas.getWidth() * 0.25 - (this.canvas.getWidth() * 0.35) / 2, this.canvas.getHeight() * 0.75 - (this.canvas.getHeight() * 0.075) / 2, this.canvas.getWidth() * 0.35, this.canvas.getHeight() * 0.075, () => {
                 if (this.getCurrentQuestion().Answer2 == this.getCurrentQuestion().RightAnswer) {
                     this.setCurrentQuestion(this.HistoryArray[MathHelper.randomNumber(0, this.HistoryArray.length - 1)]);
                     console.log("Goed Gedaan!");
@@ -950,7 +950,7 @@ class HistoryQuest extends BaseView {
                 ;
                 this.mouseListener.setHasBeenClicked();
             });
-            this.canvas.drawTextButtonToCanvas("./Assets/Icons/ButtonsFREE/PlayBlank.png", this.getCurrentQuestion().Answer3, this.canvas.getWidth() * 0.65 - (this.canvas.getWidth() * 0.2) / 2, this.canvas.getHeight() * 0.75 - (this.canvas.getHeight() * 0.075) / 2, this.canvas.getWidth() * 0.2, this.canvas.getHeight() * 0.075, () => {
+            this.canvas.drawTextButtonToCanvas("./Assets/Icons/ButtonsFREE/PlayBlank.png", this.getCurrentQuestion().Answer3, this.canvas.getWidth() * 0.75 - (this.canvas.getWidth() * 0.35) / 2, this.canvas.getHeight() * 0.75 - (this.canvas.getHeight() * 0.075) / 2, this.canvas.getWidth() * 0.35, this.canvas.getHeight() * 0.075, () => {
                 if (this.getCurrentQuestion().Answer3 == this.getCurrentQuestion().RightAnswer) {
                     this.setCurrentQuestion(this.HistoryArray[MathHelper.randomNumber(0, this.HistoryArray.length - 1)]);
                     console.log("Goed Gedaan!");
@@ -1859,6 +1859,7 @@ class SelectPlayer extends BaseView {
                 this.player.setLocation("Map");
                 this.mouseListener.setHasBeenClicked();
             });
+            this.canvas.drawTextToCanvas("center", 50, "Minecraft", "orange", "Selecteer je karakter", this.canvas.getWidth() * 0.45, this.canvas.getHeight() * 0.2);
         };
     }
     ;

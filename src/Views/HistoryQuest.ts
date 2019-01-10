@@ -49,9 +49,9 @@ class HistoryQuest extends BaseView {
         };
         this.canvas.drawTextButtonToCanvas( "./Assets/Icons/ButtonsFREE/PlayBlank.png",
                                             this.getCurrentQuestion().Answer,
-                                            this.canvas.getWidth()*0.35 - (this.canvas.getWidth() * 0.2)/2,
+                                            this.canvas.getWidth()*0.25 - (this.canvas.getWidth() * 0.35)/2,
                                             this.canvas.getHeight()*0.6 - (this.canvas.getHeight() * 0.075)/2,
-                                            this.canvas.getWidth() * 0.2,
+                                            this.canvas.getWidth() * 0.35,
                                             this.canvas.getHeight() * 0.075,
                                             () => {
                                                 if (this.getCurrentQuestion().Answer == this.getCurrentQuestion().RightAnswer) {
@@ -64,9 +64,9 @@ class HistoryQuest extends BaseView {
                                                 this.mouseListener.setHasBeenClicked()});
         this.canvas.drawTextButtonToCanvas( "./Assets/Icons/ButtonsFREE/PlayBlank.png",
                                             this.getCurrentQuestion().Answer1,
-                                            this.canvas.getWidth()*0.65 - (this.canvas.getWidth() * 0.2)/2,
+                                            this.canvas.getWidth()*0.75 - (this.canvas.getWidth() * 0.35)/2,
                                             this.canvas.getHeight()*0.6 - (this.canvas.getHeight() * 0.075)/2,
-                                            this.canvas.getWidth() * 0.2,
+                                            this.canvas.getWidth() * 0.35,
                                             this.canvas.getHeight() * 0.075,
                                             () => {
                                                 if (this.getCurrentQuestion().Answer1 == this.getCurrentQuestion().RightAnswer) {
@@ -79,9 +79,9 @@ class HistoryQuest extends BaseView {
                                                 this.mouseListener.setHasBeenClicked()});
         this.canvas.drawTextButtonToCanvas( "./Assets/Icons/ButtonsFREE/PlayBlank.png",
                                             this.getCurrentQuestion().Answer2,
-                                            this.canvas.getWidth()*0.35 - (this.canvas.getWidth() * 0.2)/2,
+                                            this.canvas.getWidth()*0.25 - (this.canvas.getWidth() * 0.35)/2,
                                             this.canvas.getHeight()*0.75 - (this.canvas.getHeight() * 0.075)/2,
-                                            this.canvas.getWidth() * 0.2,
+                                            this.canvas.getWidth() * 0.35,
                                             this.canvas.getHeight() * 0.075,
                                             () => {
                                                 if (this.getCurrentQuestion().Answer2 == this.getCurrentQuestion().RightAnswer) {
@@ -94,9 +94,9 @@ class HistoryQuest extends BaseView {
                                                 this.mouseListener.setHasBeenClicked()});
         this.canvas.drawTextButtonToCanvas( "./Assets/Icons/ButtonsFREE/PlayBlank.png",
                                             this.getCurrentQuestion().Answer3,
-                                            this.canvas.getWidth()*0.65 - (this.canvas.getWidth() * 0.2)/2,
+                                            this.canvas.getWidth()*0.75 - (this.canvas.getWidth() * 0.35)/2,
                                             this.canvas.getHeight()*0.75 - (this.canvas.getHeight() * 0.075)/2,
-                                            this.canvas.getWidth() * 0.2,
+                                            this.canvas.getWidth() * 0.35,
                                             this.canvas.getHeight() * 0.075,
                                             () => {
                                                 if (this.getCurrentQuestion().Answer3 == this.getCurrentQuestion().RightAnswer) {
