@@ -32,7 +32,7 @@ class StartView extends BaseView {
                                         this.canvas.getWidth() * 0.1,
                                         this.canvas.getHeight() * 0.1,
                                         () => {
-                                            this.player.setLocation("SelectPlayer")
+                                            this.player.setLocation("Tutorial")
                                             this.mouseListener.setHasBeenClicked()
                                         });
         this.canvas.drawTextButtonToCanvas( "./Assets/Icons/ButtonsFREE/PlayBlank.png",

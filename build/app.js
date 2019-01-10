@@ -239,6 +239,12 @@ class Game {
                 case "SelectPlayer":
                     this.selectplayer.draw();
                     break;
+                case "StartView":
+                    this.startview.draw();
+                    break;
+                case "Tutorial":
+                    this.tutorialview.draw();
+                    break;
                 default:
                     this.map.draw();
                     break;
@@ -248,10 +254,10 @@ class Game {
         this.fishArray = [];
         this.mouseListener = new MouseHelper(false, false);
         this.canvas = new Canvas(document.getElementById("canvas"), this.mouseListener);
-        this.player = new Player("./Assets/Female/Poses/female_slide.png", this.canvas, 5, 20, 80, 100, 60, this.canvas.getCenter().X, this.canvas.getCenter().Y, this.canvas.getWidth() * 0.025, this.canvas.getHeight() * 0.05, "SelectPlayer", 10000);
+        this.player = new Player("./Assets/Female/Poses/female_slide.png", this.canvas, 5, 20, 80, 100, 60, this.canvas.getCenter().X, this.canvas.getCenter().Y, this.canvas.getWidth() * 0.025, this.canvas.getHeight() * 0.05, "StartView", 50);
         this.park = new ParkView("./Assets/Backgrounds/park.jpg", this.canvas, this.player, this.mouseListener);
         this.hospital = new HospitalView("./Assets/Backgrounds/hospital.jpg", this.canvas, this.player, this.mouseListener);
-        this.house = new HouseView("./Assets/Backgrounds/House1.png", this.canvas, this.player, this.mouseListener);
+        this.house = new HouseView("./Assets/Backgrounds/House.png", this.canvas, this.player, this.mouseListener);
         this.school = new SchoolView("./Assets/Backgrounds/classroom2.jpg", this.canvas, this.player, this.mouseListener);
         this.store = new StoreView("./Assets/Backgrounds/Store.jpg", this.canvas, this.player, this.mouseListener);
         this.restaurant = new RestaurantView("./Assets/Backgrounds/Restaurant3.jpg", this.canvas, this.player, this.mouseListener);
@@ -264,6 +270,8 @@ class Game {
         this.historyquest = new HistoryQuest("./Assets/Backgrounds/Question.png", this.canvas, this.player, this.mouseListener, 0);
         this.question = new QuestionView("./Assets/Backgrounds/Question.png", this.canvas, this.player, this.mouseListener, this.geographyquest, this.mathquest, this.historyquest);
         this.selectplayer = new SelectPlayer("./Assets/Backgrounds/SelectPlayer.jpg", this.canvas, this.player, this.mouseListener);
+        this.startview = new StartView("./Assets/Backgrounds/SelectPlayer.jpg", this.canvas, this.player, this.mouseListener);
+        this.tutorialview = new TutorialView("./Assets/Backgrounds/SelectPlayer.jpg", this.canvas, this.player, this.mouseListener);
     }
     ;
 }
@@ -1917,17 +1925,17 @@ class QuestionView extends BaseView {
             });
             this.canvas.drawCoinToCanvas(this.canvas.getWidth() / 2, this.canvas.getHeight() * 0.04, this.player.getCoin());
             this.canvas.drawBarstoCanvas(this.canvas.getWidth() * 0.9, this.canvas.getHeight() * 0.05, this.player.getHunger(), this.player.getEnergy(), this.player.getMood(), this.player.getHealth());
-            this.canvas.drawTextButtonToCanvas("./Assets/Icons/ButtonsFREE/PlayBlank.png", "Math", this.canvas.getWidth() * 0.25 - (this.canvas.getWidth() * 0.1) / 2, this.canvas.getHeight() * 0.49 - (this.canvas.getHeight() * 0.1) / 2, this.canvas.getWidth() * 0.1, this.canvas.getHeight() * 0.075, () => {
+            this.canvas.drawTextButtonToCanvas("./Assets/Icons/ButtonsFREE/PlayBlank.png", "Rekenen", this.canvas.getWidth() * 0.25 - (this.canvas.getWidth() * 0.1) / 2, this.canvas.getHeight() * 0.49 - (this.canvas.getHeight() * 0.1) / 2, this.canvas.getWidth() * 0.1, this.canvas.getHeight() * 0.075, () => {
                 this.mathquest.setCurrentQuestion(this.mathquest.MathArray[MathHelper.randomNumber(0, this.mathquest.MathArray.length - 1)]);
                 this.player.setLocation("Math");
                 this.mouseListener.setHasBeenClicked();
             });
-            this.canvas.drawTextButtonToCanvas("./Assets/Icons/ButtonsFREE/PlayBlank.png", "History", this.canvas.getWidth() * 0.65 - (this.canvas.getWidth() * 0.1) / 2, this.canvas.getHeight() * 0.49 - (this.canvas.getHeight() * 0.1) / 2, this.canvas.getWidth() * 0.1, this.canvas.getHeight() * 0.075, () => {
+            this.canvas.drawTextButtonToCanvas("./Assets/Icons/ButtonsFREE/PlayBlank.png", "Geschiedenis", this.canvas.getWidth() * 0.65 - (this.canvas.getWidth() * 0.1) / 2, this.canvas.getHeight() * 0.49 - (this.canvas.getHeight() * 0.1) / 2, this.canvas.getWidth() * 0.1, this.canvas.getHeight() * 0.075, () => {
                 this.historyquest.setCurrentQuestion(this.historyquest.HistoryArray[MathHelper.randomNumber(0, this.historyquest.HistoryArray.length - 1)]);
                 this.player.setLocation("History");
                 this.mouseListener.setHasBeenClicked();
             });
-            this.canvas.drawTextButtonToCanvas("./Assets/Icons/ButtonsFREE/PlayBlank.png", "Geography", this.canvas.getWidth() * 0.45 - (this.canvas.getWidth() * 0.1) / 2, this.canvas.getHeight() * 0.49 - (this.canvas.getHeight() * 0.1) / 2, this.canvas.getWidth() * 0.1, this.canvas.getHeight() * 0.075, () => {
+            this.canvas.drawTextButtonToCanvas("./Assets/Icons/ButtonsFREE/PlayBlank.png", "Aardrijkskunde", this.canvas.getWidth() * 0.45 - (this.canvas.getWidth() * 0.1) / 2, this.canvas.getHeight() * 0.49 - (this.canvas.getHeight() * 0.1) / 2, this.canvas.getWidth() * 0.1, this.canvas.getHeight() * 0.075, () => {
                 this.geographyquest.setCurrentQuestion(this.geographyquest.GeoArray[MathHelper.randomNumber(0, this.geographyquest.GeoArray.length - 1)]);
                 this.player.setLocation("Geography");
                 this.mouseListener.setHasBeenClicked();
@@ -2048,6 +2056,25 @@ class SoccerView extends BaseView {
     ;
 }
 ;
+class StartView extends BaseView {
+    constructor(src, canvas, player, mouseListener) {
+        super(src, canvas, player, mouseListener);
+        this.draw = () => {
+            this.canvas.drawImageToCanvas(this.src, 0, 0, this.canvas.getWidth(), this.canvas.getHeight());
+            this.canvas.drawTextToCanvas("center", 100, "Minecraft", "orange", "Ludos Mundi", this.canvas.getWidth() * 0.5, this.canvas.getHeight() * 0.25);
+            this.canvas.drawTextButtonToCanvas("./Assets/Icons/ButtonsFREE/PlayBlank.png", "Uitleg", this.canvas.getWidth() * 0.4 - (this.canvas.getWidth() * 0.1) / 2, this.canvas.getHeight() * 0.5 - (this.canvas.getHeight() * 0.1) / 2, this.canvas.getWidth() * 0.1, this.canvas.getHeight() * 0.1, () => {
+                this.player.setLocation("Tutorial");
+                this.mouseListener.setHasBeenClicked();
+            });
+            this.canvas.drawTextButtonToCanvas("./Assets/Icons/ButtonsFREE/PlayBlank.png", "Speel", this.canvas.getWidth() * 0.6 - (this.canvas.getWidth() * 0.1) / 2, this.canvas.getHeight() * 0.5 - (this.canvas.getHeight() * 0.1) / 2, this.canvas.getWidth() * 0.1, this.canvas.getHeight() * 0.1, () => {
+                this.player.setLocation("SelectPlayer");
+                this.mouseListener.setHasBeenClicked();
+            });
+        };
+    }
+    ;
+}
+;
 class StoreView extends BaseView {
     constructor(src, canvas, player, mouseListener) {
         super(src, canvas, player, mouseListener);
@@ -2072,4 +2099,21 @@ class StoreView extends BaseView {
     ;
 }
 ;
+class TutorialView extends BaseView {
+    constructor(src, canvas, player, mouseListener) {
+        super(src, canvas, player, mouseListener);
+        this.draw = () => {
+            this.canvas.drawImageToCanvas(this.src, 0, 0, this.canvas.getWidth(), this.canvas.getHeight());
+            this.canvas.drawButtonToCanvas("./Assets/Icons/ButtonsFREE/ReturnHome.png", this.canvas.getWidth() * 0.075, this.canvas.getHeight() * 0.075, 50, 50, () => {
+                this.player.setLocation("StartView");
+                this.mouseListener.setHasBeenClicked();
+            });
+            this.canvas.drawTextToCanvas("left", 35, "KenneyPixel", "white", "Om het poppetje naar boven te bewegen gebruik je W of ^", this.canvas.getWidth() * 0.05, this.canvas.getHeight() * 0.2);
+            this.canvas.drawTextToCanvas("left", 35, "KenneyPixel", "white", "Om het poppetje naar links te bewegen gebruik je A of <", this.canvas.getWidth() * 0.05, this.canvas.getHeight() * 0.225);
+            this.canvas.drawTextToCanvas("left", 35, "KenneyPixel", "white", "Om het poppetje naar onder te bewegen gebruik je S of ∨", this.canvas.getWidth() * 0.05, this.canvas.getHeight() * 0.25);
+            this.canvas.drawTextToCanvas("left", 35, "KenneyPixel", "white", "Om het poppetje naar rechts te bewegen gebruik je D of >", this.canvas.getWidth() * 0.05, this.canvas.getHeight() * 0.275);
+        };
+    }
+    ;
+}
 //# sourceMappingURL=app.js.map

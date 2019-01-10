@@ -48,7 +48,7 @@ public draw = () => {
                                     this.player.getMood(),
                                     this.player.getHealth())
     this.canvas.drawTextButtonToCanvas( "./Assets/Icons/ButtonsFREE/PlayBlank.png",
-                                        "Math",
+                                        "Rekenen",
                                         this.canvas.getWidth()*0.25 - (this.canvas.getWidth() * 0.1)/2,
                                         this.canvas.getHeight()*0.49 - (this.canvas.getHeight() * 0.1)/2,
                                         this.canvas.getWidth() * 0.1,
@@ -57,7 +57,7 @@ public draw = () => {
                                             this.player.setLocation("Math");
                                             this.mouseListener.setHasBeenClicked()})
     this.canvas.drawTextButtonToCanvas( "./Assets/Icons/ButtonsFREE/PlayBlank.png",
-                                        "History",
+                                        "Geschiedenis",
                                         this.canvas.getWidth()*0.65 - (this.canvas.getWidth() * 0.1)/2,
                                         this.canvas.getHeight()*0.49 - (this.canvas.getHeight() * 0.1)/2,
                                         this.canvas.getWidth() * 0.1,
@@ -66,7 +66,7 @@ public draw = () => {
                                             this.player.setLocation("History");
                                             this.mouseListener.setHasBeenClicked()})
     this.canvas.drawTextButtonToCanvas( "./Assets/Icons/ButtonsFREE/PlayBlank.png",
-                                        "Geography",
+                                        "Aardrijkskunde",
                                         this.canvas.getWidth()*0.45 - (this.canvas.getWidth() * 0.1)/2,
                                         this.canvas.getHeight()*0.49 - (this.canvas.getHeight() * 0.1)/2,
                                         this.canvas.getWidth() * 0.1,
