@@ -19,22 +19,22 @@ class SelectPlayer extends BaseView {
                                         this.canvas.getWidth(),
                                         this.canvas.getHeight());
         this.canvas.drawTextToCanvas(   "center",
-                                        60,
+                                        100,
                                         "Minecraft",
                                         "orange",
                                         "Ludos Mundi",
                                         this.canvas.getWidth() * 0.5,
-                                        this.canvas.getHeight() * 0.2);
+                                        this.canvas.getHeight() * 0.25);
         this.canvas.drawTextToCanvas(   "center",
-                                        40,
+                                        50,
                                         "Minecraft",
                                         "white",
-                                        "Kies je karakter.",
+                                        "Kies je karakter",
                                         this.canvas.getWidth() * 0.5,
-                                        this.canvas.getHeight() * 0.4);
+                                        this.canvas.getHeight() * 0.5);
         this.canvas.drawButtonToCanvas( "./Assets/Player/Female/Poses/female_idle.png",
                                         this.canvas.getWidth() * 0.35,
-                                        this.canvas.getHeight() * 0.5,
+                                        this.canvas.getHeight() * 0.55,
                                         this.canvas.getWidth() * 0.1,
                                         this.canvas.getHeight() * 0.2,
                                         () => {
@@ -43,14 +43,12 @@ class SelectPlayer extends BaseView {
                                             this.mouseListener.setHasBeenClicked()})
         this.canvas.drawButtonToCanvas( "./Assets/Player/Male/Poses/player_idle.png",
                                         this.canvas.getWidth() * 0.55,
-                                        this.canvas.getHeight() * 0.5,
+                                        this.canvas.getHeight() * 0.55,
                                         this.canvas.getWidth() * 0.1,
                                         this.canvas.getHeight() * 0.2,
                                         () => {
                                             this.player.setSrc("./Assets/Player/Male/Poses/player_idle.png")
                                             this.player.setLocation("Map")
                                             this.mouseListener.setHasBeenClicked()});
-        
-
     };
 };
