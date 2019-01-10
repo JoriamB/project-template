@@ -19,6 +19,7 @@ class Game {
     private fishArray : Array<Fish>
     private selectplayer: SelectPlayer;
     private tasklist : Tasklist;
+    private startview: StartView;
 
     public constructor () {
         this.fishArray = [];
@@ -36,7 +37,7 @@ class Game {
                                     this.canvas.getCenter().Y,
                                     this.canvas.getWidth() * 0.025,
                                     this.canvas.getHeight() * 0.05,
-                                    "SelectPlayer",
+                                    "StartView",
                                     10000);
         this.tasklist = new Tasklist(   "./Assets/images/takenlijst.jpg",
                                         this.canvas,
@@ -118,7 +119,11 @@ class Game {
          this.selectplayer = new SelectPlayer("./Assets/Backgrounds/SelectPlayer.jpg",
                                                 this.canvas,
                                                 this.player,
-                                                this.mouseListener);                                 
+                                                this.mouseListener);
+         this.startview = new StartView("./Assets/Backgrounds/SelectPlayer.jpg",
+                                                this.canvas,
+                                                this.player,
+                                                this.mouseListener);                              
     };
 
     /**
@@ -173,7 +178,10 @@ class Game {
                 break; 
             case "SelectPlayer":
                 this.selectplayer.draw();
-                break;         
+                break;        
+            case "StartView":
+                this.startview.draw();
+                break;
             default:
                 this.map.draw();
                 this.tasklist.draw();
