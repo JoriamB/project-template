@@ -50,13 +50,7 @@ class SelectPlayer extends BaseView {
                                             this.player.setSrc("./Assets/Player/Male/Poses/player_idle.png")
                                             this.player.setLocation("Map")
                                             this.mouseListener.setHasBeenClicked()});
-        this.canvas.drawTextToCanvas("center",
-        50,
-        "Minecraft",
-        "orange",
-        "Selecteer je karakter",
-        this.canvas.getWidth()*0.45,
-        this.canvas.getHeight()*0.2)
+        
 
     };
 };

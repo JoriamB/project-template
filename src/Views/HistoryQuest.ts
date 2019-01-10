@@ -131,6 +131,7 @@ class HistoryQuest extends BaseView {
     HistoryArray = [{
         ImgSrc: "",
         Question: "Hoe wordt de tijd tussen 1500 en 1600 genoemd?",
+        Question1:"",
         Answer: "De Heksentijd",
         Answer1: "De Middeleeuwen",
         Answer2: "De Renaissance",
@@ -139,6 +140,7 @@ class HistoryQuest extends BaseView {
     },{
         ImgSrc: "",
         Question: "Wanneer was de Gouden Eeuw?",
+        Question1:"",
         Answer: "De zeventiende eeuw",
         Answer1: "De vijftiende eeuw",
         Answer2: "De achttiende eeuw",
@@ -147,6 +149,7 @@ class HistoryQuest extends BaseView {
     },{
         ImgSrc: "",
         Question: "Wie of wat is/was Max Havelaar?",
+        Question1:"",
         Answer: "Een bedrijf",
         Answer1: "Een BN’er",
         Answer2: "Een boek",
@@ -155,6 +158,7 @@ class HistoryQuest extends BaseView {
     },{
         ImgSrc: "",
         Question: "In welke tijd leefde Napoleon?",
+        Question1:"",
         Answer: "1624 - 1676",
         Answer1: "1812 - 1864",
         Answer2: "1769 - 1821 ",
@@ -163,6 +167,7 @@ class HistoryQuest extends BaseView {
     },{
         ImgSrc: "",
         Question: "Van welk land was Napoleon keizer?",
+        Question1:"",
         Answer: "Oostenrijk",
         Answer1: "Frankrijk",
         Answer2: "Duitsland ",
@@ -171,6 +176,7 @@ class HistoryQuest extends BaseView {
     },{
         ImgSrc: "",
         Question: "Welke strijd heeft Napoleon verloren?",
+        Question1:"",
         Answer: "Hiroshima",
         Answer1: "Waterloo",
         Answer2: "Gettysburg",
@@ -179,6 +185,7 @@ class HistoryQuest extends BaseView {
     },{
         ImgSrc: "",
         Question: "Wie schilderde de Nachtwacht?",
+        Question1:"",
         Answer: "Rembrandt van Rijn",
         Answer1: "Vincent van Gogh",
         Answer2: "Pablo Picasso",
@@ -187,6 +194,7 @@ class HistoryQuest extends BaseView {
     },{
         ImgSrc: "",
         Question: "Wie heeft de Mona Lisa geschilderd?",
+        Question1:"",
         Answer: "Pablo Picasso",
         Answer1: "Leonardo da Vinci",
         Answer2: "Salvador Dali ",
@@ -195,6 +203,7 @@ class HistoryQuest extends BaseView {
     },{
         ImgSrc: "",
         Question: "Welke schilder sneed in 1888 een stuk van zijn oor af?",
+        Question1:"",
         Answer: "Leonardo da Vinci",
         Answer1: "Pablo Picasso",
         Answer2: "Johannes Vermeer",
@@ -203,6 +212,7 @@ class HistoryQuest extends BaseView {
     },{
         ImgSrc: "",
         Question: "Welk politiek leider hield de bekende toespraak “I have a dream”?",
+        Question1:"",
         Answer: "Geert Wilders",
         Answer1: "Martin Luther King",
         Answer2: "Nelson Mandela",
@@ -211,6 +221,7 @@ class HistoryQuest extends BaseView {
     },{
         ImgSrc: "",
         Question: " Ter ere van welke Grieks god werden de vroegere Olympische spelen in Griekenland gehouden?",
+        Question1:"",
         Answer: "Apollo",
         Answer1: "Zeus",
         Answer2: "Athena ",
@@ -219,6 +230,7 @@ class HistoryQuest extends BaseView {
     },{
         ImgSrc: "",
         Question: "In welk werelddeel vond de eerste wereldoorlog plaats?",
+        Question1:"",
         Answer: "Azie",
         Answer1: "Noord-Amerika",
         Answer2: "Afrika ",
@@ -227,6 +239,7 @@ class HistoryQuest extends BaseView {
     },{
         ImgSrc: "",
         Question: "Wanneer eindigde de eerste wereldoorlog?",
+        Question1:"",
         Answer: "1923",
         Answer1: "1889",
         Answer2: "1945 ",
@@ -235,6 +248,7 @@ class HistoryQuest extends BaseView {
     },{
         ImgSrc: "",
         Question: "Waar kwam Michiel de Ruyter vandaan?",
+        Question1:"",
         Answer: "Hoek van Holland",
         Answer1: "Vlissingen",
         Answer2: "Rotterdam ",
@@ -243,6 +257,7 @@ class HistoryQuest extends BaseView {
     },{
         ImgSrc: "",
         Question: "Hoe ging Adolf Hitler dood?",
+        Question1:"",
         Answer: "Hij werd geraakt door een bom",
         Answer1: "Hij werd neergeschoten",
         Answer2: "Hij werd opgehangen ",
@@ -251,6 +266,7 @@ class HistoryQuest extends BaseView {
     },{
         ImgSrc: "",
         Question: "Waar is Anne Frank geboren?",
+        Question1:"",
         Answer: "Nederland",
         Answer1: "Duitsland",
         Answer2: "Frankrijk",
@@ -259,6 +275,7 @@ class HistoryQuest extends BaseView {
     },{
         ImgSrc: "",
         Question: "Hoe heette het boek dat is gebasseerd op het dagboek van Anne Frank?",
+        Question1:"",
         Answer: "Het achterhuis",
         Answer1: "Het voorhuis",
         Answer2: "Het warenhuis ",
@@ -266,7 +283,8 @@ class HistoryQuest extends BaseView {
         RightAnswer: "Het achterhuis"
     },{
         ImgSrc: "",
-        Question: "Op 5 september 1944 denken veel Nederlanders dat de oorlog is afgelopen. Hoe noemen we die dag?",
+        Question: "Op 5 september 1944 denken veel Nederlanders dat de oorlog is afgelopen.",
+        Question1:"Hoe noemen we die dag?",
         Answer: "D-Day",
         Answer1: "Bevrijding",
         Answer2: "Dolle Dinsdag ",
@@ -274,7 +292,8 @@ class HistoryQuest extends BaseView {
         RightAnswer: "Dolle Dinsdag"
     },{
         ImgSrc: "",
-        Question: "De winter van 1944-1945 was een strenge winter. In het westen was een groot tekort aan voedsel. Duizenden mensen stierven. Hoe noemen we deze winter?",
+        Question: "De winter van 1944-1945 was een strenge winter. In het westen was een groot tekort aan voedsel.",
+        Question1:"Duizenden mensen stierven. Hoe noemen we deze winter?",
         Answer: "De Schaarse winter",
         Answer1: "De Strenge winter",
         Answer2: "De Koude winter",
@@ -283,6 +302,7 @@ class HistoryQuest extends BaseView {
     },{
         ImgSrc: "",
         Question: "In de Tweede Wereldoorlog moesten 's avonds alle ramen verduisterd zijn. Waarom is dat zo?",
+        Question1:"",
         Answer: "De Duitsers kunnen Joden oppakken.",
         Answer1: "Engelse piloten kunnen dan niet zien waar ze zijn",
         Answer2: "Dan viel het meteen op als er iemand van het verzet buiten liep.",
@@ -291,6 +311,7 @@ class HistoryQuest extends BaseView {
     },{
         ImgSrc: "",
         Question: "Welke koning wordt in 1814 de baas van Nederland?",
+        Question1:"",
         Answer: "Philip II",
         Answer1: "Willem I",
         Answer2: "Willem II ",
@@ -299,6 +320,7 @@ class HistoryQuest extends BaseView {
     },{
         ImgSrc: "",
         Question: "Wanneer werd de kolonie Suriname onafhankelijk van Nederland?",
+        Question1:"",
         Answer: "1945",
         Answer1: "1963",
         Answer2: "1975 ",
@@ -306,7 +328,8 @@ class HistoryQuest extends BaseView {
         RightAnswer: "1975"
     },{
         ImgSrc: "",
-        Question: "In Nederland is een actiegroep die gelijke rechten wil voor mannen en vrouwen. Hoe heet die actiegroep?",
+        Question: "In Nederland is een actiegroep die gelijke rechten wil voor mannen en vrouwen.",
+        Question1:"Hoe heet die actiegroep?",
         Answer: "The Beatles",
         Answer1: "The Rolling Stones",
         Answer2: "Man en Vrouw ",
@@ -314,7 +337,8 @@ class HistoryQuest extends BaseView {
         RightAnswer: "Dolle Mina"
     },{
         ImgSrc: "",
-        Question: "Na de Tweede Wereldoorlog vertrouwen Rusland en Amerika elkaar niet meer. De Russen bouwen een hek tussen Oost- en West-Europa. Hoe noemen we dit hek?",
+        Question: "Na de Tweede Wereldoorlog vertrouwen Rusland en Amerika elkaar niet meer.",
+        Question1:"De Russen bouwen een hek tussen Oost- en West-Europa. Hoe noemen we dit hek?",
         Answer: "Het IJzeren Gordijn",
         Answer1: "Het IJzeren Hek",
         Answer2: "De IJzeren Muur ",
@@ -323,6 +347,7 @@ class HistoryQuest extends BaseView {
     },{
         ImgSrc: "",
         Question: "De mensen die in de prehistorie van plek naar plek trokken noemen we…",
+        Question1:"",
         Answer: "Zwervers",
         Answer1: "Boeren",
         Answer2: "Nomaden ",
@@ -331,6 +356,7 @@ class HistoryQuest extends BaseView {
     },{
         ImgSrc: "",
         Question: "Met de 'prehistorie' bedoelen we…",
+        Question1:"",
         Answer: "De periode waarin er nog geen mensen bestonden.",
         Answer1: "De periode na de Romeinse tijd.",
         Answer2: "De periode waaruit geen geschreven bronnen bekend zijn.",
@@ -339,6 +365,7 @@ class HistoryQuest extends BaseView {
     },{
         ImgSrc: "",
         Question: "Zo’n 7000 jaar geleden bleven de mensen voor langere tijd op één plek wonen. We noemen deze mensen…",
+        Question1:"",
         Answer: "Boeren",
         Answer1: "Stedenbouwers",
         Answer2: "Eskimos",
@@ -347,6 +374,7 @@ class HistoryQuest extends BaseView {
     },{
         ImgSrc: "",
         Question: "Wie zei dat alle mensen christen moesten worden?",
+        Question1:"",
         Answer: "De boeren die in Drenthe woonden.",
         Answer1: " De Romeinse Keizer.",
         Answer2: "De mensen die in Jezus Christus geloofden. ",
@@ -355,6 +383,7 @@ class HistoryQuest extends BaseView {
     },{
         ImgSrc: "",
         Question: "Wat was de belangrijkste reden om op ontdekkingsreis te gaan?",
+        Question1:"",
         Answer: "Het Katholieke geloof verspreiden",
         Answer1: "Ontdekken hoe de wereld eruit ziet",
         Answer2: "Een snellere en veilige weg naar India en China vinden ",
