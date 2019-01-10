@@ -18,6 +18,7 @@ class Game {
     private historyquest: HistoryQuest;
     private fishArray : Array<Fish>
     private selectplayer: SelectPlayer;
+    private tasklist : Tasklist;
 
     public constructor () {
         this.fishArray = [];
@@ -37,6 +38,15 @@ class Game {
                                     this.canvas.getHeight() * 0.05,
                                     "SelectPlayer",
                                     10000);
+        this.tasklist = new Tasklist(   "./Assets/images/takenlijst.jpg",
+                                        this.canvas,
+                                        this.canvas.getWidth() * 0,
+                                        this.canvas.getHeight() * 0,
+                                        this.canvas.getWidth() * 0.15,
+                                        this.canvas.getHeight() * 0.4,
+                                        this.canvas.getWidth() * 0.01,
+                                        false,
+                                        this.mouseListener);
         this.park = new ParkView(   "./Assets/Backgrounds/park.jpg",
                                     this.canvas,
                                     this.player,
@@ -64,7 +74,8 @@ class Game {
         this.map = new MapView( "./Assets/Map/mapleeg.png",
                                 this.canvas,
                                 this.player,
-                                this.mouseListener);
+                                this.mouseListener,
+                                this.tasklist);
         this.soccer = new SoccerView(   "./Assets/FootballGame/background.jpg",
                                         this.canvas,
                                         this.player,
@@ -119,6 +130,7 @@ class Game {
         this.canvas.clear();
         this.player.updatePlayer();
         this.canvas.updateScreenSize();
+        this.tasklist.updateSize();
         switch (this.player.getLocation()) {
             case "Park":
                 this.park.draw();
@@ -148,22 +160,23 @@ class Game {
                 this.fishing.draw();
                 break;
             case "Question":
-            this.question.draw();
-            break; 
+                this.question.draw();
+                break; 
             case "Geography":
-            this.geographyquest.draw();
-            break;
+                this.geographyquest.draw();
+                break;
             case "Math":
-            this.mathquest.draw();
-            break;
+                this.mathquest.draw();
+                break;
             case "History":
-            this.historyquest.draw();
-            break; 
+                this.historyquest.draw();
+                break; 
             case "SelectPlayer":
-            this.selectplayer.draw();
-            break;         
+                this.selectplayer.draw();
+                break;         
             default:
                 this.map.draw();
+                this.tasklist.draw();
                 break;
         }
         window.requestAnimationFrame(this.draw);

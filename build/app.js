@@ -33,6 +33,19 @@ class Canvas {
         ;
     }
     ;
+    drawRectButtonToCanvas(color, x, y, width, height, callback) {
+        this.drawRectangle(color, x, y, width, height);
+        if (this.mouseListener.getMouseStatus() == true &&
+            this.mouseListener.getHasBeenClicked() != true &&
+            this.mouseListener.getEventX() > x &&
+            this.mouseListener.getEventX() < x + width &&
+            this.mouseListener.getEventY() > y &&
+            this.mouseListener.getEventY() < y + height) {
+            callback();
+        }
+        ;
+    }
+    ;
     drawTextButtonToCanvas(src, text, x, y, width, height, callback) {
         this.drawImageToCanvas(src, x, y, width, height);
         if (this.mouseListener.getMouseStatus() == true &&
@@ -74,6 +87,11 @@ class Canvas {
         this.drawBarToCanvas(X, Y + this.getHeight() * 0.05, this.getWidth() * 0.05, (this.getWidth() * 0.05 / 100) * currentEnergy, this.getHeight() * 0.02, "black", "Energie:", 20);
         this.drawBarToCanvas(X, Y + this.getHeight() * 0.1, this.getWidth() * 0.05, (this.getWidth() * 0.05 / 100) * currentMood, this.getHeight() * 0.02, "black", "Stemming:", 20);
         this.drawBarToCanvas(X, Y + this.getHeight() * 0.15, this.getWidth() * 0.05, (this.getWidth() * 0.05 / 100) * currentHealth, this.getHeight() * 0.02, "black", "Gezondheid:", 20);
+    }
+    ;
+    drawRectangle(color, x, y, width, height) {
+        this.ctx.fillStyle = color;
+        this.ctx.fillRect(x, y, width, height);
     }
     ;
     getCenter() {
@@ -196,6 +214,7 @@ class Game {
             this.canvas.clear();
             this.player.updatePlayer();
             this.canvas.updateScreenSize();
+            this.tasklist.updateSize();
             switch (this.player.getLocation()) {
                 case "Park":
                     this.park.draw();
@@ -241,6 +260,7 @@ class Game {
                     break;
                 default:
                     this.map.draw();
+                    this.tasklist.draw();
                     break;
             }
             window.requestAnimationFrame(this.draw);
@@ -249,13 +269,14 @@ class Game {
         this.mouseListener = new MouseHelper(false, false);
         this.canvas = new Canvas(document.getElementById("canvas"), this.mouseListener);
         this.player = new Player("./Assets/Female/Poses/female_slide.png", this.canvas, 5, 20, 80, 100, 60, this.canvas.getCenter().X, this.canvas.getCenter().Y, this.canvas.getWidth() * 0.025, this.canvas.getHeight() * 0.05, "SelectPlayer", 10000);
+        this.tasklist = new Tasklist("./Assets/images/takenlijst.jpg", this.canvas, this.canvas.getWidth() * 0, this.canvas.getHeight() * 0, this.canvas.getWidth() * 0.15, this.canvas.getHeight() * 0.4, this.canvas.getWidth() * 0.01, false, this.mouseListener);
         this.park = new ParkView("./Assets/Backgrounds/park.jpg", this.canvas, this.player, this.mouseListener);
         this.hospital = new HospitalView("./Assets/Backgrounds/hospital.jpg", this.canvas, this.player, this.mouseListener);
         this.house = new HouseView("./Assets/Backgrounds/House.png", this.canvas, this.player, this.mouseListener);
         this.school = new SchoolView("./Assets/Backgrounds/classroom2.jpg", this.canvas, this.player, this.mouseListener);
         this.store = new StoreView("./Assets/Backgrounds/Store.jpg", this.canvas, this.player, this.mouseListener);
         this.restaurant = new RestaurantView("./Assets/Backgrounds/Restaurant3.jpg", this.canvas, this.player, this.mouseListener);
-        this.map = new MapView("./Assets/Map/mapleeg.png", this.canvas, this.player, this.mouseListener);
+        this.map = new MapView("./Assets/Map/mapleeg.png", this.canvas, this.player, this.mouseListener, this.tasklist);
         this.soccer = new SoccerView("./Assets/FootballGame/background.jpg", this.canvas, this.player, this.mouseListener, 0);
         this.fishing = new FishingView("./Assets/FishingGame/background1.jpg", this.canvas, this.player, this.mouseListener, this.fishArray, 0);
         this.beach = new BeachView("./Assets/Backgrounds/beach.jpg", this.canvas, this.player, this.mouseListener, this.fishArray, this.fishing);
@@ -459,6 +480,75 @@ class Player {
     ;
 }
 ;
+class Tasklist {
+    constructor(src, canvas, x, y, width, heigth, fontSize, isHidden, mouseListener) {
+        this.src = src;
+        this.canvas = canvas;
+        this.x = x;
+        this.y = y;
+        this.width = width;
+        this.height = heigth;
+        this.fontSize = fontSize;
+        this.isHidden = isHidden;
+        this.mouseListener = mouseListener;
+    }
+    ;
+    draw() {
+        if (!this.isHidden) {
+            this.canvas.drawRectangle("white", this.x, this.y, this.width, this.height);
+        }
+        ;
+        this.canvas.drawButtonToCanvas("./Assets/images/takenlijstIcon.jpg", this.x, this.y, this.canvas.getWidth() * 0.02, this.canvas.getHeight() * 0.03, () => {
+            if (this.isHidden == false) {
+                this.isHidden = true;
+            }
+            else {
+                this.isHidden = false;
+            }
+            ;
+            this.mouseListener.setHasBeenClicked();
+        });
+        if (!this.isHidden) {
+            this.canvas.drawTextToCanvas("center", 2 * this.fontSize, "Minecraft", "black", "Takenlijst", this.x + this.width / 2, this.y + this.canvas.getHeight() * 0.05);
+            for (let i = 0; i < taskArray.length; i++) {
+                this.canvas.drawTextToCanvas("center", this.fontSize, "Minecraft", "black", taskArray[i], this.x + this.width / 2, this.y + (this.canvas.getHeight() * 0.1) + (this.canvas.getHeight() * 0.04) * i);
+            }
+            ;
+        }
+        ;
+    }
+    ;
+    updateSize() {
+        this.width = this.canvas.getWidth() * 0.15;
+        this.height = this.canvas.getHeight() * 0.4;
+        this.fontSize = this.canvas.getWidth() * 0.01;
+    }
+    ;
+    getX() {
+        return this.x;
+    }
+    ;
+    getY() {
+        return this.y;
+    }
+    ;
+    getWidth() {
+        return this.width;
+    }
+    ;
+    getHeight() {
+        return this.height;
+    }
+    ;
+    getIsHidden() {
+        return this.isHidden;
+    }
+}
+;
+let taskArray = [
+    "Ga 5 keer naar school.",
+    "Vul jouw gezondheid aan"
+];
 class Voetbal {
     constructor(score, xPos, Ypos) {
     }
@@ -1309,14 +1399,29 @@ class HouseView extends BaseView {
 }
 ;
 class MapView extends BaseView {
-    constructor(src, canvas, player, mouseListener) {
+    constructor(src, canvas, player, mouseListener, tasklist) {
         super(src, canvas, player, mouseListener);
         this.draw = () => {
             this.canvas.drawImageToCanvas(this.src, 0, 0, this.canvas.getWidth(), this.canvas.getHeight());
-            this.canvas.drawButtonToCanvas("./Assets/Map/park.png", 0, 0, this.canvas.getWidth() * 0.3, this.canvas.getHeight() * 0.328, () => {
-                this.player.setLocation("Park");
-                this.mouseListener.setHasBeenClicked();
-            });
+            if (!this.tasklist.getIsHidden()) {
+                this.canvas.drawButtonToCanvas("./Assets/Map/park.png", this.tasklist.getWidth(), 0, this.canvas.getWidth() * 0.3 - this.tasklist.getWidth(), this.canvas.getHeight() * 0.328, () => {
+                    if (this.mouseListener.getEventX() < this.tasklist.getX() ||
+                        this.mouseListener.getEventX() > this.tasklist.getX() + this.tasklist.getWidth() ||
+                        this.mouseListener.getEventY() < this.tasklist.getY() ||
+                        this.mouseListener.getEventY() > this.tasklist.getY() + this.tasklist.getHeight()) {
+                        this.player.setLocation("Park");
+                    }
+                    ;
+                    this.mouseListener.setHasBeenClicked();
+                });
+            }
+            else {
+                this.canvas.drawButtonToCanvas("./Assets/Map/park.png", this.canvas.getWidth() * 0.02, 0, this.canvas.getWidth() * 0.28, this.canvas.getHeight() * 0.328, () => {
+                    this.player.setLocation("Park");
+                    this.mouseListener.setHasBeenClicked();
+                });
+            }
+            ;
             this.canvas.drawButtonToCanvas("./Assets/Map/winkel.png", this.canvas.getWidth() * 0.715, this.canvas.getHeight() * 0.48, this.canvas.getWidth() * 0.1, this.canvas.getHeight() * 0.16, () => {
                 this.player.setLocation("Store");
                 this.mouseListener.setHasBeenClicked();
@@ -1341,11 +1446,12 @@ class MapView extends BaseView {
                 this.player.setLocation("Beach");
                 this.mouseListener.setHasBeenClicked();
             });
-            this.canvas.drawCoinToCanvas(this.canvas.getWidth() * 0.09, this.canvas.getHeight() * 0.04, this.player.getCoin());
+            this.canvas.drawCoinToCanvas(this.canvas.getWidth() * 0.2, this.canvas.getHeight() * 0.04, this.player.getCoin());
             this.canvas.drawBarstoCanvas(this.canvas.getWidth() * 0.9, this.canvas.getHeight() * 0.05, this.player.getHunger(), this.player.getEnergy(), this.player.getMood(), this.player.getHealth());
             this.player.move();
             this.canvas.drawImageToCanvas(this.player.getSrc(), this.player.getX(), this.player.getY(), this.player.getWidth(), this.player.getHeight());
         };
+        this.tasklist = tasklist;
     }
     ;
 }

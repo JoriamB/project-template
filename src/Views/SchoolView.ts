@@ -25,7 +25,7 @@ class SchoolView extends BaseView {
                                         this.canvas.getHeight() * 0.05,
                                         () => {
                                             this.player.setLocation("Map");
-                                            this.mouseListener.setHasBeenClicked()
+                                            this.mouseListener.setHasBeenClicked();
                                         });
         
         this.canvas.drawTextButtonToCanvas( "./Assets/Icons/ButtonsFREE/PlayBlank.png",
