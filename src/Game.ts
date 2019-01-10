@@ -39,7 +39,7 @@ class Game {
                                     this.canvas.getWidth() * 0.025,
                                     this.canvas.getHeight() * 0.05,
                                     "StartView",
-                                    10000);
+                                    50);
         this.tasklist = new Tasklist(   "./Assets/images/takenlijst.jpg",
                                         this.canvas,
                                         this.canvas.getWidth() * 0,
@@ -57,7 +57,7 @@ class Game {
                                             this.canvas,
                                             this.player,
                                             this.mouseListener);
-        this.house = new HouseView( "./Assets/Backgrounds/House.png",
+        this.house = new HouseView( "./Assets/Backgrounds/House1.png",
                                     this.canvas,
                                     this.player,
                                     this.mouseListener);

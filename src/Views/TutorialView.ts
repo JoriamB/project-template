@@ -50,6 +50,13 @@ this.canvas.drawTextToCanvas("left",
                             "white",
                             "Om het poppetje naar rechts te bewegen gebruik je D of >",
                             this.canvas.getWidth()*0.05,
-                            this.canvas.getHeight()*0.275);                                                     
+                            this.canvas.getHeight()*0.275);
+this.canvas.drawTextToCanvas("left",
+                            35,
+                            "KenneyPixel",
+                            "white",
+                            "Klik op de locaties om de mogelijkheden te ontdekken!",
+                            this.canvas.getWidth()*0.05,
+                            this.canvas.getHeight()*0.4);                                                     
 };
 }

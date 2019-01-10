@@ -274,11 +274,11 @@ class Game {
         this.fishArray = [];
         this.mouseListener = new MouseHelper(false, false);
         this.canvas = new Canvas(document.getElementById("canvas"), this.mouseListener);
-        this.player = new Player("./Assets/Female/Poses/female_slide.png", this.canvas, 5, 20, 80, 100, 60, this.canvas.getCenter().X, this.canvas.getCenter().Y, this.canvas.getWidth() * 0.025, this.canvas.getHeight() * 0.05, "StartView", 10000);
+        this.player = new Player("./Assets/Female/Poses/female_slide.png", this.canvas, 5, 20, 80, 100, 60, this.canvas.getCenter().X, this.canvas.getCenter().Y, this.canvas.getWidth() * 0.025, this.canvas.getHeight() * 0.05, "StartView", 50);
         this.tasklist = new Tasklist("./Assets/images/takenlijst.jpg", this.canvas, this.canvas.getWidth() * 0, this.canvas.getHeight() * 0, this.canvas.getWidth() * 0.15, this.canvas.getHeight() * 0.4, this.canvas.getWidth() * 0.01, false, this.mouseListener);
         this.park = new ParkView("./Assets/Backgrounds/park.jpg", this.canvas, this.player, this.mouseListener);
         this.hospital = new HospitalView("./Assets/Backgrounds/hospital.jpg", this.canvas, this.player, this.mouseListener);
-        this.house = new HouseView("./Assets/Backgrounds/House.png", this.canvas, this.player, this.mouseListener);
+        this.house = new HouseView("./Assets/Backgrounds/House1.png", this.canvas, this.player, this.mouseListener);
         this.school = new SchoolView("./Assets/Backgrounds/classroom2.jpg", this.canvas, this.player, this.mouseListener);
         this.store = new StoreView("./Assets/Backgrounds/Store.jpg", this.canvas, this.player, this.mouseListener);
         this.restaurant = new RestaurantView("./Assets/Backgrounds/Restaurant3.jpg", this.canvas, this.player, this.mouseListener);
@@ -2222,6 +2222,7 @@ class TutorialView extends BaseView {
             this.canvas.drawTextToCanvas("left", 35, "KenneyPixel", "white", "Om het poppetje naar links te bewegen gebruik je A of <", this.canvas.getWidth() * 0.05, this.canvas.getHeight() * 0.225);
             this.canvas.drawTextToCanvas("left", 35, "KenneyPixel", "white", "Om het poppetje naar onder te bewegen gebruik je S of ∨", this.canvas.getWidth() * 0.05, this.canvas.getHeight() * 0.25);
             this.canvas.drawTextToCanvas("left", 35, "KenneyPixel", "white", "Om het poppetje naar rechts te bewegen gebruik je D of >", this.canvas.getWidth() * 0.05, this.canvas.getHeight() * 0.275);
+            this.canvas.drawTextToCanvas("left", 35, "KenneyPixel", "white", "Klik op de locaties om de mogelijkheden te ontdekken!", this.canvas.getWidth() * 0.05, this.canvas.getHeight() * 0.4);
         };
     }
     ;
