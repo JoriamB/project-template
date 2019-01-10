@@ -18,6 +18,9 @@ class Game {
     private historyquest: HistoryQuest;
     private fishArray : Array<Fish>
     private selectplayer: SelectPlayer;
+    private tasklist : Tasklist;
+    private startview: StartView;
+    private tutorialview: TutorialView;
 
     public constructor () {
         this.fishArray = [];
@@ -35,8 +38,17 @@ class Game {
                                     this.canvas.getCenter().Y,
                                     this.canvas.getWidth() * 0.025,
                                     this.canvas.getHeight() * 0.05,
-                                    "SelectPlayer",
-                                    10000);
+                                    "StartView",
+                                    50);
+        this.tasklist = new Tasklist(   "./Assets/images/takenlijst.jpg",
+                                        this.canvas,
+                                        this.canvas.getWidth() * 0,
+                                        this.canvas.getHeight() * 0,
+                                        this.canvas.getWidth() * 0.15,
+                                        this.canvas.getHeight() * 0.4,
+                                        this.canvas.getWidth() * 0.01,
+                                        false,
+                                        this.mouseListener);
         this.park = new ParkView(   "./Assets/Backgrounds/park.jpg",
                                     this.canvas,
                                     this.player,
@@ -45,7 +57,7 @@ class Game {
                                             this.canvas,
                                             this.player,
                                             this.mouseListener);
-        this.house = new HouseView( "./Assets/Backgrounds/House.png",
+        this.house = new HouseView( "./Assets/Backgrounds/House1.png",
                                     this.canvas,
                                     this.player,
                                     this.mouseListener);
@@ -64,7 +76,8 @@ class Game {
         this.map = new MapView( "./Assets/Map/mapleeg.png",
                                 this.canvas,
                                 this.player,
-                                this.mouseListener);
+                                this.mouseListener,
+                                this.tasklist);
         this.soccer = new SoccerView(   "./Assets/FootballGame/background.jpg",
                                         this.canvas,
                                         this.player,
@@ -107,7 +120,15 @@ class Game {
          this.selectplayer = new SelectPlayer("./Assets/Backgrounds/SelectPlayer.jpg",
                                                 this.canvas,
                                                 this.player,
-                                                this.mouseListener);                                 
+                                                this.mouseListener);
+         this.startview = new StartView("./Assets/Backgrounds/SelectPlayer.jpg",
+                                                this.canvas,
+                                                this.player,
+                                                this.mouseListener);
+         this.tutorialview = new TutorialView("./Assets/Backgrounds/SelectPlayer.jpg",
+                                                      this.canvas,
+                                                      this.player,
+                                                      this.mouseListener);                                                                   
     };
 
     /**
@@ -119,6 +140,7 @@ class Game {
         this.canvas.clear();
         this.player.updatePlayer();
         this.canvas.updateScreenSize();
+        this.tasklist.updateSize();
         switch (this.player.getLocation()) {
             case "Park":
                 this.park.draw();
@@ -148,22 +170,29 @@ class Game {
                 this.fishing.draw();
                 break;
             case "Question":
-            this.question.draw();
-            break; 
+                this.question.draw();
+                break; 
             case "Geography":
-            this.geographyquest.draw();
-            break;
+                this.geographyquest.draw();
+                break;
             case "Math":
-            this.mathquest.draw();
-            break;
+                this.mathquest.draw();
+                break;
             case "History":
-            this.historyquest.draw();
-            break; 
+                this.historyquest.draw();
+                break; 
             case "SelectPlayer":
-            this.selectplayer.draw();
-            break;         
+                this.selectplayer.draw();
+                break;        
+            case "StartView":
+                this.startview.draw();
+                break;
+            case "Tutorial":
+                this.tutorialview.draw();
+                break;
             default:
                 this.map.draw();
+                this.tasklist.draw();
                 break;
         }
         window.requestAnimationFrame(this.draw);

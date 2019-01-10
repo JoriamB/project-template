@@ -1,10 +1,14 @@
 class MapView extends BaseView {
 
+    private tasklist : Tasklist;
+
     public constructor (src : string,
                         canvas : Canvas,
                         player : Player,
-                        mouseListener : MouseHelper) {
+                        mouseListener : MouseHelper,
+                        tasklist : Tasklist) {
         super(src, canvas, player, mouseListener);
+        this.tasklist = tasklist;
     };
 
     /**
@@ -18,15 +22,33 @@ class MapView extends BaseView {
                                         0,
                                         this.canvas.getWidth(),
                                         this.canvas.getHeight());
-        this.canvas.drawButtonToCanvas( "./Assets/Map/park.png",
-                                        0,
-                                        0,
-                                        this.canvas.getWidth()*0.3,
-                                        this.canvas.getHeight()*0.328,
-                                        () => {
-                                            this.player.setLocation("Park");
-                                            this.mouseListener.setHasBeenClicked()
-                                        });
+        if (!this.tasklist.getIsHidden()) {
+            this.canvas.drawButtonToCanvas( "./Assets/Map/park.png",
+                                            this.tasklist.getWidth(),
+                                            0,
+                                            this.canvas.getWidth()*0.3 - this.tasklist.getWidth(),
+                                            this.canvas.getHeight()*0.328,
+                                            () => {
+                                                if (this.mouseListener.getEventX() < this.tasklist.getX()||
+                                                    this.mouseListener.getEventX() > this.tasklist.getX() + this.tasklist.getWidth()||
+                                                    this.mouseListener.getEventY() < this.tasklist.getY()||
+                                                    this.mouseListener.getEventY() > this.tasklist.getY() + this.tasklist.getHeight()) {
+                                                    this.player.setLocation("Park");
+                                                };
+                                                this.mouseListener.setHasBeenClicked()
+                                            });
+        }
+        else {
+            this.canvas.drawButtonToCanvas( "./Assets/Map/park.png",
+                                            this.canvas.getWidth() * 0.02,
+                                            0,
+                                            this.canvas.getWidth()*0.28,
+                                            this.canvas.getHeight()*0.328,
+                                            () => {
+                                                this.player.setLocation("Park");
+                                                this.mouseListener.setHasBeenClicked()
+                                            });
+        };
         this.canvas.drawButtonToCanvas( "./Assets/Map/winkel.png",
                                         this.canvas.getWidth() *0.715,
                                         this.canvas.getHeight() * 0.48,
@@ -81,7 +103,7 @@ class MapView extends BaseView {
                                             this.player.setLocation("Beach");
                                             this.mouseListener.setHasBeenClicked()
                                         });
-        this.canvas.drawCoinToCanvas(   this.canvas.getWidth()*0.09,
+        this.canvas.drawCoinToCanvas(   this.canvas.getWidth()*0.2,
                                         this.canvas.getHeight() * 0.04,
                                         this.player.getCoin());
         this.canvas.drawBarstoCanvas(   this.canvas.getWidth()*0.9,
