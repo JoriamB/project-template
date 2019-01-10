@@ -65,9 +65,8 @@ class Fish {
                                             this.height,
                                             () => {
                                                 this.fishArray.splice(this.getIndex(), 1);
-                                                for (let i = 0; i < this.fishArray.length; i++) {
-                                                    this.index = i;
-                                                };
+                                                updateIndex(this.fishArray);
+                                                this.fishingView.setScore(this.fishingView.getScore() + 1);
                                                 this.mouseListener.setHasBeenClicked()
                                             });
         }
@@ -79,19 +78,56 @@ class Fish {
                                             this.height,
                                             () => {
                                                 this.fishArray.splice(this.getIndex(), 1);
-                                                for (let i = 0; i < this.fishArray.length; i++) {
-                                                    this.index = i;
-                                                };
+                                                updateIndex(this.fishArray);
                                                 this.fishingView.setScore(this.fishingView.getScore() + 1);
                                                 this.mouseListener.setHasBeenClicked()
                                             });
         };
     };
 
+    /**
+     * @access public
+     * @method
+     * Method to return the index
+     */
     public getIndex () : number {
         return this.index;
     }
+
+    /**
+     * @access public
+     * @method
+     * @param index 
+     * Method to set the index
+     */
+    public setIndex (index : number) {
+        this.index = index;
+    }
 };
+/**
+ * @access public
+ * @function
+ * Function to update the indexes of the fishArray
+ */
+function updateIndex (fishArray : Array<Fish>) {
+    for (let i = 0; i < fishArray.length; i++) {
+        fishArray[i].setIndex(i);
+    };
+};
+
+/**
+ * @access public
+ * @function
+ * @param min 
+ * @param max 
+ * @param canvas 
+ * @param fishArray 
+ * @param mouseListener 
+ * @param player 
+ * @param srcArray 
+ * @param fishingView
+ * Function to create fish objects
+ */
 function createFish (   min : number,
                         max : number,
                         canvas : Canvas,
@@ -117,6 +153,11 @@ function createFish (   min : number,
     };
 };
 
+/**
+ * @access public
+ * @function
+ * Function to return the array of sources
+ */
 function getSrcArray () : Array<string> {
     return srcArray;
 };

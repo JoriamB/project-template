@@ -135,20 +135,15 @@ class Fish {
         if (this.movingRight) {
             this.canvas.drawButtonToCanvas(this.src + "Right.png", this.xPos, this.yPos, this.width, this.height, () => {
                 this.fishArray.splice(this.getIndex(), 1);
-                for (let i = 0; i < this.fishArray.length; i++) {
-                    this.index = i;
-                }
-                ;
+                updateIndex(this.fishArray);
+                this.fishingView.setScore(this.fishingView.getScore() + 1);
                 this.mouseListener.setHasBeenClicked();
             });
         }
         else {
             this.canvas.drawButtonToCanvas(this.src + "Left.png", this.xPos, this.yPos, this.width, this.height, () => {
                 this.fishArray.splice(this.getIndex(), 1);
-                for (let i = 0; i < this.fishArray.length; i++) {
-                    this.index = i;
-                }
-                ;
+                updateIndex(this.fishArray);
                 this.fishingView.setScore(this.fishingView.getScore() + 1);
                 this.mouseListener.setHasBeenClicked();
             });
@@ -159,6 +154,16 @@ class Fish {
     getIndex() {
         return this.index;
     }
+    setIndex(index) {
+        this.index = index;
+    }
+}
+;
+function updateIndex(fishArray) {
+    for (let i = 0; i < fishArray.length; i++) {
+        fishArray[i].setIndex(i);
+    }
+    ;
 }
 ;
 function createFish(min, max, canvas, fishArray, mouseListener, player, srcArray, fishingView) {
