@@ -43,13 +43,11 @@ class HospitalView extends BaseView {
                                         this.canvas.getWidth() * 0.1,
                                         this.canvas.getHeight() * 0.1,
                                         () => {
-                                            if (this.player.getCoin() >= 15&& 
-                                                this.player.getHealth() < 80 ) {
+                                            if (this.player.getHealth() < 80 ) {
                                                 this.player.setCoin(this.player.getCoin() - 15)
                                                 this.player.setHealth(this.player.getHealth() + 20)
                                             }
-                                            else if (   this.player.getCoin()>=15&&
-                                                        this.player.getHealth()< 100) {
+                                            else if (   this.player.getHealth()< 100) {
                                                         this.player.setCoin(this.player.getCoin() - 15)
                                                         this.player.setHealth(100)
                                             };

@@ -15,6 +15,7 @@ class Player {
     private height : number;
     private location : string;
     private coin : number;
+    private schoolvisits : number;
 
     public constructor (src : string,
                         canvas : Canvas,
@@ -28,7 +29,8 @@ class Player {
                         width : number,
                         height : number,
                         location : string,
-                        coin : number) {
+                        coin : number,
+                        schoolvisits : number) {
         this.keyboardListener = new KeyboardHelper(false,
                                                     false,
                                                     false,
@@ -42,20 +44,14 @@ class Player {
         this.hunger = hunger;
         this.energy = energy;
         this.mood = mood;
-        
         this.xPos = xPos;
         this.yPos = yPos;
         this.width = width;
         this.height = height;
         this.location = location;
         this.coin = coin;
+        this.schoolvisits = schoolvisits;
     };
-
-    protected updateCoins () {
-        // Change current value of coins
-        //if worked in store --> ++
-        //if spend in store --> --
-    }
 
     /**
      * @access public
@@ -99,9 +95,44 @@ class Player {
             };
     };
 
+    /**
+     * @access public
+     * @method
+     * Method to update the player image
+     */
     public updatePlayer () : void {
         this.width = this.canvas.getWidth() * 0.025;
         this.height = this.canvas.getHeight() * 0.05;
+    };
+
+    /**
+     * @access public
+     * @method
+     * Method to check for fail states
+     */
+    public checkForFailStates () {
+        if (this.getHunger() <= 0) {
+            this.setHunger(1);
+            this.setLocation("GameOver");
+        };
+        if (this.getEnergy() <= 0) {
+            this.setEnergy(100);
+            this.setCoin(this.getCoin() - 100);
+            this.setLocation("House");
+        };
+        if (this.getMood() <= 0) {
+            this.setMood(1);
+            this.setLocation("GameOver");
+        };
+        if (this.getHealth() <= 0) {
+            this.setHealth(100);
+            this.setCoin(this.getCoin() - 200);
+            this.setLocation("Hospital");
+        };
+        if (this.getCoin() <= -200) {
+            this.setCoin(1);
+            this.setLocation("GameOver");
+        };
     };
 
     /**
@@ -252,5 +283,21 @@ class Player {
      */
     public setCoin (coin : number) : void {
         this.coin = coin;
+    };
+    
+    public getSrc(){
+        return this.src
+    };
+
+    public setSrc(src:string){
+        this.src = src;
+    };
+
+    public getSchoolVisits () : number {
+        return this.schoolvisits;
+    };
+
+    public setSchoolVisits (visits : number) {
+        this.schoolvisits = visits;
     };
 };

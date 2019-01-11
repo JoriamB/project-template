@@ -25,7 +25,7 @@ class SchoolView extends BaseView {
                                         this.canvas.getHeight() * 0.05,
                                         () => {
                                             this.player.setLocation("Map");
-                                            this.mouseListener.setHasBeenClicked()
+                                            this.mouseListener.setHasBeenClicked();
                                         });
         
         this.canvas.drawTextButtonToCanvas( "./Assets/Icons/ButtonsFREE/PlayBlank.png",
@@ -35,10 +35,7 @@ class SchoolView extends BaseView {
                                             this.canvas.getWidth() * 0.1,
                                             this.canvas.getHeight() * 0.075,
                                             () => {
-                                                if (this.player.getEnergy() >= 15&&
-                                                    this.player.getHunger() >= 30) {
                                                 this.player.setLocation("Question");
-                                                };
                                                 this.mouseListener.setHasBeenClicked();
                                             });
 

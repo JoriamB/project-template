@@ -1,11 +1,17 @@
 class BeachView extends BaseView {
 
+    private fishArray : Array<Fish>;
+    private fishingView : FishingView;
 
     public constructor (src : string,
                         canvas : Canvas,
                         player : Player,
-                        mouseListener : MouseHelper) {
+                        mouseListener : MouseHelper,
+                        fishArray : Array<Fish>,
+                        fishingView : FishingView) {
         super(src, canvas, player, mouseListener);
+        this.fishArray = fishArray;
+        this.fishingView = fishingView;
     };
 
     /**
@@ -19,7 +25,7 @@ class BeachView extends BaseView {
                                         0,
                                         this.canvas.getWidth(),
                                         this.canvas.getHeight());
-        this.canvas.drawButtonToCanvas(  "./Assets/Icons/ButtonsFree/Home.png",
+        this.canvas.drawButtonToCanvas( "./Assets/Icons/ButtonsFREE/Home.png",
                                         this.canvas.getWidth() * 0.05,
                                         this.canvas.getHeight() * 0.05,
                                         this.canvas.getWidth() * 0.025,
@@ -33,12 +39,16 @@ class BeachView extends BaseView {
                                         this.canvas.getWidth()*0.24,
                                         this.canvas.getHeight()*0.32, 
                                         () => {
-                                            if (this.player.getEnergy() >= 10 &&
-                                                this.player.getMood() < 100) {
-                                                this.player.setLocation("Fishing")
-                                                createFish( 1,
-                                                            100,
-                                                            this.canvas);
+                                            if (this.player.getMood() < 100) {
+                                                createFish( 25,
+                                                            50,
+                                                            this.canvas,
+                                                            this.fishArray,
+                                                            this.mouseListener,
+                                                            this.player,
+                                                            getSrcArray(),
+                                                            this.fishingView);
+                                                this.player.setLocation("Fishing");
                                             }
                                             this.mouseListener.setHasBeenClicked()});
         this.canvas.drawCoinToCanvas(   this.canvas.getWidth()/2,

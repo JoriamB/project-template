@@ -31,19 +31,19 @@ class KeyboardHelper {
             // Up arrow
             case 38:
             // W
-            case 73:
+            case 87:
                 this.upPressed = true;
             break;
             // Down arrow
             case 40:
             // S
-            case 75:
+            case 83:
                 this.downPressed = true;
             break;
             // Right arrow
             case 39:
             // D
-            case 76:
+            case 68:
                 this.rightPressed = true;
             break;
         };
@@ -59,25 +59,25 @@ class KeyboardHelper {
             // Left arrow
             case 37:
             // A
-            case 74:
+            case 65:
                 this.leftPressed = false;
             break;
             // Up arrow
             case 38:
             // W
-            case 73:
+            case 87:
                 this.upPressed = false;
             break;
             // Down arrow
             case 40:
             // S
-            case 75:
+            case 83:
                 this.downPressed = false;
             break;
             // Right arrow
             case 39:
             // D
-            case 76:
+            case 68 :
                 this.rightPressed = false;
             break;
         };

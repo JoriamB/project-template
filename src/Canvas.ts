@@ -88,6 +88,34 @@ class Canvas {
     };
 
     /**
+     * @param color
+     * @param x 
+     * @param y 
+     * @param width 
+     * @param height 
+     * @param callback
+     * @access public
+     * @method
+     * method for drawing a button to cnavas
+     */
+    public drawRectButtonToCanvas(  color: string,
+                                    x: number,
+                                    y: number,
+                                    width: number,
+                                    height: number,
+                                    callback: () => void) {
+        this.drawRectangle(color, x, y, width, height);
+        if (this.mouseListener.getMouseStatus() == true &&
+            this.mouseListener.getHasBeenClicked() != true &&
+            this.mouseListener.getEventX() > x &&
+            this.mouseListener.getEventX() < x + width &&
+            this.mouseListener.getEventY() > y &&
+            this.mouseListener.getEventY() < y + height) {
+            callback()
+        };
+    };
+
+    /**
      * @param src
      * @param text
      * @param x 
@@ -250,6 +278,29 @@ class Canvas {
                                 "black",
                                 "Gezondheid:",
                                 20);
+    };
+
+    /**
+     * @access public
+     * @method
+     * @param color 
+     * @param x 
+     * @param y 
+     * @param width 
+     * @param height 
+     * Method for drawing a rectangle to the canvas
+     */
+    public drawRectangle (  color : string,
+                            x : number,
+                            y : number,
+                            width : number,
+                            height : number
+                            ) : void {
+        this.ctx.fillStyle = color;
+        this.ctx.fillRect(  x,
+                            y,
+                            width,
+                            height);
     };
 
     /**
