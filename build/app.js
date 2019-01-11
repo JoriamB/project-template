@@ -268,6 +268,9 @@ class Game {
                 case "GameOver":
                     this.gameover.draw();
                     break;
+                case "Credits":
+                    this.credits.draw();
+                    break;
                 default:
                     this.map.draw();
                     this.tasklist.draw();
@@ -298,6 +301,7 @@ class Game {
         this.startview = new StartView("./Assets/Backgrounds/SelectPlayer.jpg", this.canvas, this.player, this.mouseListener);
         this.tutorialview = new TutorialView("./Assets/Backgrounds/SelectPlayer.jpg", this.canvas, this.player, this.mouseListener);
         this.gameover = new GameOverView("./Assets/Backgrounds/SelectPlayer.jpg", this.canvas, this.player, this.mouseListener);
+        this.credits = new CreditsView("./Assets/Backgrounds/SelectPlayer.jpg", this.canvas, this.player, this.mouseListener);
     }
     ;
 }
@@ -733,6 +737,26 @@ class BeachView extends BaseView {
         };
         this.fishArray = fishArray;
         this.fishingView = fishingView;
+    }
+    ;
+}
+;
+class CreditsView extends BaseView {
+    constructor(src, canvas, player, mouseListener) {
+        super(src, canvas, player, mouseListener);
+        this.draw = () => {
+            this.canvas.drawImageToCanvas(this.src, 0, 0, this.canvas.getWidth(), this.canvas.getHeight());
+            this.canvas.drawButtonToCanvas("./Assets/Icons/ButtonsFREE/ReturnHome.png", this.canvas.getWidth() * 0.075, this.canvas.getHeight() * 0.075, 50, 50, () => {
+                this.player.setLocation("StartView");
+                this.mouseListener.setHasBeenClicked();
+            });
+            this.canvas.drawImageToCanvas("./Assets/images/Credits.jpg", this.canvas.getWidth() * 0.5 - (this.canvas.getWidth() * 0.4) / 2, this.canvas.getHeight() * 0.2, this.canvas.getWidth() * 0.4, this.canvas.getHeight() * 0.5);
+            this.canvas.drawTextToCanvas("center", 20, "Minecraft", "white", "Teamleden:", this.canvas.getWidth() * 0.5, this.canvas.getHeight() * 0.75);
+            this.canvas.drawTextToCanvas("center", 20, "Minecraft", "white", "Anissa Fatima Zohra Boufrahi", this.canvas.getWidth() * 0.5, this.canvas.getHeight() * 0.8);
+            this.canvas.drawTextToCanvas("center", 20, "Minecraft", "white", "Joriam Bruggeman", this.canvas.getWidth() * 0.5, this.canvas.getHeight() * 0.85);
+            this.canvas.drawTextToCanvas("center", 20, "Minecraft", "white", "Julien Kenneth Pleijte", this.canvas.getWidth() * 0.5, this.canvas.getHeight() * 0.9);
+            this.canvas.drawTextToCanvas("center", 20, "Minecraft", "white", "Anissa Sarah Thieleman", this.canvas.getWidth() * 0.5, this.canvas.getHeight() * 0.95);
+        };
     }
     ;
 }
@@ -2270,7 +2294,7 @@ class StartView extends BaseView {
                 this.mouseListener.setHasBeenClicked();
             });
             this.canvas.drawButtonToCanvas("./Assets/Icons/ButtonsFREE/globe.png", this.canvas.getWidth() * 0.45, this.canvas.getHeight() * 0.4, this.canvas.getWidth() * 0.1, this.canvas.getHeight() * 0.2, () => {
-                this.player.setLocation("SelectPlayer");
+                this.player.setLocation("Credits");
                 this.mouseListener.setHasBeenClicked();
             });
         };

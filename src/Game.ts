@@ -22,6 +22,7 @@ class Game {
     private startview: StartView;
     private tutorialview: TutorialView;
     private gameover : GameOverView;
+    private credits : CreditsView;
 
     public constructor () {
         this.fishArray = [];
@@ -137,6 +138,10 @@ class Game {
                                             this.canvas,
                                             this.player,
                                             this.mouseListener);
+        this.credits = new CreditsView( "./Assets/Backgrounds/SelectPlayer.jpg",
+                                        this.canvas,
+                                        this.player,
+                                        this.mouseListener);
     };
 
     /**
@@ -201,6 +206,9 @@ class Game {
                 break;
             case "GameOver":
                 this.gameover.draw();
+                break;
+            case "Credits":
+                this.credits.draw();
                 break;
             default:
                 this.map.draw();
