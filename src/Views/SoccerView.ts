@@ -28,8 +28,14 @@ class SoccerView extends BaseView{
                                         this.canvas.getWidth() * 0.025,
                                         this.canvas.getHeight() * 0.05,
                                         () => {
-                                            this.player.setEnergy(this.player.getEnergy()-15),
-                                            this.player.setHunger(this.player.getHunger()-30)
+                                            this.player.setEnergy(this.player.getEnergy()-15);
+                                            this.player.setHunger(this.player.getHunger()-30);
+                                            if (this.player.getMood() <= 70) {
+                                                this.player.setMood(this.player.getMood() + 30);
+                                            }
+                                            else {
+                                                this.player.setMood(100);
+                                            }
                                             this.score = 0;
                                             this.player.setLocation("Park");
                                             this.mouseListener.setHasBeenClicked()});

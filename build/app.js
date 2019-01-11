@@ -212,6 +212,7 @@ class Game {
     constructor() {
         this.draw = () => {
             this.canvas.clear();
+            this.player.checkForFailStates();
             this.player.updatePlayer();
             this.canvas.updateScreenSize();
             this.tasklist.updateSize();
@@ -264,6 +265,9 @@ class Game {
                 case "Tutorial":
                     this.tutorialview.draw();
                     break;
+                case "GameOver":
+                    this.gameover.draw();
+                    break;
                 default:
                     this.map.draw();
                     this.tasklist.draw();
@@ -274,8 +278,8 @@ class Game {
         this.fishArray = [];
         this.mouseListener = new MouseHelper(false, false);
         this.canvas = new Canvas(document.getElementById("canvas"), this.mouseListener);
-        this.player = new Player("./Assets/Female/Poses/female_slide.png", this.canvas, 5, 20, 80, 100, 60, this.canvas.getCenter().X, this.canvas.getCenter().Y, this.canvas.getWidth() * 0.025, this.canvas.getHeight() * 0.05, "StartView", 50);
-        this.tasklist = new Tasklist("./Assets/images/takenlijst.jpg", this.canvas, this.canvas.getWidth() * 0, this.canvas.getHeight() * 0, this.canvas.getWidth() * 0.15, this.canvas.getHeight() * 0.4, this.canvas.getWidth() * 0.01, false, this.mouseListener);
+        this.player = new Player("./Assets/Female/Poses/female_slide.png", this.canvas, 5, 20, 80, 100, 60, this.canvas.getCenter().X, this.canvas.getCenter().Y, this.canvas.getWidth() * 0.025, this.canvas.getHeight() * 0.05, "StartView", 50, 0);
+        this.tasklist = new Tasklist("./Assets/images/takenlijst.jpg", this.canvas, this.canvas.getWidth() * 0, this.canvas.getHeight() * 0, this.canvas.getWidth() * 0.15, this.canvas.getHeight() * 0.4, this.canvas.getWidth() * 0.01, false, this.mouseListener, this.player);
         this.park = new ParkView("./Assets/Backgrounds/park.jpg", this.canvas, this.player, this.mouseListener);
         this.hospital = new HospitalView("./Assets/Backgrounds/hospital.jpg", this.canvas, this.player, this.mouseListener);
         this.house = new HouseView("./Assets/Backgrounds/House1.png", this.canvas, this.player, this.mouseListener);
@@ -293,6 +297,7 @@ class Game {
         this.selectplayer = new SelectPlayer("./Assets/Backgrounds/SelectPlayer.jpg", this.canvas, this.player, this.mouseListener);
         this.startview = new StartView("./Assets/Backgrounds/SelectPlayer.jpg", this.canvas, this.player, this.mouseListener);
         this.tutorialview = new TutorialView("./Assets/Backgrounds/SelectPlayer.jpg", this.canvas, this.player, this.mouseListener);
+        this.gameover = new GameOverView("./Assets/Backgrounds/SelectPlayer.jpg", this.canvas, this.player, this.mouseListener);
     }
     ;
 }
@@ -357,7 +362,7 @@ class KeyboardHelper {
 }
 ;
 class Player {
-    constructor(src, canvas, speed, health, hunger, energy, mood, xPos, yPos, width, height, location, coin) {
+    constructor(src, canvas, speed, health, hunger, energy, mood, xPos, yPos, width, height, location, coin, schoolvisits) {
         this.keyboardListener = new KeyboardHelper(false, false, false, false);
         window.addEventListener("keydown", (event) => this.keyboardListener.keyDownHandler(event));
         window.addEventListener("keyup", (event) => this.keyboardListener.keyUpHandler(event));
@@ -374,10 +379,9 @@ class Player {
         this.height = height;
         this.location = location;
         this.coin = coin;
+        this.schoolvisits = schoolvisits;
     }
     ;
-    updateCoins() {
-    }
     move() {
         if (this.keyboardListener.leftPressed ||
             this.keyboardListener.rightPressed ||
@@ -418,6 +422,36 @@ class Player {
     updatePlayer() {
         this.width = this.canvas.getWidth() * 0.025;
         this.height = this.canvas.getHeight() * 0.05;
+    }
+    ;
+    checkForFailStates() {
+        if (this.getHunger() <= 0) {
+            this.setHunger(1);
+            this.setLocation("GameOver");
+        }
+        ;
+        if (this.getEnergy() <= 0) {
+            this.setEnergy(100);
+            this.setCoin(this.getCoin() - 100);
+            this.setLocation("House");
+        }
+        ;
+        if (this.getMood() <= 0) {
+            this.setMood(1);
+            this.setLocation("GameOver");
+        }
+        ;
+        if (this.getHealth() <= 0) {
+            this.setHealth(100);
+            this.setCoin(this.getCoin() - 200);
+            this.setLocation("Hospital");
+        }
+        ;
+        if (this.getCoin() <= -200) {
+            this.setCoin(1);
+            this.setLocation("GameOver");
+        }
+        ;
     }
     ;
     getHealth() {
@@ -486,10 +520,18 @@ class Player {
         this.src = src;
     }
     ;
+    getSchoolVisits() {
+        return this.schoolvisits;
+    }
+    ;
+    setSchoolVisits(visits) {
+        this.schoolvisits = visits;
+    }
+    ;
 }
 ;
 class Tasklist {
-    constructor(src, canvas, x, y, width, heigth, fontSize, isHidden, mouseListener) {
+    constructor(src, canvas, x, y, width, heigth, fontSize, isHidden, mouseListener, player) {
         this.src = src;
         this.canvas = canvas;
         this.x = x;
@@ -499,6 +541,15 @@ class Tasklist {
         this.fontSize = fontSize;
         this.isHidden = isHidden;
         this.mouseListener = mouseListener;
+        this.player = player;
+        this.taskArray = [{
+                id: 0,
+                task: "Ga 5 keer naar school.",
+            },
+            {
+                id: 1,
+                task: "Vul jouw gezondheid aan."
+            }];
     }
     ;
     draw() {
@@ -518,8 +569,8 @@ class Tasklist {
         });
         if (!this.isHidden) {
             this.canvas.drawTextToCanvas("center", 2 * this.fontSize, "Minecraft", "black", "Takenlijst", this.x + this.width / 2, this.y + this.canvas.getHeight() * 0.05);
-            for (let i = 0; i < taskArray.length; i++) {
-                this.canvas.drawTextToCanvas("center", this.fontSize, "Minecraft", "black", taskArray[i], this.x + this.width / 2, this.y + (this.canvas.getHeight() * 0.1) + (this.canvas.getHeight() * 0.04) * i);
+            for (let i = 0; i < this.taskArray.length; i++) {
+                this.canvas.drawTextToCanvas("center", this.fontSize, "Minecraft", "black", this.taskArray[i].task, this.x + this.width / 2, this.y + (this.canvas.getHeight() * 0.1) + (this.canvas.getHeight() * 0.04) * i);
             }
             ;
         }
@@ -530,6 +581,26 @@ class Tasklist {
         this.width = this.canvas.getWidth() * 0.15;
         this.height = this.canvas.getHeight() * 0.4;
         this.fontSize = this.canvas.getWidth() * 0.01;
+    }
+    ;
+    updateTasks() {
+        if (this.player.getHealth() == 100) {
+            this.taskArray.splice(this.taskArray.find(findHealth).id, 1);
+            this.updateIds();
+        }
+        ;
+        if (this.player.getSchoolVisits() >= 5) {
+            this.taskArray.splice(this.taskArray.find(findSchoolVisits).id, 1);
+            this.updateIds();
+        }
+        ;
+    }
+    ;
+    updateIds() {
+        for (let i = 0; i < this.taskArray.length; i++) {
+            this.taskArray[i].id = i;
+        }
+        ;
     }
     ;
     getX() {
@@ -551,12 +622,18 @@ class Tasklist {
     getIsHidden() {
         return this.isHidden;
     }
+    ;
 }
 ;
-let taskArray = [
-    "Ga 5 keer naar school.",
-    "Vul jouw gezondheid aan"
-];
+;
+function findHealth(task) {
+    return task.task == "Ga 5 keer naar school.";
+}
+;
+function findSchoolVisits(task) {
+    return task.task == "Vul jouw gezondheid aan.";
+}
+;
 class Voetbal {
     constructor(score, xPos, Ypos) {
     }
@@ -635,8 +712,7 @@ class BeachView extends BaseView {
                 this.mouseListener.setHasBeenClicked();
             });
             this.canvas.drawButtonToCanvas("./Assets/FishingGame/boat.png", this.canvas.getWidth() * 0.339, this.canvas.getHeight() * 0.2555, this.canvas.getWidth() * 0.24, this.canvas.getHeight() * 0.32, () => {
-                if (this.player.getEnergy() >= 10 &&
-                    this.player.getMood() < 100) {
+                if (this.player.getMood() < 100) {
                     createFish(25, 50, this.canvas, this.fishArray, this.mouseListener, this.player, getSrcArray(), this.fishingView);
                     this.player.setLocation("Fishing");
                 }
@@ -689,6 +765,17 @@ class FishingView extends BaseView {
     ;
     setScore(score) {
         this.score = score;
+    }
+    ;
+}
+;
+class GameOverView extends BaseView {
+    constructor(src, canvas, player, mouseListener) {
+        super(src, canvas, player, mouseListener);
+        this.draw = () => {
+            this.canvas.drawImageToCanvas(this.src, 0, 0, this.canvas.getWidth(), this.canvas.getHeight());
+            this.canvas.drawTextToCanvas("center", 40, "Minecraft", "white", "Game Over!", this.canvas.getWidth() * 0.5, this.canvas.getHeight() * 0.5);
+        };
     }
     ;
 }
@@ -1413,13 +1500,11 @@ class HospitalView extends BaseView {
             this.canvas.drawBarstoCanvas(this.canvas.getWidth() * 0.9, this.canvas.getHeight() * 0.05, this.player.getHunger(), this.player.getEnergy(), this.player.getMood(), this.player.getHealth());
             this.canvas.drawCoinToCanvas(this.canvas.getWidth() / 2, this.canvas.getHeight() * 0.02, this.player.getCoin());
             this.canvas.drawTextButtonToCanvas("./Assets/Icons/ButtonsFREE/PlayBlank.png", "Visit Doctor", this.canvas.getWidth() * 0.5 - (this.canvas.getWidth() * 0.1) / 2, this.canvas.getHeight() * 0.9 - (this.canvas.getHeight() * 0.1) / 2, this.canvas.getWidth() * 0.1, this.canvas.getHeight() * 0.1, () => {
-                if (this.player.getCoin() >= 15 &&
-                    this.player.getHealth() < 80) {
+                if (this.player.getHealth() < 80) {
                     this.player.setCoin(this.player.getCoin() - 15);
                     this.player.setHealth(this.player.getHealth() + 20);
                 }
-                else if (this.player.getCoin() >= 15 &&
-                    this.player.getHealth() < 100) {
+                else if (this.player.getHealth() < 100) {
                     this.player.setCoin(this.player.getCoin() - 15);
                     this.player.setHealth(100);
                 }
@@ -1443,14 +1528,12 @@ class HouseView extends BaseView {
             this.canvas.drawCoinToCanvas(this.canvas.getWidth() / 2, this.canvas.getHeight() * 0.04, this.player.getCoin());
             this.canvas.drawBarstoCanvas(this.canvas.getWidth() * 0.9, this.canvas.getHeight() * 0.05, this.player.getHunger(), this.player.getEnergy(), this.player.getMood(), this.player.getHealth());
             this.canvas.drawTextButtonToCanvas("./Assets/Icons/ButtonsFREE/PlayBlank.png", "Sleep", this.canvas.getWidth() * 0.5 - (this.canvas.getWidth() * 0.1) / 2, this.canvas.getHeight() * 0.9 - (this.canvas.getHeight() * 0.1) / 2, this.canvas.getWidth() * 0.1, this.canvas.getHeight() * 0.1, () => {
-                if (this.player.getHunger() >= 15 &&
-                    this.player.getEnergy() < 80) {
-                    this.player.setHunger(this.player.getHunger() - 3);
+                if (this.player.getEnergy() < 80) {
+                    this.player.setHunger(this.player.getHunger() - 5);
                     this.player.setEnergy(this.player.getEnergy() + 20);
                 }
-                else if (this.player.getHunger() >= 15 &&
-                    this.player.getEnergy() < 100) {
-                    this.player.setHunger(this.player.getHunger() - 3);
+                else if (this.player.getEnergy() < 100) {
+                    this.player.setHunger(this.player.getHunger() - 5);
                     this.player.setEnergy(100);
                 }
                 ;
@@ -1490,6 +1573,7 @@ class MapView extends BaseView {
                 this.mouseListener.setHasBeenClicked();
             });
             this.canvas.drawButtonToCanvas("./Assets/Map/school.png", this.canvas.getWidth() * 0.673, this.canvas.getHeight() * 0.263, this.canvas.getWidth() * 0.14, this.canvas.getHeight() * 0.16, () => {
+                this.player.setSchoolVisits(this.player.getSchoolVisits() + 1);
                 this.player.setLocation("School");
                 this.mouseListener.setHasBeenClicked();
             });
@@ -2004,8 +2088,7 @@ class ParkView extends BaseView {
                 this.mouseListener.setHasBeenClicked();
             });
             this.canvas.drawButtonToCanvas("./Assets/FootballGame/parkGoal.png", this.canvas.getWidth() * 0.739, this.canvas.getHeight() * 0.2555, this.canvas.getWidth() * 0.24, this.canvas.getHeight() * 0.32, () => {
-                if (this.player.getEnergy() >= 15 &&
-                    this.player.getHunger() >= 30) {
+                if (this.player.getMood() < 100) {
                     this.player.setLocation("Soccer");
                 }
                 ;
@@ -2065,13 +2148,11 @@ class RestaurantView extends BaseView {
             this.canvas.drawCoinToCanvas(this.canvas.getWidth() / 2, this.canvas.getHeight() * 0.04, this.player.getCoin());
             this.canvas.drawBarstoCanvas(this.canvas.getWidth() * 0.9, this.canvas.getHeight() * 0.05, this.player.getHunger(), this.player.getEnergy(), this.player.getMood(), this.player.getHealth());
             this.canvas.drawTextButtonToCanvas("./Assets/Icons/ButtonsFREE/PlayBlank.png", "Eat", this.canvas.getWidth() * 0.5 - (this.canvas.getWidth() * 0.1) / 2, this.canvas.getHeight() * 0.9 - (this.canvas.getHeight() * 0.1) / 2, this.canvas.getWidth() * 0.1, this.canvas.getHeight() * 0.1, () => {
-                if (this.player.getCoin() >= 15 &&
-                    this.player.getHunger() < 80) {
+                if (this.player.getHunger() < 80) {
                     this.player.setCoin(this.player.getCoin() - 15);
                     this.player.setHunger(this.player.getHunger() + 20);
                 }
-                else if (this.player.getCoin() >= 15 &&
-                    this.player.getHunger() < 100) {
+                else if (this.player.getHunger() < 100) {
                     this.player.setCoin(this.player.getCoin() - 15);
                     this.player.setHunger(100);
                 }
@@ -2093,11 +2174,7 @@ class SchoolView extends BaseView {
                 this.mouseListener.setHasBeenClicked();
             });
             this.canvas.drawTextButtonToCanvas("./Assets/Icons/ButtonsFREE/PlayBlank.png", "Play", this.canvas.getWidth() * 0.65 - (this.canvas.getWidth() * 0.1) / 2, this.canvas.getHeight() * 0.46 - (this.canvas.getHeight() * 0.1) / 2, this.canvas.getWidth() * 0.1, this.canvas.getHeight() * 0.075, () => {
-                if (this.player.getEnergy() >= 15 &&
-                    this.player.getHunger() >= 30) {
-                    this.player.setLocation("Question");
-                }
-                ;
+                this.player.setLocation("Question");
                 this.mouseListener.setHasBeenClicked();
             });
             this.canvas.drawCoinToCanvas(this.canvas.getWidth() / 2, this.canvas.getHeight() * 0.04, this.player.getCoin());
@@ -2135,8 +2212,14 @@ class SoccerView extends BaseView {
         this.draw = () => {
             this.canvas.drawImageToCanvas(this.src, 0, 0, this.canvas.getWidth(), this.canvas.getHeight());
             this.canvas.drawButtonToCanvas("./Assets/Icons/ButtonsFREE/Home.png", this.canvas.getWidth() * 0.05, this.canvas.getHeight() * 0.05, this.canvas.getWidth() * 0.025, this.canvas.getHeight() * 0.05, () => {
-                this.player.setEnergy(this.player.getEnergy() - 15),
-                    this.player.setHunger(this.player.getHunger() - 30);
+                this.player.setEnergy(this.player.getEnergy() - 15);
+                this.player.setHunger(this.player.getHunger() - 30);
+                if (this.player.getMood() <= 70) {
+                    this.player.setMood(this.player.getMood() + 30);
+                }
+                else {
+                    this.player.setMood(100);
+                }
                 this.score = 0;
                 this.player.setLocation("Park");
                 this.mouseListener.setHasBeenClicked();
@@ -2197,11 +2280,8 @@ class StoreView extends BaseView {
             this.canvas.drawCoinToCanvas(this.canvas.getWidth() / 2, this.canvas.getHeight() * 0.04, this.player.getCoin());
             this.canvas.drawBarstoCanvas(this.canvas.getWidth() * 0.9, this.canvas.getHeight() * 0.05, this.player.getHunger(), this.player.getEnergy(), this.player.getMood(), this.player.getHealth());
             this.canvas.drawTextButtonToCanvas("./Assets/Icons/ButtonsFREE/PlayBlank.png", "Work", this.canvas.getWidth() * 0.5 - (this.canvas.getWidth() * 0.1) / 2, this.canvas.getHeight() * 0.9 - (this.canvas.getHeight() * 0.1) / 2, this.canvas.getWidth() * 0.1, this.canvas.getHeight() * 0.1, () => {
-                if (this.player.getEnergy() >= 5) {
-                    this.player.setCoin(this.player.getCoin() + 5);
-                    this.player.setEnergy(this.player.getEnergy() - 5);
-                }
-                ;
+                this.player.setCoin(this.player.getCoin() + 5);
+                this.player.setEnergy(this.player.getEnergy() - 5);
                 this.mouseListener.setHasBeenClicked();
             });
         };

@@ -64,6 +64,7 @@ class MapView extends BaseView {
                                         this.canvas.getWidth()*0.14,
                                         this.canvas.getHeight()*0.16,
                                         () => {
+                                            this.player.setSchoolVisits(this.player.getSchoolVisits() + 1)
                                             this.player.setLocation("School");
                                             this.mouseListener.setHasBeenClicked()
                                         });

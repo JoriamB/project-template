@@ -21,6 +21,7 @@ class Game {
     private tasklist : Tasklist;
     private startview: StartView;
     private tutorialview: TutorialView;
+    private gameover : GameOverView;
 
     public constructor () {
         this.fishArray = [];
@@ -39,7 +40,8 @@ class Game {
                                     this.canvas.getWidth() * 0.025,
                                     this.canvas.getHeight() * 0.05,
                                     "StartView",
-                                    50);
+                                    50,
+                                    0);
         this.tasklist = new Tasklist(   "./Assets/images/takenlijst.jpg",
                                         this.canvas,
                                         this.canvas.getWidth() * 0,
@@ -48,7 +50,9 @@ class Game {
                                         this.canvas.getHeight() * 0.4,
                                         this.canvas.getWidth() * 0.01,
                                         false,
-                                        this.mouseListener);
+                                        this.mouseListener,
+                                        this.player
+                                        );
         this.park = new ParkView(   "./Assets/Backgrounds/park.jpg",
                                     this.canvas,
                                     this.player,
@@ -117,18 +121,22 @@ class Game {
                                           this.geographyquest,
                                           this.mathquest,
                                           this.historyquest);
-         this.selectplayer = new SelectPlayer("./Assets/Backgrounds/SelectPlayer.jpg",
+        this.selectplayer = new SelectPlayer(   "./Assets/Backgrounds/SelectPlayer.jpg",
                                                 this.canvas,
                                                 this.player,
                                                 this.mouseListener);
-         this.startview = new StartView("./Assets/Backgrounds/SelectPlayer.jpg",
+        this.startview = new StartView( "./Assets/Backgrounds/SelectPlayer.jpg",
+                                        this.canvas,
+                                        this.player,
+                                        this.mouseListener);
+        this.tutorialview = new TutorialView(   "./Assets/Backgrounds/SelectPlayer.jpg",
                                                 this.canvas,
                                                 this.player,
                                                 this.mouseListener);
-         this.tutorialview = new TutorialView("./Assets/Backgrounds/SelectPlayer.jpg",
-                                                      this.canvas,
-                                                      this.player,
-                                                      this.mouseListener);                                                                   
+        this.gameover = new GameOverView(   "./Assets/Backgrounds/SelectPlayer.jpg",
+                                            this.canvas,
+                                            this.player,
+                                            this.mouseListener);
     };
 
     /**
@@ -138,6 +146,7 @@ class Game {
      */
     public draw = () => {
         this.canvas.clear();
+        this.player.checkForFailStates();
         this.player.updatePlayer();
         this.canvas.updateScreenSize();
         this.tasklist.updateSize();
@@ -189,6 +198,9 @@ class Game {
                 break;
             case "Tutorial":
                 this.tutorialview.draw();
+                break;
+            case "GameOver":
+                this.gameover.draw();
                 break;
             default:
                 this.map.draw();

@@ -35,10 +35,7 @@ class SchoolView extends BaseView {
                                             this.canvas.getWidth() * 0.1,
                                             this.canvas.getHeight() * 0.075,
                                             () => {
-                                                if (this.player.getEnergy() >= 15&&
-                                                    this.player.getHunger() >= 30) {
                                                 this.player.setLocation("Question");
-                                                };
                                                 this.mouseListener.setHasBeenClicked();
                                             });
 

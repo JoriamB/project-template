@@ -43,13 +43,11 @@ class RestaurantView extends BaseView {
                                         this.canvas.getWidth() * 0.1,
                                         this.canvas.getHeight() * 0.1,
                                         () => {
-                                            if (this.player.getCoin() >= 15&& 
-                                                this.player.getHunger() < 80 ) {
+                                            if (this.player.getHunger() < 80 ) {
                                                 this.player.setCoin(this.player.getCoin() - 15)
                                                 this.player.setHunger(this.player.getHunger() + 20)
                                             }
-                                            else if (   this.player.getCoin()>=15&&
-                                                        this.player.getHunger()< 100) {
+                                            else if (   this.player.getHunger()< 100) {
                                                         this.player.setCoin(this.player.getCoin() - 15)
                                                         this.player.setHunger(100)
                                             };
