@@ -40,7 +40,7 @@ class Tasklist {
         {
             id: 1,
             task: "Vul jouw gezondheid aan."
-        }];
+        },];
     };
 
     public draw () : void {

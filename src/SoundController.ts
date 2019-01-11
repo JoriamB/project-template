@@ -5,20 +5,20 @@ class SoundController {
     private hospital : HTMLAudioElement;
     private eat : HTMLAudioElement;
     private sleep : HTMLAudioElement;
-    private isPlaying : string;
+    private score : HTMLAudioElement;
 
     public constructor (background : HTMLAudioElement,
                         store : HTMLAudioElement,
                         hospital : HTMLAudioElement,
                         eat : HTMLAudioElement,
                         sleep : HTMLAudioElement,
-                        isPlaying : string) {
+                        score : HTMLAudioElement) {
         this.background = background;
         this.store = store;
         this.hospital = hospital;
         this.eat = eat;
         this.sleep = sleep;
-        this.isPlaying = isPlaying;
+        this.score = score;
     };
 
     public pauseMusic () {
@@ -53,5 +53,9 @@ class SoundController {
 
     public playSleepEffect () {
         this.sleep.play();
+    };
+
+    public playScoreEffect () {
+        this.score.play()
     };
 };

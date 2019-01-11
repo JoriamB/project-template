@@ -32,7 +32,7 @@ class Game {
                                                     <HTMLAudioElement>document.getElementById("Hospital"),
                                                     <HTMLAudioElement>document.getElementById("EatEffect"),
                                                     <HTMLAudioElement>document.getElementById("SleepEffect"),
-                                                    "Background");
+                                                    <HTMLAudioElement>document.getElementById("ScoreEffect"));
         this.fishArray = [];
         this.clock = new Timer();
         this.mouseListener = new MouseHelper(false, false);
