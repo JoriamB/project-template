@@ -1,14 +1,17 @@
 class SoccerView extends BaseView{
 
+    private clock : Timer;
     private score : number;
     
     public constructor (src : string,
         canvas : Canvas,
         player : Player,
         mouseListener : MouseHelper,
+        clock : Timer,
         score : number) {
-        super(src, canvas, player, mouseListener);
-        this.score = score;
+super(src, canvas, player, mouseListener);
+    this.clock = clock;
+    this.score = score;
 };
 
 /**
@@ -79,6 +82,13 @@ class SoccerView extends BaseView{
                                         this.mouseListener.getEventX() - (this.canvas.getHeight() * (0.2 * this.mouseListener.getEventY()/this.canvas.getHeight()))/2,
                                         this.mouseListener.getEventY() - (this.canvas.getHeight() * (0.2 * this.mouseListener.getEventY()/this.canvas.getHeight()))/2,
                                         this.canvas.getHeight() * (0.2 * this.mouseListener.getEventY()/this.canvas.getHeight()),
-                                        this.canvas.getHeight() * (0.2 * this.mouseListener.getEventY()/this.canvas.getHeight()));
+                                        this.canvas.getHeight() * (0.2 * this.mouseListener.getEventY()/this.canvas.getHeight()))
+        this.canvas.drawTextToCanvas(   "center",
+                                        20,
+                                        "Minecraft",
+                                        "white",
+                                        String(`Tijd: ${this.clock.getTime()}`),
+                                        300,
+                                        80)
     };
 };
