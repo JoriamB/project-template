@@ -3,15 +3,18 @@ abstract class BaseView {
     protected canvas : Canvas;
     protected player : Player;
     protected mouseListener : MouseHelper;
+    protected soundcontroller : SoundController;
 
     public constructor (src: string,
                         canvas : Canvas,
                         player : Player,
-                        mouseListener : MouseHelper) {
+                        mouseListener : MouseHelper,
+                        soundcontroller : SoundController) {
         this.src = src;
         this.canvas = canvas;
         this.player = player;
         this.mouseListener = mouseListener;
+        this.soundcontroller = soundcontroller;
     };
 
     /**

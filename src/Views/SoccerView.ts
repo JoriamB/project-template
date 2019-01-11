@@ -7,9 +7,10 @@ class SoccerView extends BaseView{
         canvas : Canvas,
         player : Player,
         mouseListener : MouseHelper,
+        soundcontroller : SoundController,
         clock : Timer,
         score : number) {
-super(src, canvas, player, mouseListener);
+super(src, canvas, player, mouseListener, soundcontroller);
     this.clock = clock;
     this.score = score;
 };
@@ -68,7 +69,7 @@ super(src, canvas, player, mouseListener);
                                                 this.mouseListener.getEventX() < (this.canvas.getWidth()*0.5 - (this.canvas.getWidth() * 0.21)/2) + (this.canvas.getWidth() * 0.21) - (this.canvas.getHeight() * (0.2 * this.mouseListener.getEventY()/this.canvas.getHeight()))/2&&
                                                 this.mouseListener.getEventY() > (this.canvas.getHeight()*0.51 - (this.canvas.getHeight() * 0.2)/2) + (this.canvas.getHeight() * (0.2 * this.mouseListener.getEventY()/this.canvas.getHeight()))/2&&
                                                 this.mouseListener.getEventY() < (this.canvas.getHeight()*0.51 - (this.canvas.getHeight() * 0.2)/2) + (this.canvas.getHeight() * 0.21) - (this.canvas.getHeight() * (0.2 * this.mouseListener.getEventY()/this.canvas.getHeight()))/2) {
-                                                console.log("Goal!")
+                                                this.soundcontroller.playScoreEffect();
                                                 this.score += 1;
                                                 this.mouseListener.setHasBeenClicked()
                                             }

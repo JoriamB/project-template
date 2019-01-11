@@ -3,8 +3,9 @@ class RestaurantView extends BaseView {
     public constructor (src : string,
                         canvas : Canvas,
                         player : Player,
-                        mouseListener : MouseHelper) {
-        super(src, canvas, player, mouseListener);
+                        mouseListener : MouseHelper,
+                        soundcontroller : SoundController) {
+        super(src, canvas, player, mouseListener, soundcontroller);
     };
 
     /**
@@ -24,6 +25,7 @@ class RestaurantView extends BaseView {
                                         this.canvas.getWidth() * 0.025,
                                         this.canvas.getHeight() * 0.05,
                                         () => {
+                                            this.soundcontroller.playBackgroundMusic();
                                             this.player.setLocation("Map");
                                             this.mouseListener.setHasBeenClicked()
                                         });
@@ -44,10 +46,14 @@ class RestaurantView extends BaseView {
                                         this.canvas.getHeight() * 0.1,
                                         () => {
                                             if (this.player.getHunger() < 80 ) {
+                                                this.player.setEaten(this.player.getEaten() + 1);
+                                                this.soundcontroller.playEatEffect();
                                                 this.player.setCoin(this.player.getCoin() - 15)
                                                 this.player.setHunger(this.player.getHunger() + 20)
                                             }
                                             else if (   this.player.getHunger()< 100) {
+                                                        this.player.setEaten(this.player.getEaten() + 1);
+                                                        this.soundcontroller.playEatEffect();
                                                         this.player.setCoin(this.player.getCoin() - 15)
                                                         this.player.setHunger(100)
                                             };

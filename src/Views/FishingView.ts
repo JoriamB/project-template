@@ -2,17 +2,17 @@ class FishingView extends BaseView {
     
     private score : number;
     private clock : Timer;
-
     private fishArray : Array<Fish>
     
     public constructor (src : string,
                         canvas : Canvas,
                         player : Player,
                         mouseListener : MouseHelper,
+                        soundcontrolller : SoundController,
                         fishArray : Array<Fish>,
                         clock : Timer,
                         score : number) {
-        super(src, canvas, player, mouseListener);
+        super(src, canvas, player, mouseListener, soundcontrolller);
         this.fishArray = fishArray;
         this.score = score;
         this.clock = clock;

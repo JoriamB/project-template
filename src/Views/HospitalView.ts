@@ -3,8 +3,9 @@ class HospitalView extends BaseView {
     public constructor (src : string,
                         canvas : Canvas,
                         player : Player,
-                        mouseListener : MouseHelper) {
-        super(src, canvas, player, mouseListener);
+                        mouseListener : MouseHelper,
+                        soundcontroller : SoundController) {
+        super(src, canvas, player, mouseListener, soundcontroller);
     };
 
     /**
@@ -24,6 +25,7 @@ class HospitalView extends BaseView {
                                         this.canvas.getWidth() * 0.025,
                                         this.canvas.getHeight() * 0.05,
                                         () => {
+                                            this.soundcontroller.playBackgroundMusic();
                                             this.player.setLocation("Map");
                                             this.mouseListener.setHasBeenClicked()
                                         });
@@ -36,11 +38,11 @@ class HospitalView extends BaseView {
         this.canvas.drawCoinToCanvas(   this.canvas.getWidth() / 2,
                                         this.canvas.getHeight() * 0.02,
                                         this.player.getCoin());
-        this.canvas.drawTextButtonToCanvas( "./Assets/Icons/ButtonsFREE/PlayBlank.png",
+        this.canvas.drawTextButtonToCanvas("./Assets/Icons/ButtonsFREE/PlayBlank.png",
                                         "Bezoek dokter",
-                                        this.canvas.getWidth()*0.5 - (this.canvas.getWidth() * 0.1)/2,
+                                        this.canvas.getWidth()*0.5 - (this.canvas.getWidth() * 0.15)/2,
                                         this.canvas.getHeight()*0.9 - (this.canvas.getHeight() * 0.1)/2,
-                                        this.canvas.getWidth() * 0.1,
+                                        this.canvas.getWidth() * 0.15,
                                         this.canvas.getHeight() * 0.1,
                                         () => {
                                             if (this.player.getHealth() < 80 ) {

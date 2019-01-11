@@ -3,8 +3,9 @@ class ParkView extends BaseView {
     public constructor (src : string,
                         canvas : Canvas,
                         player : Player,
-                        mouseListener : MouseHelper) {
-        super(src, canvas, player, mouseListener);
+                        mouseListener : MouseHelper,
+                        soundcontroller : SoundController) {
+        super(src, canvas, player, mouseListener, soundcontroller);
     };
 
     /**
@@ -24,6 +25,8 @@ class ParkView extends BaseView {
                                         this.canvas.getWidth() * 0.025,
                                         this.canvas.getHeight() * 0.05, 
                                         () => {
+                                            this.player.setPlayedMiniGame(true);
+                                            this.soundcontroller.playBackgroundMusic();
                                             this.player.setLocation("Map");
                                             this.mouseListener.setHasBeenClicked()});
         this.canvas.drawButtonToCanvas(  "./Assets/FootballGame/parkGoal.png",

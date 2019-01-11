@@ -7,9 +7,10 @@ class BeachView extends BaseView {
                         canvas : Canvas,
                         player : Player,
                         mouseListener : MouseHelper,
+                        soundcontroller : SoundController,
                         fishArray : Array<Fish>,
                         fishingView : FishingView) {
-        super(src, canvas, player, mouseListener);
+        super(src, canvas, player, mouseListener, soundcontroller);
         this.fishArray = fishArray;
         this.fishingView = fishingView;
     };
@@ -31,6 +32,7 @@ class BeachView extends BaseView {
                                         this.canvas.getWidth() * 0.025,
                                         this.canvas.getHeight() * 0.05, 
                                         () => {
+                                            this.soundcontroller.playBackgroundMusic();
                                             this.player.setLocation("Map");
                                             this.mouseListener.setHasBeenClicked()});
         this.canvas.drawButtonToCanvas( "./Assets/FishingGame/boat.png",
@@ -40,6 +42,8 @@ class BeachView extends BaseView {
                                         this.canvas.getHeight()*0.32, 
                                         () => {
                                             if (this.player.getMood() < 100) {
+                                                this.player.setPlayedMiniGame(true);
+                                                this.soundcontroller.playFishing();
                                                 createFish( 25,
                                                             50,
                                                             this.canvas,

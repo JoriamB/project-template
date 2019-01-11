@@ -8,10 +8,11 @@ class  QuestionView extends BaseView{
         canvas : Canvas,
         player : Player,
         mouseListener : MouseHelper,
+        soundcontroller : SoundController,
         geographyquest : GeographyQuest,
         mathquest: MathQuest,
         historyquest:HistoryQuest,) {
-super(src, canvas, player, mouseListener);
+super(src, canvas, player, mouseListener, soundcontroller);
 this.geographyquest = geographyquest;
 this.mathquest = mathquest;
 this.historyquest = historyquest
@@ -53,6 +54,7 @@ public draw = () => {
                                         this.canvas.getHeight()*0.49 - (this.canvas.getHeight() * 0.1)/2,
                                         this.canvas.getWidth() * 0.1,
                                         this.canvas.getHeight() * 0.075, () => {
+                                            this.player.setPlayedMiniGame(true);
                                             this.mathquest.setCurrentQuestion(this.mathquest.MathArray[MathHelper.randomNumber(0, this.mathquest.MathArray.length - 1)]);
                                             this.player.setLocation("Math");
                                             this.mouseListener.setHasBeenClicked()})
@@ -62,6 +64,7 @@ public draw = () => {
                                         this.canvas.getHeight()*0.49 - (this.canvas.getHeight() * 0.1)/2,
                                         this.canvas.getWidth() * 0.1,
                                         this.canvas.getHeight() * 0.075, () => {
+                                            this.player.setPlayedMiniGame(true);
                                             this.historyquest.setCurrentQuestion(this.historyquest.HistoryArray[MathHelper.randomNumber(0, this.historyquest.HistoryArray.length - 1)]);
                                             this.player.setLocation("History");
                                             this.mouseListener.setHasBeenClicked()})
@@ -72,6 +75,7 @@ public draw = () => {
                                         this.canvas.getWidth() * 0.1,
                                         this.canvas.getHeight() * 0.075,
                                         () => {
+                                            this.player.setPlayedMiniGame(true);
                                             this.geographyquest.setCurrentQuestion(this.geographyquest.GeoArray[MathHelper.randomNumber(0, this.geographyquest.GeoArray.length - 1)]);
                                             this.player.setLocation("Geography");
                                             this.mouseListener.setHasBeenClicked()});
