@@ -35,7 +35,7 @@ class Tasklist {
         this.player = player;
         this.taskArray = [{
             id: 0,
-            task: "Ga 5 keer naar school.",
+            task: `Ga 5 keer naar school.`,
         },
         {
             id: 1,
@@ -44,7 +44,7 @@ class Tasklist {
     };
 
     public draw () : void {
-        //this.updateTasks();
+        this.updateTasks();
         if (!this.isHidden) {
         this.canvas.drawRectangle(  "white",
                                     this.x,
@@ -98,54 +98,75 @@ class Tasklist {
     };
 
     public updateTasks () {
+        let index : number = -1;
         if (this.player.getHealth() == 100) {
-            this.taskArray.splice(this.taskArray.find(findHealth).id, 1);
+            for (let i = 0; i < this.taskArray.length; i++) {
+                if (this.taskArray[i].task == "Vul jouw gezondheid aan.") {
+                    index = i
+                    this.taskArray.splice(index, 1);
+                };
+            };
+            index = -1;
             this.updateIds();
         };
         if (this.player.getSchoolVisits() >= 5) {
-            this.taskArray.splice(this.taskArray.find(findSchoolVisits).id, 1);
+            for (let i = 0; i < this.taskArray.length; i++) {
+                if (this.taskArray[i].task == `Ga 5 keer naar school.`) {
+                    index = i
+                    this.taskArray.splice(index, 1);
+                };
+            };
+            index = -1;
             this.updateIds();
         };
     };
 
+    /**
+     * Method to update the ids of taskArray
+     */
     public updateIds () : void {
         for (let i = 0; i < this.taskArray.length; i++) {
             this.taskArray[i].id = i;
         };
     };
 
+    /**
+     * Method to return x
+     */
     public getX () : number {
         return this.x;
     };
 
+    /**
+     * Method to return y
+     */
     public getY () : number {
         return this.y;
     };
 
+    /**
+     * Method to return height
+     */
     public getWidth () : number {
         return this.width;
     };
 
+    /**
+     * Method to return height
+     */
     public getHeight () : number {
         return this.height;
     };
 
+    /**
+     * Method to return whether tasklist is hidden
+     */
     public getIsHidden () : boolean {
         return this.isHidden;
     };
-
-    
 };
 
 interface Task {
     id: number,
     task: string
-};
-
-function findHealth (task : Task) {
-    return task.task == "Ga 5 keer naar school.";
-};
-
-function findSchoolVisits (task : Task) {
-    return task.task == "Vul jouw gezondheid aan.";
 };
