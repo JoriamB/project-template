@@ -32,10 +32,9 @@ class ParkView extends BaseView {
                                         this.canvas.getWidth()*0.24,
                                         this.canvas.getHeight()*0.32, 
                                         () => {
-                                            if(this.player.getEnergy()>=15&&
-                                            this.player.getHunger()>=30){
-                                            this.player.setLocation("Soccer")
-                                        };
+                                            if (this.player.getMood() < 100) {
+                                            this.player.setLocation("Soccer");
+                                            };
                                             this.mouseListener.setHasBeenClicked()});
         this.canvas.drawCoinToCanvas(   this.canvas.getWidth()/2,
                                         this.canvas.getHeight() * 0.04,

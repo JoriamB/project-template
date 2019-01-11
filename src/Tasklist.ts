@@ -9,6 +9,8 @@ class Tasklist {
     private fontSize : number;
     private isHidden : boolean;
     private mouseListener : MouseHelper;
+    private player : Player
+    private taskArray : Array<Task>;
 
     public constructor (    src: string,
                             canvas : Canvas,
@@ -18,7 +20,9 @@ class Tasklist {
                             heigth : number,
                             fontSize : number,
                             isHidden : boolean,
-                            mouseListener : MouseHelper) {
+                            mouseListener : MouseHelper,
+                            player : Player
+                            ) {
         this.src = src;
         this.canvas = canvas;
         this.x = x;
@@ -28,9 +32,19 @@ class Tasklist {
         this.fontSize = fontSize;
         this.isHidden = isHidden;
         this.mouseListener = mouseListener;
+        this.player = player;
+        this.taskArray = [{
+            id: 0,
+            task: "Ga 5 keer naar school.",
+        },
+        {
+            id: 1,
+            task: "Vul jouw gezondheid aan."
+        }];
     };
 
     public draw () : void {
+        //this.updateTasks();
         if (!this.isHidden) {
         this.canvas.drawRectangle(  "white",
                                     this.x,
@@ -60,12 +74,12 @@ class Tasklist {
                                             "Takenlijst",
                                             this.x + this.width/2,
                                             this.y + this.canvas.getHeight() * 0.05);
-            for (let i = 0; i < taskArray.length; i++) {
+            for (let i = 0; i < this.taskArray.length; i++) {
                 this.canvas.drawTextToCanvas(   "center",
                                                 this.fontSize,
                                                 "Minecraft",
                                                 "black",
-                                                taskArray[i],
+                                                this.taskArray[i].task,
                                                 this.x + this.width/2,
                                                 this.y + (this.canvas.getHeight() * 0.1) + (this.canvas.getHeight() * 0.04) * i)
             };
@@ -81,6 +95,23 @@ class Tasklist {
         this.width = this.canvas.getWidth() * 0.15;
         this.height = this.canvas.getHeight() * 0.4;
         this.fontSize = this.canvas.getWidth() * 0.01;
+    };
+
+    public updateTasks () {
+        if (this.player.getHealth() == 100) {
+            this.taskArray.splice(this.taskArray.find(findHealth).id, 1);
+            this.updateIds();
+        };
+        if (this.player.getSchoolVisits() >= 5) {
+            this.taskArray.splice(this.taskArray.find(findSchoolVisits).id, 1);
+            this.updateIds();
+        };
+    };
+
+    public updateIds () : void {
+        for (let i = 0; i < this.taskArray.length; i++) {
+            this.taskArray[i].id = i;
+        };
     };
 
     public getX () : number {
@@ -101,10 +132,20 @@ class Tasklist {
 
     public getIsHidden () : boolean {
         return this.isHidden;
-    }
+    };
+
+    
 };
 
-let taskArray = [
-    "Ga 5 keer naar school.",
-    "Vul jouw gezondheid aan"
-];
+interface Task {
+    id: number,
+    task: string
+};
+
+function findHealth (task : Task) {
+    return task.task == "Ga 5 keer naar school.";
+};
+
+function findSchoolVisits (task : Task) {
+    return task.task == "Vul jouw gezondheid aan.";
+};
