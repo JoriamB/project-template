@@ -544,7 +544,7 @@ class Tasklist {
         this.player = player;
         this.taskArray = [{
                 id: 0,
-                task: "Ga 5 keer naar school.",
+                task: `Ga 5 keer naar school.`,
             },
             {
                 id: 1,
@@ -553,6 +553,7 @@ class Tasklist {
     }
     ;
     draw() {
+        this.updateTasks();
         if (!this.isHidden) {
             this.canvas.drawRectangle("white", this.x, this.y, this.width, this.height);
         }
@@ -584,13 +585,30 @@ class Tasklist {
     }
     ;
     updateTasks() {
+        let index = -1;
         if (this.player.getHealth() == 100) {
-            this.taskArray.splice(this.taskArray.find(findHealth).id, 1);
+            for (let i = 0; i < this.taskArray.length; i++) {
+                if (this.taskArray[i].task == "Vul jouw gezondheid aan.") {
+                    index = i;
+                    this.taskArray.splice(index, 1);
+                }
+                ;
+            }
+            ;
+            index = -1;
             this.updateIds();
         }
         ;
         if (this.player.getSchoolVisits() >= 5) {
-            this.taskArray.splice(this.taskArray.find(findSchoolVisits).id, 1);
+            for (let i = 0; i < this.taskArray.length; i++) {
+                if (this.taskArray[i].task == `Ga 5 keer naar school.`) {
+                    index = i;
+                    this.taskArray.splice(index, 1);
+                }
+                ;
+            }
+            ;
+            index = -1;
             this.updateIds();
         }
         ;
@@ -625,14 +643,6 @@ class Tasklist {
     ;
 }
 ;
-;
-function findHealth(task) {
-    return task.task == "Ga 5 keer naar school.";
-}
-;
-function findSchoolVisits(task) {
-    return task.task == "Vul jouw gezondheid aan.";
-}
 ;
 class Voetbal {
     constructor(score, xPos, Ypos) {
