@@ -52,7 +52,7 @@ class StartView extends BaseView {
                                         this.canvas.getWidth()*0.1,
                                         this.canvas.getHeight()*0.2,
                                         () => {
-                                            this.player.setLocation("SelectPlayer");
+                                            this.player.setLocation("Credits");
                                             this.mouseListener.setHasBeenClicked()
                                         });
 

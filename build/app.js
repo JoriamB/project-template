@@ -268,6 +268,9 @@ class Game {
                 case "GameOver":
                     this.gameover.draw();
                     break;
+                case "Credits":
+                    this.credits.draw();
+                    break;
                 default:
                     this.map.draw();
                     this.tasklist.draw();
@@ -276,6 +279,7 @@ class Game {
             window.requestAnimationFrame(this.draw);
         };
         this.fishArray = [];
+        this.clock = new Timer();
         this.mouseListener = new MouseHelper(false, false);
         this.canvas = new Canvas(document.getElementById("canvas"), this.mouseListener);
         this.player = new Player("./Assets/Female/Poses/female_slide.png", this.canvas, 5, 20, 80, 100, 60, this.canvas.getCenter().X, this.canvas.getCenter().Y, this.canvas.getWidth() * 0.025, this.canvas.getHeight() * 0.05, "StartView", 50, 0);
@@ -287,8 +291,9 @@ class Game {
         this.store = new StoreView("./Assets/Backgrounds/Store.jpg", this.canvas, this.player, this.mouseListener);
         this.restaurant = new RestaurantView("./Assets/Backgrounds/Restaurant3.jpg", this.canvas, this.player, this.mouseListener);
         this.map = new MapView("./Assets/Map/mapleeg.png", this.canvas, this.player, this.mouseListener, this.tasklist);
-        this.soccer = new SoccerView("./Assets/FootballGame/background.jpg", this.canvas, this.player, this.mouseListener, 0);
-        this.fishing = new FishingView("./Assets/FishingGame/background1.jpg", this.canvas, this.player, this.mouseListener, this.fishArray, 0);
+        this.soccer = new SoccerView("./Assets/FootballGame/background.jpg", this.canvas, this.player, this.mouseListener, this.clock, 0);
+        this.beach = new BeachView("./Assets/Backgrounds/beach.jpg", this.canvas, this.player, this.mouseListener, this.fishArray, this.fishing);
+        this.fishing = new FishingView("./Assets/FishingGame/background1.jpg", this.canvas, this.player, this.mouseListener, this.fishArray, this.clock, 0);
         this.beach = new BeachView("./Assets/Backgrounds/beach.jpg", this.canvas, this.player, this.mouseListener, this.fishArray, this.fishing);
         this.geographyquest = new GeographyQuest("./Assets/Backgrounds/Question.png", this.canvas, this.player, this.mouseListener, 0);
         this.mathquest = new MathQuest("./Assets/Backgrounds/Question.png", this.canvas, this.player, this.mouseListener, 0);
@@ -298,6 +303,7 @@ class Game {
         this.startview = new StartView("./Assets/Backgrounds/SelectPlayer.jpg", this.canvas, this.player, this.mouseListener);
         this.tutorialview = new TutorialView("./Assets/Backgrounds/SelectPlayer.jpg", this.canvas, this.player, this.mouseListener);
         this.gameover = new GameOverView("./Assets/Backgrounds/SelectPlayer.jpg", this.canvas, this.player, this.mouseListener);
+        this.credits = new CreditsView("./Assets/Backgrounds/SelectPlayer.jpg", this.canvas, this.player, this.mouseListener);
     }
     ;
 }
@@ -644,6 +650,20 @@ class Tasklist {
 }
 ;
 ;
+class Timer {
+    constructor(counter = 60) {
+        this.counter = counter;
+        let intervalId = setInterval(() => {
+            this.counter = this.counter - 1;
+            console.log(this.counter);
+            if (this.counter === 0)
+                clearInterval(intervalId);
+        }, 1000);
+    }
+    getTime() {
+        return this.counter;
+    }
+}
 class Voetbal {
     constructor(score, xPos, Ypos) {
     }
@@ -737,8 +757,28 @@ class BeachView extends BaseView {
     ;
 }
 ;
+class CreditsView extends BaseView {
+    constructor(src, canvas, player, mouseListener) {
+        super(src, canvas, player, mouseListener);
+        this.draw = () => {
+            this.canvas.drawImageToCanvas(this.src, 0, 0, this.canvas.getWidth(), this.canvas.getHeight());
+            this.canvas.drawButtonToCanvas("./Assets/Icons/ButtonsFREE/ReturnHome.png", this.canvas.getWidth() * 0.075, this.canvas.getHeight() * 0.075, 50, 50, () => {
+                this.player.setLocation("StartView");
+                this.mouseListener.setHasBeenClicked();
+            });
+            this.canvas.drawImageToCanvas("./Assets/images/Credits.jpg", this.canvas.getWidth() * 0.5 - (this.canvas.getWidth() * 0.4) / 2, this.canvas.getHeight() * 0.2, this.canvas.getWidth() * 0.4, this.canvas.getHeight() * 0.5);
+            this.canvas.drawTextToCanvas("center", 20, "Minecraft", "white", "Teamleden:", this.canvas.getWidth() * 0.5, this.canvas.getHeight() * 0.75);
+            this.canvas.drawTextToCanvas("center", 20, "Minecraft", "white", "Anissa Fatima Zohra Boufrahi", this.canvas.getWidth() * 0.5, this.canvas.getHeight() * 0.8);
+            this.canvas.drawTextToCanvas("center", 20, "Minecraft", "white", "Joriam Bruggeman", this.canvas.getWidth() * 0.5, this.canvas.getHeight() * 0.85);
+            this.canvas.drawTextToCanvas("center", 20, "Minecraft", "white", "Julien Kenneth Pleijte", this.canvas.getWidth() * 0.5, this.canvas.getHeight() * 0.9);
+            this.canvas.drawTextToCanvas("center", 20, "Minecraft", "white", "Anissa Sarah Thieleman", this.canvas.getWidth() * 0.5, this.canvas.getHeight() * 0.95);
+        };
+    }
+    ;
+}
+;
 class FishingView extends BaseView {
-    constructor(src, canvas, player, mouseListener, fishArray, score) {
+    constructor(src, canvas, player, mouseListener, fishArray, clock, score) {
         super(src, canvas, player, mouseListener);
         this.draw = () => {
             this.canvas.drawImageToCanvas(this.src, 0, 0, this.canvas.getWidth(), this.canvas.getHeight());
@@ -763,10 +803,13 @@ class FishingView extends BaseView {
             });
             this.canvas.drawCoinToCanvas(this.canvas.getWidth() / 2, this.canvas.getHeight() * 0.04, this.player.getCoin());
             this.canvas.drawBarstoCanvas(this.canvas.getWidth() * 0.9, this.canvas.getHeight() * 0.05, this.player.getHunger(), this.player.getEnergy(), this.player.getMood(), this.player.getHealth());
+            this.canvas.drawImageToCanvas("./Assets/FishingGame/fis.png", this.canvas.getWidth() * 0.5 - (this.canvas.getWidth() * 0.15) / 2, this.canvas.getHeight() * 0.55 - (this.canvas.getHeight() * 0.2) / 2, this.canvas.getWidth() * 0.05, this.canvas.getHeight() * 0.1);
             this.canvas.drawImageToCanvas("./Assets/FishingGame/hengel.png", this.mouseListener.getEventX() - (this.canvas.getWidth() * 0.05) / 2, this.mouseListener.getEventY() - (this.canvas.getHeight() * 0.1) / 2, this.canvas.getWidth() * 0.05, this.canvas.getHeight() * 0.1);
+            this.canvas.drawTextToCanvas("center", 20, "Minecraft", "white", String(`Tijd: ${this.clock.getTime()}`), 300, 80);
         };
         this.fishArray = fishArray;
         this.score = score;
+        this.clock = clock;
     }
     ;
     getScore() {
@@ -1509,7 +1552,7 @@ class HospitalView extends BaseView {
             });
             this.canvas.drawBarstoCanvas(this.canvas.getWidth() * 0.9, this.canvas.getHeight() * 0.05, this.player.getHunger(), this.player.getEnergy(), this.player.getMood(), this.player.getHealth());
             this.canvas.drawCoinToCanvas(this.canvas.getWidth() / 2, this.canvas.getHeight() * 0.02, this.player.getCoin());
-            this.canvas.drawTextButtonToCanvas("./Assets/Icons/ButtonsFREE/PlayBlank.png", "Visit Doctor", this.canvas.getWidth() * 0.5 - (this.canvas.getWidth() * 0.1) / 2, this.canvas.getHeight() * 0.9 - (this.canvas.getHeight() * 0.1) / 2, this.canvas.getWidth() * 0.1, this.canvas.getHeight() * 0.1, () => {
+            this.canvas.drawTextButtonToCanvas("./Assets/Icons/ButtonsFREE/PlayBlank.png", "Bezoek dokter", this.canvas.getWidth() * 0.5 - (this.canvas.getWidth() * 0.1) / 2, this.canvas.getHeight() * 0.9 - (this.canvas.getHeight() * 0.1) / 2, this.canvas.getWidth() * 0.1, this.canvas.getHeight() * 0.1, () => {
                 if (this.player.getHealth() < 80) {
                     this.player.setCoin(this.player.getCoin() - 15);
                     this.player.setHealth(this.player.getHealth() + 20);
@@ -1537,7 +1580,7 @@ class HouseView extends BaseView {
             });
             this.canvas.drawCoinToCanvas(this.canvas.getWidth() / 2, this.canvas.getHeight() * 0.04, this.player.getCoin());
             this.canvas.drawBarstoCanvas(this.canvas.getWidth() * 0.9, this.canvas.getHeight() * 0.05, this.player.getHunger(), this.player.getEnergy(), this.player.getMood(), this.player.getHealth());
-            this.canvas.drawTextButtonToCanvas("./Assets/Icons/ButtonsFREE/PlayBlank.png", "Sleep", this.canvas.getWidth() * 0.5 - (this.canvas.getWidth() * 0.1) / 2, this.canvas.getHeight() * 0.9 - (this.canvas.getHeight() * 0.1) / 2, this.canvas.getWidth() * 0.1, this.canvas.getHeight() * 0.1, () => {
+            this.canvas.drawTextButtonToCanvas("./Assets/Icons/ButtonsFREE/PlayBlank.png", "Slapen", this.canvas.getWidth() * 0.5 - (this.canvas.getWidth() * 0.1) / 2, this.canvas.getHeight() * 0.9 - (this.canvas.getHeight() * 0.1) / 2, this.canvas.getWidth() * 0.1, this.canvas.getHeight() * 0.1, () => {
                 if (this.player.getEnergy() < 80) {
                     this.player.setHunger(this.player.getHunger() - 5);
                     this.player.setEnergy(this.player.getEnergy() + 20);
@@ -2157,7 +2200,7 @@ class RestaurantView extends BaseView {
             });
             this.canvas.drawCoinToCanvas(this.canvas.getWidth() / 2, this.canvas.getHeight() * 0.04, this.player.getCoin());
             this.canvas.drawBarstoCanvas(this.canvas.getWidth() * 0.9, this.canvas.getHeight() * 0.05, this.player.getHunger(), this.player.getEnergy(), this.player.getMood(), this.player.getHealth());
-            this.canvas.drawTextButtonToCanvas("./Assets/Icons/ButtonsFREE/PlayBlank.png", "Eat", this.canvas.getWidth() * 0.5 - (this.canvas.getWidth() * 0.1) / 2, this.canvas.getHeight() * 0.9 - (this.canvas.getHeight() * 0.1) / 2, this.canvas.getWidth() * 0.1, this.canvas.getHeight() * 0.1, () => {
+            this.canvas.drawTextButtonToCanvas("./Assets/Icons/ButtonsFREE/PlayBlank.png", "Eten", this.canvas.getWidth() * 0.5 - (this.canvas.getWidth() * 0.1) / 2, this.canvas.getHeight() * 0.9 - (this.canvas.getHeight() * 0.1) / 2, this.canvas.getWidth() * 0.1, this.canvas.getHeight() * 0.1, () => {
                 if (this.player.getHunger() < 80) {
                     this.player.setCoin(this.player.getCoin() - 15);
                     this.player.setHunger(this.player.getHunger() + 20);
@@ -2217,7 +2260,7 @@ class SelectPlayer extends BaseView {
 }
 ;
 class SoccerView extends BaseView {
-    constructor(src, canvas, player, mouseListener, score) {
+    constructor(src, canvas, player, mouseListener, clock, score) {
         super(src, canvas, player, mouseListener);
         this.draw = () => {
             this.canvas.drawImageToCanvas(this.src, 0, 0, this.canvas.getWidth(), this.canvas.getHeight());
@@ -2249,7 +2292,9 @@ class SoccerView extends BaseView {
             });
             this.canvas.drawImageToCanvas("./Assets/FootballGame/goalkeeper.png", this.canvas.getWidth() * 0.5 - (this.canvas.getWidth() * 0.15) / 2, this.canvas.getHeight() * 0.55 - (this.canvas.getHeight() * 0.2) / 2, this.canvas.getWidth() * 0.15, this.canvas.getHeight() * 0.2);
             this.canvas.drawImageToCanvas("./Assets/FootballGame/football.png", this.mouseListener.getEventX() - (this.canvas.getHeight() * (0.2 * this.mouseListener.getEventY() / this.canvas.getHeight())) / 2, this.mouseListener.getEventY() - (this.canvas.getHeight() * (0.2 * this.mouseListener.getEventY() / this.canvas.getHeight())) / 2, this.canvas.getHeight() * (0.2 * this.mouseListener.getEventY() / this.canvas.getHeight()), this.canvas.getHeight() * (0.2 * this.mouseListener.getEventY() / this.canvas.getHeight()));
+            this.canvas.drawTextToCanvas("center", 20, "Minecraft", "white", String(`Tijd: ${this.clock.getTime()}`), 300, 80);
         };
+        this.clock = clock;
         this.score = score;
     }
     ;
@@ -2270,7 +2315,7 @@ class StartView extends BaseView {
                 this.mouseListener.setHasBeenClicked();
             });
             this.canvas.drawButtonToCanvas("./Assets/Icons/ButtonsFREE/globe.png", this.canvas.getWidth() * 0.45, this.canvas.getHeight() * 0.4, this.canvas.getWidth() * 0.1, this.canvas.getHeight() * 0.2, () => {
-                this.player.setLocation("SelectPlayer");
+                this.player.setLocation("Credits");
                 this.mouseListener.setHasBeenClicked();
             });
         };
@@ -2289,7 +2334,7 @@ class StoreView extends BaseView {
             });
             this.canvas.drawCoinToCanvas(this.canvas.getWidth() / 2, this.canvas.getHeight() * 0.04, this.player.getCoin());
             this.canvas.drawBarstoCanvas(this.canvas.getWidth() * 0.9, this.canvas.getHeight() * 0.05, this.player.getHunger(), this.player.getEnergy(), this.player.getMood(), this.player.getHealth());
-            this.canvas.drawTextButtonToCanvas("./Assets/Icons/ButtonsFREE/PlayBlank.png", "Work", this.canvas.getWidth() * 0.5 - (this.canvas.getWidth() * 0.1) / 2, this.canvas.getHeight() * 0.9 - (this.canvas.getHeight() * 0.1) / 2, this.canvas.getWidth() * 0.1, this.canvas.getHeight() * 0.1, () => {
+            this.canvas.drawTextButtonToCanvas("./Assets/Icons/ButtonsFREE/PlayBlank.png", "Werken", this.canvas.getWidth() * 0.5 - (this.canvas.getWidth() * 0.1) / 2, this.canvas.getHeight() * 0.9 - (this.canvas.getHeight() * 0.1) / 2, this.canvas.getWidth() * 0.1, this.canvas.getHeight() * 0.1, () => {
                 this.player.setCoin(this.player.getCoin() + 5);
                 this.player.setEnergy(this.player.getEnergy() - 5);
                 this.mouseListener.setHasBeenClicked();
