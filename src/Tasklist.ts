@@ -40,6 +40,25 @@ class Tasklist {
         {
             id: 1,
             task: "Vul jouw gezondheid aan."
+        },
+        {
+            id: 2,
+            task: "Beantwoord 5 quiz vragen."
+        },
+        {
+            id: 3,
+            task: "Ga naar het werk."
+        },
+        {
+            id: 4,
+            task: "Speel een minigame."
+        },{
+            id: 5,
+            task: "Ga naar huis om te slapen."
+        },
+        {
+            id: 6,
+            task: "Eet minstens 3 keer per dag."
         },];
     };
 

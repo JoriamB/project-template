@@ -555,6 +555,25 @@ class Tasklist {
             {
                 id: 1,
                 task: "Vul jouw gezondheid aan."
+            },
+            {
+                id: 2,
+                task: "Beantwoord 5 quiz vragen."
+            },
+            {
+                id: 3,
+                task: "Ga naar het werk."
+            },
+            {
+                id: 4,
+                task: "Speel een minigame."
+            }, {
+                id: 5,
+                task: "Ga naar huis om te slapen."
+            },
+            {
+                id: 6,
+                task: "Eet minstens 3 keer per dag."
             },];
     }
     ;
@@ -1552,7 +1571,7 @@ class HospitalView extends BaseView {
             });
             this.canvas.drawBarstoCanvas(this.canvas.getWidth() * 0.9, this.canvas.getHeight() * 0.05, this.player.getHunger(), this.player.getEnergy(), this.player.getMood(), this.player.getHealth());
             this.canvas.drawCoinToCanvas(this.canvas.getWidth() / 2, this.canvas.getHeight() * 0.02, this.player.getCoin());
-            this.canvas.drawTextButtonToCanvas("./Assets/Icons/ButtonsFREE/PlayBlank.png", "Bezoek dokter", this.canvas.getWidth() * 0.5 - (this.canvas.getWidth() * 0.1) / 2, this.canvas.getHeight() * 0.9 - (this.canvas.getHeight() * 0.1) / 2, this.canvas.getWidth() * 0.1, this.canvas.getHeight() * 0.1, () => {
+            this.canvas.drawTextButtonToCanvas("./Assets/Icons/ButtonsFREE/PlayBlank.png", "Bezoek dokter", this.canvas.getWidth() * 0.5 - (this.canvas.getWidth() * 0.15) / 2, this.canvas.getHeight() * 0.9 - (this.canvas.getHeight() * 0.1) / 2, this.canvas.getWidth() * 0.15, this.canvas.getHeight() * 0.1, () => {
                 if (this.player.getHealth() < 80) {
                     this.player.setCoin(this.player.getCoin() - 15);
                     this.player.setHealth(this.player.getHealth() + 20);

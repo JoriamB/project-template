@@ -116,6 +116,7 @@ class Canvas {
     };
 
     /**
+     * @param alignment
      * @param src
      * @param text
      * @param x 
@@ -142,7 +143,7 @@ class Canvas {
             this.mouseListener.getEventY() > y &&
             this.mouseListener.getEventY() < y + height) {
                 callback()
-        };
+            };
         this.drawTextToCanvas(  "center",
                                 25,
                                 "KenneyPixel",
