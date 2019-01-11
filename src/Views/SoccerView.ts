@@ -88,7 +88,7 @@ super(src, canvas, player, mouseListener);
                                         "Minecraft",
                                         "white",
                                         String(`Tijd: ${this.clock.getTime()}`),
-                                        500,
+                                        300,
                                         80)
     };
 };

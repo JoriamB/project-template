@@ -1,6 +1,7 @@
 class FishingView extends BaseView {
     
     private score : number;
+    private clock : Timer;
 
     private fishArray : Array<Fish>
     
@@ -9,10 +10,12 @@ class FishingView extends BaseView {
                         player : Player,
                         mouseListener : MouseHelper,
                         fishArray : Array<Fish>,
+                        clock : Timer,
                         score : number) {
         super(src, canvas, player, mouseListener);
         this.fishArray = fishArray;
         this.score = score;
+        this.clock = clock;
 };
 
 /**
@@ -62,7 +65,7 @@ class FishingView extends BaseView {
                                         this.player.getEnergy(),
                                         this.player.getMood(),
                                         this.player.getHealth())
-        this.canvas.drawImageToCanvas(  "./Assets/FishingGame/fish.png",
+        this.canvas.drawImageToCanvas(  "./Assets/FishingGame/fis.png",
                                         this.canvas.getWidth()*0.5 - (this.canvas.getWidth() * 0.15)/2,
                                         this.canvas.getHeight()*0.55 - (this.canvas.getHeight() * 0.2)/2,
                                         this.canvas.getWidth() * 0.05,
@@ -72,6 +75,13 @@ class FishingView extends BaseView {
                                         this.mouseListener.getEventY() - (this.canvas.getHeight() * 0.1)/2,
                                         this.canvas.getWidth() * 0.05,
                                         this.canvas.getHeight() * 0.1);
+        this.canvas.drawTextToCanvas(   "center",
+                                        20,
+                                        "Minecraft",
+                                        "white",
+                                        String(`Tijd: ${this.clock.getTime()}`),
+                                        300,
+                                        80)
     };
 
     public getScore () : number {

@@ -100,8 +100,9 @@ class Game {
                                         this.canvas,
                                         this.player,
                                         this.mouseListener,
-                                       this.fishArray,
-                                       0);       
+                                        this.fishArray,
+                                        this.clock,
+                                        0);       
         this.beach = new BeachView( "./Assets/Backgrounds/beach.jpg",
                                     this.canvas,
                                     this.player,
