@@ -34,7 +34,7 @@ class MapView extends BaseView {
                                                     this.mouseListener.getEventX() > this.tasklist.getX() + this.tasklist.getWidth()||
                                                     this.mouseListener.getEventY() < this.tasklist.getY()||
                                                     this.mouseListener.getEventY() > this.tasklist.getY() + this.tasklist.getHeight()) {
-                                                    this.soundcontroller.pauseMusic();
+                                                    this.soundcontroller.playPark();
                                                     this.player.setLocation("Park");
                                                 };
                                                 this.mouseListener.setHasBeenClicked()
@@ -47,7 +47,7 @@ class MapView extends BaseView {
                                             this.canvas.getWidth()*0.28,
                                             this.canvas.getHeight()*0.328,
                                             () => {
-                                                this.soundcontroller.pauseMusic();
+                                                this.soundcontroller.playPark();
                                                 this.player.setLocation("Park");
                                                 this.mouseListener.setHasBeenClicked()
                                             });
@@ -108,7 +108,7 @@ class MapView extends BaseView {
                                         this.canvas.getWidth()* 0.1,
                                         this.canvas.getHeight(),
                                         () => {
-                                            this.soundcontroller.pauseMusic();
+                                            this.soundcontroller.playBeach();
                                             this.player.setLocation("Beach");
                                             this.mouseListener.setHasBeenClicked()
                                         });

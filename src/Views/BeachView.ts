@@ -42,6 +42,7 @@ class BeachView extends BaseView {
                                         this.canvas.getHeight()*0.32, 
                                         () => {
                                             if (this.player.getMood() < 100) {
+                                                this.soundcontroller.playFishing();
                                                 createFish( 25,
                                                             50,
                                                             this.canvas,

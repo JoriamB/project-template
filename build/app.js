@@ -278,7 +278,7 @@ class Game {
             }
             window.requestAnimationFrame(this.draw);
         };
-        this.soundcontroller = new SoundController(document.getElementById("BackgroundMusic"), document.getElementById("Store"), document.getElementById("Hospital"), document.getElementById("EatEffect"), document.getElementById("SleepEffect"), document.getElementById("ScoreEffect"));
+        this.soundcontroller = new SoundController(document.getElementById("BackgroundMusic"), document.getElementById("Store"), document.getElementById("Hospital"), document.getElementById("EatEffect"), document.getElementById("SleepEffect"), document.getElementById("ScoreEffect"), document.getElementById("Beach"), document.getElementById("Park"), document.getElementById("Fishing"));
         this.fishArray = [];
         this.clock = new Timer();
         this.mouseListener = new MouseHelper(false, false);
@@ -539,13 +539,16 @@ class Player {
 }
 ;
 class SoundController {
-    constructor(background, store, hospital, eat, sleep, score) {
+    constructor(background, store, hospital, eat, sleep, score, beach, park, fishing) {
         this.background = background;
         this.store = store;
         this.hospital = hospital;
         this.eat = eat;
         this.sleep = sleep;
         this.score = score;
+        this.beach = beach;
+        this.park = park;
+        this.fishing = fishing;
     }
     ;
     pauseMusic() {
@@ -554,6 +557,9 @@ class SoundController {
         this.hospital.pause();
         this.eat.pause();
         this.sleep.pause();
+        this.beach.pause();
+        this.park.pause();
+        this.fishing.pause();
     }
     ;
     playBackgroundMusic() {
@@ -572,6 +578,24 @@ class SoundController {
         this.pauseMusic();
         this.hospital.loop = true;
         this.hospital.play();
+    }
+    ;
+    playBeach() {
+        this.pauseMusic();
+        this.beach.loop = true;
+        this.beach.play();
+    }
+    ;
+    playPark() {
+        this.pauseMusic();
+        this.park.loop = true;
+        this.park.play();
+    }
+    ;
+    playFishing() {
+        this.pauseMusic();
+        this.fishing.loop = true;
+        this.fishing.play();
     }
     ;
     playEatEffect() {
@@ -797,6 +821,7 @@ class BeachView extends BaseView {
             });
             this.canvas.drawButtonToCanvas("./Assets/FishingGame/boat.png", this.canvas.getWidth() * 0.339, this.canvas.getHeight() * 0.2555, this.canvas.getWidth() * 0.24, this.canvas.getHeight() * 0.32, () => {
                 if (this.player.getMood() < 100) {
+                    this.soundcontroller.playFishing();
                     createFish(25, 50, this.canvas, this.fishArray, this.mouseListener, this.player, getSrcArray(), this.fishingView);
                     this.player.setLocation("Fishing");
                 }
@@ -1666,7 +1691,7 @@ class MapView extends BaseView {
                         this.mouseListener.getEventX() > this.tasklist.getX() + this.tasklist.getWidth() ||
                         this.mouseListener.getEventY() < this.tasklist.getY() ||
                         this.mouseListener.getEventY() > this.tasklist.getY() + this.tasklist.getHeight()) {
-                        this.soundcontroller.pauseMusic();
+                        this.soundcontroller.playPark();
                         this.player.setLocation("Park");
                     }
                     ;
@@ -1675,7 +1700,7 @@ class MapView extends BaseView {
             }
             else {
                 this.canvas.drawButtonToCanvas("./Assets/Map/park.png", this.canvas.getWidth() * 0.02, 0, this.canvas.getWidth() * 0.28, this.canvas.getHeight() * 0.328, () => {
-                    this.soundcontroller.pauseMusic();
+                    this.soundcontroller.playPark();
                     this.player.setLocation("Park");
                     this.mouseListener.setHasBeenClicked();
                 });
@@ -1707,7 +1732,7 @@ class MapView extends BaseView {
                 this.mouseListener.setHasBeenClicked();
             });
             this.canvas.drawButtonToCanvas("./Assets/Map/strand.png", this.canvas.getWidth() * 0.9, this.canvas.getHeight() * 0.0, this.canvas.getWidth() * 0.1, this.canvas.getHeight(), () => {
-                this.soundcontroller.pauseMusic();
+                this.soundcontroller.playBeach();
                 this.player.setLocation("Beach");
                 this.mouseListener.setHasBeenClicked();
             });
