@@ -16,8 +16,8 @@ class Fish {
         {
         this.x = x;
         this.y = y;
-        this.width = width
-        this.height = height
+        this.width = width;
+        this.height = height;
         this.src = src;
         this.canvas = canvas;
         }

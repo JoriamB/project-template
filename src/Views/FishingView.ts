@@ -1,6 +1,4 @@
 class FishingView extends BaseView{
-
-    private fishArray : Array<Fish>
     
     public constructor (src : string,
                         canvas : Canvas,
@@ -36,7 +34,6 @@ class FishingView extends BaseView{
                                             };
                                             this.player.setLocation("Beach");
                                             this.mouseListener.setHasBeenClicked()});
-                                            }
         this.canvas.drawCoinToCanvas(   this.canvas.getWidth()/2,
                                         this.canvas.getHeight() * 0.04,
                                         this.player.getCoin());
@@ -46,7 +43,7 @@ class FishingView extends BaseView{
                                         this.player.getEnergy(),
                                         this.player.getMood(),
                                         this.player.getHealth())
-        this.canvas.drawImageToCanvas(  "./Assets/FishingGame/fishblue1.png",
+        this.canvas.drawImageToCanvas(  "./Assets/FishingGame/fish.png",
                                         this.canvas.getWidth()*0.5 - (this.canvas.getWidth() * 0.15)/2,
                                         this.canvas.getHeight()*0.55 - (this.canvas.getHeight() * 0.2)/2,
                                         this.canvas.getWidth() * 0.05,

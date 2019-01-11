@@ -164,24 +164,7 @@ class Game {
             }
             window.requestAnimationFrame(this.draw);
         };
-<<<<<<< HEAD
-        this.fishArray = [];
-        this.mouseListener = new MouseHelper(false, false);
-        this.canvas = new Canvas(document.getElementById("canvas"), this.mouseListener);
-        this.player = new Player("./Assets/Female/Poses/female_slide.png", this.canvas, 5, 20, 80, 80, 80, this.canvas.getCenter().X, this.canvas.getCenter().Y, this.canvas.getWidth() * 0.025, this.canvas.getHeight() * 0.05, "Beach", 10000);
-        this.park = new ParkView("./assets/Backgrounds/park.jpg", this.canvas, this.player, this.mouseListener);
-        this.hospital = new HospitalView("./assets/Backgrounds/hospital.jpg", this.canvas, this.player, this.mouseListener);
-        this.house = new HouseView("./assets/Backgrounds/House.png", this.canvas, this.player, this.mouseListener);
-        this.school = new SchoolView("./assets/Backgrounds/classroom2.jpg", this.canvas, this.player, this.mouseListener);
-        this.store = new StoreView("./assets/Backgrounds/Store.jpg", this.canvas, this.player, this.mouseListener);
-        this.restaurant = new RestaurantView("./assets/Backgrounds/Restaurant2.jpg", this.canvas, this.player, this.mouseListener);
-        this.map = new MapView("./assets/map/mapleeg.png", this.canvas, this.player, this.mouseListener);
-        this.soccer = new SoccerView("./assets/FootballGame/background.jpg", this.canvas, this.player, this.mouseListener);
-        this.beach = new BeachView("./assets/Backgrounds/beach.jpg", this.canvas, this.player, this.mouseListener, this.fishArray);
-        this.fishing = new FishingView("./assets/FishingGame/background1.jpg", this.canvas, this.player, this.mouseListener, this.fishArray);
-        this.question = new QuestionView("./assets/Backgrounds/Question.png", this.canvas, this.player, this.mouseListener);
-=======
-        this.mathHelper = new MathHelper();
+        this.clock = new Timer();
         this.mouseListener = new MouseHelper(false, false);
         this.canvas = new Canvas(document.getElementById("canvas"), this.mouseListener);
         this.player = new Player("./Assets/Female/Poses/female_slide.png", this.canvas, 5, 20, 80, 100, 60, this.canvas.getCenter().X, this.canvas.getCenter().Y, this.canvas.getWidth() * 0.025, this.canvas.getHeight() * 0.05, "Question", 10000);
@@ -192,14 +175,13 @@ class Game {
         this.store = new StoreView("./Assets/Backgrounds/Store.jpg", this.canvas, this.player, this.mouseListener);
         this.restaurant = new RestaurantView("./Assets/Backgrounds/Restaurant3.jpg", this.canvas, this.player, this.mouseListener);
         this.map = new MapView("./Assets/map/mapleeg.png", this.canvas, this.player, this.mouseListener);
-        this.soccer = new SoccerView("./Assets/FootballGame/background.jpg", this.canvas, this.player, this.mouseListener);
+        this.soccer = new SoccerView("./Assets/FootballGame/background.jpg", this.canvas, this.player, this.mouseListener, this.clock);
         this.beach = new BeachView("./Assets/Backgrounds/beach.jpg", this.canvas, this.player, this.mouseListener);
         this.fishing = new FishingView("./Assets/FishingGame/background1.jpg", this.canvas, this.player, this.mouseListener);
         this.geographyquest = new GeographyQuest("./Assets/Backgrounds/Question.png", this.canvas, this.player, this.mouseListener);
         this.mathquest = new MathQuest("./Assets/Backgrounds/Question.png", this.canvas, this.player, this.mouseListener);
         this.historyquest = new HistoryQuest("./Assets/Backgrounds/Question.png", this.canvas, this.player, this.mouseListener);
         this.question = new QuestionView("./Assets/Backgrounds/Question.png", this.canvas, this.player, this.mouseListener, this.geographyquest, this.mathquest, this.historyquest);
->>>>>>> a58c2ae07052f057b01b8db56eed36c295690319
     }
     ;
 }
@@ -209,11 +191,10 @@ function init() {
     const LudosMundi = new Game();
     window.requestAnimationFrame(LudosMundi.draw);
 }
-function createFish(min, max, canvas, fishArray) {
+function createFish(min, max, canvas) {
     for (let i = min; i < max; i++) {
         console.log(i);
-        let fish = new Fish(MathHelper.randomNumber(0, canvas.getWidth() - 50), MathHelper.randomNumber(0, canvas.getHeight() - 50), 100, 100, "./assets/FishingGame/fishblue1.png", canvas);
-        fishArray.push(fish);
+        let fish = new Fish(MathHelper.randomNumber(0, canvas.getWidth() - 50), MathHelper.randomNumber(0, canvas.getHeight() - 50), 100, 100, "./assets/FishingGame/fish.png", canvas);
     }
 }
 class KeyboardHelper {
@@ -425,6 +406,20 @@ class Progress {
     }
 }
 let progress = new Progress(0, 10);
+class Timer {
+    constructor(counter = 60) {
+        this.counter = counter;
+        let intervalId = setInterval(() => {
+            this.counter = this.counter - 1;
+            console.log(this.counter);
+            if (this.counter === 0)
+                clearInterval(intervalId);
+        }, 1000);
+    }
+    getTime() {
+        return this.counter;
+    }
+}
 class Voetbal {
     constructor(score, xPos, Ypos) {
     }
@@ -494,7 +489,7 @@ class BaseView {
 }
 ;
 class BeachView extends BaseView {
-    constructor(src, canvas, player, mouseListener, fishArray) {
+    constructor(src, canvas, player, mouseListener) {
         super(src, canvas, player, mouseListener);
         this.draw = () => {
             this.canvas.drawImageToCanvas(this.src, 0, 0, this.canvas.getWidth(), this.canvas.getHeight());
@@ -506,20 +501,19 @@ class BeachView extends BaseView {
                 if (this.player.getEnergy() >= 10 &&
                     this.player.getMood() < 100) {
                     this.player.setLocation("Fishing");
-                    createFish(1, 5, this.canvas, this.fishArray);
+                    createFish(1, 100, this.canvas);
                 }
                 this.mouseListener.setHasBeenClicked();
             });
             this.canvas.drawCoinToCanvas(this.canvas.getWidth() / 2, this.canvas.getHeight() * 0.04, this.player.getCoin());
             this.canvas.drawBarstoCanvas(this.canvas.getWidth() * 0.9, this.canvas.getHeight() * 0.05, this.player.getHunger(), this.player.getEnergy(), this.player.getMood(), this.player.getHealth());
         };
-        this.fishArray = fishArray;
     }
     ;
 }
 ;
 class FishingView extends BaseView {
-    constructor(src, canvas, player, mouseListener, fishArray) {
+    constructor(src, canvas, player, mouseListener) {
         super(src, canvas, player, mouseListener);
         this.draw = () => {
             this.canvas.drawImageToCanvas(this.src, 0, 0, this.canvas.getWidth(), this.canvas.getHeight());
@@ -536,17 +530,9 @@ class FishingView extends BaseView {
                 this.player.setLocation("Beach");
                 this.mouseListener.setHasBeenClicked();
             });
-            for (let i = 0; i < this.fishArray.length; i++) {
-                this.fishArray[i].draw();
-            }
             this.canvas.drawCoinToCanvas(this.canvas.getWidth() / 2, this.canvas.getHeight() * 0.04, this.player.getCoin());
             this.canvas.drawBarstoCanvas(this.canvas.getWidth() * 0.9, this.canvas.getHeight() * 0.05, this.player.getHunger(), this.player.getEnergy(), this.player.getMood(), this.player.getHealth());
-<<<<<<< HEAD
-            this.canvas.drawImageToCanvas("./assets/FishingGame/hengel.png", this.mouseListener.getEventX() - (this.canvas.getWidth() * 0.05) / 2, this.mouseListener.getEventY() - (this.canvas.getHeight() * 0.1) / 2, this.canvas.getWidth() * 0.05, this.canvas.getHeight() * 0.1);
-        };
-        this.fishArray = fishArray;
-=======
-            this.canvas.drawImageToCanvas("./Assets/FishingGame/fishblue1.png", this.canvas.getWidth() * 0.5 - (this.canvas.getWidth() * 0.15) / 2, this.canvas.getHeight() * 0.55 - (this.canvas.getHeight() * 0.2) / 2, this.canvas.getWidth() * 0.05, this.canvas.getHeight() * 0.1);
+            this.canvas.drawImageToCanvas("./Assets/FishingGame/fish.png", this.canvas.getWidth() * 0.5 - (this.canvas.getWidth() * 0.15) / 2, this.canvas.getHeight() * 0.55 - (this.canvas.getHeight() * 0.2) / 2, this.canvas.getWidth() * 0.05, this.canvas.getHeight() * 0.1);
             this.canvas.drawImageToCanvas("./Assets/FishingGame/hengel.png", this.mouseListener.getEventX() - (this.canvas.getWidth() * 0.05) / 2, this.mouseListener.getEventY() - (this.canvas.getHeight() * 0.1) / 2, this.canvas.getWidth() * 0.05, this.canvas.getHeight() * 0.1);
         };
     }
@@ -956,7 +942,6 @@ class HistoryQuest extends BaseView {
     ;
     getCurrentQuestion() {
         return this.currentQuestion;
->>>>>>> a58c2ae07052f057b01b8db56eed36c295690319
     }
     ;
 }
@@ -1314,7 +1299,7 @@ class SchoolView extends BaseView {
 }
 ;
 class SoccerView extends BaseView {
-    constructor(src, canvas, player, mouseListener) {
+    constructor(src, canvas, player, mouseListener, clock) {
         super(src, canvas, player, mouseListener);
         this.draw = () => {
             this.canvas.drawImageToCanvas(this.src, 0, 0, this.canvas.getWidth(), this.canvas.getHeight());
@@ -1328,7 +1313,9 @@ class SoccerView extends BaseView {
             this.canvas.drawBarstoCanvas(this.canvas.getWidth() * 0.9, this.canvas.getHeight() * 0.05, this.player.getHunger(), this.player.getEnergy(), this.player.getMood(), this.player.getHealth());
             this.canvas.drawImageToCanvas("./Assets/FootballGame/goalkeeper.png", this.canvas.getWidth() * 0.5 - (this.canvas.getWidth() * 0.15) / 2, this.canvas.getHeight() * 0.55 - (this.canvas.getHeight() * 0.2) / 2, this.canvas.getWidth() * 0.15, this.canvas.getHeight() * 0.2);
             this.canvas.drawImageToCanvas("./Assets/FootballGame/football.png", this.mouseListener.getEventX() - (this.canvas.getHeight() * (0.2 * this.mouseListener.getEventY() / this.canvas.getHeight())) / 2, this.mouseListener.getEventY() - (this.canvas.getHeight() * (0.2 * this.mouseListener.getEventY() / this.canvas.getHeight())) / 2, this.canvas.getHeight() * (0.2 * this.mouseListener.getEventY() / this.canvas.getHeight()), this.canvas.getHeight() * (0.2 * this.mouseListener.getEventY() / this.canvas.getHeight()));
+            this.canvas.drawTextToCanvas("center", 20, "Minecraft", "white", String(`Tijd: ${this.clock.getTime()}`), 500, 80);
         };
+        this.clock = clock;
     }
     ;
 }

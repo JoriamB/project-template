@@ -2,7 +2,6 @@ class Game {
     private canvas : Canvas;
     private player : Player;
     private mouseListener : MouseHelper;
-    private mathHelper : MathHelper;
     private park : ParkView;
     private hospital : HospitalView;
     private house : HouseView;
@@ -11,15 +10,16 @@ class Game {
     private restaurant : RestaurantView;
     private map : MapView;
     private soccer: SoccerView;
-    private beach: SoccerView;
+    private beach: BeachView;
     private fishing: FishingView;
     private question: QuestionView;
     private geographyquest: GeographyQuest;
     private mathquest: MathQuest;
     private historyquest: HistoryQuest;
+    private clock: Timer;
 
     public constructor () {
-        this.mathHelper = new MathHelper()
+        this.clock = new Timer();
         this.mouseListener = new MouseHelper(false, false);
         this.canvas = new Canvas(   <HTMLCanvasElement>document.getElementById("canvas"),
                                     this.mouseListener)
@@ -67,7 +67,8 @@ class Game {
         this.soccer = new SoccerView(   "./Assets/FootballGame/background.jpg",
                                         this.canvas,
                                         this.player,
-                                        this.mouseListener);          
+                                        this.mouseListener,
+                                        this.clock);          
         this.beach = new BeachView( "./Assets/Backgrounds/beach.jpg",
                                     this.canvas,
                                     this.player,
@@ -168,8 +169,7 @@ function init () : void {
 
 function createFish (   min : number,
                         max : number,
-                        canvas : Canvas,
-                        fishArray : Array<Fish>) {
+                        canvas : Canvas) {
     for (let i = min; i < max; i++) {
         console.log(i);
         let fish = new Fish(MathHelper.randomNumber(   0, 
@@ -178,8 +178,7 @@ function createFish (   min : number,
                                                         canvas.getHeight() - 50),
                             100,
                             100,
-                            "./assets/FishingGame/fishblue1.png",
+                            "./assets/FishingGame/fish.png",
                             canvas);
-        fishArray.push(fish)
     }
 }

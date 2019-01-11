@@ -37,9 +37,8 @@ class BeachView extends BaseView {
                                                 this.player.getMood() < 100) {
                                                 this.player.setLocation("Fishing")
                                                 createFish( 1,
-                                                            5,
-                                                            this.canvas,
-                                                            this.fishArray);
+                                                            100,
+                                                            this.canvas);
                                             }
                                             this.mouseListener.setHasBeenClicked()});
         this.canvas.drawCoinToCanvas(   this.canvas.getWidth()/2,
