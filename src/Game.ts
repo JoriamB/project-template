@@ -16,6 +16,7 @@ class Game {
     private geographyquest: GeographyQuest;
     private mathquest: MathQuest;
     private historyquest: HistoryQuest;
+    private clock: Timer;
     private fishArray : Array<Fish>
     private selectplayer: SelectPlayer;
     private tasklist : Tasklist;
@@ -26,6 +27,7 @@ class Game {
 
     public constructor () {
         this.fishArray = [];
+        this.clock = new Timer();
         this.mouseListener = new MouseHelper(false, false);
         this.canvas = new Canvas(   <HTMLCanvasElement>document.getElementById("canvas"),
                                     this.mouseListener)
@@ -87,13 +89,21 @@ class Game {
                                         this.canvas,
                                         this.player,
                                         this.mouseListener,
-                                        0);   
+                                        this.clock,
+                                        0);          
+        this.beach = new BeachView( "./Assets/Backgrounds/beach.jpg",
+                                    this.canvas,
+                                    this.player,
+                                    this.mouseListener,
+                                    this.fishArray,
+                                    this.fishing,);            
         this.fishing = new FishingView( "./Assets/FishingGame/background1.jpg",
                                         this.canvas,
                                         this.player,
                                         this.mouseListener,
-                                       this.fishArray,
-                                       0);       
+                                        this.fishArray,
+                                        this.clock,
+                                        0);       
         this.beach = new BeachView( "./Assets/Backgrounds/beach.jpg",
                                     this.canvas,
                                     this.player,
