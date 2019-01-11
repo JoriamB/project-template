@@ -47,11 +47,13 @@ class HouseView extends BaseView {
                                             this.canvas.getHeight() * 0.1,
                                             () => {
                                             if (this.player.getEnergy() < 80) {
+                                                this.player.setHasSlept(true);
                                                 this.soundcontroller.playSleepEffect();
                                                 this.player.setHunger(this.player.getHunger() - 5)
                                                 this.player.setEnergy(this.player.getEnergy() + 20)
                                             }
                                             else if (   this.player.getEnergy()< 100) {
+                                                        this.player.setHasSlept(true);
                                                         this.soundcontroller.playSleepEffect();
                                                         this.player.setHunger(this.player.getHunger() - 5)
                                                         this.player.setEnergy(100)

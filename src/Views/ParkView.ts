@@ -25,6 +25,7 @@ class ParkView extends BaseView {
                                         this.canvas.getWidth() * 0.025,
                                         this.canvas.getHeight() * 0.05, 
                                         () => {
+                                            this.player.setPlayedMiniGame(true);
                                             this.soundcontroller.playBackgroundMusic();
                                             this.player.setLocation("Map");
                                             this.mouseListener.setHasBeenClicked()});

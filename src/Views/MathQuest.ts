@@ -77,11 +77,10 @@ class MathQuest extends BaseView {
             () => {
                 if (this.getCurrentQuestion().Answer == this.getCurrentQuestion().RightAnswer) {
                     this.setCurrentQuestion(this.MathArray[MathHelper.randomNumber(0, this.MathArray.length - 1)]);
-                    console.log("Goed Gedaan!");
+                    this.player.setQuestionsAnswered(this.player.getQuestionsAnswered() + 1);
                     this.score += 1;
                 }
                 else {
-                    console.log("Probeer het opnieuw.");
                     this.setCurrentQuestion(this.MathArray[MathHelper.randomNumber(0, this.MathArray.length - 1)]);
                 };
                 this.mouseListener.setHasBeenClicked()
@@ -95,11 +94,10 @@ class MathQuest extends BaseView {
             () => {
                 if (this.getCurrentQuestion().Answer1 == this.getCurrentQuestion().RightAnswer) {
                     this.setCurrentQuestion(this.MathArray[MathHelper.randomNumber(0, this.MathArray.length - 1)]);
-                    console.log("Goed Gedaan!");
+                    this.player.setQuestionsAnswered(this.player.getQuestionsAnswered() + 1);
                     this.score += 1;
                 }
                 else {
-                    console.log("Probeer het opnieuw.");
                     this.setCurrentQuestion(this.MathArray[MathHelper.randomNumber(0, this.MathArray.length - 1)]);
                 };
                 this.mouseListener.setHasBeenClicked()
@@ -113,11 +111,10 @@ class MathQuest extends BaseView {
             () => {
                 if (this.getCurrentQuestion().Answer2 == this.getCurrentQuestion().RightAnswer) {
                     this.setCurrentQuestion(this.MathArray[MathHelper.randomNumber(0, this.MathArray.length - 1)]);
-                    console.log("Goed Gedaan!");
+                    this.player.setQuestionsAnswered(this.player.getQuestionsAnswered() + 1);
                     this.score += 1;
                 }
                 else {
-                    console.log("Probeer het opnieuw.");
                     this.setCurrentQuestion(this.MathArray[MathHelper.randomNumber(0, this.MathArray.length - 1)]);
                 };
                 this.mouseListener.setHasBeenClicked()
@@ -131,11 +128,10 @@ class MathQuest extends BaseView {
             () => {
                 if (this.getCurrentQuestion().Answer3 == this.getCurrentQuestion().RightAnswer) {
                     this.setCurrentQuestion(this.MathArray[MathHelper.randomNumber(0, this.MathArray.length - 1)]);
-                    console.log("Goed Gedaan!");
+                    this.player.setQuestionsAnswered(this.player.getQuestionsAnswered() + 1);
                     this.score += 1;
                 }
                 else {
-                    console.log("Probeer het opnieuw.");
                     this.setCurrentQuestion(this.MathArray[MathHelper.randomNumber(0, this.MathArray.length - 1)]);
                 };
                 this.mouseListener.setHasBeenClicked()

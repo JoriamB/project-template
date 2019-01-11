@@ -49,6 +49,7 @@ class StoreView extends BaseView {
                                         this.canvas.getWidth() * 0.1,
                                         this.canvas.getHeight() * 0.1,
                                         () => {
+                                            this.player.setGoneToWork(true);
                                             this.player.setCoin(this.player.getCoin() + 5);
                                             this.player.setEnergy(this.player.getEnergy() - 5);
                                             this.mouseListener.setHasBeenClicked()

@@ -40,7 +40,27 @@ class Tasklist {
         {
             id: 1,
             task: "Vul jouw gezondheid aan."
-        },];
+        },
+        {
+            id: 2,
+            task: "Beantwoord 5 quiz vragen."
+        },
+        {
+            id: 3,
+            task: "Ga naar het werk."
+        },
+        {
+            id: 4,
+            task: "Speel een minigame."
+        },
+        {
+            id: 5,
+            task: "Ga naar huis om te slapen."
+        },
+        {
+            id: 6,
+            task: "Eet minstens 3 keer per dag."
+        }];
     };
 
     public draw () : void {
@@ -112,6 +132,56 @@ class Tasklist {
         if (this.player.getSchoolVisits() >= 5) {
             for (let i = 0; i < this.taskArray.length; i++) {
                 if (this.taskArray[i].task == `Ga 5 keer naar school.`) {
+                    index = i
+                    this.taskArray.splice(index, 1);
+                };
+            };
+            index = -1;
+            this.updateIds();
+        };
+        if (this.player.getQuestionsAnswered() >= 5) {
+            for (let i = 0; i < this.taskArray.length; i++) {
+                if (this.taskArray[i].task == "Beantwoord 5 quiz vragen.") {
+                    index = i
+                    this.taskArray.splice(index, 1);
+                };
+            };
+            index = -1;
+            this.updateIds();
+        };
+        if (this.player.getGoneToWork()) {
+            for (let i = 0; i < this.taskArray.length; i++) {
+                if (this.taskArray[i].task == "Ga naar het werk.") {
+                    index = i
+                    this.taskArray.splice(index, 1);
+                };
+            };
+            index = -1;
+            this.updateIds();
+        };
+        if (this.player.getPlayedMiniGame()) {
+            for (let i = 0; i < this.taskArray.length; i++) {
+                if (this.taskArray[i].task == "Speel een minigame.") {
+                    index = i
+                    this.taskArray.splice(index, 1);
+                };
+            };
+            index = -1;
+            this.updateIds();
+        };
+        if (this.player.getHasSlept()) {
+            for (let i = 0; i < this.taskArray.length; i++) {
+                if (this.taskArray[i].task == "Ga naar huis om te slapen.") {
+                    index = i
+                    this.taskArray.splice(index, 1);
+                };
+            };
+            index = -1;
+            this.updateIds();
+        };
+        if (this.player.getEaten() >= 3) {
+            for (let i = 0; i < this.taskArray.length; i++) {
+                if (this.taskArray[i].task == "Eet minstens 3 keer per dag.") {
                     index = i
                     this.taskArray.splice(index, 1);
                 };

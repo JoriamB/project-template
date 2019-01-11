@@ -54,6 +54,11 @@ class Game {
                                     this.canvas.getHeight() * 0.05,
                                     "StartView",
                                     50,
+                                    0,
+                                    0,
+                                    false,
+                                    false,
+                                    false,
                                     0);
         this.tasklist = new Tasklist(   "./Assets/images/takenlijst.jpg",
                                         this.canvas,

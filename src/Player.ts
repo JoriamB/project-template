@@ -16,6 +16,11 @@ class Player {
     private location : string;
     private coin : number;
     private schoolvisits : number;
+    private questionsAnwered : number;
+    private goneToWork : boolean;
+    private playedMinigame : boolean;
+    private hasSlept : boolean;
+    private eaten : number;
 
     public constructor (src : string,
                         canvas : Canvas,
@@ -30,7 +35,12 @@ class Player {
                         height : number,
                         location : string,
                         coin : number,
-                        schoolvisits : number) {
+                        schoolvisits : number,
+                        questionsAnwered : number,
+                        goneToWork : boolean,
+                        playedMinigame : boolean,
+                        hasSlept : boolean,
+                        eaten : number) {
         this.keyboardListener = new KeyboardHelper(false,
                                                     false,
                                                     false,
@@ -51,6 +61,11 @@ class Player {
         this.location = location;
         this.coin = coin;
         this.schoolvisits = schoolvisits;
+        this.questionsAnwered = questionsAnwered;
+        this.goneToWork = goneToWork;
+        this.playedMinigame = playedMinigame;
+        this.hasSlept = hasSlept;
+        this.eaten = eaten;
     };
 
     /**
@@ -299,5 +314,45 @@ class Player {
 
     public setSchoolVisits (visits : number) {
         this.schoolvisits = visits;
+    };
+
+    public getQuestionsAnswered () : number {
+        return this.questionsAnwered;
+    };
+
+    public setQuestionsAnswered (questions : number) {
+        this.questionsAnwered = questions;
+    };
+
+    public getGoneToWork () : boolean {
+        return this.goneToWork;
+    };
+
+    public setGoneToWork (value : boolean) {
+        this.goneToWork = value;
+    };
+
+    public getPlayedMiniGame () : boolean {
+        return this.playedMinigame;
+    };
+
+    public setPlayedMiniGame (value : boolean) {
+        this.playedMinigame = value;
+    };
+
+    public getHasSlept () : boolean {
+        return this.hasSlept;
+    };
+
+    public setHasSlept (value : boolean) {
+        this.hasSlept = value;
+    };
+
+    public getEaten () : number {
+        return this.eaten;
+    };
+
+    public setEaten (eaten : number) {
+        this.eaten = eaten;
     };
 };
