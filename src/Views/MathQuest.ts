@@ -7,8 +7,9 @@ class MathQuest extends BaseView {
                         canvas: Canvas,
                         player: Player,
                         mouseListener: MouseHelper,
+                        soundcontroller : SoundController,
                         score : number) {
-        super(src, canvas, player, mouseListener);
+        super(src, canvas, player, mouseListener, soundcontroller);
         this.currentQuestion = this.MathArray[0];
         this.score = score;
     }

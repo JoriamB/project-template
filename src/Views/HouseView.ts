@@ -3,8 +3,9 @@ class HouseView extends BaseView {
     public constructor (src : string,
                         canvas : Canvas,
                         player : Player,
-                        mouseListener : MouseHelper) {
-        super(src, canvas, player, mouseListener);
+                        mouseListener : MouseHelper,
+                        soundcontroller : SoundController) {
+        super(src, canvas, player, mouseListener, soundcontroller);
     };
 
     /**
@@ -25,6 +26,7 @@ class HouseView extends BaseView {
                                         this.canvas.getWidth() * 0.025,
                                         this.canvas.getHeight() * 0.05,
                                         () => {
+                                            this.soundcontroller.playBackgroundMusic();
                                             this.player.setLocation("Map");
                                             this.mouseListener.setHasBeenClicked()
                                         });
@@ -45,10 +47,12 @@ class HouseView extends BaseView {
                                             this.canvas.getHeight() * 0.1,
                                             () => {
                                             if (this.player.getEnergy() < 80) {
+                                                this.soundcontroller.playSleepEffect();
                                                 this.player.setHunger(this.player.getHunger() - 5)
                                                 this.player.setEnergy(this.player.getEnergy() + 20)
                                             }
                                             else if (   this.player.getEnergy()< 100) {
+                                                        this.soundcontroller.playSleepEffect();
                                                         this.player.setHunger(this.player.getHunger() - 5)
                                                         this.player.setEnergy(100)
                                             };

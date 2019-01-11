@@ -3,8 +3,9 @@ class HospitalView extends BaseView {
     public constructor (src : string,
                         canvas : Canvas,
                         player : Player,
-                        mouseListener : MouseHelper) {
-        super(src, canvas, player, mouseListener);
+                        mouseListener : MouseHelper,
+                        soundcontroller : SoundController) {
+        super(src, canvas, player, mouseListener, soundcontroller);
     };
 
     /**
@@ -24,6 +25,7 @@ class HospitalView extends BaseView {
                                         this.canvas.getWidth() * 0.025,
                                         this.canvas.getHeight() * 0.05,
                                         () => {
+                                            this.soundcontroller.playBackgroundMusic();
                                             this.player.setLocation("Map");
                                             this.mouseListener.setHasBeenClicked()
                                         });

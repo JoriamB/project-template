@@ -6,8 +6,9 @@ class MapView extends BaseView {
                         canvas : Canvas,
                         player : Player,
                         mouseListener : MouseHelper,
-                        tasklist : Tasklist) {
-        super(src, canvas, player, mouseListener);
+                        tasklist : Tasklist,
+                        soundcontroller : SoundController) {
+        super(src, canvas, player, mouseListener, soundcontroller);
         this.tasklist = tasklist;
     };
 
@@ -33,6 +34,7 @@ class MapView extends BaseView {
                                                     this.mouseListener.getEventX() > this.tasklist.getX() + this.tasklist.getWidth()||
                                                     this.mouseListener.getEventY() < this.tasklist.getY()||
                                                     this.mouseListener.getEventY() > this.tasklist.getY() + this.tasklist.getHeight()) {
+                                                    this.soundcontroller.pauseMusic();
                                                     this.player.setLocation("Park");
                                                 };
                                                 this.mouseListener.setHasBeenClicked()
@@ -45,6 +47,7 @@ class MapView extends BaseView {
                                             this.canvas.getWidth()*0.28,
                                             this.canvas.getHeight()*0.328,
                                             () => {
+                                                this.soundcontroller.pauseMusic();
                                                 this.player.setLocation("Park");
                                                 this.mouseListener.setHasBeenClicked()
                                             });
@@ -55,6 +58,7 @@ class MapView extends BaseView {
                                         this.canvas.getWidth()*0.1,
                                         this.canvas.getHeight()*0.16,
                                         () => {
+                                            this.soundcontroller.playStore();
                                             this.player.setLocation("Store");
                                             this.mouseListener.setHasBeenClicked()
                                         });
@@ -74,6 +78,7 @@ class MapView extends BaseView {
                                         this.canvas.getWidth()*0.16,
                                         this.canvas.getHeight()*0.215,
                                         () => {
+                                            this.soundcontroller.playHospital()
                                             this.player.setLocation("Hospital");
                                             this.mouseListener.setHasBeenClicked()
                                         });
@@ -83,6 +88,7 @@ class MapView extends BaseView {
                                         this.canvas.getWidth() * 0.056,
                                         this.canvas.getHeight() * 0.095,
                                         () => {
+                                            this.soundcontroller.pauseMusic();
                                             this.player.setLocation("Restaurant");
                                             this.mouseListener.setHasBeenClicked()
                                         });
@@ -92,6 +98,7 @@ class MapView extends BaseView {
                                         this.canvas.getWidth()*0.043,
                                         this.canvas.getHeight()*0.093,
                                         () => {
+                                            this.soundcontroller.pauseMusic();
                                             this.player.setLocation("House");
                                             this.mouseListener.setHasBeenClicked()
                                         });
@@ -101,6 +108,7 @@ class MapView extends BaseView {
                                         this.canvas.getWidth()* 0.1,
                                         this.canvas.getHeight(),
                                         () => {
+                                            this.soundcontroller.pauseMusic();
                                             this.player.setLocation("Beach");
                                             this.mouseListener.setHasBeenClicked()
                                         });

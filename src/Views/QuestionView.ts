@@ -8,10 +8,11 @@ class  QuestionView extends BaseView{
         canvas : Canvas,
         player : Player,
         mouseListener : MouseHelper,
+        soundcontroller : SoundController,
         geographyquest : GeographyQuest,
         mathquest: MathQuest,
         historyquest:HistoryQuest,) {
-super(src, canvas, player, mouseListener);
+super(src, canvas, player, mouseListener, soundcontroller);
 this.geographyquest = geographyquest;
 this.mathquest = mathquest;
 this.historyquest = historyquest

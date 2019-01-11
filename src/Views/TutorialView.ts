@@ -1,9 +1,11 @@
 class TutorialView extends BaseView {
+
     public constructor (src : string,
-        canvas : Canvas,
-        player : Player,
-        mouseListener : MouseHelper) {
-super(src, canvas, player, mouseListener);
+                        canvas : Canvas,
+                        player : Player,
+                        mouseListener : MouseHelper,
+                        soundcontroller : SoundController) {
+super(src, canvas, player, mouseListener, soundcontroller);
 };
 
 /**

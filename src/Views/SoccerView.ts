@@ -7,9 +7,10 @@ class SoccerView extends BaseView{
         canvas : Canvas,
         player : Player,
         mouseListener : MouseHelper,
+        soundcontroller : SoundController,
         clock : Timer,
         score : number) {
-super(src, canvas, player, mouseListener);
+super(src, canvas, player, mouseListener, soundcontroller);
     this.clock = clock;
     this.score = score;
 };
